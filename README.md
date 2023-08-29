@@ -1,2 +1,4 @@
 # Pass-Over
-## 使用ツール  Dxlib
+**使用ツール･言語**
+Dxlib
+C++
