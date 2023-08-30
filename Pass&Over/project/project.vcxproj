@@ -19,7 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\code\GameMgr\GameMgr.cpp" />
+    <ClCompile Include="..\code\GameSetting\GameSetting.cpp" />
     <ClCompile Include="..\code\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\code\GameMgr\GameMgr.h" />
+    <ClInclude Include="..\code\GameSetting\GameSetting.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

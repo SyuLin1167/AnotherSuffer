@@ -2,6 +2,10 @@
 int playerHandle;
 VECTOR playerPos;
 
+〇定数(全大文字&キャメルケース)
+constexpr int SCREEN_WIDTH=1920;
+const int PLAYER_SPEED;
+
 〇関数(単語ごとに大文字)
 int GetPlayerPos();
 void Update();
@@ -19,6 +23,20 @@ if(true)
 
 〇std
 ueing namespace std;は使わない(いろいろ面倒になる)
+
+〇Tabキー
+×→    int a;
+
+空白表示にする
+  ・・・・int a;
+
+〇クラス
+基本的アクセス指定指の順番
+public:
+関数
+private:
+変数
+
 
 --------しっかりstd::を書く--------
 std::string a="woo";
