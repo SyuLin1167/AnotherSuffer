@@ -1,6 +1,5 @@
 #pragma once
 
-
 /*GameManagerƒNƒ‰ƒX*/
 class GameMgr final
 {
@@ -19,5 +18,7 @@ public:
     /// ˆ—
     /// </summary>
     void Procces();
+
+private:
 };
 
