@@ -19,6 +19,12 @@
     <Filter Include="ソース ファイル\GameSetting">
       <UniqueIdentifier>{0c78d2d7-cd4f-4858-8162-975ac8a36d7f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Scene">
+      <UniqueIdentifier>{5dd704fb-8592-44aa-a8b1-772f2a9cd23e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene\SceneBase">
+      <UniqueIdentifier>{c608d71d-b5ad-4ff3-b976-c6d578339f2c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\code\main.cpp">
@@ -30,6 +36,9 @@
     <ClCompile Include="..\code\GameSetting\GameSetting.cpp">
       <Filter>ソース ファイル\GameSetting</Filter>
     </ClCompile>
+    <ClCompile Include="..\code\Scene\SceneBase\SceneBase.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\code\GameMgr\GameMgr.h">
@@ -37,6 +46,9 @@
     </ClInclude>
     <ClInclude Include="..\code\GameSetting\GameSetting.h">
       <Filter>ソース ファイル\GameSetting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Scene\SceneBase\SceneBase.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -20,5 +20,6 @@ public:
     void Procces();
 
 private:
+    class GameSetting* gmSet;       //ゲームセッティング
 };
 

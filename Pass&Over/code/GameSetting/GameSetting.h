@@ -4,7 +4,7 @@ constexpr int SCREEN_HEIGHT = 1080;     //スクリーン高さ
 
 
 /*GameSettingクラス*/
-class GameSetting
+class GameSetting final
 {
 public:
     /// <summary>
@@ -26,7 +26,8 @@ public:
     /// ライブラリ初期化後処理
     /// </summary>
     void LibInitAfter();
+
 private:
-    const int COLOR_BIT = 16;
+    const int COLOR_BIT = 16;           //カラービット
 };
 

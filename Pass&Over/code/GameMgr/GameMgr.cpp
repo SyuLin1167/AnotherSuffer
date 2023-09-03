@@ -7,20 +7,20 @@
 // コンストラクタ //
 
 GameMgr::GameMgr()
+    :gmSet(new GameSetting)
 {
-    std::shared_ptr<GameSetting> gmSet(new GameSetting);
 }
 
 // デストラクタ //
 
 GameMgr::~GameMgr()
 {
-
+    delete gmSet;
 }
 
 // 処理 //
 
 void GameMgr::Procces()
 {
-	
+    
 }

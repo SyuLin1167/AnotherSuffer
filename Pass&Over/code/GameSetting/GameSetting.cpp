@@ -53,4 +53,5 @@ void GameSetting::LibInitAfter()
 
     //Zバッファ設定
     SetUseZBuffer3D(true);
+    SetWriteZBuffer3D(true);
 }
