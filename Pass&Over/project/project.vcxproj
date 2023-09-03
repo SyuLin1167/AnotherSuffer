@@ -22,10 +22,12 @@
     <ClCompile Include="..\code\GameMgr\GameMgr.cpp" />
     <ClCompile Include="..\code\GameSetting\GameSetting.cpp" />
     <ClCompile Include="..\code\main.cpp" />
+    <ClCompile Include="..\code\Scene\SceneBase\SceneBase.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\code\GameMgr\GameMgr.h" />
     <ClInclude Include="..\code\GameSetting\GameSetting.h" />
+    <ClInclude Include="..\code\Scene\SceneBase\SceneBase.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
