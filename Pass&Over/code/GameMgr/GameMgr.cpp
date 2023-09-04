@@ -1,7 +1,7 @@
-#include "GameMgr.h"
 #include<DxLib.h>
 #include<memory>
 
+#include "GameMgr.h"
 #include"../GameSetting/GameSetting.h"
 
 // コンストラクタ //
