@@ -1,5 +1,5 @@
-#include "GameSetting.h"
 #include<DxLib.h>
+#include "GameSetting.h"
 
 // コンストラクタ //
 
