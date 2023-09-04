@@ -25,6 +25,12 @@
     <Filter Include="ソース ファイル\Scene\SceneBase">
       <UniqueIdentifier>{c608d71d-b5ad-4ff3-b976-c6d578339f2c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Scene\SceneMgr">
+      <UniqueIdentifier>{021fbd35-95eb-476d-8a2e-373f4db2a904}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene\Title">
+      <UniqueIdentifier>{12a44715-9b63-44b0-82b5-3aa1824dacb6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\code\main.cpp">
@@ -37,7 +43,13 @@
       <Filter>ソース ファイル\GameSetting</Filter>
     </ClCompile>
     <ClCompile Include="..\code\Scene\SceneBase\SceneBase.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\Scene\SceneBase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\Scene\SceneMgr\SceneMgr.cpp">
+      <Filter>ソース ファイル\Scene\SceneMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\Scene\Title\Title.cpp">
+      <Filter>ソース ファイル\Scene\Title</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -48,7 +60,13 @@
       <Filter>ソース ファイル\GameSetting</Filter>
     </ClInclude>
     <ClInclude Include="..\code\Scene\SceneBase\SceneBase.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ソース ファイル\Scene\SceneBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Scene\SceneMgr\SceneMgr.h">
+      <Filter>ソース ファイル\Scene\SceneMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Scene\Title\Title.h">
+      <Filter>ソース ファイル\Scene\Title</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
