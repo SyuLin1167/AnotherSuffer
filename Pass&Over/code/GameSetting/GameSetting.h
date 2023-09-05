@@ -1,4 +1,6 @@
 #pragma once
+#include<DxLib.h>
+
 constexpr int SCREEN_WIDTH = 1920;      //スクリーン幅
 constexpr int SCREEN_HEIGHT = 1080;     //スクリーン高さ
 

@@ -1,4 +1,5 @@
 #pragma once
+#include<memory>
 #include<stack>
 
 /*SceneMgrクラス*/
@@ -31,7 +32,7 @@ public:
     void SceneDraw();
 
 private:
-    std::stack<class SceneBase*> nowScene;      //現在のシーン
-    class SceneBase* tmpScene;                        //一時的なシーン
+    std::stack<std::shared_ptr<class SceneBase>> nowScene;      //現在のシーン
+    class SceneBase* tmpScene;                                  //一時的なシーン
 };
 

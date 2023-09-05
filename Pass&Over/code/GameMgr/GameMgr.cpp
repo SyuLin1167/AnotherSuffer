@@ -1,6 +1,3 @@
-#include<DxLib.h>
-#include<memory>
-
 #include"../GameSetting/GameSetting.h"
 #include"../Scene/SceneMgr/SceneMgr.h"
 #include "GameMgr.h"
@@ -9,6 +6,8 @@
 
 GameMgr::GameMgr()
 {
+    gmSet.reset(new GameSetting);
+    sceneMgr.reset(new SceneMgr);
 }
 
 // デストラクタ //
@@ -21,7 +20,5 @@ GameMgr::~GameMgr()
 
 void GameMgr::Procces()
 {
-    std::shared_ptr<GameSetting> gmSet(new GameSetting);
-    std::shared_ptr<SceneMgr> sceneMgr(new SceneMgr);
     sceneMgr->GameLoop();
 }
