@@ -1,5 +1,4 @@
 #include<DxLib.h>
-//#include<stack>
 
 #include"../SceneBase/SceneBase.h"
 #include"../Title/Title.h"
@@ -10,7 +9,7 @@
 SceneMgr::SceneMgr()
     :tmpScene(nullptr)
 {
-    nowScene.push(new Title);
+    nowScene.emplace(new Title);
 }
 
 // デストラクタ //
