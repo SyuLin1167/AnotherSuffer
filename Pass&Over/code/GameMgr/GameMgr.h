@@ -18,8 +18,5 @@ public:
     /// 処理
     /// </summary>
     void Procces();
-
-private:
-    class GameSetting* gmSet;       //ゲームセッティング
 };
 
