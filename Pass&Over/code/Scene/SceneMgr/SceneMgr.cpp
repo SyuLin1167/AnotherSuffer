@@ -1,13 +1,16 @@
 #include<DxLib.h>
-#include<stack>
+//#include<stack>
 
 #include"../SceneBase/SceneBase.h"
+#include"../Title/Title.h"
 #include "SceneMgr.h"
 
 // コンストラクタ //
 
 SceneMgr::SceneMgr()
+    :tmpScene(nullptr)
 {
+    nowScene.push(new Title);
 }
 
 // デストラクタ //

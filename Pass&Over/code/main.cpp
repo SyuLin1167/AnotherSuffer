@@ -6,7 +6,7 @@
 int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int)
 {
     //ゲームシーン管理
-    std::shared_ptr<GameMgr> gmMgr(new GameMgr);
+    GameMgr* gmMgr(new GameMgr);
     gmMgr->Procces();
 
     //ソフトの終了

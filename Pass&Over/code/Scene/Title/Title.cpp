@@ -1,3 +1,5 @@
+#include<DxLib.h>
+
 #include"../SceneBase/SceneBase.h"
 #include "Title.h"
 
@@ -23,4 +25,5 @@ SceneBase* Title::SceneUpdate(const float& deltaTime)
 
 void Title::SceneDraw()
 {
+    DrawFormatString(0, 0, GetColor(255, 255, 255), "title");
 }

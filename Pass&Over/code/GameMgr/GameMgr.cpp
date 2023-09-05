@@ -1,13 +1,13 @@
 #include<DxLib.h>
 #include<memory>
 
-#include "GameMgr.h"
 #include"../GameSetting/GameSetting.h"
+#include"../Scene/SceneMgr/SceneMgr.h"
+#include "GameMgr.h"
 
 // コンストラクタ //
 
 GameMgr::GameMgr()
-    :gmSet(new GameSetting)
 {
 }
 
@@ -15,12 +15,13 @@ GameMgr::GameMgr()
 
 GameMgr::~GameMgr()
 {
-    delete gmSet;
 }
 
 // 処理 //
 
 void GameMgr::Procces()
 {
-    
+    std::shared_ptr<GameSetting> gmSet(new GameSetting);
+    std::shared_ptr<SceneMgr> sceneMgr(new SceneMgr);
+    sceneMgr->GameLoop();
 }

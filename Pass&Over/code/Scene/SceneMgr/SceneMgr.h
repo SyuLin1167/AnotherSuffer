@@ -1,4 +1,5 @@
 #pragma once
+#include<stack>
 
 /*SceneMgrクラス*/
 class SceneMgr final
@@ -28,9 +29,9 @@ public:
     /// シーン描画処理
     /// </summary>
     void SceneDraw();
-private:
-    std::stack<SceneBase*> nowScene;        //現在のシーン
-    SceneBase* tmpScene;                    //一時的なシーン
 
+private:
+    std::stack<class SceneBase*> nowScene;      //現在のシーン
+    class SceneBase* tmpScene;                        //一時的なシーン
 };
 
