@@ -25,6 +25,7 @@
     <ClCompile Include="..\code\Scene\SceneBase\SceneBase.cpp" />
     <ClCompile Include="..\code\Scene\SceneMgr\SceneMgr.cpp" />
     <ClCompile Include="..\code\Scene\Title\Title.cpp" />
+    <ClCompile Include="..\code\TimeMgr\TimeMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\code\GameMgr\GameMgr.h" />
@@ -32,6 +33,7 @@
     <ClInclude Include="..\code\Scene\SceneBase\SceneBase.h" />
     <ClInclude Include="..\code\Scene\SceneMgr\SceneMgr.h" />
     <ClInclude Include="..\code\Scene\Title\Title.h" />
+    <ClInclude Include="..\code\TimeMgr\TimeMgr.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
