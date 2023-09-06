@@ -4,7 +4,7 @@
 
 GameSetting::GameSetting()
 {
-    LibInitBefore();
+    BeforeLibInit();
 
     //ライブラリ初期化
     if (DxLib_Init() < 0)
@@ -12,7 +12,7 @@ GameSetting::GameSetting()
         DebugBreak();
     }
 
-    LibInitAfter();
+    AfterLibInit();
 }
 
 // デストラクタ //
@@ -25,7 +25,7 @@ GameSetting::~GameSetting()
 
 // ライブラリ初期化前処理 //
 
-void GameSetting::LibInitBefore()
+void GameSetting::BeforeLibInit()
 {
     //ログの非表示
     SetOutApplicationLogValidFlag(false);
@@ -45,7 +45,7 @@ void GameSetting::LibInitBefore()
 
 // ライブラリ初期化後処理 //
 
-void GameSetting::LibInitAfter()
+void GameSetting::AfterLibInit()
 {
     //描画先を裏画面に変更
     SetDrawScreen(DX_SCREEN_BACK);

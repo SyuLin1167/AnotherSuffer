@@ -22,12 +22,12 @@ public:
     /// <summary>
     /// ライブラリ初期化前処理
     /// </summary>
-    void LibInitBefore();
+    void BeforeLibInit();
 
     /// <summary>
     /// ライブラリ初期化後処理
     /// </summary>
-    void LibInitAfter();
+    void AfterLibInit();
 
 private:
     const int COLOR_BIT = 16;           //カラービット
