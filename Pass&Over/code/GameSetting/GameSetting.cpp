@@ -1,3 +1,5 @@
+#include<assert.h>
+
 #include "GameSetting.h"
 
 // コンストラクタ //
@@ -7,10 +9,7 @@ GameSetting::GameSetting()
     BeforeLibInit();
 
     //ライブラリ初期化
-    if (DxLib_Init() < 0)
-    {
-        DebugBreak();
-    }
+    assert(!DxLib_Init());
 
     AfterLibInit();
 }

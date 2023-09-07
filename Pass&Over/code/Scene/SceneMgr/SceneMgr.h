@@ -31,7 +31,14 @@ public:
     /// </summary>
     void SceneDraw();
 
+    /// <summary>
+    /// シーン切り替え処理
+    /// </summary>
+    void SceneChange();
+
 private:
+    std::shared_ptr<class TimeMgr> timeMgr;                     //タイムマネージャー
+
     std::stack<std::shared_ptr<class SceneBase>> nowScene;      //現在のシーン
     class SceneBase* tmpScene;                                  //一時的なシーン
 };
