@@ -14,7 +14,6 @@ public:
     /// </summary>
     virtual ~SceneBase();
 
-protected:
     /// <summary>
     /// シーン更新処理
     /// </summary>
