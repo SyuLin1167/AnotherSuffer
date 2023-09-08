@@ -34,6 +34,9 @@
     <Filter Include="ソース ファイル\TimeMgr">
       <UniqueIdentifier>{60284cb2-7dce-433b-a60b-f27b4e5c7bad}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Scene\Play">
+      <UniqueIdentifier>{edfadfde-4ce8-4386-bc7b-d817975aca69}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\code\GameMgr\GameMgr.cpp">
@@ -57,6 +60,9 @@
     <ClCompile Include="..\code\TimeMgr\TimeMgr.cpp">
       <Filter>ソース ファイル\TimeMgr</Filter>
     </ClCompile>
+    <ClCompile Include="..\code\Scene\Play\Play.cpp">
+      <Filter>ソース ファイル\Scene\Play</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\code\GameMgr\GameMgr.h">
@@ -76,6 +82,9 @@
     </ClInclude>
     <ClInclude Include="..\code\TimeMgr\TimeMgr.h">
       <Filter>ソース ファイル\TimeMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Scene\Play\Play.h">
+      <Filter>ソース ファイル\Scene\Play</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
