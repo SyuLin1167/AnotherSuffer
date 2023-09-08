@@ -22,6 +22,7 @@
     <ClCompile Include="..\code\GameMgr\GameMgr.cpp" />
     <ClCompile Include="..\code\GameSetting\GameSetting.cpp" />
     <ClCompile Include="..\code\main.cpp" />
+    <ClCompile Include="..\code\Scene\Play\Play.cpp" />
     <ClCompile Include="..\code\Scene\SceneBase\SceneBase.cpp" />
     <ClCompile Include="..\code\Scene\SceneMgr\SceneMgr.cpp" />
     <ClCompile Include="..\code\Scene\Title\Title.cpp" />
@@ -30,6 +31,7 @@
   <ItemGroup>
     <ClInclude Include="..\code\GameMgr\GameMgr.h" />
     <ClInclude Include="..\code\GameSetting\GameSetting.h" />
+    <ClInclude Include="..\code\Scene\Play\Play.h" />
     <ClInclude Include="..\code\Scene\SceneBase\SceneBase.h" />
     <ClInclude Include="..\code\Scene\SceneMgr\SceneMgr.h" />
     <ClInclude Include="..\code\Scene\Title\Title.h" />
