@@ -24,17 +24,17 @@ public:
     /// <summary>
     /// シーン更新処理
     /// </summary>
-    void SceneUpdate();
+    void UpdateScene();
 
     /// <summary>
     /// シーン描画処理
     /// </summary>
-    void SceneDraw();
+    void DrawScene();
 
     /// <summary>
     /// シーン切り替え処理
     /// </summary>
-    void SceneChange();
+    void ChangeScene();
 
 private:
     std::shared_ptr<class TimeMgr> timeMgr;                     //タイムマネージャー

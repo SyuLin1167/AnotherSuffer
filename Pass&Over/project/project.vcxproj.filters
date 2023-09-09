@@ -37,6 +37,15 @@
     <Filter Include="ソース ファイル\Scene\Play">
       <UniqueIdentifier>{edfadfde-4ce8-4386-bc7b-d817975aca69}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Object">
+      <UniqueIdentifier>{3802ffcf-ccb8-409b-a30e-eba8e539010e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Object\ObjBase">
+      <UniqueIdentifier>{1c0869d2-384b-444b-89fb-c160c13050ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Object\ObjMgr">
+      <UniqueIdentifier>{b26534a1-3809-479d-b2ff-4a465ae71149}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\code\GameMgr\GameMgr.cpp">
@@ -63,6 +72,9 @@
     <ClCompile Include="..\code\Scene\Play\Play.cpp">
       <Filter>ソース ファイル\Scene\Play</Filter>
     </ClCompile>
+    <ClCompile Include="..\code\Object\ObjMgr\ObjMgr.cpp">
+      <Filter>ソース ファイル\Object\ObjMgr</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\code\GameMgr\GameMgr.h">
@@ -85,6 +97,9 @@
     </ClInclude>
     <ClInclude Include="..\code\Scene\Play\Play.h">
       <Filter>ソース ファイル\Scene\Play</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Object\ObjMgr\ObjMgr.h">
+      <Filter>ソース ファイル\Object\ObjMgr</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -29,33 +29,33 @@ void SceneMgr::GameLoop()
     while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
     {
         //シーンのフロー
-        SceneUpdate();
-        SceneDraw();
-        SceneChange();
+        UpdateScene();
+        DrawScene();
+        ChangeScene();
     }
 }
 
 // シーン更新処理 //
 
-void SceneMgr::SceneUpdate()
+void SceneMgr::UpdateScene()
 {
     //現在のシーンを更新してtmpSceneに代入
-    tmpScene = nowScene.top()->SceneUpdate(timeMgr->DeltaTime());
+    tmpScene = nowScene.top()->UpdateScene(timeMgr->DeltaTime());
 }
 
 // シーン描画処理 //
 
-void SceneMgr::SceneDraw()
+void SceneMgr::DrawScene()
 {
     //現在のシーンを描画
     ClearDrawScreen();
-    nowScene.top()->SceneDraw();
+    nowScene.top()->DrawScene();
     ScreenFlip();
 }
 
 // シーン切り替え処理 //
 
-void SceneMgr::SceneChange()
+void SceneMgr::ChangeScene()
 {
     //nowSceneがtmpSceneと異なっていたら解放して代入
     if (nowScene.top().get() != tmpScene)
