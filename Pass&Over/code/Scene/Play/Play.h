@@ -19,11 +19,11 @@ public:
     /// </summary>
     /// <param name="deltaTime">:フレームレート</param>
     /// <returns>次フレームのシーン</returns>
-    SceneBase* SceneUpdate(const float& deltaTime)override;
+    SceneBase* UpdateScene(const float& deltaTime)override;
 
     /// <summary>
     /// シーン描画
     /// </summary>
-    void SceneDraw()override;
+    void DrawScene()override;
 };
 
