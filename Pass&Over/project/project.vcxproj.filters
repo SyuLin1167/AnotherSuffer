@@ -75,6 +75,9 @@
     <ClCompile Include="..\code\Object\ObjMgr\ObjMgr.cpp">
       <Filter>ソース ファイル\Object\ObjMgr</Filter>
     </ClCompile>
+    <ClCompile Include="..\code\Object\ObjBase\ObjBase.cpp">
+      <Filter>ソース ファイル\Object\ObjBase</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\code\GameMgr\GameMgr.h">
@@ -100,6 +103,12 @@
     </ClInclude>
     <ClInclude Include="..\code\Object\ObjMgr\ObjMgr.h">
       <Filter>ソース ファイル\Object\ObjMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Object\ObjBase\ObjBase.h">
+      <Filter>ソース ファイル\Object\ObjBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Object\ObjBase\ObjTag.h">
+      <Filter>ソース ファイル\Object\ObjBase</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
