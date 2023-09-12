@@ -46,6 +46,9 @@
     <Filter Include="ソース ファイル\Object\ObjMgr">
       <UniqueIdentifier>{b26534a1-3809-479d-b2ff-4a465ae71149}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Object\CharaObj">
+      <UniqueIdentifier>{e5f80536-480c-49f7-a2f3-38605f47f236}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\code\GameMgr\GameMgr.cpp">
@@ -78,6 +81,9 @@
     <ClCompile Include="..\code\Object\ObjBase\ObjBase.cpp">
       <Filter>ソース ファイル\Object\ObjBase</Filter>
     </ClCompile>
+    <ClCompile Include="..\code\Object\CharaObj\CharaObjBase\CharaObjBase.cpp">
+      <Filter>ソース ファイル\Object\CharaObj</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\code\GameMgr\GameMgr.h">
@@ -109,6 +115,9 @@
     </ClInclude>
     <ClInclude Include="..\code\Object\ObjBase\ObjTag.h">
       <Filter>ソース ファイル\Object\ObjBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Object\CharaObj\CharaObjBase\CharaObjBase.h">
+      <Filter>ソース ファイル\Object\CharaObj</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
