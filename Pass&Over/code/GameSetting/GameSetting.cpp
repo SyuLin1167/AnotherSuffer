@@ -1,3 +1,4 @@
+#include<DxLib.h>
 #include<assert.h>
 
 #include "GameSetting.h"

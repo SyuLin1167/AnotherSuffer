@@ -2,6 +2,7 @@
 #include<assert.h>
 
 #include"../SceneBase/SceneBase.h"
+#include"../../Object/ObjMgr/ObjMgr.h"
 #include"../../TimeMgr/TimeMgr.h"
 #include"../Title/Title.h"
 #include "SceneMgr.h"
@@ -11,6 +12,8 @@
 SceneMgr::SceneMgr()
     :tmpScene(nullptr)
 {
+    ObjMgr::InitObjMgr();
+
     timeMgr.reset(new TimeMgr);
     nowScene.emplace(new Title);
 }

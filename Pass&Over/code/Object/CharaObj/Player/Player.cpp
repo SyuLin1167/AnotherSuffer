@@ -1,11 +1,11 @@
 #include<DxLib.h>
 
-#include"../CharaObjBase/CharaObjBase.h"
 #include "Player.h"
 
 // コンストラクタ //
 
 Player::Player()
+    :CharaObjBase(ObjTag::PLAYER)
 {
 
 }
@@ -21,8 +21,16 @@ Player::~Player()
 
 void Player::Update(const float& deltaTime)
 {
+    a += deltaTime;
     if (CheckHitKey(KEY_INPUT_P))
     {
-        isAlive
+        isAlive = false;
     }
+}
+
+// 描画処理 //
+
+void Player::Draw()
+{
+    DrawFormatString(0, 50, GetColor(255, 255, 255), "player:%d", a);
 }
