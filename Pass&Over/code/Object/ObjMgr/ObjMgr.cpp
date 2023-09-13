@@ -1,7 +1,5 @@
 #include<assert.h>
 
-#include"../ObjBase/ObjBase.h"
-#include"../ObjBase/ObjTag.h"
 #include "ObjMgr.h"
 
 std::shared_ptr<class ObjMgr> ObjMgr::objMgr = nullptr;
@@ -13,7 +11,7 @@ void ObjMgr::InitObjMgr()
     //自身の中身が空だったらインスタンス生成
     if (!objMgr.get())
     {
-        objMgr = std::make_shared<class ObjMgr>(new ObjMgr);
+        objMgr.reset(new ObjMgr);
     }
 }
 
@@ -21,7 +19,9 @@ void ObjMgr::InitObjMgr()
 
 void ObjMgr::AddObj(ObjBase* newObj)
 {
-    objMgr->object.emplace(newObj->GetTag(), newObj);
+    ObjTag tag = newObj->GetTag();
+
+    objMgr->object[tag].emplace_back(newObj);
 }
 
 // オブジェクト更新処理 //
@@ -82,8 +82,7 @@ void ObjMgr::DeleteObj(ObjBase* unnecObj)
     ObjTag tag = unnecObj->GetTag();
 
     //オブジェクトを検索
-    auto iter = find(objMgr->object[tag].begin(),
-        objMgr->object[tag].end(), unnecObj);
+    auto iter = std::find(objMgr->object[tag].begin(),objMgr->object[tag].end(), unnecObj);
     assert(iter == objMgr->object[tag].end());
 
     //見つかったら末尾に移動させて削除
@@ -91,5 +90,29 @@ void ObjMgr::DeleteObj(ObjBase* unnecObj)
     {
         std::iter_swap(iter, objMgr->object[tag].end() - 1);
         objMgr->object[tag].back().reset();
+        objMgr->object[tag].pop_back();
     }
+}
+
+// 全オブジェクト削除処理 //
+
+void ObjMgr::DeleteAllObj()
+{
+    //空になるまで末尾からオブジェクト削除
+    for (auto& tag : objTagAll)
+    {
+        while (!objMgr->object[tag].empty())
+        {
+            objMgr->object[tag].back().reset();
+            objMgr->object[tag].pop_back();
+        }
+    }
+}
+
+// オブジェクトマネージャー後処理 //
+
+void ObjMgr::Finalize()
+{
+    DeleteAllObj();
+    objMgr.reset();
 }

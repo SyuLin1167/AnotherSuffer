@@ -1,4 +1,5 @@
 #pragma once
+#include"../CharaObjBase/CharaObjBase.h"
 
 /*PlayerƒNƒ‰ƒX*/
 class Player:public CharaObjBase
@@ -25,5 +26,7 @@ private:
     /// •`‰æˆ—
     /// </summary>
     void Draw()override;
+
+    float a = 0;
 };
 

@@ -1,4 +1,5 @@
-#include"ObjTag.h"
+#include<DxLib.h>
+
 #include "ObjBase.h"
 
 // コンストラクタ //

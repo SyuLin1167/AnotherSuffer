@@ -1,4 +1,5 @@
 #pragma once
+#include"../../ObjBase/ObjBase.h"
 
 /*CharaObjBaseクラス*/
 class CharaObjBase:public ObjBase
@@ -16,14 +17,11 @@ public:
 
 protected:
     /// <summary>
-    /// 更新処理
+    /// キャラ動作処理
     /// </summary>
-    /// <param name="deltaTime">フレームレート</param>
-    virtual void Update(const float& deltaTime)override = 0;
+    /// <param name="deltaTime">:フレームレート</param>
+    void MoveChara(const float& deltaTime);
 
-    /// <summary>
-    /// 描画処理
-    /// </summary>
-    virtual void Draw()override = 0;
+
 };
 

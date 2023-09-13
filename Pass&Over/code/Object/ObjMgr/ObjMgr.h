@@ -2,6 +2,10 @@
 #include<memory>
 #include<vector>
 #include<unordered_map>
+#include<algorithm>
+
+#include"../ObjBase/ObjBase.h"
+#include"../ObjBase/ObjTag.h"
 
 /*ObjMgrクラス*/
 class ObjMgr final
@@ -43,16 +47,22 @@ public:
     /// 全オブジェクト削除処理
     /// </summary>
     static void DeleteAllObj();
-private:
+
+    /// <summary>
+    /// オブジェクトマネージャー後処理
+    /// </summary>
+    static void Finalize();
+
     /// <summary>
     /// コンストラクタ(シングルトン)
     /// </summary>
-    ObjMgr();
+    ObjMgr() {};
 
     /// <summary>
     /// デストラクタ
     /// </summary>
-    ~ObjMgr();
+    ~ObjMgr() {};
+private:
 
     static std::shared_ptr<class ObjMgr> objMgr;     //自身の実体
 

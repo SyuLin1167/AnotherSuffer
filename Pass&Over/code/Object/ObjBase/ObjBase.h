@@ -1,4 +1,5 @@
 #pragma once
+#include"ObjTag.h"
 
 /*ObjBaseクラス*/
 class ObjBase
@@ -39,10 +40,10 @@ public:
     bool IsAlive() { return isAlive; }
 
 protected:
-
     ObjTag objTag;      //オブジェクトのタグ
+
     bool isAlive;       //生存状態
 
-
+    //VECTOR objPos;      //座標
 };
 
