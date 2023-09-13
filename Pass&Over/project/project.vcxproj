@@ -23,6 +23,7 @@
     <ClCompile Include="..\code\GameSetting\GameSetting.cpp" />
     <ClCompile Include="..\code\main.cpp" />
     <ClCompile Include="..\code\Object\CharaObj\CharaObjBase\CharaObjBase.cpp" />
+    <ClCompile Include="..\code\Object\CharaObj\Player\Player.cpp" />
     <ClCompile Include="..\code\Object\ObjBase\ObjBase.cpp" />
     <ClCompile Include="..\code\Object\ObjMgr\ObjMgr.cpp" />
     <ClCompile Include="..\code\Scene\Play\Play.cpp" />
@@ -35,6 +36,7 @@
     <ClInclude Include="..\code\GameMgr\GameMgr.h" />
     <ClInclude Include="..\code\GameSetting\GameSetting.h" />
     <ClInclude Include="..\code\Object\CharaObj\CharaObjBase\CharaObjBase.h" />
+    <ClInclude Include="..\code\Object\CharaObj\Player\Player.h" />
     <ClInclude Include="..\code\Object\ObjBase\ObjBase.h" />
     <ClInclude Include="..\code\Object\ObjBase\ObjTag.h" />
     <ClInclude Include="..\code\Object\ObjMgr\ObjMgr.h" />

@@ -38,6 +38,24 @@ void ObjMgr::UpdateObj(const float& deltaTime)
     }
 }
 
+// オブジェクト描画処理 //
+
+void ObjMgr::DrawObj()
+{
+    //全タグ分描画処理をまとめて行う
+    for (auto& tag : objTagAll)
+    {
+        for (int i = 0; i < objMgr->object[tag].size(); i++)
+        {
+            //オブジェクトが生存していたら描画させる
+            if (objMgr->object[tag][i]->IsAlive())
+            {
+                objMgr->object[tag][i]->Draw();
+            }
+        }
+    }
+}
+
 // オブジェクト死亡処理 //
 
 void ObjMgr::OnDeadObj()

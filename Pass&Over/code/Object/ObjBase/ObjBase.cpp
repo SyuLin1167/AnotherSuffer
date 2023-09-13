@@ -5,6 +5,7 @@
 
 ObjBase::ObjBase(ObjTag tag)
     :objTag(tag)
+    , isAlive(true)
 {
 
 }
