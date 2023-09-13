@@ -13,7 +13,7 @@ public:
     /// <summary>
     /// デストラクタ
     /// </summary>
-    ~ObjBase();
+    virtual ~ObjBase();
 
     /// <summary>
     /// 更新処理
@@ -37,9 +37,12 @@ public:
     /// </summary>
     /// <returns>生:true|死:false</returns>
     bool IsAlive() { return isAlive; }
+
 protected:
 
-    ObjTag objTag;
-    bool isAlive;
+    ObjTag objTag;      //オブジェクトのタグ
+    bool isAlive;       //生存状態
+
+
 };
 

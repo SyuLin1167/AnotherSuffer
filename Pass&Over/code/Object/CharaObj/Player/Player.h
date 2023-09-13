@@ -1,29 +1,29 @@
 #pragma once
 
-/*CharaObjBaseクラス*/
-class CharaObjBase:public ObjBase
+/*Playerクラス*/
+class Player:public CharaObjBase
 {
 public:
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    CharaObjBase(ObjTag tag);
+    Player();
 
     /// <summary>
     /// デストラクタ
     /// </summary>
-    virtual ~CharaObjBase();
+    ~Player();
 
-protected:
+private:
     /// <summary>
     /// 更新処理
     /// </summary>
     /// <param name="deltaTime">フレームレート</param>
-    virtual void Update(const float& deltaTime)override = 0;
+    void Update(const float& deltaTime)override;
 
     /// <summary>
     /// 描画処理
     /// </summary>
-    virtual void Draw()override = 0;
+    void Draw()override;
 };
 
