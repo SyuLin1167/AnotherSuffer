@@ -20,7 +20,7 @@ public:
     /// 更新処理
     /// </summary>
     /// <param name="deltaTime">:フレームレート</param>
-    virtual void Update(const float& deltaTime) = 0;
+    virtual void Update(const float deltaTime) = 0;
 
     /// <summary>
     /// 描画処理

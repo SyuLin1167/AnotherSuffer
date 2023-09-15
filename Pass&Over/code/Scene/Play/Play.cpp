@@ -19,7 +19,7 @@ Play::~Play()
 
 // シーン更新処理 //
 
-SceneBase* Play::UpdateScene(const float& deltaTime)
+SceneBase* Play::UpdateScene(const float deltaTime)
 {
     return this;
 }

@@ -21,7 +21,7 @@ Player::~Player()
 
 void Player::Update(const float& deltaTime)
 {
-    a += 1*deltaTime;
+    a += deltaTime;
     if (CheckHitKey(KEY_INPUT_P))
     {
         isAlive = false;
