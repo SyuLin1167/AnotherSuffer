@@ -22,7 +22,7 @@ public:
     void Procces();
 
 private:
-    std::shared_ptr<class GameSetting> gmSet;    //ゲームセッティング
-    std::shared_ptr<class SceneMgr> sceneMgr;    //シーンマネージャー
+    std::unique_ptr<class GameSetting> gmSet;    //ゲームセッティング
+    std::unique_ptr<class SceneMgr> sceneMgr;    //シーンマネージャー
 };
 

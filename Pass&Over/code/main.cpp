@@ -6,7 +6,7 @@
 int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int)
 {
     //ƒQ[ƒ€ƒV[ƒ“ŠÇ—
-    std::shared_ptr<GameMgr> gmMgr(new GameMgr);
+    std::unique_ptr<GameMgr> gmMgr(new GameMgr);
     gmMgr->Procces();
     gmMgr.reset();
 

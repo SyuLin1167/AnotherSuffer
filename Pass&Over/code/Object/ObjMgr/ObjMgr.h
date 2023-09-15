@@ -49,24 +49,19 @@ public:
     static void DeleteAllObj();
 
     /// <summary>
-    /// オブジェクトマネージャー後処理
+    /// デストラクタ
     /// </summary>
-    static void Finalize();
+    ~ObjMgr();
 
+private:
     /// <summary>
     /// コンストラクタ(シングルトン)
     /// </summary>
-    ObjMgr() {};
+    ObjMgr();
 
-    /// <summary>
-    /// デストラクタ
-    /// </summary>
-    ~ObjMgr() {};
-private:
-
-    static std::shared_ptr<class ObjMgr> objMgr;     //自身の実体
+    static std::unique_ptr<ObjMgr> objMgr;     //自身の実体
 
     std::unordered_map<ObjTag, std::vector<
-        std::shared_ptr<class ObjBase>>> object;     //オブジェクト
+        ObjBase*>> object;                     //オブジェクト
 };
 

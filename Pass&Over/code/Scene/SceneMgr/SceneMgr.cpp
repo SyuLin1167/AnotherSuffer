@@ -36,6 +36,7 @@ void SceneMgr::GameLoop()
         DrawScene();
         ChangeScene();
     }
+    ObjMgr::DeleteAllObj();
 }
 
 // シーン更新処理 //
