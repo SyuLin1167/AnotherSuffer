@@ -22,7 +22,7 @@ ObjMgr::~ObjMgr()
 void ObjMgr::InitObjMgr()
 {
     //自身の中身が空だったらインスタンス生成
-    if (!objMgr.get())
+    if (!objMgr)
     {
         objMgr.reset(new ObjMgr);
     }

@@ -22,7 +22,7 @@ Title::~Title()
 
 // シーン更新処理 //
 
-SceneBase* Title::UpdateScene(const float& deltaTime)
+SceneBase* Title::UpdateScene(const float deltaTime)
 {
     ObjMgr::UpdateObj(deltaTime);
 
