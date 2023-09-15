@@ -28,7 +28,7 @@ SceneBase* Title::UpdateScene(const float& deltaTime)
 
     if (CheckHitKey(KEY_INPUT_RETURN))
     {
-        ObjMgr::Finalize();
+        ObjMgr::DeleteAllObj();
         return new Play;
     }
 

@@ -2,7 +2,20 @@
 
 #include "ObjMgr.h"
 
-std::shared_ptr<class ObjMgr> ObjMgr::objMgr = nullptr;
+std::unique_ptr<ObjMgr> ObjMgr::objMgr;
+
+// コンストラクタ //
+
+ObjMgr::ObjMgr()
+    :object()
+{
+}
+
+// デストラクタ //
+
+ObjMgr::~ObjMgr()
+{
+}
 
 // オブジェクトマネージャー初期化処理 //
 
@@ -68,7 +81,7 @@ void ObjMgr::OnDeadObj()
             //死んでいたらオブジェクト削除
             if (!dead->IsAlive())
             {
-                DeleteObj(dead.get());
+                DeleteObj(dead);
             }
         }
     }
@@ -82,14 +95,14 @@ void ObjMgr::DeleteObj(ObjBase* unnecObj)
     ObjTag tag = unnecObj->GetTag();
 
     //オブジェクトを検索
-    auto iter = std::find(objMgr->object[tag].begin(),objMgr->object[tag].end(), unnecObj);
+    auto iter = std::find(objMgr->object[tag].begin(), objMgr->object[tag].end(), unnecObj);
     assert(iter == objMgr->object[tag].end());
 
     //見つかったら末尾に移動させて削除
     if (iter != objMgr->object[tag].end())
     {
         std::iter_swap(iter, objMgr->object[tag].end() - 1);
-        objMgr->object[tag].back().reset();
+        delete objMgr->object[tag].back();
         objMgr->object[tag].pop_back();
     }
 }
@@ -98,21 +111,15 @@ void ObjMgr::DeleteObj(ObjBase* unnecObj)
 
 void ObjMgr::DeleteAllObj()
 {
-    //空になるまで末尾からオブジェクト削除
+    //空じゃなかったらオブジェクト削除
     for (auto& tag : objTagAll)
     {
-        while (!objMgr->object[tag].empty())
+        if (!objMgr->object[tag].empty())
         {
-            objMgr->object[tag].back().reset();
-            objMgr->object[tag].pop_back();
+            objMgr->object[tag].clear();
+            objMgr->object[tag].shrink_to_fit();
         }
     }
-}
 
-// オブジェクトマネージャー後処理 //
-
-void ObjMgr::Finalize()
-{
-    DeleteAllObj();
-    objMgr.reset();
+    objMgr->object.clear();
 }
