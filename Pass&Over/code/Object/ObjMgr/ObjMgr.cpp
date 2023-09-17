@@ -39,7 +39,7 @@ void ObjMgr::AddObj(ObjBase* newObj)
 
 // オブジェクト更新処理 //
 
-void ObjMgr::UpdateObj(const float& deltaTime)
+void ObjMgr::UpdateObj(const float deltaTime)
 {
     //全タグ分更新処理をまとめて行う
     for (auto& tag : objTagAll)

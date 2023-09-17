@@ -20,7 +20,7 @@ protected:
     /// キャラ動作処理
     /// </summary>
     /// <param name="deltaTime">:フレームレート</param>
-    virtual void MoveChara(const float deltaTime) = 0;
+    //virtual void MoveChara(const float deltaTime);
 
 
 };

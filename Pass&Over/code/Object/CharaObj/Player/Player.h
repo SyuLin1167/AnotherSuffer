@@ -20,7 +20,7 @@ private:
     /// 更新処理
     /// </summary>
     /// <param name="deltaTime">フレームレート</param>
-    void Update(const float& deltaTime)override;
+    void Update(const float deltaTime)override;
 
     /// <summary>
     /// 描画処理

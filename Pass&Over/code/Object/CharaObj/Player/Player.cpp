@@ -19,7 +19,7 @@ Player::~Player()
 
 // XVˆ— //
 
-void Player::Update(const float& deltaTime)
+void Player::Update(const float deltaTime)
 {
     a += deltaTime;
     if (CheckHitKey(KEY_INPUT_P))
@@ -32,5 +32,5 @@ void Player::Update(const float& deltaTime)
 
 void Player::Draw()
 {
-    DrawFormatString(0, 50, GetColor(255, 255, 255), "player:%d", a);
+    DrawFormatString(0, 50, GetColor(255, 255, 255), "player:%f", a);
 }

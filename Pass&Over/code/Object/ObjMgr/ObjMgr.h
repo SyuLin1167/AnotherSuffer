@@ -25,7 +25,7 @@ public:
     /// オブジェクト更新処理
     /// </summary>
     /// <param name="deltaTime">:フレームレート</param>
-    static void UpdateObj(const float& deltaTime);
+    static void UpdateObj(const float deltaTime);
 
     /// <summary>
     /// オブジェクト死亡処理
