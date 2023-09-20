@@ -1,5 +1,5 @@
 #include"../GameSetting/GameSetting.h"
-#include"../Scene/SceneMgr/SceneMgr.h"
+#include"../../Scene/SceneMgr/SceneMgr.h"
 #include "GameMgr.h"
 
 // コンストラクタ //
