@@ -13,12 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="ソース ファイル\GameMgr">
-      <UniqueIdentifier>{5072161e-ff77-468b-8f79-29959f5751ac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\GameSetting">
-      <UniqueIdentifier>{0c78d2d7-cd4f-4858-8162-975ac8a36d7f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\Scene">
       <UniqueIdentifier>{5dd704fb-8592-44aa-a8b1-772f2a9cd23e}</UniqueIdentifier>
     </Filter>
@@ -55,14 +49,26 @@
     <Filter Include="ソース ファイル\Object\CharaObj\Player">
       <UniqueIdentifier>{f540dba2-66b2-44f7-b316-0b90584fbf75}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\GameSystem">
+      <UniqueIdentifier>{5f359bff-c2b7-411c-b391-fbc7cf451e09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\GameSystem\GameSetting">
+      <UniqueIdentifier>{0c78d2d7-cd4f-4858-8162-975ac8a36d7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\GameSystem\GameMgr">
+      <UniqueIdentifier>{5072161e-ff77-468b-8f79-29959f5751ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Asset">
+      <UniqueIdentifier>{d607eb61-f5df-43dc-9eee-5889987df476}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Asset\AssetMgr">
+      <UniqueIdentifier>{49eda0a0-444c-4c8e-90fc-c65f35598332}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Asset\Model">
+      <UniqueIdentifier>{c00583a8-e9f5-4ea0-9931-4e0c31fa4670}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\code\GameMgr\GameMgr.cpp">
-      <Filter>ソース ファイル\GameMgr</Filter>
-    </ClCompile>
-    <ClCompile Include="..\code\GameSetting\GameSetting.cpp">
-      <Filter>ソース ファイル\GameSetting</Filter>
-    </ClCompile>
     <ClCompile Include="..\code\Scene\SceneBase\SceneBase.cpp">
       <Filter>ソース ファイル\Scene\SceneBase</Filter>
     </ClCompile>
@@ -93,14 +99,20 @@
     <ClCompile Include="..\code\Object\CharaObj\Player\Player.cpp">
       <Filter>ソース ファイル\Object\CharaObj\Player</Filter>
     </ClCompile>
+    <ClCompile Include="..\code\GameSystem\GameMgr\GameMgr.cpp">
+      <Filter>ソース ファイル\GameSystem\GameMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\GameSystem\GameSetting\GameSetting.cpp">
+      <Filter>ソース ファイル\GameSystem\GameSetting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\Asset\AssetMgr\AssetMgr.cpp">
+      <Filter>ソース ファイル\Asset\AssetMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\Asset\Model\Model.cpp">
+      <Filter>ソース ファイル\Asset\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\code\GameMgr\GameMgr.h">
-      <Filter>ソース ファイル\GameMgr</Filter>
-    </ClInclude>
-    <ClInclude Include="..\code\GameSetting\GameSetting.h">
-      <Filter>ソース ファイル\GameSetting</Filter>
-    </ClInclude>
     <ClInclude Include="..\code\Scene\SceneBase\SceneBase.h">
       <Filter>ソース ファイル\Scene\SceneBase</Filter>
     </ClInclude>
@@ -130,6 +142,18 @@
     </ClInclude>
     <ClInclude Include="..\code\Object\CharaObj\Player\Player.h">
       <Filter>ソース ファイル\Object\CharaObj\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\GameSystem\GameMgr\GameMgr.h">
+      <Filter>ソース ファイル\GameSystem\GameMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\GameSystem\GameSetting\GameSetting.h">
+      <Filter>ソース ファイル\GameSystem\GameSetting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Asset\AssetMgr\AssetMgr.h">
+      <Filter>ソース ファイル\Asset\AssetMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Asset\Model\Model.h">
+      <Filter>ソース ファイル\Asset\Model</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

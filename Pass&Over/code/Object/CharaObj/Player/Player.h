@@ -2,7 +2,7 @@
 #include"../CharaObjBase/CharaObjBase.h"
 
 /*PlayerƒNƒ‰ƒX*/
-class Player:public CharaObjBase
+class Player final:public CharaObjBase
 {
 public:
     /// <summary>
