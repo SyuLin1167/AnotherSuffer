@@ -1,8 +1,9 @@
 #pragma once
+#include<memory>
 #include<string>
 #include<unordered_map>
-#include<../IncludeFile/Rapidjson/istreamwrapper.h>
-#include<../IncludeFile/Rapidjson/document.h>
+#include<../../IncludeFile/Rapidjson/istreamwrapper.h>
+#include<../../IncludeFile/Rapidjson/document.h>
 
 /*AssetBaseクラス*/
 class AssetBase
@@ -33,9 +34,9 @@ public:
     /// <summary>
     /// ハンドル削除処理
     /// </summary>
-    void DeleteHandle();
+    virtual void DeleteHandle() = 0;
 
 protected:
-    std::unordered_map < std::string, int > handle;     //ハンドル
+    std::unordered_map < std::string, std::unique_ptr<int> > handle;     //ハンドル
 };
 
