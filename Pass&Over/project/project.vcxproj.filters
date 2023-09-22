@@ -67,6 +67,9 @@
     <Filter Include="ソース ファイル\Asset\Model">
       <UniqueIdentifier>{c00583a8-e9f5-4ea0-9931-4e0c31fa4670}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Asset\AssetBase">
+      <UniqueIdentifier>{a01e4642-d88e-4215-bc56-d52ae54fe2f0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\code\Scene\SceneBase\SceneBase.cpp">
@@ -110,6 +113,9 @@
     </ClCompile>
     <ClCompile Include="..\code\Asset\Model\Model.cpp">
       <Filter>ソース ファイル\Asset\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\Asset\AssetBase\AssetBase.cpp">
+      <Filter>ソース ファイル\Asset\AssetBase</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -155,5 +161,13 @@
     <ClInclude Include="..\code\Asset\Model\Model.h">
       <Filter>ソース ファイル\Asset\Model</Filter>
     </ClInclude>
+    <ClInclude Include="..\code\Asset\AssetBase\AssetBase.h">
+      <Filter>ソース ファイル\Asset\AssetBase</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\code\Asset\Model\ModelData.json">
+      <Filter>ソース ファイル\Asset\Model</Filter>
+    </None>
   </ItemGroup>
 </Project>
