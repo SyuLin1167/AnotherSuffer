@@ -104,6 +104,7 @@ void ObjMgr::DeleteObj(ObjBase* unnecObj)
         std::iter_swap(iter, objMgr->object[tag].end() - 1);
         delete objMgr->object[tag].back();
         objMgr->object[tag].pop_back();
+        objMgr->object[tag].shrink_to_fit();
     }
 }
 
@@ -120,6 +121,4 @@ void ObjMgr::DeleteAllObj()
             objMgr->object[tag].shrink_to_fit();
         }
     }
-
-    objMgr->object.clear();
 }

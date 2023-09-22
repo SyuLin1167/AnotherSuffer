@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\code\Asset\AssetBase\AssetBase.cpp" />
     <ClCompile Include="..\code\Asset\AssetMgr\AssetMgr.cpp" />
     <ClCompile Include="..\code\Asset\Model\Model.cpp" />
     <ClCompile Include="..\code\GameSystem\GameMgr\GameMgr.cpp" />
@@ -35,6 +36,7 @@
     <ClCompile Include="..\code\TimeMgr\TimeMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\code\Asset\AssetBase\AssetBase.h" />
     <ClInclude Include="..\code\Asset\AssetMgr\AssetMgr.h" />
     <ClInclude Include="..\code\Asset\Model\Model.h" />
     <ClInclude Include="..\code\GameSystem\GameMgr\GameMgr.h" />
@@ -49,6 +51,9 @@
     <ClInclude Include="..\code\Scene\SceneMgr\SceneMgr.h" />
     <ClInclude Include="..\code\Scene\Title\Title.h" />
     <ClInclude Include="..\code\TimeMgr\TimeMgr.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\code\Asset\Model\ModelData.json" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
