@@ -1,7 +1,8 @@
 #pragma once
+#include"../AssetBase/AssetBase.h"
 
 /*Modelクラス*/
-class Model final
+class Model final:public AssetBase
 {
 public:
     /// <summary>
@@ -20,19 +21,10 @@ public:
     void AddHandle();
 
     /// <summary>
-    /// ハンドル取得処理
-    /// </summary>
-    /// <param name="modelName">モデル名</param>
-    /// <returns>ハンドル</returns>
-    int GetHandle(std::string modelName);
-
-    /// <summary>
     /// ハンドル削除処理
     /// </summary>
-    void DeleteHandle();
+    virtual void DeleteHandle() override;
 
 private:
-    std::unordered_map<std::string, int> modelData;
-    std::vector<int> modelHandle;
 };
 
