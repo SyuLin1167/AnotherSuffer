@@ -22,7 +22,7 @@ public:
     /// <summary>
     /// ハンドル追加処理
     /// </summary>
-    virtual void AddHandle() = 0;
+    virtual void AddHandle(std::string fileName) = 0;
 
     /// <summary>
     /// ハンドル取得処理
