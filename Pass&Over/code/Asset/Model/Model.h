@@ -1,4 +1,5 @@
 #pragma once
+#include<string.h>
 #include"../AssetBase/AssetBase.h"
 
 /*Modelクラス*/
@@ -18,7 +19,7 @@ public:
     /// <summary>
     /// ハンドル追加処理
     /// </summary>
-    void AddHandle();
+    void AddHandle(std::string fileName)override;
 
     /// <summary>
     /// ハンドル削除処理
@@ -26,5 +27,7 @@ public:
     virtual void DeleteHandle() override;
 
 private:
+    int tmpHandle;      //一時保存ハンドル
+    int dupHandle;      //複製ハンドル
 };
 

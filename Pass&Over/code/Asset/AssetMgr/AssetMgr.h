@@ -1,4 +1,5 @@
 #pragma once
+#include<memory>
 
 /*AssetMgrƒNƒ‰ƒX*/
 class AssetMgr final
@@ -6,9 +7,9 @@ class AssetMgr final
 public:
     AssetMgr();
     ~AssetMgr();
-    void GetHundle();
-    void DeleteHundle();
+    Model ModelInstance() { return *model; }
 
-
+private:
+    std::unique_ptr<class Model> model;
 };
 
