@@ -3,6 +3,7 @@
 
 #include"../SceneBase/SceneBase.h"
 #include"../../Object/ObjMgr/ObjMgr.h"
+#include"../../Asset/AssetMgr/AssetMgr.h"
 #include"../../TimeMgr/TimeMgr.h"
 #include"../Title/Title.h"
 #include "SceneMgr.h"
@@ -13,6 +14,7 @@ SceneMgr::SceneMgr()
     :tmpScene(nullptr)
 {
     ObjMgr::InitObjMgr();
+    AssetMgr::InitAssetMgr();
 
     timeMgr.reset(new TimeMgr);
     nowScene.emplace(new Title);

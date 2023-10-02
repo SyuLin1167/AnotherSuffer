@@ -14,6 +14,23 @@ AssetBase::~AssetBase()
 
 }
 
+// Jsonファイル読み込み処理 //
+
+void AssetBase::LoadJsonFile(std::string fileName)
+{
+    //ファイル読み込み
+    std::ifstream ifs(fileName.c_str());
+
+    //ファイル解析
+    if (ifs.good())
+    {
+        rapidjson::IStreamWrapper isw(ifs);
+
+        doc.ParseStream(isw);
+    }
+    ifs.close();
+}
+
 // ハンドル取得処理 //
 
 int AssetBase::GetHandle(std::string handleName)

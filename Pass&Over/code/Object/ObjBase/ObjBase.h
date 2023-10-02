@@ -1,5 +1,8 @@
 #pragma once
+#include<../Rapidjson/istreamwrapper.h>
+#include<string.h>
 #include"ObjTag.h"
+#include"../../Asset/AssetMgr/AssetMgr.h"
 
 /*ObjBaseƒNƒ‰ƒX*/
 class ObjBase
