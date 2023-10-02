@@ -29,5 +29,6 @@ public:
 private:
     int tmpHandle;      //一時保存ハンドル
     int dupHandle;      //複製ハンドル
+    const std::string dataFile;
 };
 

@@ -22,7 +22,7 @@ int AssetBase::GetHandle(std::string handleName)
     auto iter = handle.find(handleName);
     if (iter != handle.end())
     {
-        return *handle[handleName];
+        return handle[handleName];
     }
 
     //Œ©‚Â‚©‚ç‚È‚©‚Á‚½‚ç-1‚ð•Ô‚·

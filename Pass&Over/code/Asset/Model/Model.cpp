@@ -5,17 +5,26 @@
 // コンストラクタ //
 
 Model::Model()
-    :tmpHandle(-1)
-    ,dupHandle(-1)
+    :AssetBase()
+    , tmpHandle(-1)
+    , dupHandle(-1)
+    , dataFile("../assets/Chara/Player/Player.mv1")
 {
-    
+    std::ifstream ifs(dataFile.c_str());
+    rapidjson::Document doc;
+    if (ifs.good())
+    {
+        rapidjson::IStreamWrapper isw(ifs);
+
+        doc.ParseStream(isw);
+    }
+    ifs.close();
 }
 
 // デストラクタ //
 
 Model::~Model()
 {
-
 }
 
 // ハンドル追加処理 //
@@ -42,8 +51,7 @@ void Model::DeleteHandle()
 {
     for (auto& iter : handle)
     {
-        MV1DeleteModel(*iter.second);
-        iter.second.reset();
+        MV1DeleteModel(iter.second);
     }
     handle.clear();
 }
