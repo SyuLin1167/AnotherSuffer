@@ -1,5 +1,6 @@
 #include<DxLib.h>
 
+#include"../../../Asset/Model/Model.h"
 #include "Player.h"
 
 // コンストラクタ //
@@ -7,7 +8,7 @@
 Player::Player()
     :CharaObjBase(ObjTag::PLAYER)
 {
-
+    AssetMgr::ModelInstance()->GetHandle();
 }
 
 // デストラクタ //

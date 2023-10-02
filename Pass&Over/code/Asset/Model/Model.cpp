@@ -8,17 +8,10 @@ Model::Model()
     :AssetBase()
     , tmpHandle(-1)
     , dupHandle(-1)
-    , dataFile("../assets/Chara/Player/Player.mv1")
+    , dataFile("../code/Asset/Model/ModelData.json")
 {
-    std::ifstream ifs(dataFile.c_str());
-    rapidjson::Document doc;
-    if (ifs.good())
-    {
-        rapidjson::IStreamWrapper isw(ifs);
-
-        doc.ParseStream(isw);
-    }
-    ifs.close();
+    data = LoadJsonFile(dataFile)["model"];
+    AddHandle(data["player"].GetString());
 }
 
 // デストラクタ //
@@ -41,6 +34,7 @@ void Model::AddHandle(std::string fileName)
     {
         tmpHandle = MV1LoadModel(fileName.c_str());
         dupHandle = MV1DuplicateModel(tmpHandle);
+        MV1DeleteModel(tmpHandle);
         handle.emplace(fileName, dupHandle);
     }
 }

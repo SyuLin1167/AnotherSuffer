@@ -6,22 +6,29 @@ class AssetMgr final
 {
 public:
     /// <summary>
-    /// コンストラクタ
+    /// アセットマネージャー初期化処理
     /// </summary>
-    AssetMgr();
+    static void InitAssetMgr();
+
+    /// <summary>
+    /// モデルインスタンス
+    /// </summary>
+    /// <returns>Modelクラス</returns>
+    static class Model* ModelInstance() { return assetMgr->model.get(); }
 
     /// <summary>
     /// デストラクタ
     /// </summary>
     ~AssetMgr();
 
-    /// <summary>
-    /// モデルインスタンス
-    /// </summary>
-    /// <returns>Modelクラス</returns>
-    Model ModelInstance() { return *model; }
-
 private:
-    std::unique_ptr<class Model> model;     //モデル
+    /// <summary>
+    /// コンストラクタ(シングルトン)
+    /// </summary>
+    AssetMgr();
+
+    static std::unique_ptr<AssetMgr> assetMgr;      //自身の実体
+
+    std::unique_ptr<class Model> model;             //モデル
 };
 

@@ -1,5 +1,4 @@
 #pragma once
-#include<string.h>
 #include"../AssetBase/AssetBase.h"
 
 /*Modelクラス*/
@@ -27,8 +26,8 @@ public:
     virtual void DeleteHandle() override;
 
 private:
-    int tmpHandle;      //一時保存ハンドル
-    int dupHandle;      //複製ハンドル
-    const std::string dataFile;
+    int tmpHandle;                  //一時保存ハンドル
+    int dupHandle;                  //複製ハンドル
+    const std::string dataFile;     //データファイル
 };
 
