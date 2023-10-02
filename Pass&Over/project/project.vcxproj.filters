@@ -70,6 +70,9 @@
     <Filter Include="ソース ファイル\Asset\AssetBase">
       <UniqueIdentifier>{a01e4642-d88e-4215-bc56-d52ae54fe2f0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Object\Camera">
+      <UniqueIdentifier>{e1d65ccb-f996-438a-a8c4-3d3bd880d578}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\code\Scene\SceneBase\SceneBase.cpp">
@@ -117,6 +120,9 @@
     <ClCompile Include="..\code\Asset\AssetBase\AssetBase.cpp">
       <Filter>ソース ファイル\Asset\AssetBase</Filter>
     </ClCompile>
+    <ClCompile Include="..\code\Object\Camera\Camera.cpp">
+      <Filter>ソース ファイル\Object\Camera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\code\Scene\SceneBase\SceneBase.h">
@@ -163,6 +169,9 @@
     </ClInclude>
     <ClInclude Include="..\code\Asset\AssetBase\AssetBase.h">
       <Filter>ソース ファイル\Asset\AssetBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Object\Camera\Camera.h">
+      <Filter>ソース ファイル\Object\Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

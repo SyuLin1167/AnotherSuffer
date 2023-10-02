@@ -3,7 +3,6 @@
 #include"../SceneBase/SceneBase.h"
 #include"../Play/Play.h"
 #include"../../Object/ObjMgr/ObjMgr.h"
-#include"../../Object/CharaObj/Player/Player.h"
 #include "Title.h"
 
 // コンストラクタ //
@@ -11,7 +10,6 @@
 Title::Title()
     :SceneBase()
 {
-    ObjMgr::AddObj(new Player);
 }
 
 // デストラクタ //

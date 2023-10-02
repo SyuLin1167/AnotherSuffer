@@ -1,4 +1,5 @@
 #pragma once
+#include<DxLib.h>
 #include<../Rapidjson/istreamwrapper.h>
 #include<string.h>
 #include"ObjTag.h"
@@ -47,6 +48,7 @@ protected:
 
     bool isAlive;       //生存状態
 
-    //VECTOR objPos;      //座標
+    int objHandle;      //ハンドル
+    VECTOR objPos;    //座標
 };
 

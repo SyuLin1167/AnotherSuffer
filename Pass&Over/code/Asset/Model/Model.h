@@ -18,6 +18,7 @@ public:
     /// <summary>
     /// ハンドル追加処理
     /// </summary>
+    /// <param name="fileName">:ファイル名</param>
     void AddHandle(std::string fileName)override;
 
     /// <summary>
@@ -28,6 +29,5 @@ public:
 private:
     int tmpHandle;                  //一時保存ハンドル
     int dupHandle;                  //複製ハンドル
-    const std::string dataFile;     //データファイル
 };
 

@@ -1,9 +1,10 @@
 #pragma once
 #include<memory>
-#include<string.h>
 #include<unordered_map>
 #include<../Rapidjson/istreamwrapper.h>
 #include<../Rapidjson/document.h>
+#include<string.h>
+#include<string>
 #include<fstream>
 
 /*AssetBaseクラス*/
@@ -23,14 +24,9 @@ public:
     /// <summary>
     /// Jsonファイル読み込み処理
     /// </summary>
-    /// <param name="fileName">ファイル名</param>
-    void LoadJsonFile(std::string fileName);
-
-    /// <summary>
-    /// ハンドルキー取得処理
-    /// </summary>
+    /// <param name="fileName">:ファイル名</param>
     /// <returns>ファイルデータ</returns>
-    const rapidjson::Document GetHandleKey();
+    rapidjson::Value& LoadJsonFile(std::string fileName);
 
     /// <summary>
     /// ハンドル追加処理
@@ -40,9 +36,9 @@ public:
     /// <summary>
     /// ハンドル取得処理
     /// </summary>
-    /// <param name="handleName">ハンドル名</param>
+    /// <param name="handleName">:ハンドル名</param>
     /// <returns>ハンドル</returns>
-    int GetHandle(std::string handleName);
+    const int GetHandle(std::string handleName);
 
     /// <summary>
     /// ハンドル削除処理
@@ -51,7 +47,7 @@ public:
 
 protected:
     std::unordered_map < std::string, int > handle;     //ハンドル
-    rapidjson::Value& data;                             //ファイルデータ
-    rapidjson::Document doc;                            //ドキュメント
+    std::string jsonFile;                         //jsonファイル
+
 };
 
