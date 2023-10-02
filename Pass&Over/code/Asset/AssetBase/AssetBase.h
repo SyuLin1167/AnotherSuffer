@@ -2,8 +2,9 @@
 #include<memory>
 #include<string>
 #include<unordered_map>
-#include<../../IncludeFile/Rapidjson/istreamwrapper.h>
-#include<../../IncludeFile/Rapidjson/document.h>
+#include<../Rapidjson/istreamwrapper.h>
+#include<../Rapidjson/document.h>
+#include<fstream>
 
 /*AssetBaseクラス*/
 class AssetBase
@@ -37,6 +38,6 @@ public:
     virtual void DeleteHandle() = 0;
 
 protected:
-    std::unordered_map < std::string, std::unique_ptr<int> > handle;     //ハンドル
+    std::unordered_map < std::string, int > handle;     //ハンドル
 };
 
