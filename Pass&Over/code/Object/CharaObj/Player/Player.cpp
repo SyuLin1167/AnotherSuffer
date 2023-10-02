@@ -1,5 +1,3 @@
-#include<DxLib.h>
-
 #include"../../../Asset/Model/Model.h"
 #include "Player.h"
 
@@ -8,7 +6,11 @@
 Player::Player()
     :CharaObjBase(ObjTag::PLAYER)
 {
-    AssetMgr::ModelInstance()->GetHandle();
+    //モデル読み込み
+    Model* model = AssetMgr::ModelInstance();
+    objHandle = model->GetHandle("../assets/Chara/Player/Player.mv1");
+    MV1SetPosition(objHandle, VGet(0, 0, 0));
+    MV1SetScale(objHandle, VGet(0.5f, 0.5f, 0.5f));
 }
 
 // デストラクタ //
@@ -34,4 +36,5 @@ void Player::Update(const float deltaTime)
 void Player::Draw()
 {
     DrawFormatString(0, 50, GetColor(255, 255, 255), "player:%f", a);
+    MV1DrawModel(objHandle);
 }

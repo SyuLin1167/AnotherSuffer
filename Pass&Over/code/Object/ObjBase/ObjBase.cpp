@@ -1,5 +1,3 @@
-#include<DxLib.h>
-
 #include "ObjBase.h"
 
 // コンストラクタ //
@@ -7,6 +5,8 @@
 ObjBase::ObjBase(ObjTag tag)
     :objTag(tag)
     , isAlive(true)
+    , objHandle(-1)
+    , objPos(VGet(0, 0, 0))
 {
 
 }
