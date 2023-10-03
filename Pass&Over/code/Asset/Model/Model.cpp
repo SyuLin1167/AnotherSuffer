@@ -8,23 +8,14 @@ Model::Model()
     , tmpHandle(-1)
     , dupHandle(-1)
 {
+    assetType = "model";
+
+    //jsonファイル読み込み
     jsonFile = "../code/Asset/Model/ModelData.json";
-    //auto& data = LoadJsonFile(jsonFile)["model"];
+    LoadJsonFile(jsonFile);
 
-    //ファイル読み込み
-    std::ifstream ifs(jsonFile.c_str());
-    rapidjson::Document doc;
-
-    //ファイル解析
-    if (ifs.good())
-    {
-        rapidjson::IStreamWrapper isw(ifs);
-
-        doc.ParseStream(isw);
-    }
-    ifs.close();
-
-    auto& data = doc["model"];
+    //ハンドル追加
+    auto& data = GetJsonData();
     AddHandle(data["player"].GetString());
 }
 
@@ -38,7 +29,7 @@ Model::~Model()
 
 void Model::AddHandle(std::string fileName)
 {
-    //ハンドル初期化
+    //仮ハンドル初期化
     tmpHandle = -1;
     dupHandle = -1;
 
@@ -48,7 +39,6 @@ void Model::AddHandle(std::string fileName)
     {
         tmpHandle = MV1LoadModel(fileName.c_str());
         dupHandle = MV1DuplicateModel(tmpHandle);
-        MV1DeleteModel(tmpHandle);
         handle.emplace(fileName, dupHandle);
     }
 }
