@@ -3,7 +3,8 @@
 // コンストラクタ //
 
 AssetBase::AssetBase()
-    :jsonFile("")
+    :assetType("")
+    , jsonFile("")
 {
 }
 
@@ -16,11 +17,10 @@ AssetBase::~AssetBase()
 
 // Jsonファイル読み込み処理 //
 
-rapidjson::Value& AssetBase::LoadJsonFile(std::string fileName)
+void AssetBase::LoadJsonFile(std::string fileName)
 {
     //ファイル読み込み
     std::ifstream ifs(fileName.c_str());
-    rapidjson::Document doc;
 
     //ファイル解析
     if (ifs.good())
@@ -30,9 +30,6 @@ rapidjson::Value& AssetBase::LoadJsonFile(std::string fileName)
         doc.ParseStream(isw);
     }
     ifs.close();
-
-    auto& value = doc;
-    return value;
 }
 
 // ハンドル取得処理 //

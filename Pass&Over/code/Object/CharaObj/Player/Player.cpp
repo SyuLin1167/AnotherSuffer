@@ -8,8 +8,10 @@ Player::Player()
 {
     //ƒ‚ƒfƒ‹“Ç‚İ‚İ
     Model* model = AssetMgr::ModelInstance();
-    objHandle = model->GetHandle("../assets/Chara/Player/Player.mv1");
-    MV1SetPosition(objHandle, VGet(0, 0, 0));
+    auto& modelPass = model->GetJsonData();
+    objHandle = model->GetHandle(modelPass["player"].GetString());
+
+    MV1SetPosition(objHandle, objPos);
     MV1SetScale(objHandle, VGet(0.5f, 0.5f, 0.5f));
 }
 
@@ -29,6 +31,7 @@ void Player::Update(const float deltaTime)
     {
         isAlive = false;
     }
+
 }
 
 // •`‰æˆ— //

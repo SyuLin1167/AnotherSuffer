@@ -25,13 +25,18 @@ public:
     /// Jsonファイル読み込み処理
     /// </summary>
     /// <param name="fileName">:ファイル名</param>
-    /// <returns>ファイルデータ</returns>
-    rapidjson::Value& LoadJsonFile(std::string fileName);
+    void LoadJsonFile(std::string fileName);
 
     /// <summary>
     /// ハンドル追加処理
     /// </summary>
     virtual void AddHandle(std::string fileName) = 0;
+
+    /// <summary>
+    /// Jsonファイルデータ取得処理
+    /// </summary>
+    /// <returns>jsonファイルデータ</returns>
+    const rapidjson::Value& GetJsonData() { return doc[assetType.c_str()]; }
 
     /// <summary>
     /// ハンドル取得処理
@@ -46,8 +51,10 @@ public:
     virtual void DeleteHandle() = 0;
 
 protected:
+    std::string assetType;                              //アセットタイプ
     std::unordered_map < std::string, int > handle;     //ハンドル
-    std::string jsonFile;                         //jsonファイル
 
+    std::string jsonFile;                               //jsonファイル
+    rapidjson::Document doc;                            //ドキュメント
 };
 
