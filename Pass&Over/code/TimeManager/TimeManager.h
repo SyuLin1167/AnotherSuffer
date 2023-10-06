@@ -1,18 +1,18 @@
 #pragma once
 
-/*TimeMgrクラス*/
-class TimeMgr
+/*TimeManagerクラス*/
+class TimeManager
 {
 public:
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    TimeMgr();
+    TimeManager();
 
     /// <summary>
     /// デストラクタ
     /// </summary>
-    ~TimeMgr();
+    ~TimeManager();
 
     /// <summary>
     /// フレームレート

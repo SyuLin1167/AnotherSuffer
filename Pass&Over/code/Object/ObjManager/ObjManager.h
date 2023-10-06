@@ -7,14 +7,14 @@
 #include"../ObjBase/ObjBase.h"
 #include"../ObjBase/ObjTag.h"
 
-/*ObjMgrクラス*/
-class ObjMgr final
+/*ObjManagerクラス*/
+class ObjManager final
 {
 public:
     /// <summary>
     /// オブジェクトマネージャー初期化処理
     /// </summary>
-    static void InitObjMgr();
+    static void InitObjManager();
 
     /// <summary>
     /// オブジェクト追加処理
@@ -51,17 +51,17 @@ public:
     /// <summary>
     /// デストラクタ
     /// </summary>
-    ~ObjMgr();
+    ~ObjManager();
 
 private:
     /// <summary>
     /// コンストラクタ(シングルトン)
     /// </summary>
-    ObjMgr();
+    ObjManager();
 
-    static std::unique_ptr<ObjMgr> objMgr;     //自身の実体
+    static std::unique_ptr<ObjManager> singleton;     //自身の実体
 
     std::unordered_map<ObjTag, std::vector<
-        ObjBase*>> object;                     //オブジェクト
+        ObjBase*>> object;                            //オブジェクト
 };
 

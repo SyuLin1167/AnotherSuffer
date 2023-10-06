@@ -25,9 +25,6 @@
     <Filter Include="ソース ファイル\Scene\Title">
       <UniqueIdentifier>{12a44715-9b63-44b0-82b5-3aa1824dacb6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\TimeMgr">
-      <UniqueIdentifier>{60284cb2-7dce-433b-a60b-f27b4e5c7bad}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\Scene\Play">
       <UniqueIdentifier>{edfadfde-4ce8-4386-bc7b-d817975aca69}</UniqueIdentifier>
     </Filter>
@@ -36,9 +33,6 @@
     </Filter>
     <Filter Include="ソース ファイル\Object\ObjBase">
       <UniqueIdentifier>{1c0869d2-384b-444b-89fb-c160c13050ec}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Object\ObjMgr">
-      <UniqueIdentifier>{b26534a1-3809-479d-b2ff-4a465ae71149}</UniqueIdentifier>
     </Filter>
     <Filter Include="ソース ファイル\Object\CharaObj">
       <UniqueIdentifier>{e5f80536-480c-49f7-a2f3-38605f47f236}</UniqueIdentifier>
@@ -55,9 +49,6 @@
     <Filter Include="ソース ファイル\GameSystem\GameSetting">
       <UniqueIdentifier>{0c78d2d7-cd4f-4858-8162-975ac8a36d7f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\GameSystem\GameMgr">
-      <UniqueIdentifier>{5072161e-ff77-468b-8f79-29959f5751ac}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\Asset">
       <UniqueIdentifier>{d607eb61-f5df-43dc-9eee-5889987df476}</UniqueIdentifier>
     </Filter>
@@ -73,6 +64,18 @@
     <Filter Include="ソース ファイル\Object\Camera">
       <UniqueIdentifier>{e1d65ccb-f996-438a-a8c4-3d3bd880d578}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\TimeManager">
+      <UniqueIdentifier>{60284cb2-7dce-433b-a60b-f27b4e5c7bad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Object\ObjManager">
+      <UniqueIdentifier>{b26534a1-3809-479d-b2ff-4a465ae71149}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\GameSystem\GameManager">
+      <UniqueIdentifier>{5072161e-ff77-468b-8f79-29959f5751ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\GameSystem\Window">
+      <UniqueIdentifier>{1b3c42a4-b7cb-40d6-a3de-50156187fce1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\code\Scene\SceneBase\SceneBase.cpp">
@@ -87,14 +90,8 @@
     <ClCompile Include="..\code\main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="..\code\TimeMgr\TimeMgr.cpp">
-      <Filter>ソース ファイル\TimeMgr</Filter>
-    </ClCompile>
     <ClCompile Include="..\code\Scene\Play\Play.cpp">
       <Filter>ソース ファイル\Scene\Play</Filter>
-    </ClCompile>
-    <ClCompile Include="..\code\Object\ObjMgr\ObjMgr.cpp">
-      <Filter>ソース ファイル\Object\ObjMgr</Filter>
     </ClCompile>
     <ClCompile Include="..\code\Object\ObjBase\ObjBase.cpp">
       <Filter>ソース ファイル\Object\ObjBase</Filter>
@@ -104,9 +101,6 @@
     </ClCompile>
     <ClCompile Include="..\code\Object\CharaObj\Player\Player.cpp">
       <Filter>ソース ファイル\Object\CharaObj\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="..\code\GameSystem\GameMgr\GameMgr.cpp">
-      <Filter>ソース ファイル\GameSystem\GameMgr</Filter>
     </ClCompile>
     <ClCompile Include="..\code\GameSystem\GameSetting\GameSetting.cpp">
       <Filter>ソース ファイル\GameSystem\GameSetting</Filter>
@@ -123,6 +117,18 @@
     <ClCompile Include="..\code\Object\Camera\Camera.cpp">
       <Filter>ソース ファイル\Object\Camera</Filter>
     </ClCompile>
+    <ClCompile Include="..\code\TimeManager\TimeManager.cpp">
+      <Filter>ソース ファイル\TimeManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\Object\ObjManager\ObjManager.cpp">
+      <Filter>ソース ファイル\Object\ObjManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\GameSystem\GameManager\GameManager.cpp">
+      <Filter>ソース ファイル\GameSystem\GameManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\GameSystem\Window\Window.cpp">
+      <Filter>ソース ファイル\GameSystem\Window</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\code\Scene\SceneBase\SceneBase.h">
@@ -134,14 +140,8 @@
     <ClInclude Include="..\code\Scene\Title\Title.h">
       <Filter>ソース ファイル\Scene\Title</Filter>
     </ClInclude>
-    <ClInclude Include="..\code\TimeMgr\TimeMgr.h">
-      <Filter>ソース ファイル\TimeMgr</Filter>
-    </ClInclude>
     <ClInclude Include="..\code\Scene\Play\Play.h">
       <Filter>ソース ファイル\Scene\Play</Filter>
-    </ClInclude>
-    <ClInclude Include="..\code\Object\ObjMgr\ObjMgr.h">
-      <Filter>ソース ファイル\Object\ObjMgr</Filter>
     </ClInclude>
     <ClInclude Include="..\code\Object\ObjBase\ObjBase.h">
       <Filter>ソース ファイル\Object\ObjBase</Filter>
@@ -154,9 +154,6 @@
     </ClInclude>
     <ClInclude Include="..\code\Object\CharaObj\Player\Player.h">
       <Filter>ソース ファイル\Object\CharaObj\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="..\code\GameSystem\GameMgr\GameMgr.h">
-      <Filter>ソース ファイル\GameSystem\GameMgr</Filter>
     </ClInclude>
     <ClInclude Include="..\code\GameSystem\GameSetting\GameSetting.h">
       <Filter>ソース ファイル\GameSystem\GameSetting</Filter>
@@ -172,6 +169,18 @@
     </ClInclude>
     <ClInclude Include="..\code\Object\Camera\Camera.h">
       <Filter>ソース ファイル\Object\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\TimeManager\TimeManager.h">
+      <Filter>ソース ファイル\TimeManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Object\ObjManager\ObjManager.h">
+      <Filter>ソース ファイル\Object\ObjManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\GameSystem\GameManager\GameManager.h">
+      <Filter>ソース ファイル\GameSystem\GameManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\GameSystem\Window\Window.h">
+      <Filter>ソース ファイル\GameSystem\Window</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

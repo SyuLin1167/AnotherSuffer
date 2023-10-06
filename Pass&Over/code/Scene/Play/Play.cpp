@@ -1,6 +1,6 @@
 #include<DxLib.h>
 
-#include"../../Object/ObjMgr/ObjMgr.h"
+#include"../../Object/ObjManager/ObjManager.h"
 #include"../../Object/Camera/Camera.h"
 #include"../../Object/CharaObj/Player/Player.h"
 #include"../SceneBase/SceneBase.h"
@@ -10,8 +10,8 @@
 
 Play::Play()
 {
-    ObjMgr::AddObj(new Camera);
-    ObjMgr::AddObj(new Player);
+    ObjManager::AddObj(new Camera);
+    ObjManager::AddObj(new Player);
 }
 
 // デストラクタ //
@@ -25,7 +25,7 @@ Play::~Play()
 
 SceneBase* Play::UpdateScene(const float deltaTime)
 {
-    ObjMgr::UpdateObj(deltaTime);
+    ObjManager::UpdateObj(deltaTime);
     return this;
 }
 
@@ -33,6 +33,6 @@ SceneBase* Play::UpdateScene(const float deltaTime)
 
 void Play::DrawScene()
 {
-    ObjMgr::DrawObj();
+    ObjManager::DrawObj();
     DrawFormatString(0, 0, GetColor(255, 255, 255), "play");
 }

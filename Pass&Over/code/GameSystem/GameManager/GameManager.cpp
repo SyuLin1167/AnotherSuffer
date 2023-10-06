@@ -1,24 +1,26 @@
+#include"../Window/Window.h"
 #include"../GameSetting/GameSetting.h"
 #include"../../Scene/SceneMgr/SceneMgr.h"
-#include "GameMgr.h"
+#include "GameManager.h"
 
 // コンストラクタ //
 
-GameMgr::GameMgr()
+GameManager::GameManager()
 {
-    gmSet.reset(new GameSetting);
+    Window::Init();
+    GameSetting::Init();
     sceneMgr.reset(new SceneMgr);
 }
 
 // デストラクタ //
 
-GameMgr::~GameMgr()
+GameManager::~GameManager()
 {
 }
 
 // 処理 //
 
-void GameMgr::Procces()
+void GameManager::Procces()
 {
     sceneMgr->GameLoop();
 }

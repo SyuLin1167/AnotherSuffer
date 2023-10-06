@@ -3,18 +3,18 @@
 #include<memory>
 
 /*GameManagerクラス*/
-class GameMgr final
+class GameManager final
 {
 public:
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    GameMgr();
+    GameManager();
 
     /// <summary>
     /// デストラクタ
     /// </summary>
-    ~GameMgr();
+    ~GameManager();
 
     /// <summary>
     /// 処理
@@ -22,7 +22,6 @@ public:
     void Procces();
 
 private:
-    std::unique_ptr<class GameSetting> gmSet;    //ゲームセッティング
     std::unique_ptr<class SceneMgr> sceneMgr;    //シーンマネージャー
 };
 

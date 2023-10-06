@@ -1,34 +1,36 @@
 #pragma once
-
-constexpr int SCREEN_WIDTH = 1920;      //スクリーン幅
-constexpr int SCREEN_HEIGHT = 1080;     //スクリーン高さ
-
+#include<memory>
 
 /*GameSettingクラス*/
 class GameSetting final
 {
 public:
     /// <summary>
-    /// コンストラクタ
+    /// 初期化処理
     /// </summary>
-    GameSetting();
+    static void Init();
+
+    /// <summary>
+    /// ライブラリ初期化前処理
+    /// </summary>
+    static void BeforeLibInit();
+
+    /// <summary>
+    /// ライブラリ初期化後処理
+    /// </summary>
+    static void AfterLibInit();
 
     /// <summary>
     /// デストラクタ
     /// </summary>
     ~GameSetting();
 
-    /// <summary>
-    /// ライブラリ初期化前処理
-    /// </summary>
-    void BeforeLibInit();
-
-    /// <summary>
-    /// ライブラリ初期化後処理
-    /// </summary>
-    void AfterLibInit();
-
 private:
-    const int COLOR_BIT = 16;           //カラービット
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
+    GameSetting();
+
+    static std::unique_ptr<GameSetting> singleton;     //自身の実体
 };
 

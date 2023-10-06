@@ -1,10 +1,10 @@
 #include<DxLib.h>
 
-#include "TimeMgr.h"
+#include "TimeManager.h"
 
 // コンストラクタ //
 
-TimeMgr::TimeMgr()
+TimeManager::TimeManager()
     :nowTime(static_cast<float>(GetNowCount()))
     ,prevTime(nowTime)
     ,deltaTime(0.0f)
@@ -13,13 +13,13 @@ TimeMgr::TimeMgr()
 
 // デストラクタ //
 
-TimeMgr::~TimeMgr()
+TimeManager::~TimeManager()
 {
 }
 
 // フレームレート //
 
-const float TimeMgr::DeltaTime()
+const float TimeManager::DeltaTime()
 {
     //フレームレート算出
     nowTime = static_cast<float>(GetNowCount());
