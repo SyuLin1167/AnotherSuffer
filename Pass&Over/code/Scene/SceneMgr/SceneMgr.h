@@ -37,7 +37,7 @@ public:
     void ChangeScene();
 
 private:
-    std::shared_ptr<class TimeMgr> timeMgr;                     //タイムマネージャー
+    std::shared_ptr<class TimeManager> timeManager;                 //タイムマネージャー
 
     std::stack<std::shared_ptr<class SceneBase>> nowScene;      //現在のシーン
     class SceneBase* tmpScene;                                  //一時的なシーン

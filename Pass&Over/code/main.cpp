@@ -1,12 +1,12 @@
 #include<DxLib.h>
 #include<memory>
 
-#include"GameSystem/GameMgr/GameMgr.h"
+#include"GameSystem/GameManager/GameManager.h"
 
 int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int)
 {
     //ÉQÅ[ÉÄÉVÅ[Éìä«óù
-    std::unique_ptr<GameMgr> gmMgr(new GameMgr);
+    std::unique_ptr<GameManager> gmMgr(new GameManager);
     gmMgr->Procces();
     gmMgr.reset();
 

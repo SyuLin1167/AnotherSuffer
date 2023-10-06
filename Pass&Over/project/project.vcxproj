@@ -22,37 +22,39 @@
     <ClCompile Include="..\code\Asset\AssetBase\AssetBase.cpp" />
     <ClCompile Include="..\code\Asset\AssetMgr\AssetMgr.cpp" />
     <ClCompile Include="..\code\Asset\Model\Model.cpp" />
-    <ClCompile Include="..\code\GameSystem\GameMgr\GameMgr.cpp" />
+    <ClCompile Include="..\code\GameSystem\GameManager\GameManager.cpp" />
     <ClCompile Include="..\code\GameSystem\GameSetting\GameSetting.cpp" />
+    <ClCompile Include="..\code\GameSystem\Window\Window.cpp" />
     <ClCompile Include="..\code\main.cpp" />
     <ClCompile Include="..\code\Object\Camera\Camera.cpp" />
     <ClCompile Include="..\code\Object\CharaObj\CharaObjBase\CharaObjBase.cpp" />
     <ClCompile Include="..\code\Object\CharaObj\Player\Player.cpp" />
     <ClCompile Include="..\code\Object\ObjBase\ObjBase.cpp" />
-    <ClCompile Include="..\code\Object\ObjMgr\ObjMgr.cpp" />
+    <ClCompile Include="..\code\Object\ObjManager\ObjManager.cpp" />
     <ClCompile Include="..\code\Scene\Play\Play.cpp" />
     <ClCompile Include="..\code\Scene\SceneBase\SceneBase.cpp" />
     <ClCompile Include="..\code\Scene\SceneMgr\SceneMgr.cpp" />
     <ClCompile Include="..\code\Scene\Title\Title.cpp" />
-    <ClCompile Include="..\code\TimeMgr\TimeMgr.cpp" />
+    <ClCompile Include="..\code\TimeManager\TimeManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\code\Asset\AssetBase\AssetBase.h" />
     <ClInclude Include="..\code\Asset\AssetMgr\AssetMgr.h" />
     <ClInclude Include="..\code\Asset\Model\Model.h" />
-    <ClInclude Include="..\code\GameSystem\GameMgr\GameMgr.h" />
+    <ClInclude Include="..\code\GameSystem\GameManager\GameManager.h" />
     <ClInclude Include="..\code\GameSystem\GameSetting\GameSetting.h" />
+    <ClInclude Include="..\code\GameSystem\Window\Window.h" />
     <ClInclude Include="..\code\Object\Camera\Camera.h" />
     <ClInclude Include="..\code\Object\CharaObj\CharaObjBase\CharaObjBase.h" />
     <ClInclude Include="..\code\Object\CharaObj\Player\Player.h" />
     <ClInclude Include="..\code\Object\ObjBase\ObjBase.h" />
     <ClInclude Include="..\code\Object\ObjBase\ObjTag.h" />
-    <ClInclude Include="..\code\Object\ObjMgr\ObjMgr.h" />
+    <ClInclude Include="..\code\Object\ObjManager\ObjManager.h" />
     <ClInclude Include="..\code\Scene\Play\Play.h" />
     <ClInclude Include="..\code\Scene\SceneBase\SceneBase.h" />
     <ClInclude Include="..\code\Scene\SceneMgr\SceneMgr.h" />
     <ClInclude Include="..\code\Scene\Title\Title.h" />
-    <ClInclude Include="..\code\TimeMgr\TimeMgr.h" />
+    <ClInclude Include="..\code\TimeManager\TimeManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\code\Asset\Model\ModelData.json" />

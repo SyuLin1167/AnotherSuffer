@@ -3,6 +3,18 @@
 
 #include "GameSetting.h"
 
+std::unique_ptr<GameSetting> GameSetting::singleton = nullptr;
+
+// 初期化処理 //
+
+void GameSetting::Init()
+{
+    if (!singleton)
+    {
+        singleton.reset(new GameSetting);
+    }
+}
+
 // コンストラクタ //
 
 GameSetting::GameSetting()
@@ -29,12 +41,6 @@ void GameSetting::BeforeLibInit()
 {
     //ログの非表示
     SetOutApplicationLogValidFlag(false);
-
-    //ウィンドウの設定
-    ChangeWindowMode(true);
-    SetGraphMode(SCREEN_WIDTH, SCREEN_HEIGHT, COLOR_BIT);
-    SetWindowSizeExtendRate(1.0);
-    SetMainWindowText("Pass&Over");
 
     //アンチエイリアスを設定
     SetFullSceneAntiAliasingMode(4, 2);

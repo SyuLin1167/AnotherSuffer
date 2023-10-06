@@ -2,9 +2,9 @@
 #include<assert.h>
 
 #include"../SceneBase/SceneBase.h"
-#include"../../Object/ObjMgr/ObjMgr.h"
+#include"../../Object/ObjManager/ObjManager.h"
 #include"../../Asset/AssetMgr/AssetMgr.h"
-#include"../../TimeMgr/TimeMgr.h"
+#include"../../TimeManager/TimeManager.h"
 #include"../Title/Title.h"
 #include "SceneMgr.h"
 
@@ -13,10 +13,10 @@
 SceneMgr::SceneMgr()
     :tmpScene(nullptr)
 {
-    ObjMgr::InitObjMgr();
+    ObjManager::InitObjManager();
     AssetMgr::InitAssetMgr();
 
-    timeMgr.reset(new TimeMgr);
+    timeManager.reset(new TimeManager);
     nowScene.emplace(new Title);
 }
 
@@ -38,7 +38,7 @@ void SceneMgr::GameLoop()
         DrawScene();
         ChangeScene();
     }
-    ObjMgr::DeleteAllObj();
+    ObjManager::DeleteAllObj();
 }
 
 // シーン更新処理 //
@@ -46,7 +46,7 @@ void SceneMgr::GameLoop()
 void SceneMgr::UpdateScene()
 {
     //現在のシーンを更新してtmpSceneに代入
-    tmpScene = nowScene.top()->UpdateScene(timeMgr->DeltaTime());
+    tmpScene = nowScene.top()->UpdateScene(timeManager->DeltaTime());
 }
 
 // シーン描画処理 //
