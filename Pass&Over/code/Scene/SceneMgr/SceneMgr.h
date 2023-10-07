@@ -37,9 +37,9 @@ public:
     void ChangeScene();
 
 private:
-    std::shared_ptr<class TimeManager> timeManager;                 //タイムマネージャー
+    std::shared_ptr<class FPS> fps;                             //タイムマネージャー
 
     std::stack<std::shared_ptr<class SceneBase>> nowScene;      //現在のシーン
-    class SceneBase* tmpScene;                                  //一時的なシーン
+    std::shared_ptr<SceneBase> holdScene;                       //保持シーン
 };
 

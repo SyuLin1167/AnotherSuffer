@@ -2,7 +2,7 @@
 
 #include "ObjManager.h"
 
-std::unique_ptr<ObjManager> ObjManager::singleton;
+std::shared_ptr<ObjManager> ObjManager::singleton;
 
 // コンストラクタ //
 
@@ -81,7 +81,7 @@ void ObjManager::OnDeadObj()
             //死んでいたらオブジェクト削除
             if (!dead->IsAlive())
             {
-                DeleteObj(dead);
+                DeleteObj(dead.get());
             }
         }
     }
@@ -95,14 +95,14 @@ void ObjManager::DeleteObj(ObjBase* unnecObj)
     ObjTag tag = unnecObj->GetTag();
 
     //オブジェクトを検索
-    auto iter = std::find(singleton->object[tag].begin(), singleton->object[tag].end(), unnecObj);
-    assert(iter == singleton->object[tag].end());
+    auto iter = std::find(*singleton->object[tag].begin(), *singleton->object[tag].end(), unnecObj);
+    assert(iter == *singleton->object[tag].end());
 
     //見つかったら末尾に移動させて削除
-    if (iter != singleton->object[tag].end())
+    if (iter != *singleton->object[tag].end())
     {
-        std::iter_swap(iter, singleton->object[tag].end() - 1);
-        delete singleton->object[tag].back();
+        std::iter_swap(iter, *singleton->object[tag].end());
+        singleton->object[tag].back().reset();
         singleton->object[tag].pop_back();
         singleton->object[tag].shrink_to_fit();
     }

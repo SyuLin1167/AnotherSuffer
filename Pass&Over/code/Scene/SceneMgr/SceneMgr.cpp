@@ -4,19 +4,19 @@
 #include"../SceneBase/SceneBase.h"
 #include"../../Object/ObjManager/ObjManager.h"
 #include"../../Asset/AssetMgr/AssetMgr.h"
-#include"../../TimeManager/TimeManager.h"
+#include"../../FPS/FPS.h"
 #include"../Title/Title.h"
 #include "SceneMgr.h"
 
 // コンストラクタ //
 
 SceneMgr::SceneMgr()
-    :tmpScene(nullptr)
+    :holdScene(nullptr)
 {
     ObjManager::InitObjManager();
     AssetMgr::InitAssetMgr();
 
-    timeManager.reset(new TimeManager);
+    fps.reset(new FPS);
     nowScene.emplace(new Title);
 }
 
@@ -35,8 +35,8 @@ void SceneMgr::GameLoop()
     {
         //シーンのフロー
         UpdateScene();
-        DrawScene();
         ChangeScene();
+        DrawScene();
     }
     ObjManager::DeleteAllObj();
 }
@@ -46,7 +46,8 @@ void SceneMgr::GameLoop()
 void SceneMgr::UpdateScene()
 {
     //現在のシーンを更新してtmpSceneに代入
-    tmpScene = nowScene.top()->UpdateScene(timeManager->DeltaTime());
+    fps->Update();
+    holdScene.reset(nowScene.top()->UpdateScene(fps->GetDeltaTime()));
 }
 
 // シーン描画処理 //
@@ -64,10 +65,10 @@ void SceneMgr::DrawScene()
 void SceneMgr::ChangeScene()
 {
     //nowSceneがtmpSceneと異なっていたら解放して代入
-    if (nowScene.top().get() != tmpScene)
+    if (nowScene.top().get() != holdScene.get())
     {
         nowScene.pop();
-        nowScene.emplace(tmpScene);
+        nowScene.emplace(holdScene);
 
         assert(!nowScene.empty());
     }

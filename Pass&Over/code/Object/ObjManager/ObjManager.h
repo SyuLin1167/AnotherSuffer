@@ -59,9 +59,9 @@ private:
     /// </summary>
     ObjManager();
 
-    static std::unique_ptr<ObjManager> singleton;     //自身の実体
+    static std::shared_ptr<ObjManager> singleton;     //自身の実体
 
     std::unordered_map<ObjTag, std::vector<
-        ObjBase*>> object;                            //オブジェクト
+        std::shared_ptr<ObjBase>>> object;                            //オブジェクト
 };
 

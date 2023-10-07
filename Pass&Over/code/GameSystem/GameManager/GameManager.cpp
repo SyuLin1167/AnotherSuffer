@@ -17,6 +17,7 @@ GameManager::GameManager()
 
 GameManager::~GameManager()
 {
+    //ˆ—‚È‚µ
 }
 
 // ˆ— //
