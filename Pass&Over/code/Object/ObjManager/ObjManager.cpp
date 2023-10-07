@@ -2,7 +2,7 @@
 
 #include "ObjManager.h"
 
-std::unique_ptr<ObjManager> ObjManager::objManager;
+std::unique_ptr<ObjManager> ObjManager::singleton;
 
 // コンストラクタ //
 
@@ -22,9 +22,9 @@ ObjManager::~ObjManager()
 void ObjManager::InitObjManager()
 {
     //自身の中身が空だったらインスタンス生成
-    if (!objManager)
+    if (!singleton)
     {
-        objManager.reset(new ObjManager);
+        singleton.reset(new ObjManager);
     }
 }
 
@@ -34,7 +34,7 @@ void ObjManager::AddObj(ObjBase* newObj)
 {
     ObjTag tag = newObj->GetTag();
 
-    objManager->object[tag].emplace_back(newObj);
+    singleton->object[tag].emplace_back(newObj);
 }
 
 // オブジェクト更新処理 //
@@ -44,9 +44,9 @@ void ObjManager::UpdateObj(const float deltaTime)
     //全タグ分更新処理をまとめて行う
     for (auto& tag : objTagAll)
     {
-        for (int i = 0; i < objManager->object[tag].size(); i++)
+        for (int i = 0; i < singleton->object[tag].size(); i++)
         {
-            objManager->object[tag][i]->Update(deltaTime);
+            singleton->object[tag][i]->Update(deltaTime);
         }
     }
 }
@@ -58,12 +58,12 @@ void ObjManager::DrawObj()
     //全タグ分描画処理をまとめて行う
     for (auto& tag : objTagAll)
     {
-        for (int i = 0; i < objManager->object[tag].size(); i++)
+        for (int i = 0; i < singleton->object[tag].size(); i++)
         {
             //オブジェクトが生存していたら描画させる
-            if (objManager->object[tag][i]->IsAlive())
+            if (singleton->object[tag][i]->IsAlive())
             {
-                objManager->object[tag][i]->Draw();
+                singleton->object[tag][i]->Draw();
             }
         }
     }
@@ -76,7 +76,7 @@ void ObjManager::OnDeadObj()
     //全タグ分死亡オブジェクトを探して削除
     for (auto& tag : objTagAll)
     {
-        for (auto& dead:objManager->object[tag])
+        for (auto& dead: singleton->object[tag])
         {
             //死んでいたらオブジェクト削除
             if (!dead->IsAlive())
@@ -95,16 +95,16 @@ void ObjManager::DeleteObj(ObjBase* unnecObj)
     ObjTag tag = unnecObj->GetTag();
 
     //オブジェクトを検索
-    auto iter = std::find(objManager->object[tag].begin(), objManager->object[tag].end(), unnecObj);
-    assert(iter == objManager->object[tag].end());
+    auto iter = std::find(singleton->object[tag].begin(), singleton->object[tag].end(), unnecObj);
+    assert(iter == singleton->object[tag].end());
 
     //見つかったら末尾に移動させて削除
-    if (iter != objManager->object[tag].end())
+    if (iter != singleton->object[tag].end())
     {
-        std::iter_swap(iter, objManager->object[tag].end() - 1);
-        delete objManager->object[tag].back();
-        objManager->object[tag].pop_back();
-        objManager->object[tag].shrink_to_fit();
+        std::iter_swap(iter, singleton->object[tag].end() - 1);
+        delete singleton->object[tag].back();
+        singleton->object[tag].pop_back();
+        singleton->object[tag].shrink_to_fit();
     }
 }
 
@@ -115,10 +115,10 @@ void ObjManager::DeleteAllObj()
     //空じゃなかったらオブジェクト削除
     for (auto& tag : objTagAll)
     {
-        if (!objManager->object[tag].empty())
+        if (!singleton->object[tag].empty())
         {
-            objManager->object[tag].clear();
-            objManager->object[tag].shrink_to_fit();
+            singleton->object[tag].clear();
+            singleton->object[tag].shrink_to_fit();
         }
     }
 }

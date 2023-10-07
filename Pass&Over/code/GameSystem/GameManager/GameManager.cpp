@@ -1,6 +1,7 @@
 #include"../Window/Window.h"
 #include"../GameSetting/GameSetting.h"
 #include"../../Scene/SceneMgr/SceneMgr.h"
+
 #include "GameManager.h"
 
 // コンストラクタ //

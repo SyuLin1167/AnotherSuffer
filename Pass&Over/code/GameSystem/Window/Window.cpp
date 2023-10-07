@@ -1,4 +1,5 @@
 #include<DxLib.h>
+
 #include "Window.h"
 
 std::unique_ptr<Window> Window::singleton = nullptr;
