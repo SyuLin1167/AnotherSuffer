@@ -1,10 +1,10 @@
 #include<DxLib.h>
 
-#include "TimeManager.h"
+#include "../FPS/FPS.h"
 
 // コンストラクタ //
 
-TimeManager::TimeManager()
+FPS::FPS()
     :nowTime(static_cast<float>(GetNowCount()))
     ,prevTime(nowTime)
     ,deltaTime(0.0f)
@@ -13,18 +13,17 @@ TimeManager::TimeManager()
 
 // デストラクタ //
 
-TimeManager::~TimeManager()
+FPS::~FPS()
 {
+    //処理なし
 }
 
-// フレームレート //
+// 更新処理 //
 
-const float TimeManager::DeltaTime()
+void FPS::Update()
 {
     //フレームレート算出
     nowTime = static_cast<float>(GetNowCount());
     deltaTime = (nowTime - prevTime) / 1000.0f;
     prevTime = nowTime;
-
-    return deltaTime;
 }

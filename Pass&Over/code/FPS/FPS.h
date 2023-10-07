@@ -1,24 +1,29 @@
 #pragma once
 
-/*TimeManagerクラス*/
-class TimeManager
+/*FPSクラス*/
+class FPS
 {
 public:
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    TimeManager();
+    FPS();
 
     /// <summary>
     /// デストラクタ
     /// </summary>
-    ~TimeManager();
+    ~FPS();
 
     /// <summary>
-    /// フレームレート
+    /// 更新処理
+    /// </summary>
+    void Update();
+
+    /// <summary>
+    /// フレームレート取得処理
     /// </summary>
     /// <returns>フレームレート</returns>
-    const float DeltaTime();
+    float GetDeltaTime() const { return deltaTime; }
 
 private:
     float nowTime;      //現在の時間

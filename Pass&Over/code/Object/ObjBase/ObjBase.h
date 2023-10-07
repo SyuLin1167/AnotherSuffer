@@ -2,6 +2,8 @@
 #include<DxLib.h>
 #include<../Rapidjson/istreamwrapper.h>
 #include<string.h>
+#include<string>
+
 #include"ObjTag.h"
 #include"../../Asset/AssetMgr/AssetMgr.h"
 

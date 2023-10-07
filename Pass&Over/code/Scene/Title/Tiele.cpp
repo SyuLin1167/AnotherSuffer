@@ -2,7 +2,7 @@
 
 #include"../SceneBase/SceneBase.h"
 #include"../Play/Play.h"
-#include"../../Object/ObjMgr/ObjMgr.h"
+#include"../../Object/ObjManager/ObjManager.h"
 #include "Title.h"
 
 // コンストラクタ //
@@ -22,19 +22,21 @@ Title::~Title()
 
 SceneBase* Title::UpdateScene(const float deltaTime)
 {
-    ObjMgr::UpdateObj(deltaTime);
+    ObjManager::UpdateObj(deltaTime);
 
     if (CheckHitKey(KEY_INPUT_RETURN))
     {
-        ObjMgr::DeleteAllObj();
+        ObjManager::DeleteAllObj();
         return new Play;
     }
 
     return this;
 }
 
+// シーン描画処理 //
+
 void Title::DrawScene()
 {
-    ObjMgr::DrawObj();
+    ObjManager::DrawObj();
     DrawFormatString(0, 0, GetColor(255, 255, 255), "title");
 }

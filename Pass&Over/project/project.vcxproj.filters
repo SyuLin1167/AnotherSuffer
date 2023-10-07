@@ -22,9 +22,6 @@
     <Filter Include="ソース ファイル\Scene\SceneMgr">
       <UniqueIdentifier>{021fbd35-95eb-476d-8a2e-373f4db2a904}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Scene\Title">
-      <UniqueIdentifier>{12a44715-9b63-44b0-82b5-3aa1824dacb6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\Scene\Play">
       <UniqueIdentifier>{edfadfde-4ce8-4386-bc7b-d817975aca69}</UniqueIdentifier>
     </Filter>
@@ -64,9 +61,6 @@
     <Filter Include="ソース ファイル\Object\Camera">
       <UniqueIdentifier>{e1d65ccb-f996-438a-a8c4-3d3bd880d578}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\TimeManager">
-      <UniqueIdentifier>{60284cb2-7dce-433b-a60b-f27b4e5c7bad}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\Object\ObjManager">
       <UniqueIdentifier>{b26534a1-3809-479d-b2ff-4a465ae71149}</UniqueIdentifier>
     </Filter>
@@ -76,6 +70,12 @@
     <Filter Include="ソース ファイル\GameSystem\Window">
       <UniqueIdentifier>{1b3c42a4-b7cb-40d6-a3de-50156187fce1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Scene\Title">
+      <UniqueIdentifier>{12a44715-9b63-44b0-82b5-3aa1824dacb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\FPS">
+      <UniqueIdentifier>{60284cb2-7dce-433b-a60b-f27b4e5c7bad}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\code\Scene\SceneBase\SceneBase.cpp">
@@ -84,7 +84,7 @@
     <ClCompile Include="..\code\Scene\SceneMgr\SceneMgr.cpp">
       <Filter>ソース ファイル\Scene\SceneMgr</Filter>
     </ClCompile>
-    <ClCompile Include="..\code\Scene\Title\Title.cpp">
+    <ClCompile Include="..\code\Scene\Title\Tiele.cpp">
       <Filter>ソース ファイル\Scene\Title</Filter>
     </ClCompile>
     <ClCompile Include="..\code\main.cpp">
@@ -117,9 +117,6 @@
     <ClCompile Include="..\code\Object\Camera\Camera.cpp">
       <Filter>ソース ファイル\Object\Camera</Filter>
     </ClCompile>
-    <ClCompile Include="..\code\TimeManager\TimeManager.cpp">
-      <Filter>ソース ファイル\TimeManager</Filter>
-    </ClCompile>
     <ClCompile Include="..\code\Object\ObjManager\ObjManager.cpp">
       <Filter>ソース ファイル\Object\ObjManager</Filter>
     </ClCompile>
@@ -128,6 +125,9 @@
     </ClCompile>
     <ClCompile Include="..\code\GameSystem\Window\Window.cpp">
       <Filter>ソース ファイル\GameSystem\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\FPS\FPS.cpp">
+      <Filter>ソース ファイル\FPS</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -170,9 +170,6 @@
     <ClInclude Include="..\code\Object\Camera\Camera.h">
       <Filter>ソース ファイル\Object\Camera</Filter>
     </ClInclude>
-    <ClInclude Include="..\code\TimeManager\TimeManager.h">
-      <Filter>ソース ファイル\TimeManager</Filter>
-    </ClInclude>
     <ClInclude Include="..\code\Object\ObjManager\ObjManager.h">
       <Filter>ソース ファイル\Object\ObjManager</Filter>
     </ClInclude>
@@ -181,6 +178,9 @@
     </ClInclude>
     <ClInclude Include="..\code\GameSystem\Window\Window.h">
       <Filter>ソース ファイル\GameSystem\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\FPS\FPS.h">
+      <Filter>ソース ファイル\FPS</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
