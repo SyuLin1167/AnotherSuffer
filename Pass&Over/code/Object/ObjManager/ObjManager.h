@@ -41,7 +41,7 @@ public:
     /// オブジェクト削除処理
     /// </summary>
     /// <param name="unnecObj">:不必要オブジェクト</param>
-    static void DeleteObj(ObjBase* unnecObj);
+    static void DeleteObj(std::shared_ptr<ObjBase> unnecObj);
 
     /// <summary>
     /// 全オブジェクト削除処理

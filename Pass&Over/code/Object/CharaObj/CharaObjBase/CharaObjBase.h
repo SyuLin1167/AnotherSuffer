@@ -22,6 +22,9 @@ protected:
     /// <param name="deltaTime">:フレームレート</param>
     //virtual void MoveChara(const float deltaTime);
 
-
+    /// <summary>
+    /// キャラ回転処理
+    /// </summary>
+    //void RotateModel();
 };
 

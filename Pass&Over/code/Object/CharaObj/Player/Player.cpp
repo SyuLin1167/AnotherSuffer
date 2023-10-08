@@ -13,13 +13,14 @@ Player::Player()
 
     MV1SetPosition(objHandle, objPos);
     MV1SetScale(objHandle, VGet(0.5f, 0.5f, 0.5f));
+    
 }
 
 // デストラクタ //
 
 Player::~Player()
 {
-
+    //処理なし
 }
 
 // 更新処理 //

@@ -40,6 +40,6 @@ private:
     std::shared_ptr<class FPS> fps;                             //タイムマネージャー
 
     std::stack<std::shared_ptr<class SceneBase>> nowScene;      //現在のシーン
-    std::shared_ptr<SceneBase> holdScene;                       //保持シーン
+    SceneBase* holdScene;                       //保持シーン
 };
 
