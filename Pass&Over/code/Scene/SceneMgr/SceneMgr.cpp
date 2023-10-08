@@ -47,7 +47,7 @@ void SceneMgr::UpdateScene()
 {
     //現在のシーンを更新してtmpSceneに代入
     fps->Update();
-    holdScene.reset(nowScene.top()->UpdateScene(fps->GetDeltaTime()));
+    holdScene=nowScene.top()->UpdateScene(fps->GetDeltaTime());
 }
 
 // シーン描画処理 //
@@ -65,7 +65,7 @@ void SceneMgr::DrawScene()
 void SceneMgr::ChangeScene()
 {
     //nowSceneがtmpSceneと異なっていたら解放して代入
-    if (nowScene.top().get() != holdScene.get())
+    if (nowScene.top().get() != holdScene)
     {
         nowScene.pop();
         nowScene.emplace(holdScene);

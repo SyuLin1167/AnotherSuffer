@@ -9,12 +9,14 @@ std::shared_ptr<ObjManager> ObjManager::singleton;
 ObjManager::ObjManager()
     :object()
 {
+    //処理なし
 }
 
 // デストラクタ //
 
 ObjManager::~ObjManager()
 {
+    //処理なし
 }
 
 // オブジェクトマネージャー初期化処理 //
@@ -49,6 +51,7 @@ void ObjManager::UpdateObj(const float deltaTime)
             singleton->object[tag][i]->Update(deltaTime);
         }
     }
+    OnDeadObj();
 }
 
 // オブジェクト描画処理 //
@@ -61,7 +64,7 @@ void ObjManager::DrawObj()
         for (int i = 0; i < singleton->object[tag].size(); i++)
         {
             //オブジェクトが生存していたら描画させる
-            if (singleton->object[tag][i]->IsAlive())
+            if (singleton->object[tag][i]->IsVisible())
             {
                 singleton->object[tag][i]->Draw();
             }
@@ -81,7 +84,7 @@ void ObjManager::OnDeadObj()
             //死んでいたらオブジェクト削除
             if (!dead->IsAlive())
             {
-                DeleteObj(dead.get());
+                DeleteObj(dead);
             }
         }
     }
@@ -89,20 +92,20 @@ void ObjManager::OnDeadObj()
 
 // オブジェクト削除処理 //
 
-void ObjManager::DeleteObj(ObjBase* unnecObj)
+void ObjManager::DeleteObj(std::shared_ptr<ObjBase> unnecObj)
 {
     //削除オブジェクトのタグ取得
     ObjTag tag = unnecObj->GetTag();
 
     //オブジェクトを検索
-    auto iter = std::find(*singleton->object[tag].begin(), *singleton->object[tag].end(), unnecObj);
-    assert(iter == *singleton->object[tag].end());
+    auto endObj= singleton->object[tag].end();
+    auto findObj = std::find(singleton->object[tag].begin(), endObj, unnecObj);
+    assert(findObj != endObj);
 
     //見つかったら末尾に移動させて削除
-    if (iter != *singleton->object[tag].end())
+    if (findObj != endObj)
     {
-        std::iter_swap(iter, *singleton->object[tag].end());
-        singleton->object[tag].back().reset();
+        std::swap(findObj, endObj);
         singleton->object[tag].pop_back();
         singleton->object[tag].shrink_to_fit();
     }

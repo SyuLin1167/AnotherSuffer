@@ -45,12 +45,20 @@ public:
     /// <returns>生:true|死:false</returns>
     bool IsAlive() { return isAlive; }
 
+    /// <summary>
+    /// 可視判定
+    /// </summary>
+    /// <returns>可視:true|不可視:false</returns>
+    bool IsVisible() { return isVisible; }
+
 protected:
     ObjTag objTag;      //オブジェクトのタグ
 
     bool isAlive;       //生存状態
+    bool isVisible;     //可視判定
 
     int objHandle;      //ハンドル
-    VECTOR objPos;    //座標
+    VECTOR objPos;      //座標
+    VECTOR objDir;      //方向
 };
 
