@@ -7,7 +7,7 @@ Player::Player()
     :CharaObjBase(ObjTag::PLAYER)
 {
     //ƒ‚ƒfƒ‹“Ç‚Ýž‚Ý
-    Model* model = AssetMgr::ModelInstance();
+    Model* model = AssetManager::ModelInstance();
     auto& modelPass = model->GetJsonData();
     objHandle = model->GetHandle(modelPass["player"].GetString());
 

@@ -2,7 +2,7 @@
 
 #include "ObjManager.h"
 
-std::shared_ptr<ObjManager> ObjManager::singleton;
+std::unique_ptr<ObjManager> ObjManager::singleton;
 
 // コンストラクタ //
 

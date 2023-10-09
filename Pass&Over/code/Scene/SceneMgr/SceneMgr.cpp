@@ -3,7 +3,7 @@
 
 #include"../SceneBase/SceneBase.h"
 #include"../../Object/ObjManager/ObjManager.h"
-#include"../../Asset/AssetMgr/AssetMgr.h"
+#include"../../Asset/AssetManager/AssetManager.h"
 #include"../../FPS/FPS.h"
 #include"../Title/Title.h"
 #include "SceneMgr.h"
@@ -12,11 +12,11 @@
 
 SceneMgr::SceneMgr()
     :holdScene(nullptr)
+    , fps(new FPS)
 {
     ObjManager::InitObjManager();
-    AssetMgr::InitAssetMgr();
+    AssetManager::InitAssetManager();
 
-    fps.reset(new FPS);
     nowScene.emplace(new Title);
 }
 

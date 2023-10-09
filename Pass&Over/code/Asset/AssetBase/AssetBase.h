@@ -22,17 +22,6 @@ public:
     virtual ~AssetBase();
 
     /// <summary>
-    /// Jsonファイル読み込み処理
-    /// </summary>
-    /// <param name="fileName">:ファイル名</param>
-    void LoadJsonFile(std::string fileName);
-
-    /// <summary>
-    /// ハンドル追加処理
-    /// </summary>
-    virtual void AddHandle(std::string fileName) = 0;
-
-    /// <summary>
     /// Jsonファイルデータ取得処理
     /// </summary>
     /// <returns>jsonファイルデータ</returns>
@@ -43,14 +32,26 @@ public:
     /// </summary>
     /// <param name="handleName">:ハンドル名</param>
     /// <returns>ハンドル</returns>
-    const int GetHandle(std::string handleName);
+    const int GetHandle(const std::string handleName);
+
+
+protected:
+    /// <summary>
+    /// Jsonファイル読み込み処理
+    /// </summary>
+    /// <param name="fileName">:ファイル名</param>
+    void LoadJsonFile(const std::string fileName);
+
+    /// <summary>
+    /// ハンドル追加処理
+    /// </summary>
+    virtual void AddHandle(const std::string fileName) = 0;
 
     /// <summary>
     /// ハンドル削除処理
     /// </summary>
     virtual void DeleteHandle() = 0;
 
-protected:
     std::string assetType;                              //アセットタイプ
     std::unordered_map < std::string, int > handle;     //ハンドル
 
