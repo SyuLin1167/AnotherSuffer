@@ -1,5 +1,3 @@
-#include<DxLib.h>
-
 #include "Window.h"
 
 std::unique_ptr<Window> Window::singleton = nullptr;
@@ -20,7 +18,7 @@ Window::Window()
 {
     //ウィンドウの設定
     ChangeWindowMode(true);
-    SetGraphMode(SCREEN_WIDTH, SCREEN_HEIGHT, COLOR_BIT);
+    SetGraphMode(WINDOW_SIZE.x, WINDOW_SIZE.y, COLOR_BIT);
     SetWindowSizeExtendRate(1.0);
     SetMainWindowText("Pass&Over");
 }

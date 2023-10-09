@@ -76,6 +76,9 @@
     <Filter Include="ソース ファイル\FPS">
       <UniqueIdentifier>{60284cb2-7dce-433b-a60b-f27b4e5c7bad}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Asset\Sound">
+      <UniqueIdentifier>{ef0f3979-1fe5-4aea-a4f9-d7eeffbd18a9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\code\Scene\SceneBase\SceneBase.cpp">
@@ -105,9 +108,6 @@
     <ClCompile Include="..\code\GameSystem\GameSetting\GameSetting.cpp">
       <Filter>ソース ファイル\GameSystem\GameSetting</Filter>
     </ClCompile>
-    <ClCompile Include="..\code\Asset\AssetMgr\AssetMgr.cpp">
-      <Filter>ソース ファイル\Asset\AssetMgr</Filter>
-    </ClCompile>
     <ClCompile Include="..\code\Asset\Model\Model.cpp">
       <Filter>ソース ファイル\Asset\Model</Filter>
     </ClCompile>
@@ -128,6 +128,12 @@
     </ClCompile>
     <ClCompile Include="..\code\FPS\FPS.cpp">
       <Filter>ソース ファイル\FPS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\Asset\Sound\Sound.cpp">
+      <Filter>ソース ファイル\Asset\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\Asset\AssetManager\AssetManager.cpp">
+      <Filter>ソース ファイル\Asset\AssetMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -158,9 +164,6 @@
     <ClInclude Include="..\code\GameSystem\GameSetting\GameSetting.h">
       <Filter>ソース ファイル\GameSystem\GameSetting</Filter>
     </ClInclude>
-    <ClInclude Include="..\code\Asset\AssetMgr\AssetMgr.h">
-      <Filter>ソース ファイル\Asset\AssetMgr</Filter>
-    </ClInclude>
     <ClInclude Include="..\code\Asset\Model\Model.h">
       <Filter>ソース ファイル\Asset\Model</Filter>
     </ClInclude>
@@ -181,6 +184,12 @@
     </ClInclude>
     <ClInclude Include="..\code\FPS\FPS.h">
       <Filter>ソース ファイル\FPS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Asset\Sound\Sound.h">
+      <Filter>ソース ファイル\Asset\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Asset\AssetManager\AssetManager.h">
+      <Filter>ソース ファイル\Asset\AssetMgr</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

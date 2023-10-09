@@ -14,6 +14,7 @@ public:
     /// </summary>
     ~Play();
 
+private:
     /// <summary>
     /// シーン更新処理
     /// </summary>

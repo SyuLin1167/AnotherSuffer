@@ -1,8 +1,6 @@
 #pragma once
+#include<DxLib.h>
 #include<memory>
-
-constexpr int SCREEN_WIDTH = 1920;      //スクリーン幅
-constexpr int SCREEN_HEIGHT = 1080;     //スクリーン高さ
 
 /*Windowクラス*/
 class Window
@@ -18,13 +16,20 @@ public:
     /// </summary>
     ~Window();
 
+    /// <summary>
+    /// ウィンドウサイズ取得処理
+    /// </summary>
+    /// <returns>ウィンドウサイズ</returns>
+    static const VECTOR GetWindowSize() { return singleton->WINDOW_SIZE; }
 private:
     /// <summary>
     /// コンストラクタ(シングルトン)
     /// </summary>
     Window();
 
-    static std::unique_ptr<Window> singleton;      //自身の実体
-    const int COLOR_BIT = 16;           //カラービット
+    const VECTOR WINDOW_SIZE = VGet(1920, 1080, 0);     //ウィンドウサイズ
+
+    static std::unique_ptr<Window> singleton;           //自身の実体
+    const int COLOR_BIT = 16;                           //カラービット
 };
 

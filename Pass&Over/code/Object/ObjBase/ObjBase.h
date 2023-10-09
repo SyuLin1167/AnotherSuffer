@@ -5,7 +5,7 @@
 #include<string>
 
 #include"ObjTag.h"
-#include"../../Asset/AssetMgr/AssetMgr.h"
+#include"../../Asset/AssetManager/AssetManager.h"
 
 /*ObjBaseƒNƒ‰ƒX*/
 class ObjBase

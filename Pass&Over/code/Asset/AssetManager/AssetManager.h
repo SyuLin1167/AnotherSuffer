@@ -1,33 +1,33 @@
 #pragma once
 #include<memory>
 
-/*AssetMgrクラス*/
-class AssetMgr final
+/*AssetManagerクラス*/
+class AssetManager final
 {
 public:
     /// <summary>
     /// アセットマネージャー初期化処理
     /// </summary>
-    static void InitAssetMgr();
+    static void InitAssetManager();
 
     /// <summary>
     /// モデルインスタンス
     /// </summary>
     /// <returns>Modelクラス</returns>
-    static class Model* ModelInstance() { return assetMgr->model.get(); }
+    static class Model* ModelInstance() { return assetManager->model.get(); }
 
     /// <summary>
     /// デストラクタ
     /// </summary>
-    ~AssetMgr();
+    ~AssetManager();
 
 private:
     /// <summary>
     /// コンストラクタ(シングルトン)
     /// </summary>
-    AssetMgr();
+    AssetManager();
 
-    static std::unique_ptr<AssetMgr> assetMgr;      //自身の実体
+    static std::unique_ptr<AssetManager> assetManager;      //自身の実体
 
     std::unique_ptr<class Model> model;             //モデル
 };

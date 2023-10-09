@@ -1,5 +1,5 @@
 {
   "model": {
-    "player" : "../assets/Chara/Player/Player.mv1"
+    "player": "../assets/model/Chara/Player/Player.mv1"
   }
 }

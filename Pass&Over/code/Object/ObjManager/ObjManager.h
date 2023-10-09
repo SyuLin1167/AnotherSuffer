@@ -28,20 +28,10 @@ public:
     static void UpdateObj(const float deltaTime);
 
     /// <summary>
-    /// オブジェクト死亡処理
-    /// </summary>
-    static void OnDeadObj();
-
-    /// <summary>
     /// オブジェクト描画
     /// </summary>
     static void DrawObj();
 
-    /// <summary>
-    /// オブジェクト削除処理
-    /// </summary>
-    /// <param name="unnecObj">:不必要オブジェクト</param>
-    static void DeleteObj(std::shared_ptr<ObjBase> unnecObj);
 
     /// <summary>
     /// 全オブジェクト削除処理
@@ -59,9 +49,20 @@ private:
     /// </summary>
     ObjManager();
 
-    static std::shared_ptr<ObjManager> singleton;     //自身の実体
+    /// <summary>
+    /// オブジェクト死亡処理
+    /// </summary>
+    static void OnDeadObj();
+
+    /// <summary>
+    /// オブジェクト削除処理
+    /// </summary>
+    /// <param name="unnecObj">:不必要オブジェクト</param>
+    static void DeleteObj(std::shared_ptr<ObjBase> unnecObj);
+
+    static std::unique_ptr<ObjManager> singleton;       //自身の実体
 
     std::unordered_map<ObjTag, std::vector<
-        std::shared_ptr<ObjBase>>> object;                            //オブジェクト
+        std::shared_ptr<ObjBase>>> object;              //オブジェクト
 };
 

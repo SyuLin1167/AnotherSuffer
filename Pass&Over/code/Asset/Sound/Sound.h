@@ -1,33 +1,42 @@
 #pragma once
+#include<iostream>
+
 #include"../AssetBase/AssetBase.h"
 
-/*Modelクラス*/
-class Model final:public AssetBase
+
+/*Soundクラス*/
+class Sound final:public AssetBase
 {
 public:
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    Model();
+    Sound();
 
     /// <summary>
     /// デストラクタ
     /// </summary>
-    ~Model();
+    ~Sound();
+
 
     /// <summary>
     /// ハンドル削除処理
     /// </summary>
     virtual void DeleteHandle() override;
-
 private:
     /// <summary>
     /// ハンドル追加処理
     /// </summary>
     /// <param name="fileName">:ファイル名</param>
-    void AddHandle(const std::string fileName)override;
+    void AddHandle(std::string fileName)override;
 
-    int holdHandle;                  //一時保存ハンドル
-    int dupHandle;                   //複製ハンドル
+    /// <summary>
+    /// サウンドパラメーター
+    /// </summary>
+    struct SoundParam
+    {
+        int volume;
+        
+    }soundParam;
 };
 
