@@ -1,5 +1,5 @@
 #pragma once
-#include<iostream>
+#include<tuple>
 
 #include"../AssetBase/AssetBase.h"
 
@@ -35,8 +35,12 @@ private:
     /// </summary>
     struct SoundParam
     {
+        SoundParam();
+
         int volume;
         
     }soundParam;
+
+    std::tuple<int, SoundParam> soundData;
 };
 

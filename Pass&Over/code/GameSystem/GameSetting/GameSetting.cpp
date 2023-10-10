@@ -39,9 +39,6 @@ GameSetting::~GameSetting()
 
 void GameSetting::BeforeLibInit()
 {
-    //ログの非表示
-    SetOutApplicationLogValidFlag(false);
-
     //アンチエイリアスを設定
     SetFullSceneAntiAliasingMode(4, 2);
 

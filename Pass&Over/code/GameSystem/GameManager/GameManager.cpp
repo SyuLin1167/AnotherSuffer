@@ -8,6 +8,10 @@
 
 GameManager::GameManager()
 {
+    //ƒƒO‚Ì”ñ•\¦
+    SetOutApplicationLogValidFlag(false);
+
+    //‰Šú‰»ˆ—
     Window::Init();
     GameSetting::Init();
     sceneMgr.reset(new SceneMgr);

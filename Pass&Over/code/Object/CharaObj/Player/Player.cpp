@@ -9,7 +9,7 @@ Player::Player()
     //ƒ‚ƒfƒ‹“Ç‚Ýž‚Ý
     Model* model = AssetManager::ModelInstance();
     auto& modelPass = model->GetJsonData();
-    objHandle = model->GetHandle(modelPass["player"].GetString());
+    auto objHandle = model->GetHandle(modelPass["player"].GetString());
 
     MV1SetPosition(objHandle, objPos);
     MV1SetScale(objHandle, VGet(0.5f, 0.5f, 0.5f));
