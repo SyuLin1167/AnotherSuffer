@@ -1,5 +1,6 @@
 #include<DxLib.h>
 #include<assert.h>
+#include<future>
 
 #include "Model.h"
 // コンストラクタ //
@@ -32,6 +33,7 @@ Model::~Model()
 
 void Model::AddHandle(const std::string fileName)
 {
+    SetUseASyncLoadFlag(true);
     //仮ハンドル初期化
     holdHandle = -1;
     dupHandle = -1;
@@ -40,10 +42,11 @@ void Model::AddHandle(const std::string fileName)
     auto iter = handle.find(fileName);
     if (iter == handle.end())
     {
-        holdHandle = MV1LoadModel(fileName.c_str());
-        dupHandle = MV1DuplicateModel(holdHandle);
-        handle.emplace(fileName, dupHandle);
+            holdHandle = MV1LoadModel(fileName.c_str());
+            dupHandle = MV1DuplicateModel(holdHandle);
+            handle.emplace(fileName, dupHandle);
     }
+    SetUseASyncLoadFlag(false);
 }
 
 // ハンドル削除処理 //

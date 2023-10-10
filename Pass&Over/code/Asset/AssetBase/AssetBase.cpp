@@ -1,3 +1,5 @@
+#include<DxLib.h>
+
 #include "AssetBase.h"
 
 // コンストラクタ //
@@ -40,9 +42,12 @@ const int AssetBase::GetHandle(std::string handleName)
     auto iter = handle.find(handleName);
     if (iter != handle.end())
     {
-        return handle[handleName];
+        if (!CheckHandleASyncLoad(handle[handleName]))
+        {
+            return handle[handleName];
+        }
     }
 
-    //見つからなかったら-1を返す
+    //返せなかったら-1を返す
     return -1;
 }

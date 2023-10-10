@@ -57,6 +57,7 @@ void SceneMgr::DrawScene()
     //Œ»İ‚ÌƒV[ƒ“‚ğ•`‰æ
     ClearDrawScreen();
     nowScene.top()->DrawScene();
+    DrawFormatString(0, 100, GetColor(255, 255, 255), "”ñ“¯Šú“Ç‚İ‚İ‚Ì” %d", GetASyncLoadNum());
     ScreenFlip();
 }
 
