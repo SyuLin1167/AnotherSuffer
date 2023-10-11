@@ -1,8 +1,9 @@
 #include"../../../Asset/Model/Model.h"
 #include "Player.h"
 
-// コンストラクタ //
-
+/// <summary>
+/// コンストラクタ
+/// </summary>
 Player::Player()
     :CharaObjBase(ObjTag::PLAYER)
 {
@@ -16,15 +17,18 @@ Player::Player()
     
 }
 
-// デストラクタ //
-
+/// <summary>
+/// デストラクタ
+/// </summary>
 Player::~Player()
 {
     //処理なし
 }
 
-// 更新処理 //
-
+/// <summary>
+/// 更新処理
+/// </summary>
+/// <param name="deltaTime"></param>
 void Player::Update(const float deltaTime)
 {
     a += deltaTime;
@@ -35,8 +39,9 @@ void Player::Update(const float deltaTime)
 
 }
 
-// 描画処理 //
-
+/// <summary>
+/// 描画処理
+/// </summary>
 void Player::Draw()
 {
     DrawFormatString(0, 50, GetColor(255, 255, 255), "player:%f", a);

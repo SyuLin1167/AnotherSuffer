@@ -1,7 +1,9 @@
 #pragma once
 #include<memory>
 
-/*AssetManagerクラス*/
+/// <summary>
+/// AssetManagerクラス
+/// </summary>
 class AssetManager final
 {
 public:

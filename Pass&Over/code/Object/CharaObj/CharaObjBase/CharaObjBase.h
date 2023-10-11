@@ -1,7 +1,9 @@
 #pragma once
 #include"../../ObjBase/ObjBase.h"
 
-/*CharaObjBaseクラス*/
+/// <summary>
+/// CharaObjBaseクラス
+/// </summary>
 class CharaObjBase:public ObjBase
 {
 public:

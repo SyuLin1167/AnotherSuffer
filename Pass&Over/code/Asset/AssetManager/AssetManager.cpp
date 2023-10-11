@@ -3,8 +3,9 @@
 
 std::unique_ptr<AssetManager> AssetManager::assetManager=nullptr;
 
-// アセットマネージャー初期化処理 //
-
+/// <summary>
+/// アセットマネージャー初期化処理
+/// </summary>
 void AssetManager::InitAssetManager()
 {
     //自身の中身が空だったらインスタンス生成
@@ -14,16 +15,18 @@ void AssetManager::InitAssetManager()
     }
 }
 
-// コンストラクタ //
-
+/// <summary>
+/// コンストラクタ
+/// </summary>
 AssetManager::AssetManager()
     :model(new Model)
 {
     //処理なし
 }
 
-// デストラクタ //
-
+/// <summary>
+/// デストラクタ
+/// </summary>
 AssetManager::~AssetManager()
 {
     //処理なし

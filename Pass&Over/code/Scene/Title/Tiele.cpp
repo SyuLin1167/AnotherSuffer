@@ -5,21 +5,26 @@
 #include"../../Object/ObjManager/ObjManager.h"
 #include "Title.h"
 
-// コンストラクタ //
-
+/// <summary>
+/// コンストラクタ
+/// </summary>
 Title::Title()
     :SceneBase()
 {
 }
 
-// デストラクタ //
-
+/// <summary>
+/// デストラクタ
+/// </summary>
 Title::~Title()
 {
 }
 
-// シーン更新処理 //
-
+/// <summary>
+/// シーン更新処理
+/// </summary>
+/// <param name="deltaTime">:フレームレート</param>
+/// <returns>次フレームのシーン</returns>
 SceneBase* Title::UpdateScene(const float deltaTime)
 {
     ObjManager::UpdateObj(deltaTime);
@@ -33,8 +38,9 @@ SceneBase* Title::UpdateScene(const float deltaTime)
     return this;
 }
 
-// シーン描画処理 //
-
+/// <summary>
+/// シーン描画処理
+/// </summary>
 void Title::DrawScene()
 {
     ObjManager::DrawObj();

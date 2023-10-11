@@ -2,23 +2,30 @@
 
 #include "AssetBase.h"
 
-// コンストラクタ //
-
+/// <summary>
+/// コンストラクタ
+/// </summary>
 AssetBase::AssetBase()
-    :assetType("")
+    :holdHandle(-1)
+    , dupHandle(-1)
+    , assetType("")
     , jsonFile("")
 {
+    //処理なし
 }
 
-// デストラクタ //
-
+/// <summary>
+/// デストラクタ
+/// </summary>
 AssetBase::~AssetBase()
 {
-
+    //処理なし
 }
 
-// Jsonファイル読み込み処理 //
-
+/// <summary>
+/// Jsonファイル読み込み処理
+/// </summary>
+/// <param name="fileName"></param>
 void AssetBase::LoadJsonFile(std::string fileName)
 {
     //ファイル読み込み
@@ -34,8 +41,11 @@ void AssetBase::LoadJsonFile(std::string fileName)
     ifs.close();
 }
 
-// ハンドル取得処理 //
-
+/// <summary>
+/// ハンドル取得処理
+/// </summary>
+/// <param name="handleName">:ハンドル名</param>
+/// <returns>ハンドル</returns>
 const int AssetBase::GetHandle(std::string handleName)
 {
     //取得したいハンドルが見つかったら返す

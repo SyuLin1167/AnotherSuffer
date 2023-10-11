@@ -7,7 +7,9 @@
 #include<string>
 #include<fstream>
 
-/*AssetBaseクラス*/
+/// <summary>
+/// AssetBaseクラス
+/// </summary>
 class AssetBase
 {
 public:
@@ -51,6 +53,9 @@ protected:
     /// ハンドル削除処理
     /// </summary>
     virtual void DeleteHandle() = 0;
+
+    int holdHandle;                  //一時保存ハンドル
+    int dupHandle;                   //複製ハンドル
 
     std::string assetType;                              //アセットタイプ
     std::unordered_map < std::string, int > handle;     //ハンドル

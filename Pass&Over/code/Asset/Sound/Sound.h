@@ -1,10 +1,10 @@
 #pragma once
-#include<tuple>
 
 #include"../AssetBase/AssetBase.h"
 
-
-/*Soundクラス*/
+/// <summary>
+/// Soundクラス
+/// </summary>
 class Sound final:public AssetBase
 {
 public:
@@ -37,10 +37,10 @@ private:
     {
         SoundParam();
 
-        int volume;
         
+        int volume;
     }soundParam;
 
-    std::tuple<int, SoundParam> soundData;
+    std::unordered_map<int, SoundParam> soundData;      //サウンドデータ
 };
 

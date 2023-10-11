@@ -3,12 +3,12 @@
 #include<future>
 
 #include "Model.h"
-// コンストラクタ //
 
+/// <summary>
+/// コンストラクタ
+/// </summary>
 Model::Model()
     :AssetBase()
-    , holdHandle(-1)
-    , dupHandle(-1)
 {
     assetType = "model";
 
@@ -19,21 +19,22 @@ Model::Model()
     //ハンドル追加
     auto& data = GetJsonData();
     AddHandle(data["player"].GetString());
-
 }
 
-// デストラクタ //
-
+/// <summary>
+/// デストラクタ
+/// </summary>
 Model::~Model()
 {
     //処理なし
 }
 
-// ハンドル追加処理 //
-
+/// <summary>
+/// ハンドル追加処理
+/// </summary>
+/// <param name="fileName">:ファイル名</param>
 void Model::AddHandle(const std::string fileName)
 {
-    SetUseASyncLoadFlag(true);
     //仮ハンドル初期化
     holdHandle = -1;
     dupHandle = -1;
@@ -46,11 +47,11 @@ void Model::AddHandle(const std::string fileName)
             dupHandle = MV1DuplicateModel(holdHandle);
             handle.emplace(fileName, dupHandle);
     }
-    SetUseASyncLoadFlag(false);
 }
 
-// ハンドル削除処理 //
-
+/// <summary>
+/// ハンドル削除処理
+/// </summary>
 void Model::DeleteHandle()
 {
     for (auto& iter : handle)

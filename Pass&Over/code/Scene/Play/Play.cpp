@@ -6,31 +6,37 @@
 #include"../SceneBase/SceneBase.h"
 #include "Play.h"
 
-// コンストラクタ //
-
+/// <summary>
+/// コンストラクタ
+/// </summary>
 Play::Play()
 {
     ObjManager::AddObj(new Camera);
     ObjManager::AddObj(new Player);
 }
 
-// デストラクタ //
-
+/// <summary>
+/// デストラクタ
+/// </summary>
 Play::~Play()
 {
 
 }
 
-// シーン更新処理 //
-
+/// <summary>
+/// シーン更新処理
+/// </summary>
+/// <param name="deltaTime">:フレームレート</param>
+/// <returns>次フレームのシーン</returns>
 SceneBase* Play::UpdateScene(const float deltaTime)
 {
     ObjManager::UpdateObj(deltaTime);
     return this;
 }
 
-// シーン描画処理 //
-
+/// <summary>
+/// シーン描画処理
+/// </summary>
 void Play::DrawScene()
 {
     ObjManager::DrawObj();

@@ -5,8 +5,9 @@
 
 std::unique_ptr<GameSetting> GameSetting::singleton = nullptr;
 
-// 初期化処理 //
-
+/// <summary>
+/// 初期化処理
+/// </summary>
 void GameSetting::Init()
 {
     if (!singleton)
@@ -15,8 +16,9 @@ void GameSetting::Init()
     }
 }
 
-// コンストラクタ //
-
+/// <summary>
+/// コンストラクタ
+/// </summary>
 GameSetting::GameSetting()
 {
     BeforeLibInit();
@@ -27,16 +29,18 @@ GameSetting::GameSetting()
     AfterLibInit();
 }
 
-// デストラクタ //
-
+/// <summary>
+/// デストラクタ
+/// </summary>
 GameSetting::~GameSetting()
 {
     //ライブラリ終了
     DxLib_End();
 }
 
-// ライブラリ初期化前処理 //
-
+/// <summary>
+/// ライブラリ初期化前処理
+/// </summary>
 void GameSetting::BeforeLibInit()
 {
     //アンチエイリアスを設定
@@ -46,8 +50,9 @@ void GameSetting::BeforeLibInit()
     SetUseDirect3DVersion(DX_DIRECT3D_9EX);
 }
 
-// ライブラリ初期化後処理 //
-
+/// <summary>
+/// ライブラリ初期化後処理
+/// </summary>
 void GameSetting::AfterLibInit()
 {
     //描画先を裏画面に変更

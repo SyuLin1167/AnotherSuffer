@@ -1,0 +1,7 @@
+{
+  "sound": {
+    "player": {
+      "walk": "../assets/model/Chara/Player/Player.mv1"
+    }
+  }
+}

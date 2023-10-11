@@ -2,8 +2,9 @@
 
 std::unique_ptr<Window> Window::singleton = nullptr;
 
-// 初期化処理 //
-
+/// <summary>
+/// 初期化処理
+/// </summary>
 void Window::Init()
 {
     if (!singleton)
@@ -12,8 +13,9 @@ void Window::Init()
     }
 }
 
-// コンストラクタ //
-
+/// <summary>
+/// コンストラクタ(シングルトン)
+/// </summary>
 Window::Window()
 {
     //ウィンドウの設定
@@ -23,8 +25,9 @@ Window::Window()
     SetMainWindowText("Pass&Over");
 }
 
-// デストラクタ //
-
+/// <summary>
+/// デストラクタ
+/// </summary>
 Window::~Window()
 {
     //処理なし

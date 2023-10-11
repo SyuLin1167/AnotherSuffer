@@ -1,7 +1,9 @@
 #pragma once
 #include<memory>
 
-/*GameSettingクラス*/
+/// <summary>
+/// GameSettingクラス
+/// </summary>
 class GameSetting final
 {
 public:

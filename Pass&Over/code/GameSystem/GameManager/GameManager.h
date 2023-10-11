@@ -2,7 +2,9 @@
 #include<DxLib.h>
 #include<memory>
 
-/*GameManagerクラス*/
+/// <summary>
+/// GameManagerクラス
+/// </summary>
 class GameManager final
 {
 public:

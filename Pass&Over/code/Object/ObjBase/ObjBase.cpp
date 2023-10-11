@@ -1,7 +1,9 @@
 #include "ObjBase.h"
 
-// コンストラクタ //
-
+/// <summary>
+/// コンストラクタ
+/// </summary>
+/// <param name="tag"></param>
 ObjBase::ObjBase(ObjTag tag)
     :objTag(tag)
     , isAlive(true)
@@ -13,15 +15,18 @@ ObjBase::ObjBase(ObjTag tag)
     //処理なし
 }
 
-// デストラクタ //
-
+/// <summary>
+/// デストラクタ
+/// </summary>
 ObjBase::~ObjBase()
 {
     //処理なし
 }
 
-// オブジェクトタグ取得 //
-
+/// <summary>
+/// オブジェクトタグ取得
+/// </summary>
+/// <returns>オブジェクトタグ</returns>
 ObjTag& ObjBase::GetTag()
 {
     return objTag;
