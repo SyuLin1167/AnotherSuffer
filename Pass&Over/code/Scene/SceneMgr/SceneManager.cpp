@@ -6,11 +6,12 @@
 #include"../../Asset/AssetManager/AssetManager.h"
 #include"../../FPS/FPS.h"
 #include"../Title/Title.h"
-#include "SceneMgr.h"
+#include "SceneManager.h"
 
-// コンストラクタ //
-
-SceneMgr::SceneMgr()
+/// <summary>
+/// コンストラクタ
+/// </summary>
+SceneManager::SceneManager()
     :holdScene(nullptr)
     , fps(new FPS)
 {
@@ -20,15 +21,17 @@ SceneMgr::SceneMgr()
     nowScene.emplace(new Title);
 }
 
-// デストラクタ //
-
-SceneMgr::~SceneMgr()
+/// <summary>
+/// デストラクタ
+/// </summary>
+SceneManager::~SceneManager()
 {
 }
 
-// ゲームループ //
-
-void SceneMgr::GameLoop()
+/// <summary>
+/// ゲームループ
+/// </summary>
+void SceneManager::GameLoop()
 {
     //ウィンドウが閉じられるまでループする
     while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
@@ -41,18 +44,20 @@ void SceneMgr::GameLoop()
     ObjManager::DeleteAllObj();
 }
 
-// シーン更新処理 //
-
-void SceneMgr::UpdateScene()
+/// <summary>
+/// シーン更新処理
+/// </summary>
+void SceneManager::UpdateScene()
 {
     //現在のシーンを更新してtmpSceneに代入
     fps->Update();
     holdScene=nowScene.top()->UpdateScene(fps->GetDeltaTime());
 }
 
-// シーン描画処理 //
-
-void SceneMgr::DrawScene()
+/// <summary>
+/// シーン描画処理
+/// </summary>
+void SceneManager::DrawScene()
 {
     //現在のシーンを描画
     ClearDrawScreen();
@@ -61,9 +66,10 @@ void SceneMgr::DrawScene()
     ScreenFlip();
 }
 
-// シーン切り替え処理 //
-
-void SceneMgr::ChangeScene()
+/// <summary>
+/// シーン切り替え処理
+/// </summary>
+void SceneManager::ChangeScene()
 {
     //nowSceneがtmpSceneと異なっていたら解放して代入
     if (nowScene.top().get() != holdScene)

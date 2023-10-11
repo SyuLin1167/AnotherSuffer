@@ -1,15 +1,18 @@
 #include "CharaObjBase.h"
 
-// コンストラクタ //
-
+/// <summary>
+/// コンストラクタ
+/// </summary>
+/// <param name="tag"></param>
 CharaObjBase::CharaObjBase(ObjTag tag)
     :ObjBase(tag)
 {
     //処理なし
 }
 
-// デストラクタ //
-
+/// <summary>
+/// デストラクタ
+/// </summary>
 CharaObjBase::~CharaObjBase()
 {
     //処理なし

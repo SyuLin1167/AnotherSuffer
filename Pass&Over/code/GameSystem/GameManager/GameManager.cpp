@@ -4,8 +4,9 @@
 
 #include "GameManager.h"
 
-// コンストラクタ //
-
+/// <summary>
+/// コンストラクタ
+/// </summary>
 GameManager::GameManager()
 {
     //ログの非表示
@@ -17,15 +18,17 @@ GameManager::GameManager()
     sceneMgr.reset(new SceneMgr);
 }
 
-// デストラクタ //
-
+/// <summary>
+/// デストラクタ
+/// </summary>
 GameManager::~GameManager()
 {
     //処理なし
 }
 
-// 処理 //
-
+/// <summary>
+/// 処理
+/// </summary>
 void GameManager::Procces()
 {
     sceneMgr->GameLoop();

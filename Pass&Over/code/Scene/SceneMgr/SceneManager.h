@@ -2,19 +2,21 @@
 #include<memory>
 #include<stack>
 
-/*SceneMgrクラス*/
-class SceneMgr final
+/// <summary>
+/// SceneManagerクラス
+/// </summary>
+class SceneManager final
 {
 public:
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    SceneMgr();
+    SceneManager();
 
     /// <summary>
     /// デストラクタ
     /// </summary>
-    ~SceneMgr();
+    ~SceneManager();
 
     /// <summary>
     /// ゲームループ

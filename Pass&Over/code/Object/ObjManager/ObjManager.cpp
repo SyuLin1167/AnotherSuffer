@@ -4,23 +4,26 @@
 
 std::unique_ptr<ObjManager> ObjManager::singleton;
 
-// コンストラクタ //
-
+/// <summary>
+/// コンストラクタ(シングルトン)
+/// </summary>
 ObjManager::ObjManager()
     :object()
 {
     //処理なし
 }
 
-// デストラクタ //
-
+/// <summary>
+/// デストラクタ
+/// </summary>
 ObjManager::~ObjManager()
 {
     //処理なし
 }
 
-// オブジェクトマネージャー初期化処理 //
-
+/// <summary>
+/// オブジェクトマネージャー初期化処理
+/// </summary>
 void ObjManager::InitObjManager()
 {
     //自身の中身が空だったらインスタンス生成
@@ -30,8 +33,10 @@ void ObjManager::InitObjManager()
     }
 }
 
-// オブジェクト追加処理 //
-
+/// <summary>
+/// オブジェクト追加処理
+/// </summary>
+/// <param name="newObj">:追加オブジェクト</param>
 void ObjManager::AddObj(ObjBase* newObj)
 {
     ObjTag tag = newObj->GetTag();
@@ -39,8 +44,10 @@ void ObjManager::AddObj(ObjBase* newObj)
     singleton->object[tag].emplace_back(newObj);
 }
 
-// オブジェクト更新処理 //
-
+/// <summary>
+/// オブジェクト更新処理
+/// </summary>
+/// <param name="deltaTime">:フレームレート</param>
 void ObjManager::UpdateObj(const float deltaTime)
 {
     //全タグ分更新処理をまとめて行う
@@ -54,8 +61,9 @@ void ObjManager::UpdateObj(const float deltaTime)
     OnDeadObj();
 }
 
-// オブジェクト描画処理 //
-
+/// <summary>
+/// オブジェクト描画処理
+/// </summary>
 void ObjManager::DrawObj()
 {
     //全タグ分描画処理をまとめて行う
@@ -72,8 +80,9 @@ void ObjManager::DrawObj()
     }
 }
 
-// オブジェクト死亡処理 //
-
+/// <summary>
+/// オブジェクト死亡処理
+/// </summary>
 void ObjManager::OnDeadObj()
 {
     //全タグ分死亡オブジェクトを探して削除
@@ -90,8 +99,10 @@ void ObjManager::OnDeadObj()
     }
 }
 
-// オブジェクト削除処理 //
-
+/// <summary>
+/// オブジェクト削除処理
+/// </summary>
+/// <param name="unnecObj">:不必要オブジェクト</param>
 void ObjManager::DeleteObj(std::shared_ptr<ObjBase> unnecObj)
 {
     //削除オブジェクトのタグ取得
@@ -111,8 +122,9 @@ void ObjManager::DeleteObj(std::shared_ptr<ObjBase> unnecObj)
     }
 }
 
-// 全オブジェクト削除処理 //
-
+/// <summary>
+/// 全オブジェクト削除処理
+/// </summary>
 void ObjManager::DeleteAllObj()
 {
     //空じゃなかったらオブジェクト削除

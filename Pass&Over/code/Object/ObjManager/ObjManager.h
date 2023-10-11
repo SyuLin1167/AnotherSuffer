@@ -7,7 +7,9 @@
 #include"../ObjBase/ObjBase.h"
 #include"../ObjBase/ObjTag.h"
 
-/*ObjManagerクラス*/
+/// <summary>
+/// ObjManagerクラス
+/// </summary>
 class ObjManager final
 {
 public:
@@ -19,6 +21,7 @@ public:
     /// <summary>
     /// オブジェクト追加処理
     /// </summary>
+    /// <param name="newObj">:追加オブジェクト</param>
     static void AddObj(ObjBase* newObj);
 
     /// <summary>

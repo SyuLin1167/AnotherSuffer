@@ -1,6 +1,8 @@
 #pragma once
 
-/*FPSクラス*/
+/// <summary>
+/// FPSクラス
+/// </summary>
 class FPS
 {
 public:

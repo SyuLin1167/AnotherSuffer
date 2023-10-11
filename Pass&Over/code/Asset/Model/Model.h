@@ -1,7 +1,9 @@
 #pragma once
 #include"../AssetBase/AssetBase.h"
 
-/*Modelクラス*/
+/// <summary>
+/// Modelクラス
+/// </summary>
 class Model final:public AssetBase
 {
 public:
@@ -26,8 +28,5 @@ private:
     /// </summary>
     /// <param name="fileName">:ファイル名</param>
     void AddHandle(const std::string fileName)override;
-
-    int holdHandle;                  //一時保存ハンドル
-    int dupHandle;                   //複製ハンドル
 };
 

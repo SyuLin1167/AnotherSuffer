@@ -7,7 +7,9 @@
 #include"ObjTag.h"
 #include"../../Asset/AssetManager/AssetManager.h"
 
-/*ObjBaseクラス*/
+/// <summary>
+/// ObjBaseクラス
+/// </summary>
 class ObjBase
 {
 public:

@@ -1,6 +1,8 @@
 #pragma once
 
-/*Playクラス*/
+/// <summary>
+/// Playクラス
+/// </summary>
 class Play:public SceneBase
 {
 public:
@@ -23,7 +25,7 @@ private:
     SceneBase* UpdateScene(const float deltaTime)override;
 
     /// <summary>
-    /// シーン描画
+    /// シーン描画処理
     /// </summary>
     void DrawScene()override;
 };

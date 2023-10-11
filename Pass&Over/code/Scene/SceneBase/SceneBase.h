@@ -1,6 +1,8 @@
 #pragma once
 
-/*SceneBaseクラス*/
+/// <summary>
+/// SceneBaseクラス
+/// </summary>
 class SceneBase
 {
 public:

@@ -2,7 +2,9 @@
 #include<DxLib.h>
 #include<memory>
 
-/*Windowクラス*/
+/// <summary>
+/// Windowクラス
+/// </summary>
 class Window
 {
 public:

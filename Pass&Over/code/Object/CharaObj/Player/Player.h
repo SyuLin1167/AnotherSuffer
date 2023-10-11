@@ -1,7 +1,9 @@
 #pragma once
 #include"../CharaObjBase/CharaObjBase.h"
 
-/*Playerクラス*/
+/// <summary>
+/// Playerクラス
+/// </summary>
 class Player final:public CharaObjBase
 {
 public:

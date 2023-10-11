@@ -84,7 +84,7 @@
     <ClCompile Include="..\code\Scene\SceneBase\SceneBase.cpp">
       <Filter>ソース ファイル\Scene\SceneBase</Filter>
     </ClCompile>
-    <ClCompile Include="..\code\Scene\SceneMgr\SceneMgr.cpp">
+    <ClCompile Include="..\code\Scene\SceneMgr\SceneManager.cpp">
       <Filter>ソース ファイル\Scene\SceneMgr</Filter>
     </ClCompile>
     <ClCompile Include="..\code\Scene\Title\Tiele.cpp">
@@ -140,7 +140,7 @@
     <ClInclude Include="..\code\Scene\SceneBase\SceneBase.h">
       <Filter>ソース ファイル\Scene\SceneBase</Filter>
     </ClInclude>
-    <ClInclude Include="..\code\Scene\SceneMgr\SceneMgr.h">
+    <ClInclude Include="..\code\Scene\SceneMgr\SceneManager.h">
       <Filter>ソース ファイル\Scene\SceneMgr</Filter>
     </ClInclude>
     <ClInclude Include="..\code\Scene\Title\Title.h">
@@ -195,6 +195,9 @@
   <ItemGroup>
     <None Include="..\code\Asset\Model\ModelData.json">
       <Filter>ソース ファイル\Asset\Model</Filter>
+    </None>
+    <None Include="..\code\Asset\Sound\SoundData.json">
+      <Filter>ソース ファイル\Asset\Sound</Filter>
     </None>
   </ItemGroup>
 </Project>
