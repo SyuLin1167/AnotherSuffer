@@ -11,8 +11,9 @@ Sound::Sound()
     LoadJsonFile(jsonFile);
 
     //ƒnƒ“ƒhƒ‹’Ç‰Á
-    auto& data = GetJsonData();
-    AddHandle(data["player"]["walk"].GetString());
+    auto& playerData = GetJsonData()["player"];
+    AddHandle(playerData["walk"]["pass"].GetString());
+    AddData(playerData["walk"]);
 }
 
 Sound::~Sound()
@@ -32,6 +33,22 @@ void Sound::AddHandle(const std::string fileName)
     {
         holdHandle = LoadSoundMem(fileName.c_str());
         dupHandle = DuplicateSoundMem(holdHandle);
-        handle.emplace(fileName, dupHandle);
+        handle.emplace(fileName, dupHandle); 
     }
+}
+
+void Sound::AddData(const rapidjson::Value& key)
+{
+    SoundParam param = {};
+    param.isLoop = key["loop"].GetBool();
+    param.volume = key["volume"].GetInt();
+
+    soundData.emplace(GetHandle(key["pass"].GetString()), param);
+}
+
+Sound::SoundParam::SoundParam()
+    :isLoop(false)
+    , volume(0)
+{
+    //ˆ—‚È‚µ
 }

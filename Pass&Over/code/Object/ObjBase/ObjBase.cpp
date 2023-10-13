@@ -13,7 +13,7 @@ ObjBase::ObjBase(ObjTag tag)
 
 ObjBase::~ObjBase()
 {
-    //ˆ—‚È‚µ
+    MV1DeleteModel(objHandle);
 }
 
 ObjTag& ObjBase::GetTag()

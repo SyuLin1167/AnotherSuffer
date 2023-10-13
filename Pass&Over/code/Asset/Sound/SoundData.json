@@ -1,7 +1,11 @@
 {
   "sound": {
     "player": {
-      "walk": "../assets/model/Chara/Player/Player.mv1"
+      "walk": {
+        "pass": "../assets/model/Chara/Player/Player.mv1",
+        "loop": true,
+        "volume": 150
+      }
     }
   }
 }
