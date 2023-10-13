@@ -20,13 +20,13 @@ private:
     /// <summary>
     /// シーン更新処理
     /// </summary>
-    /// <param name="deltaTime">:フレームレート</param>
+    /// <param name="deltaTime">:デルタタイム</param>
     /// <returns>次フレームのシーン</returns>
-    SceneBase* UpdateScene(const float deltaTime)override;
+    SceneBase* UpdateScene(const float deltaTime) override;
 
     /// <summary>
     /// シーン描画処理
     /// </summary>
-    void DrawScene()override;
+    void DrawScene() override;
 };
 

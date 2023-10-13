@@ -2,9 +2,6 @@
 
 #include "../FPS/FPS.h"
 
-/// <summary>
-/// コンストラクタ
-/// </summary>
 FPS::FPS()
     :nowTime(static_cast<float>(GetNowCount()))
     ,prevTime(nowTime)
@@ -13,17 +10,11 @@ FPS::FPS()
     //処理なし
 }
 
-/// <summary>
-/// デストラクタ
-/// </summary>
 FPS::~FPS()
 {
     //処理なし
 }
 
-/// <summary>
-/// 更新処理
-/// </summary>
 void FPS::Update()
 {
     //フレームレート算出

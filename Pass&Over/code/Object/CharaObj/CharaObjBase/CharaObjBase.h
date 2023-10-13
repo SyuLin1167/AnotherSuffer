@@ -10,6 +10,7 @@ public:
     /// <summary>
     /// コンストラクタ
     /// </summary>
+    /// <param name="tag">:タグ名</param>
     CharaObjBase(ObjTag tag);
 
     /// <summary>
