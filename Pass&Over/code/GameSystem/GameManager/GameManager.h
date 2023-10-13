@@ -24,6 +24,6 @@ public:
     void Procces();
 
 private:
-    std::unique_ptr<class SceneMgr> sceneMgr;    //シーンマネージャー
+    std::unique_ptr<class SceneManager> sceneManager;    //シーンマネージャー
 };
 

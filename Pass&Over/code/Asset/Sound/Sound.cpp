@@ -2,9 +2,6 @@
 
 #include "Sound.h"
 
-/// <summary>
-/// コンストラクタ
-/// </summary>
 Sound::Sound()
 {
     assetType = "sound";
@@ -18,18 +15,11 @@ Sound::Sound()
     AddHandle(data["player"]["walk"].GetString());
 }
 
-/// <summary>
-/// デストラクタ
-/// </summary>
 Sound::~Sound()
 {
     //処理なし
 }
 
-/// <summary>
-/// ハンドル追加処理
-/// </summary>
-/// <param name="fileName">:ファイル名</param>
 void Sound::AddHandle(const std::string fileName)
 {
     //仮ハンドル初期化

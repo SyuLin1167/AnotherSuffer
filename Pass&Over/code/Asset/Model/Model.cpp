@@ -4,9 +4,6 @@
 
 #include "Model.h"
 
-/// <summary>
-/// コンストラクタ
-/// </summary>
 Model::Model()
     :AssetBase()
 {
@@ -21,18 +18,11 @@ Model::Model()
     AddHandle(data["player"].GetString());
 }
 
-/// <summary>
-/// デストラクタ
-/// </summary>
 Model::~Model()
 {
     //処理なし
 }
 
-/// <summary>
-/// ハンドル追加処理
-/// </summary>
-/// <param name="fileName">:ファイル名</param>
 void Model::AddHandle(const std::string fileName)
 {
     //仮ハンドル初期化
@@ -49,9 +39,6 @@ void Model::AddHandle(const std::string fileName)
     }
 }
 
-/// <summary>
-/// ハンドル削除処理
-/// </summary>
 void Model::DeleteHandle()
 {
     for (auto& iter : handle)

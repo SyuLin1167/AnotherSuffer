@@ -84,9 +84,6 @@
     <ClCompile Include="..\code\Scene\SceneBase\SceneBase.cpp">
       <Filter>ソース ファイル\Scene\SceneBase</Filter>
     </ClCompile>
-    <ClCompile Include="..\code\Scene\SceneMgr\SceneManager.cpp">
-      <Filter>ソース ファイル\Scene\SceneMgr</Filter>
-    </ClCompile>
     <ClCompile Include="..\code\Scene\Title\Tiele.cpp">
       <Filter>ソース ファイル\Scene\Title</Filter>
     </ClCompile>
@@ -135,13 +132,13 @@
     <ClCompile Include="..\code\Asset\AssetManager\AssetManager.cpp">
       <Filter>ソース ファイル\Asset\AssetMgr</Filter>
     </ClCompile>
+    <ClCompile Include="..\code\Scene\SceneManager\SceneManager.cpp">
+      <Filter>ソース ファイル\Scene\SceneMgr</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\code\Scene\SceneBase\SceneBase.h">
       <Filter>ソース ファイル\Scene\SceneBase</Filter>
-    </ClInclude>
-    <ClInclude Include="..\code\Scene\SceneMgr\SceneManager.h">
-      <Filter>ソース ファイル\Scene\SceneMgr</Filter>
     </ClInclude>
     <ClInclude Include="..\code\Scene\Title\Title.h">
       <Filter>ソース ファイル\Scene\Title</Filter>
@@ -190,6 +187,9 @@
     </ClInclude>
     <ClInclude Include="..\code\Asset\AssetManager\AssetManager.h">
       <Filter>ソース ファイル\Asset\AssetMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Scene\SceneManager\SceneManager.h">
+      <Filter>ソース ファイル\Scene\SceneMgr</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
