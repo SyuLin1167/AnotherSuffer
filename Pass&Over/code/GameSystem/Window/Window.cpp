@@ -14,7 +14,7 @@ Window::Window()
 {
     //ウィンドウの設定
     ChangeWindowMode(true);
-    SetGraphMode(WINDOW_SIZE.x, WINDOW_SIZE.y, COLOR_BIT);
+    SetGraphMode(static_cast<int>(WINDOW_SIZE.x), static_cast<int>(WINDOW_SIZE.y), COLOR_BIT);
     SetWindowSizeExtendRate(1.0);
     SetMainWindowText("Pass&Over");
 }

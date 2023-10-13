@@ -22,24 +22,34 @@ public:
     /// <summary>
     /// ハンドル削除処理
     /// </summary>
-    virtual void DeleteHandle() override;
+    virtual void DeleteHandle() override {};
 private:
     /// <summary>
     /// ハンドル追加処理
     /// </summary>
     /// <param name="fileName">:ファイル名</param>
-    void AddHandle(std::string fileName)override;
+    void AddHandle(std::string fileName) override ;
+
+    /// <summary>
+    /// データ追加処理
+    /// </summary>
+    /// <param name="key">:jsonデータ取得キー</param>
+    void AddData(const rapidjson::Value& key);
 
     /// <summary>
     /// サウンドパラメーター
     /// </summary>
     struct SoundParam
     {
+    public:
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
         SoundParam();
 
-        
-        int volume;
-    }soundParam;
+        bool isLoop;                                    //ループ再生判定
+        int volume;                                     //音量
+    };
 
     std::unordered_map<int, SoundParam> soundData;      //サウンドデータ
 };

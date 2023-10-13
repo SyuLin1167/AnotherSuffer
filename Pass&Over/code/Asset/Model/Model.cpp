@@ -14,8 +14,8 @@ Model::Model()
     LoadJsonFile(jsonFile);
 
     //ƒnƒ“ƒhƒ‹’Ç‰Á
-    auto& data = GetJsonData();
-    AddHandle(data["player"].GetString());
+    auto& filePass = GetJsonData();
+    AddHandle(filePass["player"].GetString());
 }
 
 Model::~Model()
