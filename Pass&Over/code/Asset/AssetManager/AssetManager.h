@@ -31,6 +31,7 @@ private:
 
     static std::unique_ptr<AssetManager> assetManager;      //自身の実体
 
-    std::unique_ptr<class Model> model;             //モデル
+    std::unique_ptr<class Model> model;                           //モデル
+    std::unique_ptr<class Sound> sound;                           //サウンド
 };
 
