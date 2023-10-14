@@ -11,12 +11,16 @@ Sound::Sound()
     LoadJsonFile(jsonFile);
 
     //ƒnƒ“ƒhƒ‹’Ç‰Á
-    for (rapidjson::Value::ConstMemberIterator iter = GetJsonData()["player"].MemberBegin(); iter != GetJsonData()["player"].MemberEnd(); iter++)
+    for (rapidjson::Value::ConstMemberIterator objType = GetJsonData().MemberBegin();
+        objType != GetJsonData().MemberEnd(); objType++)
     {
-
+        for (rapidjson::Value::ConstMemberIterator soundType = objType->value.MemberBegin();
+            soundType != objType->value.MemberEnd(); soundType++)
+        {
+            AddHandle(soundType->value["pass"].GetString());
+            AddData(soundType->value);
+        }
     }
-    AddHandle(playerData["walk"]["pass"].GetString());
-    AddData(playerData["walk"]);
 }
 
 Sound::~Sound()
