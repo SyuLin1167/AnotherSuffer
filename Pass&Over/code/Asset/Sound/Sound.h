@@ -19,10 +19,6 @@ public:
     ~Sound();
 
 
-    /// <summary>
-    /// ハンドル削除処理
-    /// </summary>
-    virtual void DeleteHandle() override {};
 private:
     /// <summary>
     /// ハンドル追加処理
@@ -37,6 +33,11 @@ private:
     void AddData(const rapidjson::Value& key);
 
     /// <summary>
+    /// ハンドル削除処理
+    /// </summary>
+    virtual void DeleteHandle() override;
+
+    /// <summary>
     /// サウンドパラメーター
     /// </summary>
     struct SoundParam
@@ -47,6 +48,7 @@ private:
         /// </summary>
         SoundParam();
 
+        std::string soundType;                          //サウンドタイプ
         bool isLoop;                                    //ループ再生判定
         int volume;                                     //音量
     };

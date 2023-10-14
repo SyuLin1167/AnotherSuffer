@@ -25,7 +25,7 @@ Sound::Sound()
 
 Sound::~Sound()
 {
-    //処理なし
+    DeleteHandle();
 }
 
 void Sound::AddHandle(const std::string fileName)
@@ -46,7 +46,9 @@ void Sound::AddHandle(const std::string fileName)
 
 void Sound::AddData(const rapidjson::Value& key)
 {
+    //
     SoundParam param = {};
+    param.soundType = key["type"].GetString();
     param.isLoop = key["loop"].GetBool();
     param.volume = key["volume"].GetInt();
 
@@ -58,4 +60,15 @@ Sound::SoundParam::SoundParam()
     , volume(0)
 {
     //処理なし
+}
+
+void Sound::DeleteHandle()
+{
+    //ハンドルとハンドルを確保したデータ解放
+    for (auto& iter : handle)
+    {
+        DeleteSoundMem(iter.second);
+    }
+    handle.clear();
+    soundData.clear();
 }

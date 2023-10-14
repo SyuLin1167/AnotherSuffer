@@ -27,6 +27,7 @@
     <ClCompile Include="..\code\GameSystem\GameManager\GameManager.cpp" />
     <ClCompile Include="..\code\GameSystem\GameSetting\GameSetting.cpp" />
     <ClCompile Include="..\code\GameSystem\Window\Window.cpp" />
+    <ClCompile Include="..\code\KeyStatus\KeyStatus.cpp" />
     <ClCompile Include="..\code\main.cpp" />
     <ClCompile Include="..\code\Object\Camera\Camera.cpp" />
     <ClCompile Include="..\code\Object\CharaObj\CharaObjBase\CharaObjBase.cpp" />
@@ -47,6 +48,7 @@
     <ClInclude Include="..\code\GameSystem\GameManager\GameManager.h" />
     <ClInclude Include="..\code\GameSystem\GameSetting\GameSetting.h" />
     <ClInclude Include="..\code\GameSystem\Window\Window.h" />
+    <ClInclude Include="..\code\KeyStatus\KeyStatus.h" />
     <ClInclude Include="..\code\Object\Camera\Camera.h" />
     <ClInclude Include="..\code\Object\CharaObj\CharaObjBase\CharaObjBase.h" />
     <ClInclude Include="..\code\Object\CharaObj\Player\Player.h" />
