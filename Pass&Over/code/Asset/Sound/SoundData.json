@@ -2,7 +2,7 @@
   "sound": {
     "player": {
       "walk": {
-        "pass": "../assets/model/Chara/Player/Player.mv1",
+        "pass": "../assets/sound/DoorOpenSE.wav",
         "loop": true,
         "volume": 150
       }

@@ -7,11 +7,14 @@ Sound::Sound()
     assetType = "sound";
 
     //jsonファイル読み込み
-    jsonFile = "../code/Asset/Model/ModelData.json";
+    jsonFile = "../code/Asset/Sound/SoundData.json";
     LoadJsonFile(jsonFile);
 
     //ハンドル追加
-    auto& playerData = GetJsonData()["player"];
+    for (rapidjson::Value::ConstMemberIterator iter = GetJsonData()["player"].MemberBegin(); iter != GetJsonData()["player"].MemberEnd(); iter++)
+    {
+
+    }
     AddHandle(playerData["walk"]["pass"].GetString());
     AddData(playerData["walk"]);
 }
