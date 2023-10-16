@@ -19,6 +19,12 @@ public:
     static class Model* ModelInstance() { return assetManager->model.get(); }
 
     /// <summary>
+    /// サウンドインスタンス
+    /// </summary>
+    /// <returns>Soundクラス</returns>
+    static class Sound* SoundInstance() { return assetManager->sound.get(); }
+
+    /// <summary>
     /// デストラクタ
     /// </summary>
     ~AssetManager();
