@@ -35,8 +35,8 @@ void Sound::AddHandle(const std::string fileName)
     dupHandle = -1;
 
     //ファイルが見つからなかったらハンドルを複製して追加
-    auto iter = handle.find(fileName);
-    if (iter == handle.end())
+    auto findHandle = handle.find(fileName);
+    if (findHandle == handle.end())
     {
         holdHandle = LoadSoundMem(fileName.c_str());
         dupHandle = DuplicateSoundMem(holdHandle);
@@ -46,17 +46,24 @@ void Sound::AddHandle(const std::string fileName)
 
 void Sound::AddData(const rapidjson::Value& key)
 {
-    //
-    SoundParam param = {};
-    param.soundType = key["type"].GetString();
-    param.isLoop = key["loop"].GetBool();
-    param.volume = key["volume"].GetInt();
+    //ハンドルが見つからなかったらサウンドデータ追加
+    auto handle = GetHandle(key["pass"].GetString());
+    auto findData = soundData.find(handle);
 
-    soundData.emplace(GetHandle(key["pass"].GetString()), param);
+    if (findData == soundData.end())
+    {
+        SoundParam param = {};
+        param.soundType = key["type"].GetString();
+        param.isLoop = key["loop"].GetBool();
+        param.volume = key["volume"].GetInt();
+
+        soundData.emplace(handle, param);
+    }
 }
 
 Sound::SoundParam::SoundParam()
-    :isLoop(false)
+    :soundType("")
+    , isLoop(false)
     , volume(0)
 {
     //処理なし
@@ -71,4 +78,27 @@ void Sound::DeleteHandle()
     }
     handle.clear();
     soundData.clear();
+}
+
+void Sound::StartSound(int handle)
+{
+    if (!CheckSoundMem(handle))
+    {
+        if (soundData[handle].isLoop)
+        {
+            PlaySoundMem(handle, DX_PLAYTYPE_LOOP);
+        }
+        else
+        {
+            PlaySoundMem(handle, DX_PLAYTYPE_BACK);
+        }
+    }
+}
+
+void Sound::StopSound(int handle)
+{
+    if (CheckSoundMem(handle))
+    {
+        StopSoundMem(handle);
+    }
 }

@@ -1,4 +1,5 @@
 #include"../../../Asset/Model/Model.h"
+#include"../../../Asset/Sound/Sound.h"
 #include "Player.h"
 
 Player::Player()
@@ -12,6 +13,9 @@ Player::Player()
     MV1SetPosition(objHandle, objPos);
     MV1SetScale(objHandle, objScale);
     
+    //ƒTƒEƒ“ƒh“Ç‚Ýž‚Ý
+    sound = AssetManager::SoundInstance();
+    auto& soundPass = sound->GetJsonData();
 }
 
 Player::~Player()
@@ -25,6 +29,8 @@ void Player::Update(const float deltaTime)
     if (CheckHitKey(KEY_INPUT_P))
     {
         isAlive = false;
+        auto& soundPass = sound->GetJsonData();
+        sound->StartSound(sound->GetHandle(soundPass["player"]["walk"]["pass"].GetString()));
     }
 
 }
