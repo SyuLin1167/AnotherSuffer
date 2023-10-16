@@ -3,6 +3,7 @@
     "player": {
       "walk": {
         "pass": "../assets/sound/DoorOpenSE.wav",
+        "type": "SE",
         "loop": true,
         "volume": 150
       }

@@ -25,5 +25,7 @@ public:
 
 private:
     std::unique_ptr<class SceneManager> sceneManager;    //シーンマネージャー
+
+
 };
 

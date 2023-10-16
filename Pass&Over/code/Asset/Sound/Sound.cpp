@@ -11,17 +11,21 @@ Sound::Sound()
     LoadJsonFile(jsonFile);
 
     //ハンドル追加
-    for (rapidjson::Value::ConstMemberIterator iter = GetJsonData()["player"].MemberBegin(); iter != GetJsonData()["player"].MemberEnd(); iter++)
+    for (rapidjson::Value::ConstMemberIterator objType = GetJsonData().MemberBegin();
+        objType != GetJsonData().MemberEnd(); objType++)
     {
-
+        for (rapidjson::Value::ConstMemberIterator soundType = objType->value.MemberBegin();
+            soundType != objType->value.MemberEnd(); soundType++)
+        {
+            AddHandle(soundType->value["pass"].GetString());
+            AddData(soundType->value);
+        }
     }
-    AddHandle(playerData["walk"]["pass"].GetString());
-    AddData(playerData["walk"]);
 }
 
 Sound::~Sound()
 {
-    //処理なし
+    DeleteHandle();
 }
 
 void Sound::AddHandle(const std::string fileName)
@@ -42,7 +46,9 @@ void Sound::AddHandle(const std::string fileName)
 
 void Sound::AddData(const rapidjson::Value& key)
 {
+    //
     SoundParam param = {};
+    param.soundType = key["type"].GetString();
     param.isLoop = key["loop"].GetBool();
     param.volume = key["volume"].GetInt();
 
@@ -54,4 +60,15 @@ Sound::SoundParam::SoundParam()
     , volume(0)
 {
     //処理なし
+}
+
+void Sound::DeleteHandle()
+{
+    //ハンドルとハンドルを確保したデータ解放
+    for (auto& iter : handle)
+    {
+        DeleteSoundMem(iter.second);
+    }
+    handle.clear();
+    soundData.clear();
 }

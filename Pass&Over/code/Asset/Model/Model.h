@@ -17,16 +17,16 @@ public:
     /// </summary>
     ~Model();
 
-    /// <summary>
-    /// ハンドル削除処理
-    /// </summary>
-    virtual void DeleteHandle() override;
-
 private:
     /// <summary>
     /// ハンドル追加処理
     /// </summary>
     /// <param name="fileName">:ファイル名</param>
-    void AddHandle(const std::string fileName)override;
+    void AddHandle(const std::string fileName) override;
+
+    /// <summary>
+    /// ハンドル削除処理
+    /// </summary>
+    virtual void DeleteHandle() override;
 };
 

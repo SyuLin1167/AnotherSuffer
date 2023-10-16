@@ -13,7 +13,7 @@ Camera::~Camera()
 
 void Camera::Update(const float deltaTime)
 {
-    objPos = VGet(-250, 150, 0);
+    objPos = VGet(-80, 80, 0);
 }
 
 void Camera::Draw()
