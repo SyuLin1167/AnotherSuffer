@@ -14,8 +14,11 @@ Model::Model()
     LoadJsonFile(jsonFile);
 
     //ƒnƒ“ƒhƒ‹’Ç‰Á
-    auto& filePass = GetJsonData();
-    AddHandle(filePass["player"].GetString());
+    for (rapidjson::Value::ConstMemberIterator objType = GetJsonData().MemberBegin();
+        objType != GetJsonData().MemberEnd(); objType++)
+    {
+        AddHandle(objType->value.GetString());
+    }
 }
 
 Model::~Model()
