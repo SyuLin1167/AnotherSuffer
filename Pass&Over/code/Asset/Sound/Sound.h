@@ -3,7 +3,7 @@
 #include"../AssetBase/AssetBase.h"
 
 /// <summary>
-/// Soundクラス
+/// サウンド管理
 /// </summary>
 class Sound final:public AssetBase
 {

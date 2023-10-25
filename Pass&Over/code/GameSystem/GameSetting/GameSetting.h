@@ -2,7 +2,7 @@
 #include<memory>
 
 /// <summary>
-/// GameSettingƒNƒ‰ƒX
+/// ƒQ[ƒ€İ’è
 /// </summary>
 class GameSetting final
 {

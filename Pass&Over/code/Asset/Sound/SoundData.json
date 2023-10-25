@@ -4,7 +4,7 @@
       "walk": {
         "pass": "../assets/sound/DoorOpenSE.wav",
         "type": "SE",
-        "loop": true,
+        "loop": false,
         "volume": 150
       }
     }

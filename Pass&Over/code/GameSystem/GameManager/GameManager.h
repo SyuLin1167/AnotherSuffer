@@ -3,7 +3,7 @@
 #include<memory>
 
 /// <summary>
-/// GameManagerƒNƒ‰ƒX
+/// ƒQ[ƒ€ŠÇ—
 /// </summary>
 class GameManager final
 {

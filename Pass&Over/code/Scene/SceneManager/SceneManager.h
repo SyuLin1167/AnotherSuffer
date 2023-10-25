@@ -3,7 +3,7 @@
 #include<stack>
 
 /// <summary>
-/// SceneManagerクラス
+/// シーン管理
 /// </summary>
 class SceneManager final
 {

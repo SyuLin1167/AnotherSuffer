@@ -1,7 +1,7 @@
 #pragma once
 
 /// <summary>
-/// Titleクラス
+/// タイトルシーン
 /// </summary>
 class Title: public SceneBase
 {

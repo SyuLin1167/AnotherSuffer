@@ -1,7 +1,7 @@
 #pragma once
 
 /// <summary>
-/// Playクラス
+/// プレイシーン
 /// </summary>
 class Play:public SceneBase
 {

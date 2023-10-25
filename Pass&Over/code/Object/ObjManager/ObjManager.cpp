@@ -26,7 +26,7 @@ void ObjManager::InitObjManager()
 
 void ObjManager::AddObj(ObjBase* newObj)
 {
-    ObjTag tag = newObj->GetTag();
+    std::string tag = newObj->GetTag();
 
     singleton->object[tag].emplace_back(newObj);
 }
@@ -79,19 +79,17 @@ void ObjManager::OnDeadObj()
 void ObjManager::DeleteObj(std::shared_ptr<ObjBase> unnecObj)
 {
     //削除オブジェクトのタグ取得
-    ObjTag tag = unnecObj->GetTag();
+    std::string tag = unnecObj->GetTag();
 
     //オブジェクトを検索
     auto endObj= singleton->object[tag].end();
     auto findObj = std::find(singleton->object[tag].begin(), endObj, unnecObj);
-    assert(findObj != endObj);
 
     //見つかったら末尾に移動させて削除
     if (findObj != endObj)
     {
         std::swap(findObj, endObj);
         singleton->object[tag].pop_back();
-        singleton->object[tag].shrink_to_fit();
     }
 }
 
@@ -103,7 +101,6 @@ void ObjManager::DeleteAllObj()
         if (!singleton->object[tag].empty())
         {
             singleton->object[tag].clear();
-            singleton->object[tag].shrink_to_fit();
         }
     }
 }
