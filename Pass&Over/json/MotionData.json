@@ -1,0 +1,11 @@
+{
+  "motion": {
+    "player": {
+      "walk": {
+        "pass": "../assets/sound/DoorOpenSE.wav",
+        "speed": 30,
+        "loop": false
+      }
+    }
+  }
+}

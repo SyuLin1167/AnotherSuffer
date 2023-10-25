@@ -10,7 +10,7 @@ Model::Model()
     assetType = "model";
 
     //jsonファイル読み込み
-    jsonFile = "../code/Asset/Model/ModelData.json";
+    jsonFile = "../json/ModelData.json";
     LoadJsonFile(jsonFile);
 
     //ハンドル追加

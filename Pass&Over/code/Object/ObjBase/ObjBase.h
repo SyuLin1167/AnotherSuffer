@@ -1,6 +1,6 @@
 #pragma once
 #include<DxLib.h>
-#include<../Rapidjson/istreamwrapper.h>
+#include<../Rapidjson/rapidjson.h>
 #include<string.h>
 #include<string>
 
@@ -68,5 +68,6 @@ protected:
     VECTOR objScale;        //オブジェクトの大きさ
     VECTOR objPos;          //座標
     VECTOR objDir;          //方向
+
 };
 

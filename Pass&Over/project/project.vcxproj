@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\code\Asset\AssetBase\AssetBase.h" />
+    <ClInclude Include="..\code\Asset\AssetBase\JsonKeyTag.h" />
     <ClInclude Include="..\code\Asset\AssetManager\AssetManager.h" />
     <ClInclude Include="..\code\Asset\Model\Model.h" />
     <ClInclude Include="..\code\Asset\Motion\Motion.h" />
@@ -63,8 +64,9 @@
     <ClInclude Include="..\code\Scene\Title\Title.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\code\Asset\Model\ModelData.json" />
-    <None Include="..\code\Asset\Sound\SoundData.json" />
+    <None Include="..\json\ModelData.json" />
+    <None Include="..\json\MotionData.json" />
+    <None Include="..\json\SoundData.json" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

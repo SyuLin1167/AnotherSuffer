@@ -10,10 +10,10 @@ Player::Player()
 
     MV1SetPosition(objHandle, objPos);
     MV1SetScale(objHandle, objScale);
-    
+
     //ƒTƒEƒ“ƒh“Ç‚Ýž‚Ý
     sound = AssetManager::SoundInstance();
-    auto& soundPass = sound->GetJsonData();
+    auto& soundPass = sound->GetJsonData()[objTag.c_str()];
 }
 
 Player::~Player()
@@ -27,8 +27,10 @@ void Player::Update(const float deltaTime)
     if (CheckHitKey(KEY_INPUT_P))
     {
         isAlive = false;
-        auto& soundPass = sound->GetJsonData();
-        sound->StartSound(sound->GetHandle(soundPass["player"]["walk"]["pass"].GetString()));
+        auto& soundPass = sound->GetJsonData()[objTag.c_str()];
+        sound->StartSound(sound->GetHandle(
+            soundPass[jsonObjKey.walk.c_str()][jsonDataKey.pass.c_str()].GetString()
+        ));
     }
 
 }
