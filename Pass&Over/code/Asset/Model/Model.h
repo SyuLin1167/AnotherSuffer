@@ -2,7 +2,7 @@
 #include"../AssetBase/AssetBase.h"
 
 /// <summary>
-/// ModelƒNƒ‰ƒX
+/// ƒ‚ƒfƒ‹ŠÇ—
 /// </summary>
 class Model final:public AssetBase
 {

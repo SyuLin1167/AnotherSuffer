@@ -82,6 +82,9 @@
     <Filter Include="ソース ファイル\KeyStatus">
       <UniqueIdentifier>{191be35d-4889-452a-b28b-a0d7399733e4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Asset\Motion">
+      <UniqueIdentifier>{ba49bfac-3f94-4bd7-9832-1ae7a650652e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\code\Scene\SceneBase\SceneBase.cpp">
@@ -141,6 +144,9 @@
     <ClCompile Include="..\code\KeyStatus\KeyStatus.cpp">
       <Filter>ソース ファイル\KeyStatus</Filter>
     </ClCompile>
+    <ClCompile Include="..\code\Asset\Motion\Motion.cpp">
+      <Filter>ソース ファイル\Asset\Motion</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\code\Scene\SceneBase\SceneBase.h">
@@ -199,6 +205,9 @@
     </ClInclude>
     <ClInclude Include="..\code\KeyStatus\KeyStatus.h">
       <Filter>ソース ファイル\KeyStatus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Asset\Motion\Motion.h">
+      <Filter>ソース ファイル\Asset\Motion</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

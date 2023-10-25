@@ -1,6 +1,6 @@
 #include "CharaObjBase.h"
 
-CharaObjBase::CharaObjBase(ObjTag tag)
+CharaObjBase::CharaObjBase(std::string tag)
     :ObjBase(tag)
 {
     //ˆ—‚È‚µ

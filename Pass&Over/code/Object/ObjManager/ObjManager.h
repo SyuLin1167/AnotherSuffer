@@ -8,7 +8,7 @@
 #include"../ObjBase/ObjTag.h"
 
 /// <summary>
-/// ObjManagerクラス
+/// オブジェクト管理
 /// </summary>
 class ObjManager final
 {
@@ -65,7 +65,7 @@ private:
 
     static std::unique_ptr<ObjManager> singleton;       //自身の実体
 
-    std::unordered_map<ObjTag, std::vector<
+    std::unordered_map<std::string, std::vector<
         std::shared_ptr<ObjBase>>> object;              //オブジェクト
 };
 

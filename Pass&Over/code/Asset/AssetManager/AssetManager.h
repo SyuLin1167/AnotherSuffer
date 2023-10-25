@@ -2,7 +2,7 @@
 #include<memory>
 
 /// <summary>
-/// AssetManagerクラス
+/// アセット管理
 /// </summary>
 class AssetManager final
 {

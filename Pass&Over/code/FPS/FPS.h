@@ -1,7 +1,7 @@
 #pragma once
 
 /// <summary>
-/// FPSクラス
+/// フレームレート
 /// </summary>
 class FPS
 {

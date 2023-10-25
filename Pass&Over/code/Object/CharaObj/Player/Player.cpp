@@ -1,14 +1,12 @@
-#include"../../../Asset/Model/Model.h"
-#include"../../../Asset/Sound/Sound.h"
 #include "Player.h"
 
 Player::Player()
-    :CharaObjBase(ObjTag::PLAYER)
+    :CharaObjBase(ObjTag.PLAYER)
 {
     //ƒ‚ƒfƒ‹“Ç‚Ýž‚Ý
-    Model* model = AssetManager::ModelInstance();
-    auto& modelPass = model->GetJsonData();
-    objHandle = model->GetHandle(modelPass["player"].GetString());
+    model = AssetManager::ModelInstance();
+    auto& modelPass = model->GetJsonData()[objTag.c_str()];
+    objHandle = model->GetHandle(modelPass.GetString());
 
     MV1SetPosition(objHandle, objPos);
     MV1SetScale(objHandle, objScale);

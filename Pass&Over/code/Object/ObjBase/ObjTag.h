@@ -1,20 +1,22 @@
 #pragma once
+#include<string.h>
+#include<vector>
 
 /// <summary>
-/// ObjTag列挙体
+/// オブジェクトのタグ
 /// </summary>
-enum class ObjTag:unsigned char
+static struct ObjectTag
 {
-    CAMERA,
-    PLAYER,
-    ENEMY,
-};
+    std::string CAMERA = "camera";
+    std::string PLAYER = "player";
+    std::string ENEMY = "enemy";
+}ObjTag;
 
 /// <summary>
-/// ループ制御用配列
+/// ループ制御用
 /// </summary>
-constexpr static ObjTag objTagAll[]{
-    ObjTag::CAMERA,
-    ObjTag::PLAYER,
-    ObjTag::ENEMY,
+static std::vector <std::string> objTagAll{
+    ObjTag.CAMERA,
+    ObjTag.PLAYER,
+    ObjTag.ENEMY,
 };

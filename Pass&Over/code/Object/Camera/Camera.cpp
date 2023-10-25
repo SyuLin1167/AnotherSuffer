@@ -1,7 +1,7 @@
 #include "Camera.h"
 
 Camera::Camera()
-    :ObjBase(ObjTag::CAMERA)
+    :ObjBase(ObjTag.CAMERA)
 {
     SetCameraNearFar(0.1f, 500.0f) ;
 }

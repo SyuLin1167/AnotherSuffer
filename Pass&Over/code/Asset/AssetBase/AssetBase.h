@@ -8,7 +8,7 @@
 #include<fstream>
 
 /// <summary>
-/// AssetBaseクラス
+/// アセット基底クラス
 /// </summary>
 class AssetBase
 {

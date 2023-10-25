@@ -29,7 +29,6 @@ private:
     /// </summary>
     void Draw() override;
 
-    Sound* sound;
     float a = 0;
 };
 

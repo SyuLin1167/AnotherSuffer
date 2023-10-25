@@ -11,7 +11,7 @@ public:
     /// コンストラクタ
     /// </summary>
     /// <param name="tag">:タグ名</param>
-    CharaObjBase(ObjTag tag);
+    CharaObjBase(std::string tag);
 
     /// <summary>
     /// デストラクタ

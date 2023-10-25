@@ -3,7 +3,7 @@
 #include<memory>
 
 /// <summary>
-/// Windowクラス
+/// ウィンドウ
 /// </summary>
 class Window
 {

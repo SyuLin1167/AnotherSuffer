@@ -1,6 +1,6 @@
 #include "ObjBase.h"
 
-ObjBase::ObjBase(ObjTag tag)
+ObjBase::ObjBase(std::string tag)
     :objTag(tag)
     , isAlive(true)
     , isVisible(true)
@@ -14,10 +14,5 @@ ObjBase::ObjBase(ObjTag tag)
 
 ObjBase::~ObjBase()
 {
-    MV1DeleteModel(objHandle);
-}
-
-ObjTag& ObjBase::GetTag()
-{
-    return objTag;
+    //èàóùÇ»Çµ
 }
