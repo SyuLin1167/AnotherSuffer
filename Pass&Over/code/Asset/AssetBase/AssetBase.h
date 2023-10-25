@@ -1,11 +1,13 @@
 #pragma once
-#include<memory>
-#include<unordered_map>
 #include<../Rapidjson/istreamwrapper.h>
 #include<../Rapidjson/document.h>
+#include<fstream>
 #include<string.h>
 #include<string>
-#include<fstream>
+#include<memory>
+#include<unordered_map>
+
+#include"JsonKeyTag.h"
 
 /// <summary>
 /// アセット基底クラス
@@ -35,8 +37,6 @@ public:
     /// <param name="handleName">:ハンドル名</param>
     /// <returns>ハンドル</returns>
     const int GetHandle(const std::string handleName);
-
-
 protected:
     /// <summary>
     /// Jsonファイル読み込み処理

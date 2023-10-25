@@ -7,7 +7,7 @@ Sound::Sound()
     assetType = "sound";
 
     //jsonファイル読み込み
-    jsonFile = "../code/Asset/Sound/SoundData.json";
+    jsonFile = "../json/SoundData.json";
     LoadJsonFile(jsonFile);
 
     //ハンドル追加

@@ -209,13 +209,19 @@
     <ClInclude Include="..\code\Asset\Motion\Motion.h">
       <Filter>ソース ファイル\Asset\Motion</Filter>
     </ClInclude>
+    <ClInclude Include="..\code\Asset\AssetBase\JsonKeyTag.h">
+      <Filter>ソース ファイル\Asset\AssetBase</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\code\Asset\Model\ModelData.json">
+    <None Include="..\json\SoundData.json">
+      <Filter>ソース ファイル\Asset\Sound</Filter>
+    </None>
+    <None Include="..\json\ModelData.json">
       <Filter>ソース ファイル\Asset\Model</Filter>
     </None>
-    <None Include="..\code\Asset\Sound\SoundData.json">
-      <Filter>ソース ファイル\Asset\Sound</Filter>
+    <None Include="..\json\MotionData.json">
+      <Filter>ソース ファイル\Asset\Motion</Filter>
     </None>
   </ItemGroup>
 </Project>
