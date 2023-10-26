@@ -1,7 +1,7 @@
 #pragma once
 
 /// <summary>
-/// フレームレート
+/// デルタタイムの管理
 /// </summary>
 class FPS
 {
@@ -22,14 +22,14 @@ public:
     void Update();
 
     /// <summary>
-    /// フレームレート取得処理
+    /// デルタタイム取得処理
     /// </summary>
-    /// <returns>フレームレート</returns>
+    /// <returns>デルタタイム</returns>
     float GetDeltaTime() const { return deltaTime; }
 
 private:
     float nowTime;      //現在の時間
     float prevTime;     //過去の時間
-    float deltaTime;    //フレームレート
+    float deltaTime;    //デルタタイム
 };
 
