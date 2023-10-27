@@ -209,7 +209,7 @@
     <ClInclude Include="..\code\Asset\Motion\Motion.h">
       <Filter>ソース ファイル\Asset\Motion</Filter>
     </ClInclude>
-    <ClInclude Include="..\code\Asset\AssetBase\JsonKeyTag.h">
+    <ClInclude Include="..\code\Asset\AssetBase\JsonKey.h">
       <Filter>ソース ファイル\Asset\AssetBase</Filter>
     </ClInclude>
   </ItemGroup>

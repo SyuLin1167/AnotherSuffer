@@ -37,8 +37,28 @@ private:
     void AddHandle(std::string fileName) override;
 
     /// <summary>
+    /// データ追加処理
+    /// </summary>
+    /// <param name="key">:jsonデータ取得キー</param>
+    void AddData(const rapidjson::Value& key);
+
+    /// <summary>
     /// ハンドル削除処理
     /// </summary>
     virtual void DeleteHandle() override;
+
+    /// <summary>
+    /// モーションパラメーター
+    /// </summary>
+    struct MotionParam
+    {
+    public:
+        MotionParam();
+
+        float playSpeed;            //再生速度
+        bool isLoop;                //ループ再生判定
+    };
+
+    std::unordered_map<int, MotionParam> motionData;      //モーションデータ
 };
 

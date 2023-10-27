@@ -21,3 +21,30 @@ Motion::Motion()
         }
     }
 }
+
+Motion::~Motion()
+{
+    DeleteHandle();
+}
+
+void Motion::AddHandle(const std::string fileName)
+{
+    //仮ハンドル初期化
+    holdHandle = -1;
+    dupHandle = -1;
+
+    //ファイルが見つからなかったらハンドルを複製して追加
+    auto findHandle = handle.find(fileName);
+    if (findHandle == handle.end())
+    {
+        holdHandle = MV1LoadModel(fileName.c_str());
+        dupHandle = MV1DuplicateModel(holdHandle);
+        handle.emplace(fileName, dupHandle);
+    }
+}
+
+void Motion::AddData(const rapidjson::Value& key)
+{
+
+}
+

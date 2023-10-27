@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\code\Asset\AssetBase\AssetBase.h" />
-    <ClInclude Include="..\code\Asset\AssetBase\JsonKeyTag.h" />
+    <ClInclude Include="..\code\Asset\AssetBase\JsonKey.h" />
     <ClInclude Include="..\code\Asset\AssetManager\AssetManager.h" />
     <ClInclude Include="..\code\Asset\Model\Model.h" />
     <ClInclude Include="..\code\Asset\Motion\Motion.h" />
