@@ -4,7 +4,7 @@
 /// <summary>
 /// モデルのモーション管理
 /// </summary>
-class Motion:public AssetBase
+class Motion final:public AssetBase
 {
 public:
     /// <summary>
@@ -55,10 +55,13 @@ private:
     public:
         MotionParam();
 
+        int index;                  //インデックス番号
+        float totalTime;            //総再生時間
         float playSpeed;            //再生速度
         bool isLoop;                //ループ再生判定
     };
 
+    int modelHandle;                                      //モデルハンドル
     std::unordered_map<int, MotionParam> motionData;      //モーションデータ
 };
 

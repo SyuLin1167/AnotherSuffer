@@ -3,7 +3,7 @@
     "player": {
       "walk": {
         "pass": "../assets/sound/DoorOpenSE.wav",
-        "speed": 30,
+        "speed": 30.0,
         "loop": false
       }
     }

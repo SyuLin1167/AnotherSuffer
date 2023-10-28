@@ -10,14 +10,15 @@ Motion::Motion()
     jsonFile = "../json/MotionData.json";
     LoadJsonFile(jsonFile);
 
-    //ハンドル追加
+    //オブジェクト分データ追加
     for (rapidjson::Value::ConstMemberIterator objType = GetJsonData().MemberBegin();
         objType != GetJsonData().MemberEnd(); objType++)
     {
-        for (rapidjson::Value::ConstMemberIterator soundType = objType->value.MemberBegin();
-            soundType != objType->value.MemberEnd(); soundType++)
+        for (rapidjson::Value::ConstMemberIterator motionType = objType->value.MemberBegin();
+            motionType != objType->value.MemberEnd(); motionType++)
         {
-            AddHandle(soundType->value["pass"].GetString());
+            AddHandle(motionType->value[jsondata::dataKey.pass.c_str()].GetString());
+            AddData(motionType->value);
         }
     }
 }
@@ -45,6 +46,28 @@ void Motion::AddHandle(const std::string fileName)
 
 void Motion::AddData(const rapidjson::Value& key)
 {
+    //ハンドル検索
+    auto handle = GetHandle(key[jsondata::dataKey.pass.c_str()].GetString());
+    auto findData = motionData.find(handle);
 
+    //見つからなかったらモーションデータ追加
+    if (findData == motionData.end())
+    {
+        MotionParam param = {};
+        param.index=MV1GetAnimNum()
+
+
+        param.isLoop = key[jsondata::dataKey.loop.c_str()].GetBool();
+        param.playSpeed = key[jsondata::dataKey.speed.c_str()].GetFloat();
+
+        motionData.emplace(handle, param);
+    }
+}
+
+Motion::MotionParam::MotionParam()
+    :isLoop(false)
+    ,playSpeed(0)
+{
+    //処理なし
 }
 

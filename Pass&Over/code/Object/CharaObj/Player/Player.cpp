@@ -29,7 +29,7 @@ void Player::Update(const float deltaTime)
         isAlive = false;
         auto& soundPass = sound->GetJsonData()[objTag.c_str()];
         sound->StartSound(sound->GetHandle(
-            soundPass[jsonObjKey.walk.c_str()][jsonDataKey.pass.c_str()].GetString()
+            soundPass[jsondata::objKey.walk.c_str()][jsondata::dataKey.pass.c_str()].GetString()
         ));
     }
 
