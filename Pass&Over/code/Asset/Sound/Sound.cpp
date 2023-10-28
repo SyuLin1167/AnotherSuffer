@@ -10,14 +10,14 @@ Sound::Sound()
     jsonFile = "../json/SoundData.json";
     LoadJsonFile(jsonFile);
 
-    //ハンドル追加
+    //オブジェクト分データ追加
     for (rapidjson::Value::ConstMemberIterator objType = GetJsonData().MemberBegin();
         objType != GetJsonData().MemberEnd(); objType++)
     {
         for (rapidjson::Value::ConstMemberIterator soundType = objType->value.MemberBegin();
             soundType != objType->value.MemberEnd(); soundType++)
         {
-            AddHandle(soundType->value["pass"].GetString());
+            AddHandle(soundType->value[jsondata::dataKey.pass.c_str()].GetString());
             AddData(soundType->value);
         }
     }
@@ -46,16 +46,17 @@ void Sound::AddHandle(const std::string fileName)
 
 void Sound::AddData(const rapidjson::Value& key)
 {
-    //ハンドルが見つからなかったらサウンドデータ追加
-    auto handle = GetHandle(key["pass"].GetString());
+    //ハンドル検索
+    auto handle = GetHandle(key[jsondata::dataKey.pass.c_str()].GetString());
     auto findData = soundData.find(handle);
 
+    //見つからなかったらサウンドデータ追加
     if (findData == soundData.end())
     {
         SoundParam param = {};
-        param.soundType = key["type"].GetString();
-        param.isLoop = key["loop"].GetBool();
-        param.volume = key["volume"].GetInt();
+        param.soundType = key[jsondata::dataKey.type.c_str()].GetString();
+        param.isLoop = key[jsondata::dataKey.loop.c_str()].GetBool();
+        param.volume = key[jsondata::dataKey.volume.c_str()].GetInt();
 
         soundData.emplace(handle, param);
     }
@@ -82,6 +83,7 @@ void Sound::DeleteHandle()
 
 void Sound::StartSound(int handle)
 {
+    //再生状態を確認して再生
     if (!CheckSoundMem(handle))
     {
         if (soundData[handle].isLoop)
@@ -97,6 +99,7 @@ void Sound::StartSound(int handle)
 
 void Sound::StopSound(int handle)
 {
+    //再生状態を確認して停止
     if (CheckSoundMem(handle))
     {
         StopSoundMem(handle);

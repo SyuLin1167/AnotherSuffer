@@ -13,7 +13,7 @@ Model::Model()
     jsonFile = "../json/ModelData.json";
     LoadJsonFile(jsonFile);
 
-    //ハンドル追加
+    //オブジェクト分ハンドル追加
     for (rapidjson::Value::ConstMemberIterator objType = GetJsonData().MemberBegin();
         objType != GetJsonData().MemberEnd(); objType++)
     {
