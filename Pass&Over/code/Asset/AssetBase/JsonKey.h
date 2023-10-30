@@ -6,7 +6,7 @@ namespace jsondata
     /// <summary>
     /// jsonオブジェクト用のキー構造体
     /// </summary>
-    struct JsonObjKey
+    static struct JsonObjKey
     {
         std::string walk = "walk";
     }objKey;
@@ -14,7 +14,7 @@ namespace jsondata
     /// <summary>
     /// jsonデータ用のキー構造体
     /// </summary>
-    struct JsonDataKey
+    static struct JsonDataKey
     {
         std::string pass = "pass";
         std::string loop = "loop";
