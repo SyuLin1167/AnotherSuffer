@@ -72,7 +72,7 @@ Sound::SoundParam::SoundParam()
 
 void Sound::DeleteHandle()
 {
-    //ハンドルとハンドルを確保したデータ解放
+    //ハンドルとデータ解放
     for (auto& iter : handle)
     {
         DeleteSoundMem(iter.second);
