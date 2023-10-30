@@ -19,6 +19,12 @@ public:
     static class Model* ModelInstance() { return assetManager->model.get(); }
 
     /// <summary>
+    /// モーションインスタンス
+    /// </summary>
+    /// <returns>Motionクラス</returns>
+    static class Motion* MotoinInstance();
+
+    /// <summary>
     /// サウンドインスタンス
     /// </summary>
     /// <returns>Soundクラス</returns>
@@ -38,6 +44,7 @@ private:
     static std::unique_ptr<AssetManager> assetManager;      //自身の実体
 
     std::unique_ptr<class Model> model;                           //モデル
+    std::unique_ptr<class Motion> motion;                         //モーション
     std::unique_ptr<class Sound> sound;                           //サウンド
 };
 

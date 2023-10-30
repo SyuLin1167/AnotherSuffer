@@ -1,4 +1,5 @@
 #include"../Model/Model.h"
+#include"../Motion/Motion.h"
 #include"../Sound/Sound.h"
 #include "AssetManager.h"
 
@@ -15,6 +16,7 @@ void AssetManager::InitAssetManager()
 
 AssetManager::AssetManager()
     :model(new Model)
+    , motion(nullptr)
     , sound(new Sound)
 {
     //ˆ—‚È‚µ
@@ -23,4 +25,13 @@ AssetManager::AssetManager()
 AssetManager::~AssetManager()
 {
     //ˆ—‚È‚µ
+}
+
+Motion* AssetManager::MotoinInstance()
+{
+    if (!assetManager->motion)
+    {
+        assetManager->motion.reset(new Motion);
+    }
+    return assetManager->motion.get();
 }
