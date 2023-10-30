@@ -44,7 +44,7 @@ void Model::AddHandle(const std::string fileName)
 
 void Model::DeleteHandle()
 {
-    //ハンドルとハンドルを確保したデータ解放
+    //ハンドルとデータ解放
     for (auto& iter : handle)
     {
         MV1DeleteModel(iter.second);

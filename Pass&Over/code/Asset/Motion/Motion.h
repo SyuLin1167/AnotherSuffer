@@ -55,13 +55,15 @@ private:
     public:
         MotionParam();
 
-        int index;                  //インデックス番号
-        float totalTime;            //総再生時間
         float playSpeed;            //再生速度
         bool isLoop;                //ループ再生判定
+        int index;                  //インデックス番号
+        float totalTime;            //総再生時間
     };
 
     int modelHandle;                                      //モデルハンドル
+    int attachedIndex;                                    //アタッチ後のインデックス
+
     std::unordered_map<int, MotionParam> motionData;      //モーションデータ
 };
 

@@ -1,9 +1,11 @@
 #include<DxLib.h>
 
 #include "../AssetManager/AssetManager.h"
+#include"../Model/Model.h"
 #include "Motion.h"
 
 Motion::Motion()
+    :attachedIndex(0)
 {
     assetType = "motion";
 
@@ -12,10 +14,11 @@ Motion::Motion()
     LoadJsonFile(jsonFile);
 
     //オブジェクト分データ追加
+    Model* model = AssetManager::ModelInstance();
     for (rapidjson::Value::ConstMemberIterator objType = GetJsonData().MemberBegin();
         objType != GetJsonData().MemberEnd(); objType++)
     {
-        AssetManager::ModelInstance(); objType->value.GetString();
+        modelHandle = model->GetHandle(objType->value.GetString());
         for (rapidjson::Value::ConstMemberIterator motionType = objType->value.MemberBegin();
             motionType != objType->value.MemberEnd(); motionType++)
         {
@@ -56,26 +59,31 @@ void Motion::AddData(const rapidjson::Value& key)
     if (findData == motionData.end())
     {
         MotionParam param = {};
-        param.index = MV1GetAnimNum() - 1;
-
         param.isLoop = key[jsondata::dataKey.loop.c_str()].GetBool();
         param.playSpeed = key[jsondata::dataKey.speed.c_str()].GetFloat();
+
+        //データ初期化のためアタッチ
+        param.index = MV1GetAnimNum(modelHandle) - 1;
+        attachedIndex = MV1AttachAnim(modelHandle, param.index, handle, TRUE);
+        param.totalTime = MV1GetAnimTotalTime(handle, param.index);
+        MV1DetachAnim(modelHandle, attachedIndex);
 
         motionData.emplace(handle, param);
     }
 }
 
 Motion::MotionParam::MotionParam()
-    :index(0)
-    , totalTime(0)
-    , isLoop(false)
+    : isLoop(false)
     , playSpeed(0)
+    , index(0)
+    , totalTime(0)
 {
     //処理なし
 }
 
 void Motion::DeleteHandle()
 {
+    //ハンドルとデータ解放
     for (auto& iter : handle)
     {
         DeleteSoundMem(iter.second);
