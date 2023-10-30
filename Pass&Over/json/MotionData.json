@@ -2,9 +2,9 @@
   "motion": {
     "player": {
       "walk": {
-        "pass": "../assets/sound/DoorOpenSE.wav",
+        "pass": "../assets/model/Chara/Player/PlayerWalk.mv1",
         "speed": 30.0,
-        "loop": false
+        "loop": true
       }
     }
   }

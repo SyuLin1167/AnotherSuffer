@@ -7,6 +7,7 @@
 #include"ObjTag.h"
 #include"../../Asset/AssetManager/AssetManager.h"
 #include"../../Asset/Model/Model.h"
+#include"../../Asset/Motion/Motion.h"
 #include"../../Asset/Sound/Sound.h"
 
 /// <summary>
@@ -61,8 +62,9 @@ protected:
     bool isAlive;           //生存状態
     bool isVisible;         //可視判定
 
-    Model* model;           //モデル
-    Sound* sound;           //サウンド
+    std::unique_ptr<Model> model;           //モデル
+    std::unique_ptr<Motion> motion;         //モーション
+    std::unique_ptr<Sound> sound;           //サウンド
 
     int objHandle;          //ハンドル
     VECTOR objScale;        //オブジェクトの大きさ
