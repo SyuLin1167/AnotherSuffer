@@ -1,5 +1,6 @@
 #include<DxLib.h>
 
+#include "../AssetManager/AssetManager.h"
 #include "Motion.h"
 
 Motion::Motion()
@@ -14,6 +15,7 @@ Motion::Motion()
     for (rapidjson::Value::ConstMemberIterator objType = GetJsonData().MemberBegin();
         objType != GetJsonData().MemberEnd(); objType++)
     {
+        AssetManager::ModelInstance(); objType->value.GetString();
         for (rapidjson::Value::ConstMemberIterator motionType = objType->value.MemberBegin();
             motionType != objType->value.MemberEnd(); motionType++)
         {
@@ -54,8 +56,7 @@ void Motion::AddData(const rapidjson::Value& key)
     if (findData == motionData.end())
     {
         MotionParam param = {};
-        param.index=MV1GetAnimNum()
-
+        param.index = MV1GetAnimNum() - 1;
 
         param.isLoop = key[jsondata::dataKey.loop.c_str()].GetBool();
         param.playSpeed = key[jsondata::dataKey.speed.c_str()].GetFloat();
@@ -65,9 +66,21 @@ void Motion::AddData(const rapidjson::Value& key)
 }
 
 Motion::MotionParam::MotionParam()
-    :isLoop(false)
-    ,playSpeed(0)
+    :index(0)
+    , totalTime(0)
+    , isLoop(false)
+    , playSpeed(0)
 {
     //èàóùÇ»Çµ
+}
+
+void Motion::DeleteHandle()
+{
+    for (auto& iter : handle)
+    {
+        DeleteSoundMem(iter.second);
+    }
+    handle.clear();
+    motionData.clear();
 }
 
