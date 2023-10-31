@@ -28,6 +28,6 @@ protected:
     /// <summary>
     /// ƒLƒƒƒ‰‰ñ“]ˆ—
     /// </summary>
-    //void RotateModel();
+    void RotateModel();
 };
 
