@@ -4,7 +4,7 @@
 #include"../Model/Model.h"
 #include "Motion.h"
 
-Motion::Motion()
+Motion::Motion(class Model* model)
     :modelHandle(-1)
     , nowMotionTime(0)
     , nowHandle(-1)
@@ -17,10 +17,10 @@ Motion::Motion()
     LoadJsonFile(jsonFile);
 
     //オブジェクト分データ追加
-    Model* model = AssetManager::ModelInstance();
     for (rapidjson::Value::ConstMemberIterator objType = GetJsonData().MemberBegin();
         objType != GetJsonData().MemberEnd(); objType++)
     {
+        assert(model);
         modelHandle = model->GetHandle(model->GetJsonData()[objType->name.GetString()].GetString());
         for (rapidjson::Value::ConstMemberIterator motionType = objType->value.MemberBegin();
             motionType != objType->value.MemberEnd(); motionType++)

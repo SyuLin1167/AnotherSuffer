@@ -68,9 +68,6 @@
     <None Include="..\json\MotionData.json" />
     <None Include="..\json\SoundData.json" />
   </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\button.bmp" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>

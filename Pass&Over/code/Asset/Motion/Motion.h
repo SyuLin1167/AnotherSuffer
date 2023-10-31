@@ -10,7 +10,8 @@ public:
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    Motion();
+    /// <param name="model">:モデルインスタンス</param>
+    Motion(class Model* model);
 
     /// <summary>
     /// デストラクタ

@@ -62,10 +62,6 @@ protected:
     bool isAlive;           //生存状態
     bool isVisible;         //可視判定
 
-    std::unique_ptr<Model> model;           //モデル
-    std::unique_ptr<Motion> motion;         //モーション
-    std::unique_ptr<Sound> sound;           //サウンド
-
     int objHandle;          //ハンドル
     VECTOR objScale;        //オブジェクトの大きさ
     VECTOR objPos;          //座標

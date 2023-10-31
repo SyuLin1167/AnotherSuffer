@@ -16,7 +16,7 @@ void AssetManager::InitAssetManager()
 
 AssetManager::AssetManager()
     :model(new Model)
-    , motion(nullptr)
+    , motion(new Motion(model.get()))
     , sound(new Sound)
 {
     //ˆ—‚È‚µ
@@ -29,9 +29,5 @@ AssetManager::~AssetManager()
 
 Motion* AssetManager::MotoinInstance()
 {
-    if (!assetManager->motion)
-    {
-        assetManager->motion.reset(new Motion);
-    }
     return assetManager->motion.get();
 }
