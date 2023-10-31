@@ -224,4 +224,9 @@
       <Filter>ソース ファイル\Asset\Motion</Filter>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\button.bmp">
+      <Filter>ソース ファイル</Filter>
+    </Image>
+  </ItemGroup>
 </Project>
