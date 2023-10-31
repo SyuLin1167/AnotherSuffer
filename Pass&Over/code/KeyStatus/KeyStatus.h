@@ -39,7 +39,7 @@ private:
         ONINPUT,
         NOWINPUT,
         UNINPUT,
-    };
+    }keyState;
 
     static std::unique_ptr<KeyStatus> singleton;        //é©êgÇÃé¿ëÃ
 

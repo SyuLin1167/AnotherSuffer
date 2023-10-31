@@ -11,6 +11,11 @@ void KeyStatus::CreateInstance()
     }
 }
 
+KeyStatus::KeyStatus()
+    :inputState(0)
+{
+}
+
 bool IsInput(int key)
 {
     //“ü—Í‚µ‚Ä‚½‚çtrue‚µ‚Ä‚¢‚È‚©‚Á‚½‚çfalse‚ð•Ô‚·
@@ -18,8 +23,6 @@ bool IsInput(int key)
     {
         return true;
     }
-    else
-    {
-        return false;
-    }
+
+    return false;
 }
