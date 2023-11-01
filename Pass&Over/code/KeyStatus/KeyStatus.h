@@ -1,5 +1,5 @@
 #pragma once
-#include<vector>
+#include<unordered_map>
 #include<memory>
 
 constexpr int UNINPUT = 0x0001;     //未入力時
@@ -25,6 +25,7 @@ public:
     /// <param name="deltaTime">:デルタタイム</param>
     void KeyStateDecision(int key, float deltaTime);
 
+
     /// <summary>
     /// デストラクタ
     /// </summary>
@@ -35,10 +36,13 @@ private:
     /// </summary>
     KeyStatus();
 
+
     static std::unique_ptr<KeyStatus> singleton;        //自身の実体
 
-    const float MAXCOUNT = 1.0f;
-    const float MINCOUNT = -1.0f;
+    const float MAX_COUNT = 1.0f;                       //最大カウント値
+    const float MIN_COUNT = -1.0f;                      //最小カウント値
+    const float MOMENT_COUNT = 0.001f;                  //瞬間カウント値
+    const float DELETE_COUNT = 600.0f;                  //データ削除用カウント
 
     /// <summary>
     /// キーパラメーター
@@ -46,12 +50,15 @@ private:
     struct KeyParam
     {
     public:
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
         KeyParam();
 
         int inputState;             //入力ステータス
         float inputCount;           //入力カウント
     };
 
-    std::vector<KeyParam> keyData;  //キーデータ
+    std::unordered_map<int ,KeyParam> keyData;          //キーデータ
 };
 
