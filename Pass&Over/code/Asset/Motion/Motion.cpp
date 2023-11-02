@@ -129,10 +129,11 @@ void Motion::StartMotion(int model, int handle)
         }
         attachedIndex[modelHandle] = MV1AttachAnim(modelHandle, motionData[nowHandle].index,
             nowHandle, TRUE);
+
+        //時間をリセットして再生
+        nowMotionTime = 0.0f;
+        MV1SetAttachAnimTime(modelHandle, attachedIndex[modelHandle], nowMotionTime);
     }
-    //時間をリセットして再生
-    nowMotionTime = 0.0f;
-    MV1SetAttachAnimTime(modelHandle, attachedIndex[modelHandle], nowMotionTime);
 }
 
 void Motion::StopMotion()

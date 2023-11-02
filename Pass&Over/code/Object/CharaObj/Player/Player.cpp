@@ -1,3 +1,4 @@
+#include"../../../KeyStatus/KeyStatus.h"
 #include "Player.h"
 
 Player::Player()
@@ -23,19 +24,21 @@ void Player::Update(const float deltaTime)
 {
     a += deltaTime;
     AssetManager::MotoinInstance()->AddMotionTime(deltaTime);
-    if (CheckHitKey(KEY_INPUT_A))
+    if (KeyStatus::KeyStateDecision(KEY_INPUT_A, deltaTime, NOWINPUT))
     {
+        objPos.z -= 10.0f * deltaTime;
         auto& motionPass = AssetManager::MotoinInstance()->GetJsonData()[objTag.c_str()];
         AssetManager::MotoinInstance()->StartMotion(objHandle, AssetManager::MotoinInstance()->GetHandle(
             motionPass[jsondata::objKey.walk.c_str()][jsondata::dataKey.pass.c_str()].GetString()));
     }
-    if (CheckHitKey(KEY_INPUT_P))
+    if (KeyStatus::KeyStateDecision(KEY_INPUT_P, deltaTime, ONINPUT))
     {
         isAlive = false;
         auto& soundPass = AssetManager::SoundInstance()->GetJsonData()[objTag.c_str()];
         AssetManager::SoundInstance()->StartSound(AssetManager::SoundInstance()->GetHandle(
             soundPass[jsondata::objKey.walk.c_str()][jsondata::dataKey.pass.c_str()].GetString()));
     }
+    MV1SetPosition(objHandle, objPos);
 }
 
 void Player::Draw()
