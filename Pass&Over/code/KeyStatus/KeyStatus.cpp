@@ -17,7 +17,7 @@ KeyStatus::KeyStatus()
     //処理なし
 }
 
-bool KeyStatus::KeyStateDecision(int key,const float deltaTime, int flag)
+bool KeyStatus::KeyStateDecision(int key, int flag)
 {
     //キーが格納されていなかったら保存
     auto findData = singleton->keyData.find(key);
@@ -29,17 +29,17 @@ bool KeyStatus::KeyStateDecision(int key,const float deltaTime, int flag)
     }
 
     //ステータス切り替え
-    ChangeKeyState(key, deltaTime);
+    ChangeKeyState(key);
 
     //判定結果を返す
-    if (singleton->keyData[key].inputState == flag)
+    if (singleton->keyData[key].inputState & flag)
     {
         return true;
     }
     return false;
 }
 
-void KeyStatus::ChangeKeyState(int key, const float deltaTime)
+void KeyStatus::ChangeKeyState(int key)
 {
     //キーが格納されてたら切り替え処理
     auto findData = singleton->keyData.find(key);
@@ -51,52 +51,28 @@ void KeyStatus::ChangeKeyState(int key, const float deltaTime)
         if (CheckHitKey(key))
         {
             //初期化処理
-            InitKeyData(data, UNINPUT | NOWUNINPUT, NOWINPUT);
-
-            //カウントを加算して瞬間と最中の判定をとる
-            if (data.inputCount < singleton->MAX_COUNT)
+            if (data.inputState & (UNINPUT | NOWUNINPUT))
             {
-                data.inputCount += deltaTime;
-                if (data.inputCount < singleton->MOMENT_COUNT)
-                {
-                    data.inputState = ONINPUT;
-                }
+                data.inputState = ONINPUT;
+                return;
             }
+            data.inputState = NOWONINPUT;
         }
         else
         {
             //初期化処理
-            InitKeyData(data, ONINPUT | NOWINPUT, NOWUNINPUT);
-
-            //カウントを減算して瞬間と最中の判定をとる
-            if (data.inputCount > singleton->MIN_COUNT)
+            if (data.inputState & (ONINPUT | NOWONINPUT))
             {
-                data.inputCount -= deltaTime;
-                data.deleteCount += deltaTime;
-                if (data.inputCount > -singleton->MOMENT_COUNT)
-                {
-                    data.inputState = UNINPUT;
-                }
+                data.inputState = UNINPUT;
+                return;
             }
+            data.inputState = NOWUNINPUT;
         }
     }
 }
 
-void KeyStatus::InitKeyData(KeyParam& data, int initFlag, int initState)
-{
-    //フラグと同じステータスだったらカウント初期化
-    if (data.inputState = initFlag)
-    {
-        data.inputCount = 0.0f;
-        data.deleteCount = 0.0f;
-    }
-    data.inputState = initState;
-}
-
 KeyStatus::KeyParam::KeyParam()
     :inputState(UNINPUT)
-    , inputCount(0.0f)
-    , deleteCount(0.0f)
 {
     //処理なし
 }
