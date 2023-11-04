@@ -8,6 +8,7 @@ namespace jsondata
     /// </summary>
     static struct JsonObjKey
     {
+        std::string nomal = "nomal";
         std::string walk = "walk";
     }objKey;
 

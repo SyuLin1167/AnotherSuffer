@@ -1,17 +1,16 @@
+#include"../../../KeyStatus/KeyStatus.h"
 #include "Player.h"
 
 Player::Player()
     :CharaObjBase(ObjTag.PLAYER)
 {
     //モデル読み込み
-    auto& modelPass = AssetManager::ModelInstance()->GetJsonData()[objTag.c_str()];
-    objHandle = AssetManager::ModelInstance()->GetHandle(modelPass.GetString());
-
+    objHandle = model->GetHandle(modelData.GetString());
     MV1SetPosition(objHandle, objPos);
     MV1SetScale(objHandle, objScale);
 
-    //サウンド読み込み
-    auto& soundPass = AssetManager::SoundInstance()->GetJsonData()[objTag.c_str()];
+    motion->StartMotion(objHandle,
+        motion->GetHandle(GetFilePass(motionData[jsondata::objKey.nomal.c_str()])));
 }
 
 Player::~Player()
@@ -22,20 +21,19 @@ Player::~Player()
 void Player::Update(const float deltaTime)
 {
     a += deltaTime;
-    AssetManager::MotoinInstance()->AddMotionTime(deltaTime);
-    if (CheckHitKey(KEY_INPUT_A))
+    motion->AddMotionTime(deltaTime);
+    if (KeyStatus::KeyStateDecision(KEY_INPUT_A, NOWONINPUT))
     {
-        auto& motionPass = AssetManager::MotoinInstance()->GetJsonData()[objTag.c_str()];
-        AssetManager::MotoinInstance()->StartMotion(objHandle, AssetManager::MotoinInstance()->GetHandle(
-            motionPass[jsondata::objKey.walk.c_str()][jsondata::dataKey.pass.c_str()].GetString()));
+        objPos.z -= 10.0f * deltaTime;
+        motion->StartMotion(objHandle,
+            motion->GetHandle(GetFilePass(motionData[jsondata::objKey.walk.c_str()])));
     }
-    if (CheckHitKey(KEY_INPUT_P))
+    if (KeyStatus::KeyStateDecision(KEY_INPUT_P, ONINPUT))
     {
         isAlive = false;
-        auto& soundPass = AssetManager::SoundInstance()->GetJsonData()[objTag.c_str()];
-        AssetManager::SoundInstance()->StartSound(AssetManager::SoundInstance()->GetHandle(
-            soundPass[jsondata::objKey.walk.c_str()][jsondata::dataKey.pass.c_str()].GetString()));
+        sound->StartSound(sound->GetHandle(GetFilePass(soundData[jsondata::objKey.walk.c_str()])));
     }
+    MV1SetPosition(objHandle, objPos);
 }
 
 void Player::Draw()

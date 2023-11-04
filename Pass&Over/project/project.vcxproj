@@ -38,7 +38,7 @@
     <ClCompile Include="..\code\Scene\Play\Play.cpp" />
     <ClCompile Include="..\code\Scene\SceneBase\SceneBase.cpp" />
     <ClCompile Include="..\code\Scene\SceneManager\SceneManager.cpp" />
-    <ClCompile Include="..\code\Scene\Title\Tiele.cpp" />
+    <ClCompile Include="..\code\Scene\Title\Title.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\code\Asset\AssetBase\AssetBase.h" />

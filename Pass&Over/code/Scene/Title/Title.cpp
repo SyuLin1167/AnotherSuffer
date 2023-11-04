@@ -1,5 +1,6 @@
 #include<DxLib.h>
 
+#include"../../KeyStatus/KeyStatus.h"
 #include"../SceneBase/SceneBase.h"
 #include"../Play/Play.h"
 #include"../../Object/ObjManager/ObjManager.h"
@@ -11,6 +12,7 @@
 Title::Title()
     :SceneBase()
 {
+    //処理なし
 }
 
 /// <summary>
@@ -18,6 +20,7 @@ Title::Title()
 /// </summary>
 Title::~Title()
 {
+    //処理なし
 }
 
 /// <summary>
@@ -27,9 +30,11 @@ Title::~Title()
 /// <returns>次フレームのシーン</returns>
 SceneBase* Title::UpdateScene(const float deltaTime)
 {
+    //オブジェクト更新
     ObjManager::UpdateObj(deltaTime);
 
-    if (CheckHitKey(KEY_INPUT_RETURN))
+    //シーン切り替え
+    if (KeyStatus::KeyStateDecision(KEY_INPUT_RETURN, ONINPUT))
     {
         ObjManager::DeleteAllObj();
         return new Play;
@@ -43,6 +48,7 @@ SceneBase* Title::UpdateScene(const float deltaTime)
 /// </summary>
 void Title::DrawScene()
 {
+    //オブジェクト描画
     ObjManager::DrawObj();
     DrawFormatString(0, 0, GetColor(255, 255, 255), "title");
 }

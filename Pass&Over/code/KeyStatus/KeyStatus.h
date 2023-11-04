@@ -5,7 +5,7 @@
 constexpr int UNINPUT = 0x0001;     //未入力時
 constexpr int NOWUNINPUT = 0x0002;  //未入力中
 constexpr int ONINPUT = 0x0004;     //入力時
-constexpr int NOWINPUT = 0x0008;    //入力中
+constexpr int NOWONINPUT = 0x0008;  //入力中
 
 /// <summary>
 /// KeyStatusクラス
@@ -16,14 +16,15 @@ public:
     /// <summary>
     /// キー入力初期化処理
     /// </summary>
-    void CreateInstance();
+    static void InitKeyStatus();
 
     /// <summary>
     /// 入力判定処理
     /// </summary>
     /// <param name="key">:判定したいキー</param>
-    /// <param name="deltaTime">:デルタタイム</param>
-    void KeyStateDecision(int key, float deltaTime);
+    /// <param name="flag">:判定フラグ</param>
+    /// <returns>キーステータスがフラグと一致:true|不一致:false</returns>
+    static bool KeyStateDecision(int key,int flag);
 
 
     /// <summary>
@@ -35,14 +36,6 @@ private:
     /// コンストラクタ(シングルトン)
     /// </summary>
     KeyStatus();
-
-
-    static std::unique_ptr<KeyStatus> singleton;        //自身の実体
-
-    const float MAX_COUNT = 1.0f;                       //最大カウント値
-    const float MIN_COUNT = -1.0f;                      //最小カウント値
-    const float MOMENT_COUNT = 0.001f;                  //瞬間カウント値
-    const float DELETE_COUNT = 600.0f;                  //データ削除用カウント
 
     /// <summary>
     /// キーパラメーター
@@ -56,8 +49,15 @@ private:
         KeyParam();
 
         int inputState;             //入力ステータス
-        float inputCount;           //入力カウント
     };
+
+    /// <summary>
+    /// キーステータス切り替え処理
+    /// </summary>
+    /// <param name="key">:切り替えたいキー</param>
+    static void ChangeKeyState(int key);
+
+    static std::unique_ptr<KeyStatus> singleton;        //自身の実体
 
     std::unordered_map<int ,KeyParam> keyData;          //キーデータ
 };

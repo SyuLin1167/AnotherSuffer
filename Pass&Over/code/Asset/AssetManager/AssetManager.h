@@ -22,7 +22,7 @@ public:
     /// モーションインスタンス
     /// </summary>
     /// <returns>Motionクラス</returns>
-    static class Motion* MotoinInstance();
+    static class Motion* MotionInstance();
 
     /// <summary>
     /// サウンドインスタンス

@@ -3,7 +3,7 @@
 
 std::unique_ptr<KeyStatus> KeyStatus::singleton = nullptr;
 
-void KeyStatus::CreateInstance()
+void KeyStatus::InitKeyStatus()
 {
     //自身の中身が空だったらインスタンス生成
     if (!singleton)
@@ -12,71 +12,69 @@ void KeyStatus::CreateInstance()
     }
 }
 
-
 KeyStatus::KeyStatus()
 {
     //処理なし
 }
 
-void KeyStatus::KeyStateDecision(int key, float deltaTime)
+bool KeyStatus::KeyStateDecision(int key, int flag)
 {
     //キーが格納されていなかったら保存
-    auto findKey = std::find(keyData.begin(), keyData.end(), key);
-    if (findKey != keyData.end())
+    auto findData = singleton->keyData.find(key);
+    if (findData == singleton->keyData.end())
     {
         KeyParam keyParam = {};
 
-        keyData.emplace(key, keyParam);
+        singleton->keyData.emplace(key, keyParam);
     }
 
-    //入力されてたら入力時の判定をする
-    auto& data = keyData[key];
-    if (CheckHitKey(key))
+    //ステータス切り替え
+    ChangeKeyState(key);
+
+    //判定結果を返す
+    if (singleton->keyData[key].inputState & flag)
     {
-        //未入力状態ならカウント初期化
-        if (data.inputState = UNINPUT | NOWUNINPUT)
-        {
-            data.inputCount = 0.0f;
-        }
+        return true;
+    }
+    return false;
+}
 
-        //カウントを加算して瞬間と最中の判定をとる
-        if (data.inputCount < MAX_COUNT)
-        {
-            data.inputCount += deltaTime;
-            data.inputState = NOWINPUT;
+void KeyStatus::ChangeKeyState(int key)
+{
+    //キーが格納されてたら切り替え処理
+    auto findData = singleton->keyData.find(key);
+    if (findData != singleton->keyData.end())
+    {
+        auto& data = singleton->keyData[key];
 
-            if (data.inputCount < MOMENT_COUNT)
+        //ステータスの切り替えをする
+        if (CheckHitKey(key))
+        {
+            //初期化処理
+            if (data.inputState & (UNINPUT | NOWUNINPUT))
             {
-                    data.inputState = ONINPUT;
+                data.inputState = ONINPUT;
+                return;
             }
+            data.inputState = NOWONINPUT;
         }
-    }
-    else
-    {
-        //入力状態ならカウント初期化
-        if (data.inputState = ONINPUT | NOWINPUT)
+        else
         {
-            data.inputCount = 0.0f;
-        }
-
-        //カウントを減算して瞬間と最中の判定をとる
-        if (data.inputCount > MIN_COUNT)
-        {
-            data.inputCount -= deltaTime;
-            data.inputState = NOWUNINPUT;
-
-            if (data.inputCount > -MOMENT_COUNT)
+            //初期化処理
+            if (data.inputState & (ONINPUT | NOWONINPUT))
             {
                 data.inputState = UNINPUT;
+                return;
             }
+            data.inputState = NOWUNINPUT;
         }
     }
 }
 
 KeyStatus::KeyParam::KeyParam()
     :inputState(UNINPUT)
-    , inputCount(0.0f)
 {
+    //処理なし
 }
 
 KeyStatus::~KeyStatus()

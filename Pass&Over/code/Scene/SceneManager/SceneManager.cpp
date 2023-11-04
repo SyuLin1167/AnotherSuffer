@@ -5,6 +5,7 @@
 #include"../../Object/ObjManager/ObjManager.h"
 #include"../../Asset/AssetManager/AssetManager.h"
 #include"../../FPS/FPS.h"
+#include"../../KeyStatus/KeyStatus.h"
 #include"../Title/Title.h"
 #include "SceneManager.h"
 
@@ -14,6 +15,8 @@ SceneManager::SceneManager()
 {
     ObjManager::InitObjManager();
     AssetManager::InitAssetManager();
+
+    KeyStatus::InitKeyStatus();
 
     nowScene.emplace(new Title);
 }

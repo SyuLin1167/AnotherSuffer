@@ -24,10 +24,12 @@ AssetManager::AssetManager()
 
 AssetManager::~AssetManager()
 {
-    //ˆ—‚È‚µ
+    model->DeleteHandle();
+    motion->DeleteHandle();
+    sound->DeleteHandle();
 }
 
-Motion* AssetManager::MotoinInstance()
+Motion* AssetManager::MotionInstance()
 {
     return assetManager->motion.get();
 }

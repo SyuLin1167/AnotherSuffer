@@ -4,8 +4,6 @@
 
 Sound::Sound()
 {
-    assetType = "sound";
-
     //jsonƒtƒ@ƒCƒ‹“Ç‚İ‚İ
     jsonFile = "../json/SoundData.json";
     LoadJsonFile(jsonFile);
@@ -25,7 +23,7 @@ Sound::Sound()
 
 Sound::~Sound()
 {
-    DeleteHandle();
+    //ˆ—‚È‚µ
 }
 
 void Sound::AddHandle(const std::string fileName)
