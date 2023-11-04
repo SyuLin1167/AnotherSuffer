@@ -29,6 +29,10 @@ void AssetBase::LoadJsonFile(std::string fileName)
         doc.ParseStream(isw);
     }
     ifs.close();
+
+    //アセットタイプ設定
+    rapidjson::Value::ConstMemberIterator type = doc.MemberBegin();
+    assetType = type->name.GetString();
 }
 
 const int AssetBase::GetHandle(std::string handleName)

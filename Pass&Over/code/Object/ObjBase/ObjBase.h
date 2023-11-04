@@ -59,6 +59,10 @@ public:
 protected:
     std::string objTag;     //オブジェクトのタグ
 
+    class Model* model;     //モデル
+    class Sound* sound;     //サウンド
+    class Motion* motion;   //モーション
+
     bool isAlive;           //生存状態
     bool isVisible;         //可視判定
 

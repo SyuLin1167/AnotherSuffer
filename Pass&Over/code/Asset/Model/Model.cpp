@@ -7,8 +7,6 @@
 Model::Model()
     :AssetBase()
 {
-    assetType = "model";
-
     //jsonƒtƒ@ƒCƒ‹“Ç‚İ‚İ
     jsonFile = "../json/ModelData.json";
     LoadJsonFile(jsonFile);
@@ -23,7 +21,7 @@ Model::Model()
 
 Model::~Model()
 {
-    DeleteHandle();
+    //ˆ—‚È‚µ
 }
 
 void Model::AddHandle(const std::string fileName)

@@ -42,6 +42,12 @@ public:
     /// </summary>
     /// <returns>再生中:true|停止中:false</returns>
     bool IsPlaying();
+
+    /// <summary>
+    /// ハンドル削除処理
+    /// </summary>
+    virtual void DeleteHandle() override;
+
 private:
     /// <summary>
     /// ハンドル追加処理
@@ -54,11 +60,6 @@ private:
     /// </summary>
     /// <param name="key">:jsonデータ取得キー</param>
     void AddData(const rapidjson::Value& key);
-
-    /// <summary>
-    /// ハンドル削除処理
-    /// </summary>
-    virtual void DeleteHandle() override;
 
     /// <summary>
     /// モーションパラメーター

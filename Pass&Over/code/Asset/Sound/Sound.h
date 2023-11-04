@@ -29,6 +29,12 @@ public:
     /// </summary>
     /// <param name="handle">:ハンドル</param>
     void StopSound(int handle);
+
+    /// <summary>
+    /// ハンドル削除処理
+    /// </summary>
+    virtual void DeleteHandle() override;
+
 private:
     /// <summary>
     /// ハンドル追加処理
@@ -41,11 +47,6 @@ private:
     /// </summary>
     /// <param name="key">:jsonデータ取得キー</param>
     void AddData(const rapidjson::Value& key);
-
-    /// <summary>
-    /// ハンドル削除処理
-    /// </summary>
-    virtual void DeleteHandle() override;
 
     /// <summary>
     /// サウンドパラメーター

@@ -10,8 +10,6 @@ Motion::Motion(class Model* model)
     , nowHandle(-1)
     ,attachedIndex(0)
 {
-    assetType = "motion";
-
     //jsonÉtÉ@ÉCÉãì«Ç›çûÇ›
     jsonFile = "../json/MotionData.json";
     LoadJsonFile(jsonFile);
@@ -34,7 +32,7 @@ Motion::Motion(class Model* model)
 
 Motion::~Motion()
 {
-    DeleteHandle();
+    //èàóùÇ»Çµ
 }
 
 void Motion::AddHandle(const std::string fileName)

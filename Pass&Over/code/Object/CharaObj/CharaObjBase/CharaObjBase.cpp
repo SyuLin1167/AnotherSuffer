@@ -3,7 +3,8 @@
 CharaObjBase::CharaObjBase(std::string tag)
     :ObjBase(tag)
 {
-    //ˆ—‚È‚µ
+
+
 }
 
 CharaObjBase::~CharaObjBase()
