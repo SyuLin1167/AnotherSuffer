@@ -29,14 +29,23 @@ protected:
     /// <summary>
     /// キャラ動作処理
     /// </summary>
-    /// <param name="deltaTime">:フレームレート</param>
-    //virtual void MoveChara(const float deltaTime) = 0;
+    /// <param name="deltaTime">:デルタタイム</param>
+    virtual void MoveChara(const float deltaTime) = 0;
 
     /// <summary>
     /// キャラ回転処理
     /// </summary>
     /// <param name="speed">:回転速度</param>
     void RotateModel(float speed);
+
+    float moveSpeed;                        //移動速度
+
+    const VECTOR FRONT = { 1,0,0 };         //前方
+    const VECTOR BACK = { -1,0,0 };         //後方
+    const VECTOR LEFT = { 0,0,1 };          //左
+    const VECTOR RIGHT = { 0,0,-1 };        //右
+
+    float pitch;                            //ピッチ(回転)
 
     const rapidjson::Value& modelData = model->GetJsonData()[objTag.c_str()];      //モデルパスデータ
     const rapidjson::Value& soundData = sound->GetJsonData()[objTag.c_str()];      //サウンドパスデータ

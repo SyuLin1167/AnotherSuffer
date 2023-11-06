@@ -2,6 +2,7 @@
 
 CharaObjBase::CharaObjBase(std::string tag)
     :ObjBase(tag)
+    , moveSpeed(0.0f)
 {
 
 
