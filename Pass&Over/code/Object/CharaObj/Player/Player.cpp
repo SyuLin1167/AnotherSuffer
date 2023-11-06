@@ -33,6 +33,12 @@ void Player::Update(const float deltaTime)
         isAlive = false;
         sound->StartSound(sound->GetHandle(GetFilePass(soundData[jsondata::objKey.walk.c_str()])));
     }
+
+    VECTOR v = MV1GetFrameAvgVertexLocalPosition(objHandle, 2);
+    MATRIX m1 = MGetTranslate(VGet(v.x, v.y, v.z));
+    MATRIX m2 = MGetTranslate(VGet(-v.x, -v.y, -v.z));
+    MV1SetFrameUserLocalMatrix(objHandle, 2, MMult(MMult(m2, MGetRotY(((2 * DX_PI_F) / 60) * a*5)), m1));
+
     MV1SetPosition(objHandle, objPos);
 }
 
