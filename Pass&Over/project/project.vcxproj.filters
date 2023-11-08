@@ -85,6 +85,9 @@
     <Filter Include="ソース ファイル\Asset\Motion">
       <UniqueIdentifier>{ba49bfac-3f94-4bd7-9832-1ae7a650652e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Math">
+      <UniqueIdentifier>{a576df26-2c4d-4feb-bb70-636d5072f3a2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\code\Scene\SceneBase\SceneBase.cpp">
@@ -146,6 +149,9 @@
     </ClCompile>
     <ClCompile Include="..\code\Asset\Motion\Motion.cpp">
       <Filter>ソース ファイル\Asset\Motion</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\Object\Math\Math.cpp">
+      <Filter>ソース ファイル\Math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -211,6 +217,9 @@
     </ClInclude>
     <ClInclude Include="..\code\Asset\AssetBase\JsonKey.h">
       <Filter>ソース ファイル\Asset\AssetBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Object\Math\Math.h">
+      <Filter>ソース ファイル\Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
