@@ -13,6 +13,8 @@ Player::Player()
         motion->GetHandle(GetFilePass(motionData[jsondata::objKey.nomal.c_str()])));
 
     moveSpeed = RUN_SPEED;
+
+    objDir = VGet(1, 0, 0);
 }
 
 Player::~Player()

@@ -1,5 +1,6 @@
 #pragma once
 #include"../../ObjBase/ObjBase.h"
+#include"../../Math/Math.h"
 
 /// <summary>
 /// CharaObjBaseクラス
@@ -33,10 +34,17 @@ protected:
     virtual void MoveChara(const float deltaTime) = 0;
 
     /// <summary>
-    /// キャラ回転処理
+    /// ピッチ回転処理
     /// </summary>
-    /// <param name="speed">:回転速度</param>
-    void RotateModel(float speed);
+    /// <param name="aimDir">:目標の向き</param>
+    /// <param name="velocity">:角速度</param>
+    void RotatePitch(const VECTOR& aimDir, float velocity);
+
+    /// <summary>
+    /// 回転方向算出処理
+    /// </summary>
+    /// <returns>:</returns>
+    float CaldRotDir();
 
     float moveSpeed;                        //移動速度
 
@@ -45,6 +53,9 @@ protected:
     const VECTOR LEFT = { 0,0,1 };          //左
     const VECTOR RIGHT = { 0,0,-1 };        //右
 
+    const float PI_RAD = 180;               //180度
+    bool nowRotate;                         //回転判定
+    float rotRad;                           //角速度のラジアン角
     float pitch;                            //ピッチ(回転)
 
     const rapidjson::Value& modelData = model->GetJsonData()[objTag.c_str()];      //モデルパスデータ

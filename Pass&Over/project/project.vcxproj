@@ -33,6 +33,7 @@
     <ClCompile Include="..\code\Object\Camera\Camera.cpp" />
     <ClCompile Include="..\code\Object\CharaObj\CharaObjBase\CharaObjBase.cpp" />
     <ClCompile Include="..\code\Object\CharaObj\Player\Player.cpp" />
+    <ClCompile Include="..\code\Object\Math\Math.cpp" />
     <ClCompile Include="..\code\Object\ObjBase\ObjBase.cpp" />
     <ClCompile Include="..\code\Object\ObjManager\ObjManager.cpp" />
     <ClCompile Include="..\code\Scene\Play\Play.cpp" />
@@ -55,6 +56,7 @@
     <ClInclude Include="..\code\Object\Camera\Camera.h" />
     <ClInclude Include="..\code\Object\CharaObj\CharaObjBase\CharaObjBase.h" />
     <ClInclude Include="..\code\Object\CharaObj\Player\Player.h" />
+    <ClInclude Include="..\code\Object\Math\Math.h" />
     <ClInclude Include="..\code\Object\ObjBase\ObjBase.h" />
     <ClInclude Include="..\code\Object\ObjBase\ObjTag.h" />
     <ClInclude Include="..\code\Object\ObjManager\ObjManager.h" />
