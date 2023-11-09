@@ -13,8 +13,6 @@ Player::Player()
         motion->GetHandle(GetFilePass(motionData[jsondata::objKey.nomal.c_str()])));
 
     moveSpeed = RUN_SPEED;
-
-    objDir = VGet(1, 0, 0);
 }
 
 Player::~Player()
@@ -28,7 +26,6 @@ void Player::Update(const float deltaTime)
     motion->AddMotionTime(deltaTime);
     if (KeyStatus::KeyStateDecision(KEY_INPUT_F, NOWONINPUT))
     {
-        objPos.z -= 10.0f * deltaTime;
         motion->StartMotion(objHandle,
             motion->GetHandle(GetFilePass(motionData[jsondata::objKey.walk.c_str()])));
     }
@@ -41,11 +38,10 @@ void Player::Update(const float deltaTime)
     //VECTOR v = MV1GetFrameAvgVertexLocalPosition(objHandle, 2);
     //MATRIX m1 = MGetTranslate(VGet(v.x, v.y, v.z));
     //MATRIX m2 = MGetTranslate(VGet(-v.x, -v.y, -v.z));
-    //MV1SetFrameUserLocalMatrix(objHandle, 2, MMult(MMult(m2, MGetRotY(((2 * DX_PI_F) / 60) * a*5)), m1));
+    //MV1SetFrameUserLocalMatrix(objHandle, 2, MMult(MMult(m2, MGetRotY(((2 * DX_PI_F) / 60) * a * 5)), m1));
 
 
     MoveChara(deltaTime);
-
 }
 
 void Player::MoveChara(const float deltaTime)
@@ -54,6 +50,8 @@ void Player::MoveChara(const float deltaTime)
     MoveByKey(KEY_INPUT_S, BACK, deltaTime);
     MoveByKey(KEY_INPUT_A, LEFT, deltaTime);
     MoveByKey(KEY_INPUT_D, RIGHT, deltaTime);
+
+
 }
 
 void Player::MoveByKey(const int keyName, const VECTOR dir, const float deltaTime)
@@ -61,7 +59,9 @@ void Player::MoveByKey(const int keyName, const VECTOR dir, const float deltaTim
     if (KeyStatus::KeyStateDecision(keyName, ONINPUT | NOWONINPUT))
     {
         objPos = VAdd(objPos, VScale(dir, moveSpeed * deltaTime));
-        MV1SetPosition(objHandle, objPos);
+        MV1SetPosition(objHandle, objPos); 
+        RotateYAxis(dir, ROTATE_SPEED);
+        return;
     }
 }
 

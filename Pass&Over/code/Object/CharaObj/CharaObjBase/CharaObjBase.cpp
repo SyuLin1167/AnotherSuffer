@@ -1,5 +1,7 @@
 #include "CharaObjBase.h"
 
+using namespace math;
+
 CharaObjBase::CharaObjBase(std::string tag)
     :ObjBase(tag)
     , moveSpeed(0.0f)
@@ -13,33 +15,35 @@ CharaObjBase::~CharaObjBase()
     //ˆ—‚È‚µ
 }
 
-void CharaObjBase::RotatePitch(const VECTOR& aimDir, float velocity) 
+void CharaObjBase::RotateYAxis(const VECTOR aimDir, float velocity)
 {
+    //Œ»•ûŒü‚ª–Ú•W•ûŒü‚Å‚È‚¯‚ê‚Î‰ñ“]’†‚É‚·‚é
     if (objDir != aimDir)
     {
-        //Šp‘¬“x‚ğƒ‰ƒWƒAƒ“Šp‚É‚µ‚ÄA‰ñ“]•ûŒü‚ğZo
-        rotRad = DX_PI_F * velocity / PI_RAD;
-        if (VCross(objDir, aimDir).y < 0)
-        {
-            rotRad *= -1;
-        }
-
-        //‰ñ“]’†‚É‚·‚é
         nowRotate = true;
     }
 
-    //‰ñ“]ˆ—
-    if (nowRotate)
+    //–Ú•W•ûŒü‚Ü‚Å‰ñ“]ˆ—
+    CalcRotDir(aimDir, velocity);
+
+    MATRIX rotYMat = MGetRotY(rotRad);
+    objDir = VTransform(objDir, MInverse(rotYMat));
+    if (VCross(objDir, aimDir).y < 0.0f)
     {
-        MATRIX objMat = MV1GetMatrix(objHandle);
-        MATRIX rotMat = MGetRotY(rotRad);
-        objMat = MMult(objMat, rotMat);
-        MV1SetRotationMatrix(objHandle, objMat);
+        objDir = VScale(aimDir, -1);
+        nowRotate = false;
     }
+    MV1SetRotationZYAxis(objHandle, objDir, VGet(0.0f, 1.0f, 0.0f), 0.0f);
 }
 
-float CharaObjBase::CaldRotDir()
+float CharaObjBase::CalcRotDir(const VECTOR aimDir, float velocity)
 {
-    return 0.0f;
+    //Šp‘¬“x‚ğƒ‰ƒWƒAƒ“Šp‚É‚µ‚ÄA‰ñ“]•ûŒü‚ğZo
+    rotRad = math::DegToRad(velocity);
+    if (VCross(objDir, aimDir).y < 0)
+    {
+        rotRad = -rotRad;
+    }
+    return rotRad;
 }
 

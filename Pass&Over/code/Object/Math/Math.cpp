@@ -1,10 +1,14 @@
 #include "Math.h"
 
-bool operator==(const VECTOR& lhs, const VECTOR& rhs)
+namespace math
 {
-    if (lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z)
+    bool operator==(const VECTOR& lhs, const VECTOR& rhs)
     {
-        return true;
+        if (lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z)
+        {
+            return true;
+        }
+        return false;
     }
-    return false;
-}
+};
+
