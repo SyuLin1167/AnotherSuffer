@@ -34,17 +34,19 @@ protected:
     virtual void MoveChara(const float deltaTime) = 0;
 
     /// <summary>
-    /// ピッチ回転処理
+    /// Y軸回転処理
     /// </summary>
     /// <param name="aimDir">:目標の向き</param>
     /// <param name="velocity">:角速度</param>
-    void RotatePitch(const VECTOR& aimDir, float velocity);
+    void RotateYAxis(const VECTOR aimDir, float velocity);
 
     /// <summary>
     /// 回転方向算出処理
     /// </summary>
     /// <returns>:</returns>
-    float CaldRotDir();
+    /// <param name="aimDir">:目標の向き</param>
+    /// <param name="velocity">:角速度</param>
+    float CalcRotDir(const VECTOR aimDir, float velocity);
 
     float moveSpeed;                        //移動速度
 
@@ -54,6 +56,7 @@ protected:
     const VECTOR RIGHT = { 0,0,-1 };        //右
 
     const float PI_RAD = 180;               //180度
+    const float ROTATE_SPEED = 3.0f;        //回転速度
     bool nowRotate;                         //回転判定
     float rotRad;                           //角速度のラジアン角
     float pitch;                            //ピッチ(回転)

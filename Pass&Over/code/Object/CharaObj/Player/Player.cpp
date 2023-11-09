@@ -13,10 +13,6 @@ Player::Player()
         motion->GetHandle(GetFilePass(motionData[jsondata::objKey.nomal.c_str()])));
 
     moveSpeed = RUN_SPEED;
-
-    objDir = FRONT;
-    // å¸Ç´Ç…çáÇÌÇπÇƒâÒì].
-    MV1SetRotationZYAxis(objHandle, objDir, VGet(0.0f, 1.0f, 0.0f), 0.0f);
 }
 
 Player::~Player()
@@ -54,6 +50,8 @@ void Player::MoveChara(const float deltaTime)
     MoveByKey(KEY_INPUT_S, BACK, deltaTime);
     MoveByKey(KEY_INPUT_A, LEFT, deltaTime);
     MoveByKey(KEY_INPUT_D, RIGHT, deltaTime);
+
+
 }
 
 void Player::MoveByKey(const int keyName, const VECTOR dir, const float deltaTime)
@@ -61,8 +59,9 @@ void Player::MoveByKey(const int keyName, const VECTOR dir, const float deltaTim
     if (KeyStatus::KeyStateDecision(keyName, ONINPUT | NOWONINPUT))
     {
         objPos = VAdd(objPos, VScale(dir, moveSpeed * deltaTime));
-        MV1SetPosition(objHandle, objPos);
-        RotatePitch(dir, a * moveSpeed);
+        MV1SetPosition(objHandle, objPos); 
+        RotateYAxis(dir, ROTATE_SPEED);
+        return;
     }
 }
 
