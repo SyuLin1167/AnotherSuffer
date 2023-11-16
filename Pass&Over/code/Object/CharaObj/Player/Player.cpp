@@ -65,7 +65,7 @@ void Player::MoveByKey(const int keyName, const VECTOR dir, const float deltaTim
     if (KeyStatus::KeyStateDecision(keyName, ONINPUT | NOWONINPUT))
     {
         objLocalPos = VAdd(objLocalPos, VScale(dir, moveSpeed * deltaTime));
-        RotateYAxis(dir, ROTATE_SPEED*a);
+        RotateYAxis(dir, ROTATE_SPEED);
         isMove = true;
         return;
     }
@@ -75,4 +75,5 @@ void Player::Draw()
 {
     DrawFormatString(0, 50, GetColor(255, 255, 255), "player:%f", a);
     MV1DrawModel(objHandle);
+    DrawLine3D(objPos, VAdd(objPos, VScale(objDir,3)), GetColor(255, 0, 0));
 }
