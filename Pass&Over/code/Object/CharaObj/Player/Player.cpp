@@ -36,8 +36,8 @@ void Player::Update(const float deltaTime)
     }
 
     //VECTOR v = MV1GetFrameAvgVertexLocalPosition(objHandle, 2);
-    //MATRIX m1 = MGetTranslate(VGet(v.x, v.y, v.z));
-    //MATRIX m2 = MGetTranslate(VGet(-v.x, -v.y, -v.z));
+    //MATRIX m1 = MGetTranslate(v);
+    //MATRIX m2 = MGetTranslate(VScale(v,-1));
     //MV1SetFrameUserLocalMatrix(objHandle, 2, MMult(MMult(m2, MGetRotY(((2 * DX_PI_F) / 60) * a * 5)), m1));
 
 
@@ -51,10 +51,10 @@ void Player::MoveChara(const float deltaTime)
     MoveByKey(KEY_INPUT_A, LEFT, deltaTime);
     MoveByKey(KEY_INPUT_D, RIGHT, deltaTime);
 
-    CalcObjPos();
-    //MV1SetPosition(objHandle, objPos);
+
     if (isMove)
     {
+        CalcObjPos();
         MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(objPos)));
     }
     isMove = false;
@@ -65,7 +65,7 @@ void Player::MoveByKey(const int keyName, const VECTOR dir, const float deltaTim
     if (KeyStatus::KeyStateDecision(keyName, ONINPUT | NOWONINPUT))
     {
         objLocalPos = VAdd(objLocalPos, VScale(dir, moveSpeed * deltaTime));
-        RotateYAxis(dir, ROTATE_SPEED);
+        RotateYAxis(dir, ROTATE_SPEED*a);
         isMove = true;
         return;
     }
