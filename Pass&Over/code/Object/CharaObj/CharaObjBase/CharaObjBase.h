@@ -36,17 +36,17 @@ protected:
     /// <summary>
     /// Y軸回転処理
     /// </summary>
-    /// <param name="aimDir">:目標の向き</param>
+    /// <param name="dir">:目標の向き</param>
     /// <param name="velocity">:角速度</param>
-    void RotateYAxis(const VECTOR aimDir, float velocity);
+    void RotateYAxis(const VECTOR dir, float velocity);
 
     /// <summary>
     /// 回転方向算出処理
     /// </summary>
     /// <returns>:</returns>
-    /// <param name="aimDir">:目標の向き</param>
+    /// <param name="dir">:目標の向き</param>
     /// <param name="velocity">:角速度</param>
-    float CalcRotDir(const VECTOR aimDir, float velocity);
+    float CalcRotDir(const VECTOR dir, float velocity);
 
     bool isMove;                            //動作判定
     float moveSpeed;                        //移動速度
@@ -59,7 +59,9 @@ protected:
     const float PI_RAD = 180;               //180度
     const float ROTATE_SPEED = 3.0f;        //回転速度
     bool nowRotate;                         //回転判定
+    VECTOR aimDir;                          //目標座標
     float rotRad;                           //角速度のラジアン角
+    MATRIX rotYMat;                         //Y軸回転行列
     MATRIX rotateMat;                       //回転行列
 
     const rapidjson::Value& modelData = model->GetJsonData()[objTag.c_str()];      //モデルパスデータ

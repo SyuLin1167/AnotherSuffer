@@ -18,39 +18,36 @@ CharaObjBase::~CharaObjBase()
     //処理なし
 }
 
-void CharaObjBase::RotateYAxis(const VECTOR aimDir, float velocity)
+void CharaObjBase::RotateYAxis(const VECTOR dir, float velocity)
 {
     //現方向が目標方向でなければ回転中にする
-    if (objDir != aimDir)
+    if (objDir != dir)
     {
         nowRotate = true;
     }
+    rotRad += CalcRotDir(dir, velocity);
 
     //目標方向まで回転処理
+    MATRIX rotScale = MGetScale(objScale);
+    rotYMat = MGetRotY(rotRad);
+    rotYMat = MGetRotVec2(objDir, VTransform(objDir, MMult(rotScale, rotYMat)));
 
-    CalcRotDir(aimDir, velocity);
-
-    MATRIX rotScale = MGetScale(objScale);;
-    MATRIX rotYMat = MGetRotY(rotRad);
-
-    objDir = VTransform(objDir, rotYMat);
-    if (VCross(objDir, aimDir).y < 0.0f)
-    {
-        objDir = aimDir;
-        nowRotate = false;
-    }
-
+    //if (VCross(objDir, dir).y < 0.0f)
+    //{
+    //    objDir = dir;
+    //    nowRotate = false;
+    //}
     rotateMat = MMult(rotScale, rotYMat);
 }
 
-float CharaObjBase::CalcRotDir(const VECTOR aimDir, float velocity)
+float CharaObjBase::CalcRotDir(const VECTOR dir, float velocity)
 {
-    //角速度をラジアン角にして、回転方向を算出
-    rotRad = math::DegToRad(velocity);
-    if (VCross(objDir, aimDir).y < 0)
+    //回転方向を算出
+    velocity = math::DegToRad(velocity);
+    if (VCross(objDir, dir).y < 0)
     {
-        return -rotRad;
+        return velocity *= -1;
     }
-    return rotRad;
+    return velocity;
 }
 
