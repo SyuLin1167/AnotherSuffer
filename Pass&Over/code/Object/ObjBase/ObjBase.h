@@ -57,6 +57,12 @@ public:
     bool IsVisible() const { return isVisible; }
 
 protected:
+    /// <summary>
+    /// オブジェクト座標算出処理
+    /// </summary>
+    /// <returns>座標</returns>
+    void CalcObjPos();
+
     std::string objTag;     //オブジェクトのタグ
 
     class Model* model;     //モデル
@@ -69,6 +75,8 @@ protected:
     int objHandle;          //ハンドル
     VECTOR objScale;        //オブジェクトの大きさ
     VECTOR objPos;          //座標
+    VECTOR objWorldPos;     //ワールド座標
+    VECTOR objLocalPos;     //ローカル座標
     VECTOR objDir;          //方向
 
 };

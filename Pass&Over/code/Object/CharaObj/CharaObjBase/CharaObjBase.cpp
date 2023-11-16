@@ -4,7 +4,10 @@ using namespace math;
 
 CharaObjBase::CharaObjBase(std::string tag)
     :ObjBase(tag)
+    , isMove(false)
     , moveSpeed(0.0f)
+    , nowRotate(false)
+    , rotRad(0.0f)
 {
 
 
@@ -24,16 +27,20 @@ void CharaObjBase::RotateYAxis(const VECTOR aimDir, float velocity)
     }
 
     //–Ú•W•ûŒü‚Ü‚Å‰ñ“]ˆ—
+
     CalcRotDir(aimDir, velocity);
 
+    MATRIX rotScale = MGetScale(objScale);;
     MATRIX rotYMat = MGetRotY(rotRad);
-    objDir = VTransform(objDir, MInverse(rotYMat));
+
+    objDir = VTransform(objDir, rotYMat);
     if (VCross(objDir, aimDir).y < 0.0f)
     {
-        objDir = VScale(aimDir, -1);
+        objDir = aimDir;
         nowRotate = false;
     }
-    MV1SetRotationZYAxis(objHandle, objDir, VGet(0.0f, 1.0f, 0.0f), 0.0f);
+
+    rotateMat = MMult(rotScale, rotYMat);
 }
 
 float CharaObjBase::CalcRotDir(const VECTOR aimDir, float velocity)
@@ -42,7 +49,7 @@ float CharaObjBase::CalcRotDir(const VECTOR aimDir, float velocity)
     rotRad = math::DegToRad(velocity);
     if (VCross(objDir, aimDir).y < 0)
     {
-        rotRad = -rotRad;
+        return -rotRad;
     }
     return rotRad;
 }

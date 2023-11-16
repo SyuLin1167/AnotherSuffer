@@ -5,7 +5,7 @@
 /// <summary>
 /// CharaObjBaseクラス
 /// </summary>
-class CharaObjBase:public ObjBase
+class CharaObjBase :public ObjBase
 {
 public:
     /// <summary>
@@ -48,18 +48,19 @@ protected:
     /// <param name="velocity">:角速度</param>
     float CalcRotDir(const VECTOR aimDir, float velocity);
 
+    bool isMove;                            //動作判定
     float moveSpeed;                        //移動速度
 
-    const VECTOR FRONT = { 1,0,0 };         //前方
-    const VECTOR BACK = { -1,0,0 };         //後方
-    const VECTOR LEFT = { 0,0,1 };          //左
-    const VECTOR RIGHT = { 0,0,-1 };        //右
+    const VECTOR FRONT = VGet(1, 0, 0);         //前方
+    const VECTOR BACK = VGet(-1, 0, 0);         //後方
+    const VECTOR LEFT = VGet(0, 0, 1);          //左
+    const VECTOR RIGHT = VGet(0, 0, -1);        //右
 
     const float PI_RAD = 180;               //180度
     const float ROTATE_SPEED = 3.0f;        //回転速度
     bool nowRotate;                         //回転判定
     float rotRad;                           //角速度のラジアン角
-    float pitch;                            //ピッチ(回転)
+    MATRIX rotateMat;                       //回転行列
 
     const rapidjson::Value& modelData = model->GetJsonData()[objTag.c_str()];      //モデルパスデータ
     const rapidjson::Value& soundData = sound->GetJsonData()[objTag.c_str()];      //サウンドパスデータ
