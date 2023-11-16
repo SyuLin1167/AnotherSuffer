@@ -10,6 +10,8 @@ ObjBase::ObjBase(std::string tag)
     , objHandle(-1)
     , objScale(VGet(0.1f, 0.1f, 0.1f))
     , objPos(VGet(0, 0, 0))
+    , objWorldPos(VGet(0, 0, 0))
+    , objLocalPos(VGet(0, 0, 0))
     , objDir(VGet(1, 0, 0))
 {
     //èàóùÇ»Çµ
@@ -18,4 +20,9 @@ ObjBase::ObjBase(std::string tag)
 ObjBase::~ObjBase()
 {
     //èàóùÇ»Çµ
+}
+
+void ObjBase::CalcObjPos()
+{
+    objPos = VAdd(objWorldPos, objLocalPos);
 }

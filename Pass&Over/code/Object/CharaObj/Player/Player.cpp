@@ -51,16 +51,22 @@ void Player::MoveChara(const float deltaTime)
     MoveByKey(KEY_INPUT_A, LEFT, deltaTime);
     MoveByKey(KEY_INPUT_D, RIGHT, deltaTime);
 
-
+    CalcObjPos();
+    //MV1SetPosition(objHandle, objPos);
+    if (isMove)
+    {
+        MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(objPos)));
+    }
+    isMove = false;
 }
 
 void Player::MoveByKey(const int keyName, const VECTOR dir, const float deltaTime)
 {
     if (KeyStatus::KeyStateDecision(keyName, ONINPUT | NOWONINPUT))
     {
-        objPos = VAdd(objPos, VScale(dir, moveSpeed * deltaTime));
-        MV1SetPosition(objHandle, objPos); 
+        objLocalPos = VAdd(objLocalPos, VScale(dir, moveSpeed * deltaTime));
         RotateYAxis(dir, ROTATE_SPEED);
+        isMove = true;
         return;
     }
 }
