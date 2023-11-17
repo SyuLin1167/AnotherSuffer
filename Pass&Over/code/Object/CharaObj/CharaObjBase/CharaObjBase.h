@@ -44,9 +44,8 @@ protected:
     /// 回転方向算出処理
     /// </summary>
     /// <returns>:</returns>
-    /// <param name="dir">:目標の向き</param>
     /// <param name="velocity">:角速度</param>
-    float CalcRotDir(const VECTOR dir, float velocity);
+    float CalcRotDir(float velocity);
 
     bool isMove;                            //動作判定
     float moveSpeed;                        //移動速度
@@ -61,6 +60,7 @@ protected:
     bool nowRotate;                         //回転判定
     VECTOR aimDir;                          //目標座標
     float rotRad;                           //角速度のラジアン角
+    float rotYRad;                          //Y軸ラジアン角
     MATRIX rotYMat;                         //Y軸回転行列
     MATRIX rotateMat;                       //回転行列
 
