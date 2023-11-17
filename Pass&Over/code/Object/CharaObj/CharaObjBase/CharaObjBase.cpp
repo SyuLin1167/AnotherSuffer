@@ -7,10 +7,11 @@ CharaObjBase::CharaObjBase(std::string tag)
     , isMove(false)
     , moveSpeed(0.0f)
     , nowRotate(false)
+    , aimDir(VGet(0, 0, 0))
     , rotRad(0.0f)
+    , rotYRad(math::DegToRad(-PI_RAD / 2))
 {
-
-
+    rotateMat = MMult(MGetScale(objScale), MGetRotY(rotYRad));
 }
 
 CharaObjBase::~CharaObjBase()
@@ -27,17 +28,23 @@ void CharaObjBase::RotateYAxis(const VECTOR dir, float velocity)
         nowRotate = true;
     }
 
-    //–Ú•W•ûŒü‚Ü‚Å‰ñ“]ˆ—
-    if (VDot(objDir, aimDir) < 1.0f)
+    //‰ñ“]’†‚È‚ç
+    if (nowRotate)
     {
-        rotYRad += CalcRotDir(velocity);
-        objDir = VTransform(objDir, rotYMat);
-        rotateMat = MMult(MGetScale(objScale), MGetRotY(rotYRad-math::DegToRad(PI_RAD / 2)));
-    }
-    else
-    {
-        objDir = aimDir;
-        nowRotate = false;
+        //–Ú•W•ûŒü‚Ü‚Å‰ñ“]
+        if (VDot(objDir, aimDir) < 0.999f )
+        {
+            //‰ñ“]•ûŒüZo‚µ‚ÄƒxƒNƒgƒ‹‚Æs—ñ‚Ì—¼•û‚ğ‰ñ“]‚³‚¹‚é
+            rotYRad += CalcRotDir(velocity);
+            objDir = VTransform(objDir, rotYMat);
+            rotateMat = MMult(MGetScale(objScale), MGetRotY(rotYRad));
+        }
+        else
+        {
+            //–Ú•W•ûŒü‚É‚µ‚Ä‰ñ“]’â~
+            objDir = aimDir;
+            nowRotate = false;
+        }
     }
 }
 
