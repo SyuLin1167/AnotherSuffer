@@ -21,30 +21,29 @@ CharaObjBase::~CharaObjBase()
 void CharaObjBase::RotateYAxis(const VECTOR dir, float velocity)
 {
     //現方向が目標方向でなければ回転中にする
-    if (objDir != dir)
+    aimDir = dir;
+    if (objDir != aimDir)
     {
-        aimDir = dir;
         nowRotate = true;
-        CalcRotDir(dir, velocity);
     }
 
     //目標方向まで回転処理
     if (VDot(objDir, aimDir) < 1.0f)
     {
+        rotYRad += CalcRotDir(velocity);
         objDir = VTransform(objDir, rotYMat);
-        rotRad += velocity;
+        rotateMat = MMult(MGetScale(objScale), MGetRotY(rotYRad-math::DegToRad(PI_RAD / 2)));
     }
     else
     {
         objDir = aimDir;
         nowRotate = false;
     }
-    rotateMat = MMult(MGetScale(objScale), rotYMat);
 }
 
-float CharaObjBase::CalcRotDir(const VECTOR dir, float velocity)
+float CharaObjBase::CalcRotDir(float velocity)
 {
-    //ラジアン角に変換
+    //ラジアン角にして回転行列へ変換
     rotRad = math::DegToRad(velocity);
     rotYMat = MGetRotY(rotRad);
 
@@ -52,7 +51,8 @@ float CharaObjBase::CalcRotDir(const VECTOR dir, float velocity)
     if (VCross(objDir, aimDir).y < 0)
     {
         rotYMat = MTranspose(rotYMat);
+        return -rotRad;
     }
-    return velocity;
+    return rotRad;
 }
 
