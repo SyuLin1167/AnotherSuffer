@@ -24,6 +24,7 @@ AssetManager::AssetManager()
 
 AssetManager::~AssetManager()
 {
+    //ƒnƒ“ƒhƒ‹íœ
     model->DeleteHandle();
     motion->DeleteHandle();
     sound->DeleteHandle();

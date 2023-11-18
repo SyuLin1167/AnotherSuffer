@@ -11,7 +11,8 @@ CharaObjBase::CharaObjBase(std::string tag)
     , rotRad(0.0f)
     , rotYRad(math::DegToRad(-PI_RAD / 2))
 {
-    rotateMat = MMult(MGetScale(objScale), MGetRotY(rotYRad));
+    rotYMat = MGetRotY(rotYRad);
+    rotateMat = MMult(MGetScale(objScale), rotYMat);
 }
 
 CharaObjBase::~CharaObjBase()
@@ -31,8 +32,8 @@ void CharaObjBase::RotateYAxis(const VECTOR dir, float velocity)
     //‰ñ“]’†‚È‚ç
     if (nowRotate)
     {
-        //–Ú•W•ûŒü‚Ü‚Å‰ñ“]
-        if (VDot(objDir, aimDir) < 0.999f )
+        //–Ú•W•ûŒü•t‹ß‚Ü‚Å‰ñ“]
+        if (VDot(objDir, aimDir) < SIMILAR_ANGLE )
         {
             //‰ñ“]•ûŒüŽZo‚µ‚ÄƒxƒNƒgƒ‹‚Æs—ñ‚Ì—¼•û‚ð‰ñ“]‚³‚¹‚é
             rotYRad += CalcRotDir(velocity);

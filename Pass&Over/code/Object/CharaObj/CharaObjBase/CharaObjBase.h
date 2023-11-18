@@ -50,22 +50,25 @@ protected:
     bool isMove;                            //動作判定
     float moveSpeed;                        //移動速度
 
-    const VECTOR FRONT = VGet(1, 0, 0);         //前方
-    const VECTOR BACK = VGet(-1, 0, 0);         //後方
-    const VECTOR LEFT = VGet(0, 0, 1);          //左
-    const VECTOR RIGHT = VGet(0, 0, -1);        //右
+    const VECTOR FRONT = VGet(1, 0, 0);     //前方
+    const VECTOR BACK = VGet(-1, 0, 0);     //後方
+    const VECTOR LEFT = VGet(0, 0, 1);      //左
+    const VECTOR RIGHT = VGet(0, 0, -1);    //右
 
     const float PI_RAD = 180;               //180度
     const float ROTATE_SPEED = 3.0f;        //回転速度
     bool nowRotate;                         //回転判定
-    VECTOR aimDir;                          //目標座標
-    float rotRad;                           //角速度のラジアン角
-    float rotYRad;                          //Y軸ラジアン角
-    MATRIX rotYMat;                         //Y軸回転行列
     MATRIX rotateMat;                       //回転行列
 
     const rapidjson::Value& modelData = model->GetJsonData()[objTag.c_str()];      //モデルパスデータ
     const rapidjson::Value& soundData = sound->GetJsonData()[objTag.c_str()];      //サウンドパスデータ
-    const rapidjson::Value& motionData = motion->GetJsonData()[objTag.c_str()];     //モーションパスデータ
+    const rapidjson::Value& motionData = motion->GetJsonData()[objTag.c_str()];    //モーションパスデータ
+
+private:
+    const float SIMILAR_ANGLE = 0.999f;     //相似角
+    VECTOR aimDir;                          //目標座標
+    float rotRad;                           //角速度のラジアン角
+    float rotYRad;                          //Y軸ラジアン角
+    MATRIX rotYMat;                         //Y軸回転行列
 };
 
