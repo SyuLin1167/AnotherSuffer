@@ -29,7 +29,7 @@ public:
     /// Jsonファイルデータ取得処理
     /// </summary>
     /// <returns>jsonファイルデータ</returns>
-    const rapidjson::Value& GetJsonData() { return doc[assetType.c_str()]; }
+    rapidjson::Value& GetJsonData() { return doc[assetType.c_str()]; }
 
     /// <summary>
     /// ハンドル取得処理
@@ -37,6 +37,7 @@ public:
     /// <param name="handleName">:ハンドル名</param>
     /// <returns>ハンドル</returns>
     const int GetHandle(const std::string handleName);
+
 protected:
     /// <summary>
     /// Jsonファイル読み込み処理

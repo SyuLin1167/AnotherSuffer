@@ -2,7 +2,7 @@
 
 #include"../../KeyStatus/KeyStatus.h"
 #include"../../Object/ObjManager/ObjManager.h"
-#include"../../Object/Camera/Camera.h"
+#include"../../Object/Camera/FirstPersonView/FirstPersonView.h"
 #include"../../Object/CharaObj/Player/Player.h"
 #include"../SceneBase/SceneBase.h"
 #include"../Title/Title.h"
@@ -10,7 +10,7 @@
 
 Play::Play()
 {
-    ObjManager::AddObj(new Camera);
+    ObjManager::AddObj(new FirstPersonView);
     ObjManager::AddObj(new Player);
 }
 

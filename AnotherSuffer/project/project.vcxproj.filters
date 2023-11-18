@@ -88,7 +88,7 @@
     <Filter Include="ソース ファイル\Math">
       <UniqueIdentifier>{a576df26-2c4d-4feb-bb70-636d5072f3a2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Object\Camera\FirstPersonCamera">
+    <Filter Include="ソース ファイル\Object\Camera\FirstPersonView">
       <UniqueIdentifier>{2afe0c54-87da-4dcf-9711-e5b0ffb8cbe5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -155,6 +155,9 @@
     </ClCompile>
     <ClCompile Include="..\code\Object\Math\Math.cpp">
       <Filter>ソース ファイル\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\Object\Camera\FirstPersonView\FirstPersonView.cpp">
+      <Filter>ソース ファイル\Object\Camera\FirstPersonView</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -223,6 +226,9 @@
     </ClInclude>
     <ClInclude Include="..\code\Object\Math\Math.h">
       <Filter>ソース ファイル\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Object\Camera\FirstPersonView\FirstPersonView.h">
+      <Filter>ソース ファイル\Object\Camera\FirstPersonView</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

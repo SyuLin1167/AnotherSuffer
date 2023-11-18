@@ -29,8 +29,3 @@ AssetManager::~AssetManager()
     motion->DeleteHandle();
     sound->DeleteHandle();
 }
-
-Motion* AssetManager::MotionInstance()
-{
-    return assetManager->motion.get();
-}

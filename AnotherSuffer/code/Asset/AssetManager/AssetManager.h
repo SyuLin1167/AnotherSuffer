@@ -13,6 +13,11 @@ public:
     static void InitAssetManager();
 
     /// <summary>
+    /// デストラクタ
+    /// </summary>
+    ~AssetManager();
+
+    /// <summary>
     /// モデルインスタンス
     /// </summary>
     /// <returns>Modelクラス</returns>
@@ -22,18 +27,13 @@ public:
     /// モーションインスタンス
     /// </summary>
     /// <returns>Motionクラス</returns>
-    static class Motion* MotionInstance();
+    static class Motion* MotionInstance() { return assetManager->motion.get(); }
 
     /// <summary>
     /// サウンドインスタンス
     /// </summary>
     /// <returns>Soundクラス</returns>
     static class Sound* SoundInstance() { return assetManager->sound.get(); }
-
-    /// <summary>
-    /// デストラクタ
-    /// </summary>
-    ~AssetManager();
 
 private:
     /// <summary>

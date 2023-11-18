@@ -45,6 +45,12 @@ public:
     std::string GetTag() const { return objTag; }
 
     /// <summary>
+    /// À•Wæ“¾
+    /// </summary>
+    /// <returns></returns>
+    VECTOR GetObjPos()const { return objPos; }
+
+    /// <summary>
     /// ¶€”»’è
     /// </summary>
     /// <returns>¶:true|€:false</returns>

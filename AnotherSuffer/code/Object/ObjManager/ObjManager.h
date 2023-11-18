@@ -42,6 +42,13 @@ public:
     static void DeleteAllObj();
 
     /// <summary>
+    /// オブジェクト取得処理
+    /// </summary>
+    /// <param name="tag">:タグ</param>
+    /// <returns>:オブジェクトの配列</returns>
+    static std::vector<std::shared_ptr<ObjBase>> GetObj(std::string tag);
+
+    /// <summary>
     /// デストラクタ
     /// </summary>
     ~ObjManager();
