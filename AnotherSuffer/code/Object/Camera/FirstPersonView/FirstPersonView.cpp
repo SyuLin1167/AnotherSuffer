@@ -1,14 +1,16 @@
 #include"../../ObjManager/ObjManager.h"
 #include"../../../GameSystem/Window/Window.h"
 #include "FirstPersonView.h"
+#include"../../Math/Math.h"
 
 FirstPersonView::FirstPersonView()
     :ObjBase(ObjTag.CAMERA)
     , mousePosX(static_cast<int>(Window::GetWindowSize().x / 2))
     , mousePosY(static_cast<int>(Window::GetWindowSize().y / 2))
     , angleVel(VGet(0, 0, 0))
-    , cameraYaw(0)
-    , cameraPitch(0)
+    , cameraYaw(-DX_PI_F / 2)
+    , cameraPitch(-DX_PI_F / 4)
+    , cameraViewMat(MGetIdent())
 {
     SetCameraNearFar(CAMERA_NEAR, CAMERA_FAR);
     objLocalPos = ANGLE_POS;
@@ -24,48 +26,60 @@ FirstPersonView::~FirstPersonView()
 
 void FirstPersonView::Update(const float deltaTime)
 {
-    ObjBase* player = ObjManager::GetObj(ObjTag.PLAYER)[0].get();
-    objWorldPos = player->GetObjPos();
+    //座標取得
+    std::shared_ptr<ObjBase> player = ObjManager::GetObj(ObjTag.PLAYER)[0];
+    assert(player);
+    objWorldPos = VSub(objDir, player->GetObjPos());
 
+    //視点移動算出
+    CalcMoveView(deltaTime);
+    objDir = VGet(cosf(cameraYaw), cameraPitch, sinf(cameraYaw));
+    cameraViewMat = MMult(MGetRotY(cameraYaw), MGetRotX(cameraPitch));
+
+    //マウスポインターは画面の中心
+    SetMousePoint(static_cast<int>(Window::GetWindowSize().x / 2), static_cast<int>(Window::GetWindowSize().y / 2));
+
+    //座標更新
+    CalcObjPos();
+}
+
+void FirstPersonView::CalcMoveView(const float deltaTime)
+{
+    //マウス移動量
     GetMousePoint(&mousePosX, &mousePosY);
     angleVel.x = static_cast<float>(mousePosX - Window::GetWindowSize().x / 2);
     angleVel.y = static_cast<float>(mousePosY - Window::GetWindowSize().y / 2);
 
+    //カメラ回転値算出
     if (abs(angleVel.x) > 0)
     {
         cameraYaw -= angleVel.x * DX_PI_F * deltaTime/10;
     }
     if (abs(angleVel.y) > 0)
     {
-        if (abs(cameraPitch) <= 3.5f)
+        if (abs(cameraPitch) <= MAX_PITCH)
         {
             cameraPitch -= angleVel.y * DX_PI_F * deltaTime / 10;
         }
         else
         {
-            if (cameraPitch > 3.5f)
+            //ピッチの制限
+            if (cameraPitch > MAX_PITCH)
             {
-                cameraPitch = 3.5;
+                cameraPitch = MAX_PITCH;
             }
             else
             {
-                cameraPitch = -3.5f;
+                cameraPitch = -MAX_PITCH;
             }
         }
     }
-
-    objDir = VGet(cosf(cameraYaw), cameraPitch, sinf(cameraYaw));
-
-    //マウスポインターは画面の中心
-    SetMousePoint(static_cast<int>(Window::GetWindowSize().x / 2), static_cast<int>(Window::GetWindowSize().y / 2));
-
-    CalcObjPos();
 }
 
 void FirstPersonView::Draw()
 {
-    //カーソルの移動した方向に視点を移動
-    SetCameraPositionAndTarget_UpVecY(objPos, VAdd(objPos, objDir));
+    //視点を移動
+    SetCameraViewMatrix(MMult(MInverse(MGetTranslate(objPos)), cameraViewMat));
 
     DrawFormatString(0, 300, GetColor(0, 255, 255), "%f", objDir.x);
     DrawFormatString(0, 350, GetColor(0, 255, 255), "%f", objDir.y);

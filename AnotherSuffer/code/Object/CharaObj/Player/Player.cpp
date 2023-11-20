@@ -5,6 +5,7 @@ Player::Player()
     :CharaObjBase(ObjTag.PLAYER)
 {
     //モデル読み込み
+    texHandle = LoadGraph("../assets/model/Chara/Player/PlayerFace.png");
     objHandle = model->GetHandle(modelData.GetString());
     MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(objPos)));
 
@@ -89,6 +90,10 @@ void Player::MoveByKey(const int keyName, const VECTOR dir, const float deltaTim
 
 void Player::Draw()
 {
+    // テクスチャで使用するグラフィックハンドルを変更する
+    int texIndex = MV1GetMaterialDifMapTexture(objHandle, 0);
+    MV1SetTextureGraphHandle(objHandle, texIndex, texHandle, FALSE);
+
     //モデル描画
     MV1DrawModel(objHandle);
 

@@ -55,7 +55,6 @@ protected:
     const VECTOR LEFT = VGet(0, 0, 1);      //左
     const VECTOR RIGHT = VGet(0, 0, -1);    //右
 
-    const float PI_RAD = 180;               //180度
     const float ROTATE_SPEED = 3.0f;        //回転速度
     bool nowRotate;                         //回転判定
     MATRIX rotateMat;                       //回転行列
