@@ -9,7 +9,7 @@ CharaObjBase::CharaObjBase(std::string tag)
     , nowRotate(false)
     , aimDir(VGet(0, 0, 0))
     , rotRad(0.0f)
-    , rotYRad(math::DegToRad(-PI_RAD / 2))
+    , rotYRad(-DX_PI_F / 2)
 {
     rotYMat = MGetRotY(rotYRad);
     rotateMat = MMult(MGetScale(objScale), rotYMat);

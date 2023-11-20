@@ -29,7 +29,8 @@ public:
     /// <summary>
     /// 視点の移動量算出
     /// </summary>
-    void CalcMoveView();
+    /// <param name="deltaTime">:デルタタイム</param>
+    void CalcMoveView(const float deltaTime);
 
     /// <summary>
     /// 描画処理
@@ -37,14 +38,15 @@ public:
     void Draw() override;
 
 private:
-    int mousePosX;      //マウス座標X
-    int mousePosY;      //マウス座標Y
-    VECTOR angleVel;    //移動量
+    int mousePosX;                              //マウス座標X
+    int mousePosY;                              //マウス座標Y
+    VECTOR angleVel;                            //移動量
 
-    const VECTOR ANGLE_POS = VGet(0, 20, 0);   //視点座標
+    const VECTOR ANGLE_POS = VGet(0, 20, 0);    //視点座標
 
-    float cameraYaw;    //カメラヨー
-    float cameraPitch;  //カメラピッチ
-    MATRIX cameraView;  //ビュー行列
+    const float MAX_PITCH = 1.0f;               //ピッチマックス値
+    float cameraYaw;                            //カメラヨー
+    float cameraPitch;                          //カメラピッチ
+    MATRIX cameraViewMat;                       //ビュー行列
 };
 

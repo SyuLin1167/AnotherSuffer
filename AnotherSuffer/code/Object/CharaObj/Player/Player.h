@@ -45,5 +45,6 @@ private:
 
     const float RUN_SPEED = 10.0f;
     float a = 0;
+    int texHandle;
 };
 
