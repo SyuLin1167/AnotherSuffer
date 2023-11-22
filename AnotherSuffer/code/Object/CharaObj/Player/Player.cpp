@@ -1,4 +1,5 @@
 #include"../../../KeyStatus/KeyStatus.h"
+#include"../../ObjManager/ObjManager.h"
 #include "Player.h"
 
 Player::Player()
@@ -63,11 +64,18 @@ void Player::Update(const float deltaTime)
 
 void Player::MoveChara(const float deltaTime)
 {
+    std::shared_ptr<ObjBase> camera = ObjManager::GetObj(ObjTag.CAMERA)[0];
+    VECTOR aimDir = VCross(VGet(0, -1, 0), camera->GetObjDir());
+    VECTOR rightDir = VCross(VGet(0, -1, 0), aimDir);
+    aimDir.y = 0;
+    aimDir = VNorm(aimDir);
+
     //キー入力による上下左右移動
-    MoveByKey(KEY_INPUT_W, FRONT, deltaTime);
-    MoveByKey(KEY_INPUT_S, BACK, deltaTime);
-    MoveByKey(KEY_INPUT_A, LEFT, deltaTime);
-    MoveByKey(KEY_INPUT_D, RIGHT, deltaTime);
+    MoveByKey(KEY_INPUT_W, aimDir, deltaTime);
+    MoveByKey(KEY_INPUT_S, VScale(aimDir, -1), deltaTime);
+    MoveByKey(KEY_INPUT_A, rightDir, deltaTime);
+    MoveByKey(KEY_INPUT_D, VScale(rightDir, -1), deltaTime);
+    RotateYAxis(aimDir, ROTATE_SPEED);
 }
 
 void Player::MoveByKey(const int keyName, const VECTOR dir, const float deltaTime)
@@ -81,7 +89,6 @@ void Player::MoveByKey(const int keyName, const VECTOR dir, const float deltaTim
 
         //座標・方向の算出
         objLocalPos = VAdd(objLocalPos, VScale(dir, moveSpeed * deltaTime));
-        RotateYAxis(dir, ROTATE_SPEED);
 
         //動作中にする
         isMove = true;
