@@ -29,11 +29,11 @@ void FirstPersonView::Update(const float deltaTime)
     //座標取得
     std::shared_ptr<ObjBase> player = ObjManager::GetObj(ObjTag.PLAYER)[0];
     assert(player);
-    objWorldPos = VSub(objDir, player->GetObjPos());
+    objWorldPos = player->GetObjPos();
 
     //視点移動算出
     CalcMoveView(deltaTime);
-    objDir = VGet(cosf(cameraYaw), cameraPitch, sinf(cameraYaw));
+    objDir =  VGet(cosf(cameraYaw), cameraPitch, sinf(cameraYaw));
     cameraViewMat = MMult(MGetRotY(cameraYaw), MGetRotX(cameraPitch));
 
     //マウスポインターは画面の中心

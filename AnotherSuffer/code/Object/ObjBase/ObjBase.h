@@ -47,8 +47,14 @@ public:
     /// <summary>
     /// À•Wæ“¾
     /// </summary>
-    /// <returns></returns>
-    VECTOR GetObjPos()const { return objPos; }
+    /// <returns>À•W</returns>
+    VECTOR GetObjPos() const { return objPos; }
+
+    /// <summary>
+    /// •ûŒüæ“¾
+    /// </summary>
+    /// <returns>•ûŒü</returns>
+    VECTOR GetObjDir() const { return objDir; }
 
     /// <summary>
     /// ¶€”»’è
