@@ -43,6 +43,7 @@ void CharaObjBase::RotateYAxis(const VECTOR dir, float velocity)
         else
         {
             //–Ú•W•ûŒü‚É‚µ‚Ä‰ñ“]’âŽ~
+            rotateMat = MMult(MGetScale(objScale), MGetRotVec2(objDir, aimDir));
             objDir = aimDir;
             nowRotate = false;
         }

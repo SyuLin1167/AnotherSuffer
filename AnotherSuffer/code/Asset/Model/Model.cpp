@@ -15,7 +15,8 @@ Model::Model()
     for (rapidjson::Value::ConstMemberIterator objType = GetJsonData().MemberBegin();
         objType != GetJsonData().MemberEnd(); objType++)
     {
-        AddHandle(objType->value.GetString());
+        std::thread th(&Model::AddHandle, this, objType->value.GetString());
+        th.join();
     }
 }
 

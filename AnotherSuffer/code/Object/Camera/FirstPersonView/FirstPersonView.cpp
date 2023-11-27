@@ -33,7 +33,7 @@ void FirstPersonView::Update(const float deltaTime)
 
     //視点移動算出
     CalcMoveView(deltaTime);
-    objDir =  VGet(cosf(cameraYaw), cameraPitch, sinf(cameraYaw));
+    objDir = VGet(sinf(-cameraYaw), cameraPitch, cosf(-cameraYaw));
     cameraViewMat = MMult(MGetRotY(cameraYaw), MGetRotX(cameraPitch));
 
     //マウスポインターは画面の中心
@@ -50,11 +50,13 @@ void FirstPersonView::CalcMoveView(const float deltaTime)
     angleVel.x = static_cast<float>(mousePosX - Window::GetWindowSize().x / 2);
     angleVel.y = static_cast<float>(mousePosY - Window::GetWindowSize().y / 2);
 
-    //カメラ回転値算出
+    //カメラ横軸回転値算出
     if (abs(angleVel.x) > 0)
     {
         cameraYaw -= angleVel.x * DX_PI_F * deltaTime/10;
     }
+
+    //カメラ縦軸回転値算出
     if (abs(angleVel.y) > 0)
     {
         if (abs(cameraPitch) <= MAX_PITCH)

@@ -36,9 +36,6 @@ void Player::Update(const float deltaTime)
     {
         //オブジェクトの座標算出
         CalcObjPos();
-
-        //行列でモデルの動作
-        MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(objPos)));
     }
     //停止中
     else
@@ -58,14 +55,19 @@ void Player::Update(const float deltaTime)
         sound->StartSound(sound->GetHandle(GetFilePass(soundData[jsondata::objKey.walk.c_str()])));
     }
 
+    //行列でモデルの動作
+    MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(objPos)));
+
     //停止中にする
     isMove = false;
+
 }
 
 void Player::MoveChara(const float deltaTime)
 {
+    //視点方向取得
     std::shared_ptr<ObjBase> camera = ObjManager::GetObj(ObjTag.CAMERA)[0];
-    VECTOR aimDir = VCross(VGet(0, -1, 0), camera->GetObjDir());
+    VECTOR aimDir = camera->GetObjDir();
     VECTOR rightDir = VCross(VGet(0, -1, 0), aimDir);
     aimDir.y = 0;
     aimDir = VNorm(aimDir);
@@ -75,7 +77,9 @@ void Player::MoveChara(const float deltaTime)
     MoveByKey(KEY_INPUT_S, VScale(aimDir, -1), deltaTime);
     MoveByKey(KEY_INPUT_A, rightDir, deltaTime);
     MoveByKey(KEY_INPUT_D, VScale(rightDir, -1), deltaTime);
-    RotateYAxis(aimDir, ROTATE_SPEED);
+
+    //回転処理
+    RotateYAxis(aimDir, VDot(objDir, aimDir));
 }
 
 void Player::MoveByKey(const int keyName, const VECTOR dir, const float deltaTime)
