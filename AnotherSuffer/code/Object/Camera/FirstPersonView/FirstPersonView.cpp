@@ -33,7 +33,7 @@ void FirstPersonView::Update(const float deltaTime)
 
     //視点移動算出
     CalcMoveView(deltaTime);
-    objDir =  VGet(cosf(cameraYaw), cameraPitch, sinf(cameraYaw));
+    objDir =  VGet(sinf(-cameraYaw), cameraPitch, cosf(-cameraYaw));
     cameraViewMat = MMult(MGetRotY(cameraYaw), MGetRotX(cameraPitch));
 
     //マウスポインターは画面の中心
@@ -79,7 +79,7 @@ void FirstPersonView::CalcMoveView(const float deltaTime)
 void FirstPersonView::Draw()
 {
     //視点を移動
-    SetCameraViewMatrix(MMult(MInverse(MGetTranslate(objPos)), cameraViewMat));
+    SetCameraViewMatrix(MMult( MInverse(MGetTranslate(objPos)),cameraViewMat));
 
     DrawFormatString(0, 300, GetColor(0, 255, 255), "%f", objDir.x);
     DrawFormatString(0, 350, GetColor(0, 255, 255), "%f", objDir.y);
