@@ -20,6 +20,7 @@ public:
     /// </summary>
     ~FirstPersonView();
 
+private:
     /// <summary>
     /// 更新処理
     /// </summary>
@@ -37,7 +38,6 @@ public:
     /// </summary>
     void Draw() override;
 
-private:
     int mousePosX;                              //マウス座標X
     int mousePosY;                              //マウス座標Y
     VECTOR angleVel;                            //移動量
