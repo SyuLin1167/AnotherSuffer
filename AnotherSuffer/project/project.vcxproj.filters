@@ -91,6 +91,12 @@
     <Filter Include="ソース ファイル\Object\Camera\FirstPersonView">
       <UniqueIdentifier>{2afe0c54-87da-4dcf-9711-e5b0ffb8cbe5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Object\StageObj">
+      <UniqueIdentifier>{4f76e792-2fa9-46f9-adfb-3b9f1e283c2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Object\StageObj\Stage">
+      <UniqueIdentifier>{e6fe8648-34ec-45e5-b050-5ed52d59548b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\code\Scene\SceneBase\SceneBase.cpp">
@@ -158,6 +164,9 @@
     </ClCompile>
     <ClCompile Include="..\code\Object\Camera\FirstPersonView\FirstPersonView.cpp">
       <Filter>ソース ファイル\Object\Camera\FirstPersonView</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\Object\StageObj\Stage\Stage.cpp">
+      <Filter>ソース ファイル\Object\StageObj\Stage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -229,6 +238,9 @@
     </ClInclude>
     <ClInclude Include="..\code\Object\Camera\FirstPersonView\FirstPersonView.h">
       <Filter>ソース ファイル\Object\Camera\FirstPersonView</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Object\StageObj\Stage\Stage.h">
+      <Filter>ソース ファイル\Object\StageObj\Stage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

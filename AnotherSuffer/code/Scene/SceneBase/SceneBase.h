@@ -1,4 +1,5 @@
 #pragma once
+#include<string>
 
 /// <summary>
 /// シーン基底クラス
@@ -27,5 +28,8 @@ public:
     /// シーン描画処理
     /// </summary>
     virtual void DrawScene() = 0;
+
+protected:
+    std::string sceneName;
 };
 
