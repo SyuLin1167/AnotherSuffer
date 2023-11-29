@@ -5,6 +5,11 @@ Stage::Stage()
 {
     objHandle = model->GetHandle(model->GetJsonData()[objTag.c_str()].GetString());
     objLocalPos = VGet(30, 0, 20);
+    MV1SetScale(objHandle, objScale);
+
+    //行列でモデルの動作
+    CalcObjPos();
+    MV1SetMatrix(objHandle, MMult(MGetScale(objScale), MGetTranslate(objPos)));
 }
 
 Stage::~Stage()
@@ -14,9 +19,9 @@ Stage::~Stage()
 
 void Stage::Update(const float deltaTime)
 {
-    CalcObjPos();
 
     //行列でモデルの動作
+    CalcObjPos();
     MV1SetMatrix(objHandle, MMult(MGetScale(objScale), MGetTranslate(objPos)));
 }
 

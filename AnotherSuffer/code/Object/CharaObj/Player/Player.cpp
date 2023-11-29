@@ -18,7 +18,7 @@ Player::Player()
     //移動速度は走る速度
     moveSpeed = RUN_SPEED;
 
-    capsule = new Capsule(objPos, VAdd(objPos, VGet(0, 30, 0)), 1.0f);
+    capsule = new Capsule(VAdd(objPos, VGet(0, 5, 0)),VAdd(objPos, VGet(0, 25, 0)), 5.0f);
 }
 
 Player::~Player()
@@ -63,7 +63,7 @@ void Player::Update(const float deltaTime)
         //行列でモデルの動作
         MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(objPos)));
 
-    capsule->Update(objPos);
+        capsule->Update(objPos);
 
         //停止中にする
     isMove = false;
@@ -86,10 +86,12 @@ void Player::MoveChara(const float deltaTime)
 
     rotateMat = MMult(MGetScale(objScale), MGetRotVec2(objDir, aimDir));
 
-    MV1_COLL_RESULT_POLY_DIM colInfo;
+    MV1_COLL_RESULT_POLY_DIM colInfo = {};
     if (capsule->OnCollisionWithMesh(ObjManager::GetObj(ObjTag.STAGE)[0]->GetObjHandle(), colInfo))
     {
         a = 0;
+        objLocalPos = capsule->CalcPushBackFromMesh(colInfo);
+
     }
 }
 
