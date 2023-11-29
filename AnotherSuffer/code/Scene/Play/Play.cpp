@@ -4,6 +4,7 @@
 #include"../../Object/ObjManager/ObjManager.h"
 #include"../../Object/Camera/FirstPersonView/FirstPersonView.h"
 #include"../../Object/CharaObj/Player/Player.h"
+#include"../../Object/StageObj/Stage/Stage.h"
 #include"../SceneBase/SceneBase.h"
 #include"../Title/Title.h"
 #include "Play.h"
@@ -12,6 +13,7 @@ Play::Play()
 {
     ObjManager::AddObj(new FirstPersonView);
     ObjManager::AddObj(new Player);
+    ObjManager::AddObj(new Stage);
 }
 
 Play::~Play()
