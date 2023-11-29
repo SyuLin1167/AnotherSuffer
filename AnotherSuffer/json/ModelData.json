@@ -1,6 +1,6 @@
 {
   "model": {
     "player": "../assets/model/Chara/Player/PlayerModel.mv1",
-    "stage": "../assets/model/Map/Map.mv1"
+    "stage": "../assets/model/Map/Box.mv1"
   }
 }

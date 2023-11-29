@@ -45,6 +45,12 @@ public:
     std::string GetTag() const { return objTag; }
 
     /// <summary>
+    /// ハンドル取得
+    /// </summary>
+    /// <returns></returns>
+    int GetObjHandle() const { return objHandle; }
+
+    /// <summary>
     /// 座標取得
     /// </summary>
     /// <returns>座標</returns>

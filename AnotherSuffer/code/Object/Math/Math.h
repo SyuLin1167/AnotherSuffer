@@ -23,7 +23,6 @@ namespace math
         return rad * 180.0f / DX_PI_F;
     }
 
-
     /// <summary>
     /// ƒxƒNƒgƒ‹‚Ì‘ŠŽ—”»’è
     /// </summary>

@@ -1,5 +1,6 @@
 #include"../../../KeyStatus/KeyStatus.h"
 #include"../../ObjManager/ObjManager.h"
+#include"../../../Collision/Capsule/Capsule.h"
 #include "Player.h"
 
 Player::Player()
@@ -16,6 +17,8 @@ Player::Player()
 
     //移動速度は走る速度
     moveSpeed = RUN_SPEED;
+
+    capsule = new Capsule(objPos, VAdd(objPos, VGet(0, 30, 0)), 1.0f);
 }
 
 Player::~Player()
@@ -60,12 +63,15 @@ void Player::Update(const float deltaTime)
         //行列でモデルの動作
         MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(objPos)));
 
+    capsule->Update(objPos);
+
         //停止中にする
     isMove = false;
 }
 
 void Player::MoveChara(const float deltaTime)
 {
+    //カメラの向きを自身の移動方向とする
     std::shared_ptr<ObjBase> camera = ObjManager::GetObj(ObjTag.CAMERA)[0];
     VECTOR aimDir = camera->GetObjDir();
     VECTOR rightDir = VCross(VGet(0, -1, 0), aimDir);
@@ -79,6 +85,12 @@ void Player::MoveChara(const float deltaTime)
     MoveByKey(KEY_INPUT_D, VScale(rightDir, -1), deltaTime);
 
     rotateMat = MMult(MGetScale(objScale), MGetRotVec2(objDir, aimDir));
+
+    MV1_COLL_RESULT_POLY_DIM colInfo;
+    if (capsule->OnCollisionWithMesh(ObjManager::GetObj(ObjTag.STAGE)[0]->GetObjHandle(), colInfo))
+    {
+        a = 0;
+    }
 }
 
 void Player::MoveByKey(const int keyName, const VECTOR dir, const float deltaTime)
@@ -107,5 +119,8 @@ void Player::Draw()
     //モデル描画
     MV1DrawModel(objHandle);
 
+    DrawFormatString(0, 20, GetColor(255, 255, 255), "%f", a);
     DrawLine3D(objPos, VAdd(objPos, VScale(objDir,3)), GetColor(255, 0, 0));
+
+    capsule->DrawDebug();
 }

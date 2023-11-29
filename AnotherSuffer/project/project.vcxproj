@@ -24,6 +24,7 @@
     <ClCompile Include="..\code\Asset\Model\Model.cpp" />
     <ClCompile Include="..\code\Asset\Motion\Motion.cpp" />
     <ClCompile Include="..\code\Asset\Sound\Sound.cpp" />
+    <ClCompile Include="..\code\Collision\Capsule\Capsule.cpp" />
     <ClCompile Include="..\code\FPS\FPS.cpp" />
     <ClCompile Include="..\code\GameSystem\GameManager\GameManager.cpp" />
     <ClCompile Include="..\code\GameSystem\GameSetting\GameSetting.cpp" />
@@ -50,6 +51,7 @@
     <ClInclude Include="..\code\Asset\Model\Model.h" />
     <ClInclude Include="..\code\Asset\Motion\Motion.h" />
     <ClInclude Include="..\code\Asset\Sound\Sound.h" />
+    <ClInclude Include="..\code\Collision\Capsule\Capsule.h" />
     <ClInclude Include="..\code\FPS\FPS.h" />
     <ClInclude Include="..\code\GameSystem\GameManager\GameManager.h" />
     <ClInclude Include="..\code\GameSystem\GameSetting\GameSetting.h" />

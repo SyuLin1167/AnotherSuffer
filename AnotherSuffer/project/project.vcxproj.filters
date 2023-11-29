@@ -97,6 +97,12 @@
     <Filter Include="ソース ファイル\Object\StageObj\Stage">
       <UniqueIdentifier>{e6fe8648-34ec-45e5-b050-5ed52d59548b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Collision">
+      <UniqueIdentifier>{8954f12b-1042-4704-99a3-2863034f6039}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Collision\Capsule">
+      <UniqueIdentifier>{dc943d73-1044-45c0-9946-8519c8346730}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\code\Scene\SceneBase\SceneBase.cpp">
@@ -167,6 +173,9 @@
     </ClCompile>
     <ClCompile Include="..\code\Object\StageObj\Stage\Stage.cpp">
       <Filter>ソース ファイル\Object\StageObj\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\Collision\Capsule\Capsule.cpp">
+      <Filter>ソース ファイル\Collision\Capsule</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -241,6 +250,9 @@
     </ClInclude>
     <ClInclude Include="..\code\Object\StageObj\Stage\Stage.h">
       <Filter>ソース ファイル\Object\StageObj\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Collision\Capsule\Capsule.h">
+      <Filter>ソース ファイル\Collision\Capsule</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
