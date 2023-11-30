@@ -60,6 +60,14 @@ void Player::Update(const float deltaTime)
         sound->StartSound(sound->GetHandle(GetFilePass(soundData[jsondata::objKey.walk.c_str()])));
     }
 
+    MV1_COLL_RESULT_POLY_DIM colInfo = {};
+    if (capsule->OnCollisionWithMesh(ObjManager::GetObj(ObjTag.STAGE)[0]->GetObjHandle(), colInfo))
+    {
+        a = 0;
+        objLocalPos = VAdd(objLocalPos, capsule->CalcPushBackFromMesh(colInfo));
+        objLocalPos.y = 0;
+    }
+
         //s—ñ‚Åƒ‚ƒfƒ‹‚Ì“®ì
         MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(objPos)));
 
@@ -85,14 +93,6 @@ void Player::MoveChara(const float deltaTime)
     MoveByKey(KEY_INPUT_D, VScale(rightDir, -1), deltaTime);
 
     rotateMat = MMult(MGetScale(objScale), MGetRotVec2(objDir, aimDir));
-
-    MV1_COLL_RESULT_POLY_DIM colInfo = {};
-    if (capsule->OnCollisionWithMesh(ObjManager::GetObj(ObjTag.STAGE)[0]->GetObjHandle(), colInfo))
-    {
-        a = 0;
-        objLocalPos = capsule->CalcPushBackFromMesh(colInfo);
-
-    }
 }
 
 void Player::MoveByKey(const int keyName, const VECTOR dir, const float deltaTime)

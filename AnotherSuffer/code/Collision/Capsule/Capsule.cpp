@@ -36,19 +36,24 @@ bool Capsule::OnCollisionWithMesh(const int modelHandle, MV1_COLL_RESULT_POLY_DI
 
 VECTOR Capsule::CalcPushBackFromMesh(const MV1_COLL_RESULT_POLY_DIM& colInfo)
 {
-    VECTOR nomalVec;
+    VECTOR capsuleCenter = VScale(VSub(worldEnd, worldStart), 0.5f);
 
     for (int i = 0; i < colInfo.HitNum; i++)
     {
-        nomalVec = colInfo.Dim->Normal;
+        VECTOR nomalVec = VNorm(colInfo.Dim[i].Normal);
 
         if (HitCheck_Capsule_Triangle(worldStart, worldEnd,
             radius, colInfo.Dim[i].Position[0],colInfo.Dim[i].Position[1],colInfo.Dim[i].Position[2]))
         {
+            VECTOR distanceVec = VSub(capsuleCenter, colInfo.Dim[i].HitPosition);
+            float dot = VDot(nomalVec, distanceVec);
+            float len = VSize(VScale(nomalVec, dot));
 
+            len = radius - len;
+            capsuleCenter = VAdd(capsuleCenter, VScale(nomalVec, len));
         }
     }
-    return VECTOR(0,0,0);
+    return VSub(capsuleCenter, VScale(VSub(worldEnd, worldStart), 0.5f));
 }
 
 void Capsule::DrawDebug()
