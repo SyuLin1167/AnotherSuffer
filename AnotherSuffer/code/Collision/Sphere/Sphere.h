@@ -1,23 +1,22 @@
 #pragma once
 
 /// <summary>
-/// カプセル型当たり判定
+/// 球体型当たり判定
 /// </summary>
-class Capsule final
+class Sphere final
 {
 public:
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    /// <param name="startPos">:始点</param>
-    /// <param name="endPos">:終点</param>
+    /// <param name="centerPos">:中心点</param>
     /// <param name="rad">:半径</param>
-    Capsule(const VECTOR& startPos, const VECTOR& endPos, float rad);
+    Sphere(const VECTOR& centerPos, float rad);
 
     /// <summary>
     /// デストラクタ
     /// </summary>
-    ~Capsule();
+    ~Sphere();
 
     /// <summary>
     /// 更新処理
@@ -45,10 +44,8 @@ public:
     /// </summary>
     void DrawDebug();
 private:
-    VECTOR localStart;                  //カプセルのローカル座標始点
-    VECTOR localEnd;                    //カプセルのローカル座標終点
-    VECTOR worldStart;                  //カプセルのワールド座標始点
-    VECTOR worldEnd;                    //カプセルのワールド座標終点
-    float radius;                       //カプセルの半径
+    VECTOR localPos;                  //カプセルのローカル中心座標
+    VECTOR worldPos;                  //カプセルのワールド中心座標
+    float radius;                     //カプセルの半径
 };
 
