@@ -1,22 +1,23 @@
 #pragma once
 
 /// <summary>
-/// 球体型当たり判定
+/// カプセル型当たり判定
 /// </summary>
-class Sphere final
+class Capsule final
 {
 public:
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    /// <param name="centerPos">:中心点</param>
+    /// <param name="startPos">:始点</param>
+    /// <param name="endPos">:終点</param>
     /// <param name="rad">:半径</param>
-    Sphere(const VECTOR& centerPos, float rad);
+    Capsule(const VECTOR& startPos, const VECTOR& endPos, float rad);
 
     /// <summary>
     /// デストラクタ
     /// </summary>
-    ~Sphere();
+    ~Capsule();
 
     /// <summary>
     /// 更新処理
@@ -36,16 +37,19 @@ public:
     /// メッシュとの衝突時押し戻し量算出
     /// </summary>
     /// <param name="colInfo">:当たり判定情報</param>
+    /// <param name="shouldVecY">:Y軸押し戻し判定</param>
     /// <returns>押し戻し量</returns>
-    VECTOR CalcPushBackFromMesh(const MV1_COLL_RESULT_POLY_DIM& colInfo);
+    VECTOR CalcPushBackFromMesh(const MV1_COLL_RESULT_POLY_DIM& colInfo, bool shouldVecY = false);
 
     /// <summary>
     /// デバッグ用描画
     /// </summary>
     void DrawDebug();
 private:
-    VECTOR localPos;                  //カプセルのローカル中心座標
-    VECTOR worldPos;                  //カプセルのワールド中心座標
-    float radius;                     //カプセルの半径
+    VECTOR localStart;                  //カプセルのローカル座標始点
+    VECTOR localEnd;                    //カプセルのローカル座標終点
+    VECTOR worldStart;                  //カプセルのワールド座標始点
+    VECTOR worldEnd;                    //カプセルのワールド座標終点
+    VECTOR worldCenter;                 //カプセルのワールド中心座標
+    float radius;                       //カプセルの半径
 };
-
