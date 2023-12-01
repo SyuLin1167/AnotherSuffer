@@ -5,6 +5,7 @@ Stage::Stage()
 {
     objHandle = model->GetHandle(model->GetJsonData()[objTag.c_str()].GetString());
     objLocalPos = VGet(30, 0, 20);
+
     MV1SetScale(objHandle, objScale);
 
     //s—ñ‚Åƒ‚ƒfƒ‹‚Ì“®ì
