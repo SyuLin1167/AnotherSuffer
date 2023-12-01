@@ -1,29 +1,37 @@
 #include<DxLib.h>
+#include<iostream>
+
 #include "Sphere.h"
 
-Sphere::Sphere(const VECTOR& centerPos, float rad)
-    :localPos(centerPos)
-    , worldPos(centerPos)
+Capsule::Capsule(const VECTOR& startPos, const VECTOR& endPos, float rad)
+    :localStart(startPos)
+    , localEnd(endPos)
+    , worldStart(startPos)
+    , worldEnd(endPos)
+    , worldCenter(VGet(0, 0, 0))
     , radius(rad)
 {
     //èàóùÇ»Çµ
 }
 
-Sphere::~Sphere()
+Capsule::~Capsule()
 {
     //èàóùÇ»Çµ
 }
 
-void Sphere::Update(const VECTOR& pos)
+void Capsule::Update(const VECTOR& pos)
 {
     //ç¿ïWà⁄ìÆ
-    worldPos = VAdd(localPos, pos);
+    worldStart = VAdd(localStart, pos);
+    worldEnd = VAdd(localEnd, pos);
+    worldCenter = VAdd(worldStart, VScale(VSub(worldEnd, worldStart), 0.5f));
 }
 
-bool Sphere::OnCollisionWithMesh(const int modelHandle, MV1_COLL_RESULT_POLY_DIM& colInfo)
+bool Capsule::OnCollisionWithMesh(const int modelHandle, MV1_COLL_RESULT_POLY_DIM& colInfo)
 {
     //ìñÇΩÇËîªíËèÓïÒÇ©ÇÁîªíËåãâ Çï‘Ç∑
-    colInfo = MV1CollCheck_Sphere(modelHandle, -1, worldPos, radius);
+    colInfo = MV1CollCheck_Capsule(modelHandle, -1, worldStart, worldEnd, radius);
+    MV1SetupCollInfo(modelHandle);
     if (colInfo.HitNum == 0)
     {
         return false;
@@ -31,30 +39,37 @@ bool Sphere::OnCollisionWithMesh(const int modelHandle, MV1_COLL_RESULT_POLY_DIM
     return true;
 }
 
-VECTOR Sphere::CalcPushBackFromMesh(const MV1_COLL_RESULT_POLY_DIM& colInfo)
+VECTOR Capsule::CalcPushBackFromMesh(const MV1_COLL_RESULT_POLY_DIM& colInfo, bool shouldVecY)
 {
-    VECTOR SphereCenter = worldPos;
 
-    for (int i = 0; i < colInfo.HitNum; i++)
+    VECTOR pushBack = VGet(0, 0, 0);
+
+    // è’ìÀÉ|ÉäÉSÉìêîï™âüÇµñﬂÇµó ÇåvéZÇ∑ÇÈ
+    for (int i = 0; i < colInfo.HitNum; ++i)
     {
-        if (HitCheck_Sphere_Triangle(worldStart, worldEnd,
-            radius, colInfo.Dim[i].Position[0],colInfo.Dim[i].Position[1],colInfo.Dim[i].Position[2]))
+        if (HitCheck_Capsule_Triangle(worldStart, worldEnd,
+            radius, colInfo.Dim[i].Position[0], colInfo.Dim[i].Position[1], colInfo.Dim[i].Position[2]))
         {
-            VECTOR nomalVec = VNorm(colInfo.Dim[i].Normal);
-            VECTOR distanceVec = VSub(SphereCenter, colInfo.Dim[i].HitPosition);
-            float dot = VDot(nomalVec, distanceVec);
-            float len = VSize(VScale(nomalVec, dot));
+            VECTOR normalVec = VNorm(colInfo.Dim[i].Normal);
+            VECTOR distance = VSub(worldCenter, colInfo.Dim[i].HitPosition);
 
-            len = radius - len;
-            SphereCenter = VAdd(SphereCenter, VScale(nomalVec, len));
+            float dot = VDot(normalVec, distance);
+            float len = radius - VSize(VScale(normalVec, dot));
+            if (len > 0)
+            {
+                len * 0.01f;
+            }
+            pushBack = VAdd(pushBack, VScale(normalVec, len/2));
         }
     }
-    return SphereCenter;
+
+
+    return pushBack;                                      // âüÇµñﬂÇµó Çï‘ãp
 }
 
-void Sphere::DrawDebug()
+void Capsule::DrawDebug()
 {
-    DrawSphere3D(worldStart, worldEnd, radius, 8, GetColor(255, 255, 255), GetColor(255, 50, 255), false);
+    DrawCapsule3D(worldStart, worldEnd, radius, 8, GetColor(255, 255, 255), GetColor(255, 50, 255), false);
 }
 
 

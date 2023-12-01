@@ -1,6 +1,6 @@
 #include"../../../KeyStatus/KeyStatus.h"
 #include"../../ObjManager/ObjManager.h"
-#include"../../../Collision/Capsule/Capsule.h"
+#include"../../../Collision/Sphere/Sphere.h"
 #include "Player.h"
 
 Player::Player()
@@ -18,7 +18,7 @@ Player::Player()
     //移動速度は走る速度
     moveSpeed = RUN_SPEED;
 
-    capsule = new Capsule(VAdd(objPos, VGet(0, 5, 0)),VAdd(objPos, VGet(0, 25, 0)), 5.0f);
+    capsule = new Capsule(VAdd(objPos, VGet(0, 5, 0)), VAdd(objPos, VGet(0, 25, 0)), 5.0f);
 }
 
 Player::~Player()
@@ -35,15 +35,8 @@ void Player::Update(const float deltaTime)
     //キャラ移動
     MoveChara(deltaTime);
 
-    //動作中
-    if (isMove)
-    {
-        //オブジェクトの座標算出
-        CalcObjPos();
-
-    }
     //停止中
-    else
+    if(!isMove)
     {
         //通常時アニメーション再生
         motion->StartMotion(objHandle,
@@ -60,18 +53,23 @@ void Player::Update(const float deltaTime)
         sound->StartSound(sound->GetHandle(GetFilePass(soundData[jsondata::objKey.walk.c_str()])));
     }
 
-    MV1_COLL_RESULT_POLY_DIM colInfo = {};
+    MV1_COLL_RESULT_POLY_DIM colInfo;
     if (capsule->OnCollisionWithMesh(ObjManager::GetObj(ObjTag.STAGE)[0]->GetObjHandle(), colInfo))
     {
         a = 0;
-        objLocalPos = VAdd(objLocalPos, capsule->CalcPushBackFromMesh(colInfo));
+        VECTOR pushBack = capsule->CalcPushBackFromMesh(colInfo);
+        objLocalPos = VAdd(objLocalPos, pushBack);
+        MV1CollResultPolyDimTerminate(colInfo);
         objLocalPos.y = 0;
     }
+        //オブジェクトの座標算出
+        CalcObjPos();
+
+        capsule->Update(objPos);
 
         //行列でモデルの動作
         MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(objPos)));
 
-        capsule->Update(objPos);
 
         //停止中にする
     isMove = false;
