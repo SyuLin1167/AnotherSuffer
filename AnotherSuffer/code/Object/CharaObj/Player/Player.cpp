@@ -53,12 +53,12 @@ void Player::Update(const float deltaTime)
         sound->StartSound(sound->GetHandle(GetFilePass(soundData[jsondata::objKey.walk.c_str()])));
     }
 
-    MV1_COLL_RESULT_POLY_DIM colInfo;
+    colInfo = {};
     if (capsule->OnCollisionWithMesh(ObjManager::GetObj(ObjTag.STAGE)[0]->GetObjHandle(), colInfo))
     {
         a = 0;
         VECTOR pushBack = capsule->CalcPushBackFromMesh(colInfo);
-        objLocalPos = VAdd(objLocalPos, pushBack);
+        //objLocalPos = VAdd(objLocalPos, pushBack);
         MV1CollResultPolyDimTerminate(colInfo);
         objLocalPos.y = 0;
     }
@@ -85,11 +85,15 @@ void Player::MoveChara(const float deltaTime)
     aimDir = VNorm(aimDir);
 
     //キー入力による上下左右移動
+    moveVel = VGet(0, 0, 0);
     MoveByKey(KEY_INPUT_W, aimDir, deltaTime);
     MoveByKey(KEY_INPUT_S, VScale(aimDir, -1), deltaTime);
     MoveByKey(KEY_INPUT_A, rightDir, deltaTime);
     MoveByKey(KEY_INPUT_D, VScale(rightDir, -1), deltaTime);
 
+
+    //座標・方向の算出
+    objLocalPos = VAdd(objLocalPos, VScale(moveVel, moveSpeed * deltaTime));
     rotateMat = MMult(MGetScale(objScale), MGetRotVec2(objDir, aimDir));
 }
 
@@ -98,12 +102,11 @@ void Player::MoveByKey(const int keyName, const VECTOR dir, const float deltaTim
     //キーが入力されていたら移動時の処理実行
     if (KeyStatus::KeyStateDecision(keyName, ONINPUT | NOWONINPUT))
     {
+        moveVel = VNorm(VAdd(moveVel, dir));
+
         //移動アニメーション再生
         motion->StartMotion(objHandle,
             motion->GetHandle(GetFilePass(motionData[jsondata::objKey.walk.c_str()])));
-
-        //座標・方向の算出
-        objLocalPos = VAdd(objLocalPos, VScale(dir, moveSpeed * deltaTime));
 
         //動作中にする
         isMove = true;
@@ -118,6 +121,19 @@ void Player::Draw()
 
     //モデル描画
     MV1DrawModel(objHandle);
+
+    // 当たったポリゴンの数を描画
+    DrawFormatString(0, 150, GetColor(255, 255, 255), "Hit Poly Num   %d", colInfo.HitNum);
+
+    // 当たったポリゴンの数だけ繰り返し
+    for (int i = 0; i < colInfo.HitNum; i++)
+    {
+        // 当たったポリゴンを描画
+        DrawTriangle3D(
+            colInfo.Dim[i].Position[0],
+            colInfo.Dim[i].Position[1],
+            colInfo.Dim[i].Position[2], GetColor(0, 255, 255), TRUE);
+    }
 
     DrawFormatString(0, 20, GetColor(255, 255, 255), "%f", a);
     DrawLine3D(objPos, VAdd(objPos, VScale(objDir,3)), GetColor(255, 0, 0));

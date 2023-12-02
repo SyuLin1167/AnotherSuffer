@@ -43,6 +43,7 @@ VECTOR Capsule::CalcPushBackFromMesh(const MV1_COLL_RESULT_POLY_DIM& colInfo, bo
 {
 
     VECTOR pushBack = VGet(0, 0, 0);
+    VECTOR distance = VGet(0, 0, 0);
 
     // Õ“Ëƒ|ƒŠƒSƒ“”•ª‰Ÿ‚µ–ß‚µ—Ê‚ğŒvZ‚·‚é
     for (int i = 0; i < colInfo.HitNum; ++i)
@@ -51,20 +52,17 @@ VECTOR Capsule::CalcPushBackFromMesh(const MV1_COLL_RESULT_POLY_DIM& colInfo, bo
             radius, colInfo.Dim[i].Position[0], colInfo.Dim[i].Position[1], colInfo.Dim[i].Position[2]))
         {
             VECTOR normalVec = VNorm(colInfo.Dim[i].Normal);
-            VECTOR distance = VSub(worldCenter, colInfo.Dim[i].HitPosition);
+            distance = VSub(worldCenter, colInfo.Dim[i].Position[0]);
 
             float dot = VDot(normalVec, distance);
             float len = radius - VSize(VScale(normalVec, dot));
-            if (len > 0)
-            {
-                len * 0.01f;
-            }
-            pushBack = VAdd(pushBack, VScale(normalVec, len/2));
+
+            pushBack = VAdd(pushBack, VScale(normalVec, len));
         }
     }
 
 
-    return pushBack;                                      // ‰Ÿ‚µ–ß‚µ—Ê‚ğ•Ô‹p
+    return VScale(VSub(pushBack, worldCenter), 0.005f);                                      // ‰Ÿ‚µ–ß‚µ—Ê‚ğ•Ô‹p
 }
 
 void Capsule::DrawDebug()

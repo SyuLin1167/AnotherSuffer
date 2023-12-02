@@ -8,6 +8,10 @@ Stage::Stage()
 
     MV1SetScale(objHandle, objScale);
 
+#ifdef _DEBUG
+    MV1SetOpacityRate(objHandle, 0.3f);
+#endif // _DEBUG
+
     //s—ñ‚Åƒ‚ƒfƒ‹‚Ì“®ì
     CalcObjPos();
     MV1SetMatrix(objHandle, MMult(MGetScale(objScale), MGetTranslate(objPos)));

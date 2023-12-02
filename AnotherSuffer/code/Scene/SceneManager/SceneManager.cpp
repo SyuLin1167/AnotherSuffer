@@ -34,6 +34,14 @@ void SceneManager::GameLoop()
         //シーンのフロー
         UpdateScene();
         ChangeScene();
+        //nowSceneがtmpSceneと異なっていたら解放して代入
+        if (nowScene.top().get() != holdScene)
+        {
+            nowScene.pop();
+            nowScene.emplace(holdScene);
+
+            assert(!nowScene.empty());
+        }
         DrawScene();
     }
     ObjManager::DeleteAllObj();
@@ -50,18 +58,10 @@ void SceneManager::DrawScene()
 {
     //現在のシーンを描画
     ClearDrawScreen();
-    nowScene.top()->DrawScene();
+    //nowScene.top()->DrawScene();
     ScreenFlip();
 }
 
 void SceneManager::ChangeScene()
 {
-    //nowSceneがtmpSceneと異なっていたら解放して代入
-    if (nowScene.top().get() != holdScene)
-    {
-        nowScene.pop();
-        nowScene.emplace(holdScene);
-
-        assert(!nowScene.empty());
-    }
 }
