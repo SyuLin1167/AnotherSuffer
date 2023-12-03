@@ -3,7 +3,7 @@
 /// <summary>
 /// タイトルシーン
 /// </summary>
-class Title: public SceneBase
+class Title final: public SceneBase
 {
 public:
     /// <summary>

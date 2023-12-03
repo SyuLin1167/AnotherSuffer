@@ -9,9 +9,9 @@ class Window
 {
 public:
     /// <summary>
-    /// 初期化処理
+    /// ウィンドウ初期化処理
     /// </summary>
-    static void Init();
+    static void InitWindow();
 
     /// <summary>
     /// デストラクタ
@@ -23,15 +23,16 @@ public:
     /// </summary>
     /// <returns>ウィンドウサイズ</returns>
     static const VECTOR GetWindowSize() { return singleton->WINDOW_SIZE; }
+
 private:
     /// <summary>
     /// コンストラクタ(シングルトン)
     /// </summary>
     Window();
 
-    const VECTOR WINDOW_SIZE = VGet(1920, 1080, 0);     //ウィンドウサイズ
-
     static std::unique_ptr<Window> singleton;           //自身の実体
+
+    const VECTOR WINDOW_SIZE = VGet(1920, 1080, 0);     //ウィンドウサイズ
     const int COLOR_BIT = 16;                           //カラービット
 };
 

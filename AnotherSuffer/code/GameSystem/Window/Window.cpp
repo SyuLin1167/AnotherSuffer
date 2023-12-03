@@ -2,8 +2,9 @@
 
 std::unique_ptr<Window> Window::singleton = nullptr;
 
-void Window::Init()
+void Window::InitWindow()
 {
+    //インスタンス初期化
     if (!singleton)
     {
         singleton.reset(new Window);

@@ -3,9 +3,9 @@
 #include<memory>
 
 /// <summary>
-/// ゲーム管理
+/// ゲームプロセス管理
 /// </summary>
-class GameManager final
+class GameManager
 {
 public:
     /// <summary>
@@ -19,13 +19,8 @@ public:
     ~GameManager();
 
     /// <summary>
-    /// 処理
+    /// 実行処理
     /// </summary>
     void Procces();
-
-private:
-    std::unique_ptr<class SceneManager> sceneManager;    //シーンマネージャー
-
-
 };
 
