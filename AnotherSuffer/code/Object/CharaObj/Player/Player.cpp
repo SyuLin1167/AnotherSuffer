@@ -1,6 +1,6 @@
 #include"../../../KeyStatus/KeyStatus.h"
 #include"../../ObjManager/ObjManager.h"
-#include"../../../Collision/Sphere/Sphere.h"
+#include"../../../Collision/Sphere/Capsule.h"
 #include "Player.h"
 
 Player::Player()
@@ -57,10 +57,8 @@ void Player::Update(const float deltaTime)
     if (capsule->OnCollisionWithMesh(ObjManager::GetObj(ObjTag.STAGE)[0]->GetObjHandle(), colInfo))
     {
         a = 0;
-        VECTOR pushBack = capsule->CalcPushBackFromMesh(colInfo);
-        //objLocalPos = VAdd(objLocalPos, pushBack);
+        objLocalPos = VAdd(objLocalPos, capsule->CalcPushBackFromMesh(colInfo));
         MV1CollResultPolyDimTerminate(colInfo);
-        objLocalPos.y = 0;
     }
         //オブジェクトの座標算出
         CalcObjPos();
@@ -84,13 +82,12 @@ void Player::MoveChara(const float deltaTime)
     aimDir.y = 0;
     aimDir = VNorm(aimDir);
 
-    //キー入力による上下左右移動
+    //キー入力による移動量
     moveVel = VGet(0, 0, 0);
     MoveByKey(KEY_INPUT_W, aimDir, deltaTime);
     MoveByKey(KEY_INPUT_S, VScale(aimDir, -1), deltaTime);
     MoveByKey(KEY_INPUT_A, rightDir, deltaTime);
     MoveByKey(KEY_INPUT_D, VScale(rightDir, -1), deltaTime);
-
 
     //座標・方向の算出
     objLocalPos = VAdd(objLocalPos, VScale(moveVel, moveSpeed * deltaTime));
@@ -122,21 +119,28 @@ void Player::Draw()
     //モデル描画
     MV1DrawModel(objHandle);
 
+#ifdef _DEBUG
+    //当たり判定描画
+    capsule->DrawCapsule();
+
     // 当たったポリゴンの数を描画
     DrawFormatString(0, 150, GetColor(255, 255, 255), "Hit Poly Num   %d", colInfo.HitNum);
 
-    // 当たったポリゴンの数だけ繰り返し
+    // 当たったポリゴンの数だけ描画
     for (int i = 0; i < colInfo.HitNum; i++)
     {
-        // 当たったポリゴンを描画
+        //当たったポリゴン
         DrawTriangle3D(
             colInfo.Dim[i].Position[0],
             colInfo.Dim[i].Position[1],
             colInfo.Dim[i].Position[2], GetColor(0, 255, 255), TRUE);
+
+        //当たったポリゴン法線
+        DrawLine3D(colInfo.Dim[i].Normal,VScale( colInfo.Dim[i].Normal,3.0f), GetColor(255, 25, 255));
     }
 
     DrawFormatString(0, 20, GetColor(255, 255, 255), "%f", a);
     DrawLine3D(objPos, VAdd(objPos, VScale(objDir,3)), GetColor(255, 0, 0));
 
-    capsule->DrawDebug();
+#endif // _DEBUG
 }

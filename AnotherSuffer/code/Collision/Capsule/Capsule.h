@@ -42,9 +42,10 @@ public:
     VECTOR CalcPushBackFromMesh(const MV1_COLL_RESULT_POLY_DIM& colInfo, bool shouldVecY = false);
 
     /// <summary>
-    /// デバッグ用描画
+    /// カプセル描画
     /// </summary>
-    void DrawDebug();
+    void DrawCapsule();
+
 private:
     VECTOR localStart;                  //カプセルのローカル座標始点
     VECTOR localEnd;                    //カプセルのローカル座標終点
@@ -52,4 +53,6 @@ private:
     VECTOR worldEnd;                    //カプセルのワールド座標終点
     VECTOR worldCenter;                 //カプセルのワールド中心座標
     float radius;                       //カプセルの半径
+
+    float size;
 };
