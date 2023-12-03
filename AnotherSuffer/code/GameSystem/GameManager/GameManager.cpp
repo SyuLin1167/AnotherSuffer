@@ -10,9 +10,9 @@ GameManager::GameManager()
     SetOutApplicationLogValidFlag(false);
 
     //初期化処理
-    Window::Init();
-    GameSetting::Init();
-    sceneManager.reset(new SceneManager);
+    Window::InitWindow();
+    GameSetting::InitGameSetting();
+    SceneManager::InitSceneManager();
 }
 
 GameManager::~GameManager()
@@ -22,5 +22,6 @@ GameManager::~GameManager()
 
 void GameManager::Procces()
 {
-    sceneManager->GameLoop();
+    //ゲームループ実行
+    SceneManager::GameLoop();
 }

@@ -5,7 +5,7 @@
 
 std::unique_ptr<GameSetting> GameSetting::singleton = nullptr;
 
-void GameSetting::Init()
+void GameSetting::InitGameSetting()
 {
     if (!singleton)
     {
@@ -18,7 +18,10 @@ GameSetting::GameSetting()
     BeforeLibInit();
 
     //ライブラリ初期化
-    assert(!DxLib_Init());
+    if (DxLib_Init() == -1)
+    {
+        DebugBreak();
+    }
 
     AfterLibInit();
 }
@@ -34,8 +37,8 @@ void GameSetting::BeforeLibInit()
     //アンチエイリアスを設定
     SetFullSceneAntiAliasingMode(4, 2);
 
-    // Direct3D9Ex を使用する
-    SetUseDirect3DVersion(DX_DIRECT3D_9EX);
+    // Direct3D11 を使用する
+    SetUseDirect3DVersion(DX_DIRECT3D_11);
 }
 
 void GameSetting::AfterLibInit()

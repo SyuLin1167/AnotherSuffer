@@ -8,9 +8,9 @@ class GameSetting final
 {
 public:
     /// <summary>
-    /// ‰Šú‰»ˆ—
+    /// ƒQ[ƒ€İ’è‰Šú‰»ˆ—
     /// </summary>
-    static void Init();
+    static void InitGameSetting();
 
 
     /// <summary>
