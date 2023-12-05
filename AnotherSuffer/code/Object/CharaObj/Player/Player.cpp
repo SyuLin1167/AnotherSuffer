@@ -1,6 +1,6 @@
 #include"../../../KeyStatus/KeyStatus.h"
 #include"../../ObjManager/ObjManager.h"
-#include"../../../Collision/Sphere/Capsule.h"
+#include"../../../Collision/Capsule/Capsule.h"
 #include "Player.h"
 
 Player::Player()
@@ -53,12 +53,18 @@ void Player::Update(const float deltaTime)
         sound->StartSound(sound->GetHandle(GetFilePass(soundData[jsondata::objKey.walk.c_str()])));
     }
 
-    colInfo = {};
-    if (capsule->OnCollisionWithMesh(ObjManager::GetObj(ObjTag.STAGE)[0]->GetObjHandle(), colInfo))
+    int i = 0;
+    for (auto& iter : ObjManager::GetObj(ObjTag.STAGE))
     {
-        a = 0;
-        objLocalPos = VAdd(objLocalPos, capsule->CalcPushBackFromMesh(colInfo));
-        MV1CollResultPolyDimTerminate(colInfo);
+        colData.emplace_back(colInfo);
+
+        if (capsule->OnCollisionWithMesh(iter->GetObjHandle(), colData[i]))
+        {
+            a = 0;
+            objLocalPos = VAdd(objLocalPos, capsule->CalcPushBackFromMesh(colData[i],true));
+            MV1CollResultPolyDimTerminate(colData[i]);
+        }
+        i++;
     }
         //オブジェクトの座標算出
         CalcObjPos();
@@ -123,24 +129,30 @@ void Player::Draw()
     //当たり判定描画
     capsule->DrawCapsule();
 
-    // 当たったポリゴンの数を描画
-    DrawFormatString(0, 150, GetColor(255, 255, 255), "Hit Poly Num   %d", colInfo.HitNum);
-
-    // 当たったポリゴンの数だけ描画
-    for (int i = 0; i < colInfo.HitNum; i++)
+    int hitnum = 0;
+    for (auto& iter : colData)
     {
-        //当たったポリゴン
-        DrawTriangle3D(
-            colInfo.Dim[i].Position[0],
-            colInfo.Dim[i].Position[1],
-            colInfo.Dim[i].Position[2], GetColor(0, 255, 255), TRUE);
+        // 当たったポリゴンの数だけ描画
+        for (int i = 0; i < iter.HitNum; i++)
+        {
 
-        //当たったポリゴン法線
-        DrawLine3D(colInfo.Dim[i].Normal,VScale( colInfo.Dim[i].Normal,3.0f), GetColor(255, 25, 255));
+            //当たったポリゴン
+            DrawTriangle3D(
+                iter.Dim[i].Position[0],
+                iter.Dim[i].Position[1],
+                iter.Dim[i].Position[2], GetColor(0, 255, 255), TRUE);
+
+            //当たったポリゴン法線
+            DrawLine3D(iter.Dim[i].Normal, VScale(iter.Dim[i].Normal, 3.0f), GetColor(255, 25, 255));
+        }
+        hitnum += iter.HitNum;
     }
+        // 当たったポリゴンの数を描画
+    DrawFormatString(0, 150, GetColor(255, 255, 255), "Hit Poly Num   %d", hitnum);
 
     DrawFormatString(0, 20, GetColor(255, 255, 255), "%f", a);
     DrawLine3D(objPos, VAdd(objPos, VScale(objDir,3)), GetColor(255, 0, 0));
 
 #endif // _DEBUG
+    colData.clear();
 }

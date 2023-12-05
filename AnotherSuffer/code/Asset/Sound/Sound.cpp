@@ -23,7 +23,8 @@ Sound::Sound()
 
 Sound::~Sound()
 {
-    //処理なし
+    MV1DeleteModel(holdHandle);
+    MV1DeleteModel(dupHandle);
 }
 
 void Sound::AddHandle(const std::string fileName)
@@ -79,7 +80,7 @@ void Sound::DeleteHandle()
     soundData.clear();
 }
 
-void Sound::StartSound(int handle)
+void Sound::StartSound(const int& handle)
 {
     //再生状態を確認して再生
     if (!CheckSoundMem(handle))
@@ -95,7 +96,7 @@ void Sound::StartSound(int handle)
     }
 }
 
-void Sound::StopSound(int handle)
+void Sound::StopSound(const int& handle)
 {
     //再生状態を確認して停止
     if (CheckSoundMem(handle))

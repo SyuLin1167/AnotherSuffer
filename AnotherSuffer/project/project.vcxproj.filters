@@ -103,6 +103,9 @@
     <Filter Include="ソース ファイル\Collision\Capsule">
       <UniqueIdentifier>{dc943d73-1044-45c0-9946-8519c8346730}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Object\StageObj\StageManager">
+      <UniqueIdentifier>{bc27930f-f508-4158-ac93-c7cc2bd0fc76}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\code\Scene\SceneBase\SceneBase.cpp">
