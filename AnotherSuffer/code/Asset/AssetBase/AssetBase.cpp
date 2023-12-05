@@ -35,13 +35,13 @@ void AssetBase::LoadJsonFile(std::string fileName)
     assetType = type->name.GetString();
 }
 
-const int AssetBase::GetHandle(std::string handleName)
+int AssetBase::GetHandle(std::string handleName) const
 {
     //Žæ“¾‚µ‚½‚¢ƒnƒ“ƒhƒ‹‚ªŒ©‚Â‚©‚Á‚½‚ç•Ô‚·
     auto iter = handle.find(handleName);
     if (iter != handle.end())
     {
-            return handle[handleName];
+            return iter->second;
     }
     //•Ô‚¹‚È‚©‚Á‚½‚ç-1‚ð•Ô‚·
     return -1;

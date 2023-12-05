@@ -57,6 +57,17 @@ VECTOR Capsule::CalcPushBackFromMesh(const MV1_COLL_RESULT_POLY_DIM& colInfo, bo
             VECTOR poligonVec2 = VSub(colInfo.Dim[i].Position[2], colInfo.Dim[i].Position[0]);
             VECTOR normalVec = VNorm(VCross(poligonVec1, poligonVec2));
 
+            if (shouldVecY)
+            {
+                if (normalVec.y > 0)
+                {
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            
             //ÇﬂÇËçûÇ›ó éZèo
             VECTOR distance = VSub(pushBack, colInfo.Dim[i].Position[0]);
             float dot = VDot(normalVec, distance);

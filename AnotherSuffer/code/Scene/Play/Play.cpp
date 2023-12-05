@@ -13,7 +13,11 @@ Play::Play()
 {
     ObjManager::AddObj(new FirstPersonView);
     ObjManager::AddObj(new Player);
-    ObjManager::AddObj(new Stage);
+
+    ObjManager::AddObj(new Stage(VGet(30, 0, 0)));
+
+
+    ObjManager::AddObj(new Stage(VGet(30, 0, 20)));
 }
 
 Play::~Play()

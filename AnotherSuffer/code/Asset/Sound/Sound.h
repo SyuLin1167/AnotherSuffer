@@ -22,13 +22,13 @@ public:
     /// サウンド再生処理
     /// </summary>
     /// <param name="handle">:ハンドル</param>
-    void StartSound(int handle);
+    void StartSound(const int& handle);
 
     /// <summary>
     /// サウンド停止処理
     /// </summary>
     /// <param name="handle">:ハンドル</param>
-    void StopSound(int handle);
+    void StopSound(const int& handle);
 
     /// <summary>
     /// ハンドル削除処理

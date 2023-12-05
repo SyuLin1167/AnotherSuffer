@@ -36,7 +36,7 @@ public:
     /// </summary>
     /// <param name="handleName">:ハンドル名</param>
     /// <returns>ハンドル</returns>
-    const int GetHandle(const std::string handleName);
+    int GetHandle(const std::string handleName) const;
 
 protected:
     /// <summary>

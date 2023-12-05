@@ -1,17 +1,18 @@
 #include "Stage.h"
 
-Stage::Stage()
+Stage::Stage(VECTOR pos)
     :ObjBase(ObjTag.STAGE)
 {
-    objHandle = model->GetHandle(model->GetJsonData()[objTag.c_str()].GetString());
-    objLocalPos = VGet(30, 0, 20);
+    objHandle = MV1DuplicateModel(model->GetHandle(model->GetJsonData()[objTag.c_str()].GetString()));
+    objLocalPos = pos;
 
-    objScale = VGet(0.2f, 0.2f, 0.2f);
+    objScale = VGet(0.1f, 0.1f, 0.1f);
     MV1SetScale(objHandle, objScale);
 
 #ifdef _DEBUG
     MV1SetOpacityRate(objHandle, 0.3f);
 #endif // _DEBUG
+
     //çsóÒÇ≈ÉÇÉfÉãÇÃìÆçÏ
     CalcObjPos();
     MV1SetMatrix(objHandle, MMult(MGetScale(objScale), MGetTranslate(objPos)));

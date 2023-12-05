@@ -10,7 +10,7 @@ public:
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    Stage();
+    Stage(VECTOR pos);
 
     /// <summary>
     /// デストラクタ

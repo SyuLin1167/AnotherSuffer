@@ -20,7 +20,7 @@ public:
     /// <summary>
     /// ƒnƒ“ƒhƒ‹íœˆ—
     /// </summary>
-    virtual void DeleteHandle() override;
+    void DeleteHandle() override;
 
 private:
     /// <summary>

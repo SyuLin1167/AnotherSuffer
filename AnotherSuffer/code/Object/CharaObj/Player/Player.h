@@ -48,6 +48,8 @@ private:
     int texHandle;
     class Capsule* capsule;
     VECTOR moveVel;
+
     MV1_COLL_RESULT_POLY_DIM colInfo;
+    std::vector<MV1_COLL_RESULT_POLY_DIM> colData;
 };
 
