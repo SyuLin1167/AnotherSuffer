@@ -26,7 +26,7 @@ void ObjManager::InitObjManager()
     }
 }
 
-void ObjManager::AddObj(ObjBase* newObj)
+void ObjManager::AddObj(class ObjBase* newObj)
 {
     std::string tag = newObj->GetTag();
 

@@ -19,7 +19,7 @@ public:
     /// オブジェクト追加処理
     /// </summary>
     /// <param name="newObj">:追加オブジェクト</param>
-    static void AddObj(ObjBase* newObj);
+    static void AddObj(class ObjBase* newObj);
 
     /// <summary>
     /// オブジェクト更新処理
@@ -43,7 +43,7 @@ public:
     /// </summary>
     /// <param name="tag">:タグ</param>
     /// <returns>:オブジェクトの配列</returns>
-    static std::vector<std::shared_ptr<ObjBase>> GetObj(std::string tag);
+    static std::vector<std::shared_ptr<class ObjBase>> GetObj(std::string tag);
 
     /// <summary>
     /// デストラクタ
@@ -65,11 +65,11 @@ private:
     /// オブジェクト削除処理
     /// </summary>
     /// <param name="unnecObj">:不必要オブジェクト</param>
-    static void DeleteObj(std::shared_ptr<ObjBase> unnecObj);
+    static void DeleteObj(std::shared_ptr<class ObjBase> unnecObj);
 
     static std::unique_ptr<ObjManager> singleton;       //自身の実体
 
     std::unordered_map<std::string, std::vector<
-        std::shared_ptr<ObjBase>>> object;              //オブジェクト
+        std::shared_ptr<class ObjBase>>> object;              //オブジェクト
 };
 

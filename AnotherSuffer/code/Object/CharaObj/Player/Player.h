@@ -46,7 +46,7 @@ private:
     const float RUN_SPEED = 10.0f;
     float a = 0;
     int texHandle;
-    std::unique_ptr<Capsule> capsule;
+    class Capsule* capsule;
     VECTOR moveVel;
 
     MV1_COLL_RESULT_POLY_DIM colInfo;
