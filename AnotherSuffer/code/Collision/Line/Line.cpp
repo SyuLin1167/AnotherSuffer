@@ -23,9 +23,5 @@ bool Line::OnCollisionWithMesh(const int modelHandle, MV1_COLL_RESULT_POLY_DIM& 
 {
     //“–‚½‚è”»’èî•ñ‚©‚ç”»’èŒ‹‰Ê‚ð•Ô‚·
     colInfo = MV1CollCheck_LineDim(modelHandle, -1, worldStartPos, worldEndPos);
-    if (colInfo.HitNum == 0)
-    {
-        return false;
-    }
-    return true;
+    return colInfo.Dim->HitFlag;
 }

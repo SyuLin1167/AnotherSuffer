@@ -1,7 +1,5 @@
 #include<assert.h>
 
-#include"../ObjBase/ObjBase.h"
-#include"../ObjBase/ObjTag.h"
 #include "ObjManager.h"
 
 std::unique_ptr<ObjManager> ObjManager::singleton;
@@ -58,6 +56,18 @@ void ObjManager::DrawObj()
             {
                 singleton->object[tag][i]->Draw();
             }
+        }
+    }
+}
+
+void ObjManager::OnColllsionObj()
+{
+
+    for (auto& ply: singleton->object[ObjTag.PLAYER])
+    {
+        for (auto& stg : singleton->object[ObjTag.STAGE])
+        {
+            ply->OnCollisionEnter(stg.get());
         }
     }
 }

@@ -39,6 +39,12 @@ private:
     void MoveByKey(const int keyName, const VECTOR dir, const float deltaTime);
 
     /// <summary>
+    /// 当たり判定処理
+    /// </summary>
+    /// <param name="colObj">:判定するオブジェクト</param>
+    void OnCollisionEnter(class ObjBase* colObj) override;
+
+    /// <summary>
     /// 描画処理
     /// </summary>
     void Draw() override;
@@ -50,6 +56,6 @@ private:
     VECTOR moveVel;
 
     MV1_COLL_RESULT_POLY_DIM colInfo;
-    std::vector<MV1_COLL_RESULT_POLY_DIM> colData;
+    std::unordered_map<class ObjBase*, MV1_COLL_RESULT_POLY_DIM> colData;
 };
 

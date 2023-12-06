@@ -53,36 +53,18 @@ void Player::Update(const float deltaTime)
         sound->StartSound(sound->GetHandle(GetFilePass(soundData[jsondata::objKey.walk.c_str()])));
     }
 
-    int i = 0;
-    for (auto& iter : ObjManager::GetObj(ObjTag.STAGE))
-    {
-        colData.emplace_back(colInfo);
+    //座標更新
+    CalcObjPos();
 
-        if (capsule->OnCollisionWithMesh(iter->GetObjHandle(), colData[i]))
-        {
-            a = 0;
-            objLocalPos = VAdd(objLocalPos, capsule->CalcPushBackFromMesh(colData[i]));
-
-            MV1CollResultPolyDimTerminate(colData[i]);
-        }
-        i++;
-    }
-
-        //オブジェクトの座標算出
-        CalcObjPos();
-
-        capsule->Update(objPos);
-
-        //行列でモデルの動作
-        MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(objPos)));
-
-
-        //停止中にする
-    isMove = false;
+    //行列でモデルの動作
+    MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(objPos)));
 }
 
 void Player::MoveChara(const float deltaTime)
 {
+    //停止中にする
+    isMove = false;
+
     //カメラの向きを自身の移動方向とする
     std::shared_ptr<ObjBase> camera = ObjManager::GetObj(ObjTag.CAMERA)[0];
     VECTOR aimDir = camera->GetObjDir();
@@ -118,6 +100,32 @@ void Player::MoveByKey(const int keyName, const VECTOR dir, const float deltaTim
     }
 }
 
+void Player::OnCollisionEnter(ObjBase* colObj)
+{
+    auto findCol = colData.find(colObj);
+    if (findCol == colData.end())
+    {
+        colData.emplace(colObj, colInfo);
+    }
+
+    if (capsule->OnCollisionWithMesh(colObj->GetObjHandle(), colData[colObj]))
+    {
+        a = 0;
+        objLocalPos = VAdd(objLocalPos, capsule->CalcPushBackFromMesh(colData));
+
+        MV1CollResultPolyDimTerminate(colData[colObj]);
+        colData.erase(colObj);
+    }
+
+
+    //座標更新
+    CalcObjPos();
+    capsule->Update(objPos);
+
+    //行列でモデルの動作
+    MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(objPos)));
+}
+
 void Player::Draw()
 {
     // テクスチャで使用するグラフィックハンドルを変更する
@@ -135,26 +143,22 @@ void Player::Draw()
     for (auto& iter : colData)
     {
         // 当たったポリゴンの数だけ描画
-        for (int i = 0; i < iter.HitNum; i++)
+        for (int i = 0; i < iter.second.HitNum; i++)
         {
-
             //当たったポリゴン
             DrawTriangle3D(
-                iter.Dim[i].Position[0],
-                iter.Dim[i].Position[1],
-                iter.Dim[i].Position[2], GetColor(0, 255, 255), TRUE);
-
-            //当たったポリゴン法線
-            DrawLine3D(iter.Dim[i].Normal, VScale(iter.Dim[i].Normal, 3.0f), GetColor(255, 25, 255));
+                iter.second.Dim[i].Position[0],
+                iter.second.Dim[i].Position[1],
+                iter.second.Dim[i].Position[2], GetColor(0, 255, 255), TRUE);
         }
-        hitnum += iter.HitNum;
+
+        hitnum += iter.second.HitNum;
     }
         // 当たったポリゴンの数を描画
-    DrawFormatString(0, 150, GetColor(255, 255, 255), "Hit Poly Num   %d", hitnum);
+    DrawFormatString(0, 150, GetColor(255, 255, 255), "HitPolyNum %d", hitnum);
 
     DrawFormatString(0, 20, GetColor(255, 255, 255), "%f", a);
     DrawLine3D(objPos, VAdd(objPos, VScale(objDir,3)), GetColor(255, 0, 0));
 
 #endif // _DEBUG
-    colData.clear();
 }
