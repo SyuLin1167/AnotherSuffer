@@ -93,17 +93,17 @@ VECTOR Capsule::CalcPushBackFromMesh(std::unordered_map<class ObjBase*, MV1_COLL
                 VECTOR poligonVec2 = VSub(colObj.second.Dim[i].Position[2], colObj.second.Dim[i].Position[0]);
                 VECTOR normalVec = VNorm(VCross(poligonVec1, poligonVec2));
 
-                class Line* line = new Line(normalVec, VScale(normalVec, 3.0f));
-                MV1_COLL_RESULT_POLY_DIM colInfo = {};
                 for (auto& adj : adjoinObj)
                 {
-                    if (line->OnCollisionWithMesh(adj.first->GetObjHandle(), colInfo))
+                    for (int j = 0; j < adj.second.HitNum; j++)
                     {
-                        normalVec = VGet(0, 0, 0);
-                        break;
+                        if (VDot(adj.second.Dim[j].Normal, normalVec) == -1)
+                        {
+                            normalVec = VGet(0, 0, 0);
+                            break;
+                        }
                     }
                 }
-                delete line;
 
                 //‚ß‚èž‚Ý—ÊŽZo
                 VECTOR distance = VSub(pushBack, colObj.second.Dim[i].Position[0]);
