@@ -4,6 +4,9 @@
 #include<unordered_map>
 #include<algorithm>
 
+#include"../ObjBase/ObjBase.h"
+#include"../ObjBase/ObjTag.h"
+
 /// <summary>
 /// オブジェクト管理
 /// </summary>
@@ -32,6 +35,10 @@ public:
     /// </summary>
     static void DrawObj();
 
+    /// <summary>
+    /// オブジェクト当たり判定
+    /// </summary>
+    static void OnColllsionObj();
 
     /// <summary>
     /// 全オブジェクト削除処理

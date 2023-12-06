@@ -35,6 +35,7 @@ SceneBase* Play::UpdateScene(const float deltaTime)
 {
     //オブジェクト更新
     ObjManager::UpdateObj(deltaTime);
+    ObjManager::OnColllsionObj();
 
     //シーン切り替え
     if (KeyStatus::KeyStateDecision(KEY_INPUT_RETURN, ONINPUT))

@@ -34,6 +34,12 @@ public:
     virtual void Update(const float deltaTime) = 0;
 
     /// <summary>
+    /// 当たり判定処理
+    /// </summary>
+    /// <param name="colObj">:判定するオブジェクト</param>
+    virtual void OnCollisionEnter(ObjBase* colObj) {};
+
+    /// <summary>
     /// 描画処理
     /// </summary>
     virtual void Draw() = 0;
