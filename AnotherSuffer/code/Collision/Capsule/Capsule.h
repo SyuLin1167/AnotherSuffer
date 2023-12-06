@@ -37,9 +37,10 @@ public:
     /// メッシュとの衝突時押し戻し量算出
     /// </summary>
     /// <param name="colInfo">:当たり判定情報</param>
-    /// <param name="shouldVecY">:Y軸押し戻し判定</param>
+    /// <param name="adjoinObj">:隣接判定オブジェクト</param>
     /// <returns>押し戻し量</returns>
-    VECTOR CalcPushBackFromMesh(const MV1_COLL_RESULT_POLY_DIM& colInfo, bool shouldVecY = false);
+    VECTOR CalcPushBackFromMesh(MV1_COLL_RESULT_POLY_DIM& colInfo,
+        std::shared_ptr<ObjBase> adjoinObj);
 
     /// <summary>
     /// カプセル描画
@@ -53,6 +54,4 @@ private:
     VECTOR worldEnd;                    //カプセルのワールド座標終点
     VECTOR worldCenter;                 //カプセルのワールド中心座標
     float radius;                       //カプセルの半径
-
-    float size;
 };
