@@ -2,7 +2,7 @@
 #include"../../ObjBase/ObjBase.h"
 
 /// <summary>
-/// ステージ
+/// ステージのブロック
 /// </summary>
 class Stage final:public ObjBase
 {

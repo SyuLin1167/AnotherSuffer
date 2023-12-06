@@ -14,10 +14,16 @@ Play::Play()
     ObjManager::AddObj(new FirstPersonView);
     ObjManager::AddObj(new Player);
 
-    ObjManager::AddObj(new Stage(VGet(30, 0, 0)));
-
-
-    ObjManager::AddObj(new Stage(VGet(30, 0, 20)));
+    for (int i = 0; i < 5; i++)
+    {
+        for (int j = 0; j < 5; j++)
+        {
+            if (box[i][j] == 1)
+            {
+                ObjManager::AddObj(new Stage(VGet(i * 20, 0, j * 20)));
+            }
+        }
+    }
 }
 
 Play::~Play()

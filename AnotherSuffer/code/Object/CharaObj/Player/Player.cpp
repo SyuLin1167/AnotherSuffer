@@ -18,7 +18,7 @@ Player::Player()
     //移動速度は走る速度
     moveSpeed = RUN_SPEED;
 
-    capsule = new Capsule(VAdd(objPos, VGet(0, 5, 0)), VAdd(objPos, VGet(0, 25, 0)), 5.0f);
+    capsule.reset(new Capsule(VAdd(objPos, VGet(0, 5, 0)), VAdd(objPos, VGet(0, 25, 0)), 5.0f));
 }
 
 Player::~Player()
@@ -61,11 +61,13 @@ void Player::Update(const float deltaTime)
         if (capsule->OnCollisionWithMesh(iter->GetObjHandle(), colData[i]))
         {
             a = 0;
-            objLocalPos = VAdd(objLocalPos, capsule->CalcPushBackFromMesh(colData[i],true));
+            objLocalPos = VAdd(objLocalPos, capsule->CalcPushBackFromMesh(colData[i], iter));
+
             MV1CollResultPolyDimTerminate(colData[i]);
         }
         i++;
     }
+
         //オブジェクトの座標算出
         CalcObjPos();
 

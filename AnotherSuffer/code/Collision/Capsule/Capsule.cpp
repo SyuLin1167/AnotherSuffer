@@ -1,6 +1,8 @@
 #include<DxLib.h>
-#include<iostream>
+#include<memory>
 
+#include"../../Object/ObjBase/ObjBase.h"
+#include"../Line/Line.h"
 #include "Capsule.h"
 
 Capsule::Capsule(const VECTOR& startPos, const VECTOR& endPos, float rad)
@@ -31,7 +33,6 @@ bool Capsule::OnCollisionWithMesh(const int modelHandle, MV1_COLL_RESULT_POLY_DI
 {
     //ìñÇΩÇËîªíËèÓïÒÇ©ÇÁîªíËåãâ Çï‘Ç∑
     colInfo = MV1CollCheck_Capsule(modelHandle, -1, worldStart, worldEnd, radius);
-    MV1SetupCollInfo(modelHandle);
     if (colInfo.HitNum == 0)
     {
         return false;
@@ -39,7 +40,8 @@ bool Capsule::OnCollisionWithMesh(const int modelHandle, MV1_COLL_RESULT_POLY_DI
     return true;
 }
 
-VECTOR Capsule::CalcPushBackFromMesh(const MV1_COLL_RESULT_POLY_DIM& colInfo, bool shouldVecY)
+VECTOR Capsule::CalcPushBackFromMesh( MV1_COLL_RESULT_POLY_DIM& colInfo,
+    std::shared_ptr<ObjBase> adjoinObj)
 {
     //âüÇµñﬂÇµó èâä˙âª
     VECTOR pushBack = worldCenter;
@@ -56,18 +58,13 @@ VECTOR Capsule::CalcPushBackFromMesh(const MV1_COLL_RESULT_POLY_DIM& colInfo, bo
             VECTOR poligonVec1 = VSub(colInfo.Dim[i].Position[1], colInfo.Dim[i].Position[0]);
             VECTOR poligonVec2 = VSub(colInfo.Dim[i].Position[2], colInfo.Dim[i].Position[0]);
             VECTOR normalVec = VNorm(VCross(poligonVec1, poligonVec2));
-
-            if (shouldVecY)
-            {
-                if (normalVec.y > 0)
-                {
-                }
-                else
-                {
-                    continue;
-                }
-            }
             
+            std::unique_ptr<class Line> line(new Line(normalVec, VScale(normalVec, 2.0f)));
+            if (line->OnCollisionWithMesh(adjoinObj->GetObjHandle(), colInfo))
+            {
+                continue;
+            }
+
             //ÇﬂÇËçûÇ›ó éZèo
             VECTOR distance = VSub(pushBack, colInfo.Dim[i].Position[0]);
             float dot = VDot(normalVec, distance);

@@ -4,9 +4,6 @@
 #include<unordered_map>
 #include<algorithm>
 
-#include"../ObjBase/ObjBase.h"
-#include"../ObjBase/ObjTag.h"
-
 /// <summary>
 /// オブジェクト管理
 /// </summary>

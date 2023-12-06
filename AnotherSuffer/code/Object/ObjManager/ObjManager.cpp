@@ -1,5 +1,7 @@
 #include<assert.h>
 
+#include"../ObjBase/ObjBase.h"
+#include"../ObjBase/ObjTag.h"
 #include "ObjManager.h"
 
 std::unique_ptr<ObjManager> ObjManager::singleton;

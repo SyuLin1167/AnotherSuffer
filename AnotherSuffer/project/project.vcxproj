@@ -25,6 +25,7 @@
     <ClCompile Include="..\code\Asset\Motion\Motion.cpp" />
     <ClCompile Include="..\code\Asset\Sound\Sound.cpp" />
     <ClCompile Include="..\code\Collision\Capsule\Capsule.cpp" />
+    <ClCompile Include="..\code\Collision\Line\Line.cpp" />
     <ClCompile Include="..\code\FPS\FPS.cpp" />
     <ClCompile Include="..\code\GameSystem\GameManager\GameManager.cpp" />
     <ClCompile Include="..\code\GameSystem\GameSetting\GameSetting.cpp" />
@@ -38,6 +39,7 @@
     <ClCompile Include="..\code\Object\Math\Math.cpp" />
     <ClCompile Include="..\code\Object\ObjBase\ObjBase.cpp" />
     <ClCompile Include="..\code\Object\ObjManager\ObjManager.cpp" />
+    <ClCompile Include="..\code\Object\StageObj\StageManager\StageManager.cpp" />
     <ClCompile Include="..\code\Object\StageObj\Stage\Stage.cpp" />
     <ClCompile Include="..\code\Scene\Play\Play.cpp" />
     <ClCompile Include="..\code\Scene\SceneBase\SceneBase.cpp" />
@@ -52,6 +54,7 @@
     <ClInclude Include="..\code\Asset\Motion\Motion.h" />
     <ClInclude Include="..\code\Asset\Sound\Sound.h" />
     <ClInclude Include="..\code\Collision\Capsule\Capsule.h" />
+    <ClInclude Include="..\code\Collision\Line\Line.h" />
     <ClInclude Include="..\code\FPS\FPS.h" />
     <ClInclude Include="..\code\GameSystem\GameManager\GameManager.h" />
     <ClInclude Include="..\code\GameSystem\GameSetting\GameSetting.h" />
@@ -65,6 +68,7 @@
     <ClInclude Include="..\code\Object\ObjBase\ObjBase.h" />
     <ClInclude Include="..\code\Object\ObjBase\ObjTag.h" />
     <ClInclude Include="..\code\Object\ObjManager\ObjManager.h" />
+    <ClInclude Include="..\code\Object\StageObj\StageManager\StageManager.h" />
     <ClInclude Include="..\code\Object\StageObj\Stage\Stage.h" />
     <ClInclude Include="..\code\Scene\Play\Play.h" />
     <ClInclude Include="..\code\Scene\SceneBase\SceneBase.h" />
