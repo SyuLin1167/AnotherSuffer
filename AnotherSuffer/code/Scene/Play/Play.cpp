@@ -20,7 +20,7 @@ Play::Play()
         {
             if (box[i][j] == 1)
             {
-                ObjManager::AddObj(new Stage(VGet(i * 20, 0, j * 20)));
+                ObjManager::AddObj(new Stage(VGet(i * 40.0f, 0, j * 40.0f)));
             }
         }
     }

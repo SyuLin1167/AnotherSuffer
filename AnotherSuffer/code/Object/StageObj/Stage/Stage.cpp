@@ -6,7 +6,7 @@ Stage::Stage(VECTOR pos)
     objHandle = MV1DuplicateModel(model->GetHandle(model->GetJsonData()[objTag.c_str()].GetString()));
     objLocalPos = pos;
 
-    objScale = VGet(0.1f, 0.1f, 0.1f);
+    objScale = VGet(0.2f, 0.2f, 0.2f);
     MV1SetScale(objHandle, objScale);
 
 #ifdef _DEBUG
@@ -27,10 +27,16 @@ void Stage::Update(const float deltaTime)
 {
     //çsóÒÇ≈ÉÇÉfÉãÇÃìÆçÏ
     CalcObjPos();
+  
     MV1SetMatrix(objHandle, MMult(MGetScale(objScale), MGetTranslate(objPos)));
 }
 
 void Stage::Draw()
 {
-    MV1DrawModel(objHandle);
+    if (!CheckCameraViewClip_Box(objPos, VAdd(objPos, VGet(40, 0, 40))) &&
+        !CheckCameraViewClip_Box(objPos, VAdd(objPos, VGet(40, 40, 0)))&&
+        !CheckCameraViewClip_Box(objPos, VAdd(objPos, VGet(0, 40, 40))))
+    {
+        MV1DrawModel(objHandle);
+    }
 }

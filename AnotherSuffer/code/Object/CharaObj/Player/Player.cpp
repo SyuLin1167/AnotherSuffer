@@ -23,7 +23,7 @@ Player::Player()
 
 Player::~Player()
 {
-    //処理なし
+    colData.clear();
 }
 
 void Player::Update(const float deltaTime)
@@ -111,10 +111,9 @@ void Player::OnCollisionEnter(ObjBase* colObj)
     if (capsule->OnCollisionWithMesh(colObj->GetObjHandle(), colData[colObj]))
     {
         a = 0;
-        objLocalPos = VAdd(objLocalPos, capsule->CalcPushBackFromMesh(colData));
+        objLocalPos = VAdd(objLocalPos, capsule->CalcPushBackFromMesh(colData[colObj]));
 
         MV1CollResultPolyDimTerminate(colData[colObj]);
-        colData.erase(colObj);
     }
 
 
@@ -150,6 +149,14 @@ void Player::Draw()
                 iter.second.Dim[i].Position[0],
                 iter.second.Dim[i].Position[1],
                 iter.second.Dim[i].Position[2], GetColor(0, 255, 255), TRUE);
+
+
+            //2辺から法線ベクトル算出
+            VECTOR poligonVec1 = VSub(iter.second.Dim[i].Position[1], iter.second.Dim[i].Position[0]);
+            VECTOR poligonVec2 = VSub(iter.second.Dim[i].Position[2], iter.second.Dim[i].Position[0]);
+            VECTOR normalVec = VNorm(VCross(poligonVec1, poligonVec2));
+
+            DrawLine3D(iter.second.Dim[i].Position[0], VAdd(iter.second.Dim[i].Position[0], normalVec), GetColor(255, 200, 0));
         }
 
         hitnum += iter.second.HitNum;

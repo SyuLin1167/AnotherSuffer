@@ -7,6 +7,8 @@
 class Stage final:public ObjBase
 {
 public:
+    Stage() :ObjBase(ObjTag.STAGE) {};
+
     /// <summary>
     /// コンストラクタ
     /// </summary>

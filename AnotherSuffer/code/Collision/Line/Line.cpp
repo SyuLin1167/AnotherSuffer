@@ -19,9 +19,9 @@ void Line::Update(const VECTOR& pos)
     worldEndPos = VAdd(localEndPos, pos);
 }
 
-bool Line::OnCollisionWithMesh(const int modelHandle, MV1_COLL_RESULT_POLY_DIM& colInfo)
+bool Line::OnCollisionWithMesh(const int modelHandle, MV1_COLL_RESULT_POLY& colInfo)
 {
     //“–‚½‚è”»’èî•ñ‚©‚ç”»’èŒ‹‰Ê‚ð•Ô‚·
-    colInfo = MV1CollCheck_LineDim(modelHandle, -1, worldStartPos, worldEndPos);
-    return colInfo.Dim->HitFlag;
+    colInfo = MV1CollCheck_Line(modelHandle, -1, worldStartPos, worldEndPos);
+    return colInfo.HitFlag;
 }
