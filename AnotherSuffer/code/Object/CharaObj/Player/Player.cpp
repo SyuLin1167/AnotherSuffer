@@ -18,7 +18,7 @@ Player::Player()
     //ˆÚ“®‘¬“x‚Í‘–‚é‘¬“x
     moveSpeed = RUN_SPEED;
 
-    capsule.reset(new Capsule(VAdd(objPos, VGet(0, 5, 0)), VAdd(objPos, VGet(0, 25, 0)), 5.0f));
+    capsule=new Capsule(VAdd(objPos, VGet(0, 5, 0)), VAdd(objPos, VGet(0, 25, 0)), 5.0f);
 }
 
 Player::~Player()
@@ -61,7 +61,7 @@ void Player::Update(const float deltaTime)
         if (capsule->OnCollisionWithMesh(iter->GetObjHandle(), colData[i]))
         {
             a = 0;
-            objLocalPos = VAdd(objLocalPos, capsule->CalcPushBackFromMesh(colData[i], iter));
+            objLocalPos = VAdd(objLocalPos, capsule->CalcPushBackFromMesh(colData[i]));
 
             MV1CollResultPolyDimTerminate(colData[i]);
         }

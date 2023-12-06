@@ -1,4 +1,3 @@
-#include<DxLib.h>
 #include<memory>
 
 #include"../../Object/ObjBase/ObjBase.h"
@@ -40,8 +39,7 @@ bool Capsule::OnCollisionWithMesh(const int modelHandle, MV1_COLL_RESULT_POLY_DI
     return true;
 }
 
-VECTOR Capsule::CalcPushBackFromMesh( MV1_COLL_RESULT_POLY_DIM& colInfo,
-    std::shared_ptr<ObjBase> adjoinObj)
+VECTOR Capsule::CalcPushBackFromMesh(MV1_COLL_RESULT_POLY_DIM& colInfo)
 {
     //âüÇµñﬂÇµó èâä˙âª
     VECTOR pushBack = worldCenter;
@@ -58,12 +56,6 @@ VECTOR Capsule::CalcPushBackFromMesh( MV1_COLL_RESULT_POLY_DIM& colInfo,
             VECTOR poligonVec1 = VSub(colInfo.Dim[i].Position[1], colInfo.Dim[i].Position[0]);
             VECTOR poligonVec2 = VSub(colInfo.Dim[i].Position[2], colInfo.Dim[i].Position[0]);
             VECTOR normalVec = VNorm(VCross(poligonVec1, poligonVec2));
-            
-            std::unique_ptr<class Line> line(new Line(normalVec, VScale(normalVec, 2.0f)));
-            if (line->OnCollisionWithMesh(adjoinObj->GetObjHandle(), colInfo))
-            {
-                continue;
-            }
 
             //ÇﬂÇËçûÇ›ó éZèo
             VECTOR distance = VSub(pushBack, colInfo.Dim[i].Position[0]);
@@ -83,7 +75,3 @@ void Capsule::DrawCapsule()
 {
     DrawCapsule3D(worldStart, worldEnd, radius, 8, GetColor(255, 255, 255), GetColor(255, 50, 255), false);
 }
-
-
-
-

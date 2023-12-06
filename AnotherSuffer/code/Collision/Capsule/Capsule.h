@@ -1,4 +1,5 @@
 #pragma once
+#include<DxLib.h>
 
 /// <summary>
 /// カプセル型当たり判定
@@ -37,10 +38,8 @@ public:
     /// メッシュとの衝突時押し戻し量算出
     /// </summary>
     /// <param name="colInfo">:当たり判定情報</param>
-    /// <param name="adjoinObj">:隣接判定オブジェクト</param>
     /// <returns>押し戻し量</returns>
-    VECTOR CalcPushBackFromMesh(MV1_COLL_RESULT_POLY_DIM& colInfo,
-        std::shared_ptr<ObjBase> adjoinObj);
+    VECTOR CalcPushBackFromMesh(MV1_COLL_RESULT_POLY_DIM& colInfo);
 
     /// <summary>
     /// カプセル描画
