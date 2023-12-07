@@ -71,55 +71,6 @@ VECTOR Capsule::CalcPushBackFromMesh(MV1_COLL_RESULT_POLY_DIM& colInfo)
     return VSub(pushBack, worldCenter);
 }
 
-
-
-VECTOR Capsule::CalcPushBackFromMesh(std::unordered_map<class ObjBase*, MV1_COLL_RESULT_POLY_DIM> adjoinObj)
-{
-    //押し戻し量初期化
-    VECTOR pushBack = worldCenter;
-
-    // 衝突ポリゴン数分押し戻し量を計算する
-    for (auto& colObj : adjoinObj)
-    {
-        for (int i = 0; i < colObj.second.HitNum; ++i)
-        {
-            //押し戻し後の座標がまだめり込んでいたら押し戻し量計算
-            if (HitCheck_Capsule_Triangle(
-                VAdd(worldStart, VSub(pushBack, worldCenter)), VAdd(worldEnd, VSub(pushBack, worldCenter)),
-                radius, colObj.second.Dim[i].Position[0], colObj.second.Dim[i].Position[1], colObj.second.Dim[i].Position[2]))
-            {
-                //2辺から法線ベクトル算出
-                VECTOR poligonVec1 = VSub(colObj.second.Dim[i].Position[1], colObj.second.Dim[i].Position[0]);
-                VECTOR poligonVec2 = VSub(colObj.second.Dim[i].Position[2], colObj.second.Dim[i].Position[0]);
-                VECTOR normalVec = VNorm(VCross(poligonVec1, poligonVec2));
-
-                for (auto& adj : adjoinObj)
-                {
-                    for (int j = 0; j < adj.second.HitNum; j++)
-                    {
-                        if (VDot(adj.second.Dim[j].Normal, normalVec) == -1)
-                        {
-                            normalVec = VGet(0, 0, 0);
-                            break;
-                        }
-                    }
-                }
-
-                //めり込み量算出
-                VECTOR distance = VSub(pushBack, colObj.second.Dim[i].Position[0]);
-                float dot = VDot(normalVec, distance);
-                float cavedLen = radius - VSize(VScale(normalVec, dot));
-
-                //めり込んだ分押し戻し量として加算
-                pushBack = VAdd(pushBack, VScale(normalVec, cavedLen));
-            }
-        }
-    }
-
-    // 押し戻し量を返却
-    return VSub(pushBack, worldCenter);
-}
-
 void Capsule::DrawCapsule()
 {
     DrawCapsule3D(worldStart, worldEnd, radius, 8, GetColor(255, 255, 255), GetColor(255, 50, 255), false);

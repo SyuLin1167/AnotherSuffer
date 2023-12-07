@@ -41,14 +41,6 @@ public:
     /// <param name="colInfo">:当たり判定情報</param>
     /// <returns>押し戻し量</returns>
     VECTOR CalcPushBackFromMesh(MV1_COLL_RESULT_POLY_DIM& colInfo);
-
-    /// <summary>
-    /// メッシュとの衝突時押し戻し量算出(隣接判定)
-    /// </summary>
-    /// <param name="adjoinObj">:隣接オブジェクト</param>
-    /// <returns>推し戻し量</returns>
-    VECTOR CalcPushBackFromMesh(std::unordered_map<class ObjBase*, MV1_COLL_RESULT_POLY_DIM> adjoinObj);
-
     /// <summary>
     /// カプセル描画
     /// </summary>

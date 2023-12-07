@@ -4,6 +4,8 @@ Stage::Stage(VECTOR pos)
     :ObjBase(ObjTag.STAGE)
 {
     objHandle = MV1DuplicateModel(model->GetHandle(model->GetJsonData()[objTag.c_str()].GetString()));
+    MV1SetMeshBackCulling(objHandle, -1, true);
+    MV1SetUseZBuffer(objHandle, true);
     objLocalPos = pos;
 
     objScale = VGet(0.2f, 0.2f, 0.2f);
@@ -25,18 +27,24 @@ Stage::~Stage()
 
 void Stage::Update(const float deltaTime)
 {
+    //視野にモデルがなかったら描画しない
+    if (!CheckCameraViewClip_Box(VSub(objPos, VScale(objScale, CLIP_BOX_SIZE)),
+        VAdd(objPos, VScale(objScale, CLIP_BOX_SIZE))))
+    {
+        isVisible = true;
+    }
+    else
+    {
+        isVisible = false;
+    }
+
     //行列でモデルの動作
     CalcObjPos();
-  
     MV1SetMatrix(objHandle, MMult(MGetScale(objScale), MGetTranslate(objPos)));
 }
 
 void Stage::Draw()
 {
-    if (!CheckCameraViewClip_Box(objPos, VAdd(objPos, VGet(40, 0, 40))) &&
-        !CheckCameraViewClip_Box(objPos, VAdd(objPos, VGet(40, 40, 0)))&&
-        !CheckCameraViewClip_Box(objPos, VAdd(objPos, VGet(0, 40, 40))))
-    {
-        MV1DrawModel(objHandle);
-    }
+    //モデル描画
+    MV1DrawModel(objHandle);
 }
