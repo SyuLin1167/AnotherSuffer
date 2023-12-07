@@ -63,6 +63,12 @@ public:
     VECTOR GetObjPos() const { return objPos; }
 
     /// <summary>
+    /// フレーム座標取得
+    /// </summary>
+    /// <returns></returns>
+    VECTOR GetObjFramePos() const { return MV1GetFramePosition(objHandle, frameIdx); }
+
+    /// <summary>
     /// 方向取得
     /// </summary>
     /// <returns>方向</returns>
@@ -97,6 +103,8 @@ protected:
     bool isVisible;         //可視判定
 
     int objHandle;          //ハンドル
+    int frameIdx;           //フレームのインデックス番号
+
     VECTOR objScale;        //オブジェクトの大きさ
     VECTOR objPos;          //座標
     VECTOR objWorldPos;     //ワールド座標

@@ -29,7 +29,7 @@ void FirstPersonView::Update(const float deltaTime)
     //À•Wæ“¾
     std::shared_ptr<ObjBase> player = ObjManager::GetObj(ObjTag.PLAYER)[0];
     assert(player);
-    objWorldPos = player->GetObjPos();
+    objWorldPos = player->GetObjFramePos();
 
     //‹“_ˆÚ“®Zo
     CalcMoveView(deltaTime);

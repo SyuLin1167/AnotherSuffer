@@ -9,6 +9,7 @@ Player::Player()
     //ƒ‚ƒfƒ‹“Ç‚Ýž‚Ý
     texHandle = LoadGraph("../assets/model/Chara/Player/PlayerFace.png");
     objHandle = model->GetHandle(modelData.GetString());
+    frameIdx = 1;
     objDir = VGet(0, 0, -1);
     MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(objPos)));
 
