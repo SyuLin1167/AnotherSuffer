@@ -9,7 +9,7 @@ Player::Player()
     //モデル読み込み
     texHandle = LoadGraph("../assets/model/Chara/Player/PlayerFace.png");
     objHandle = model->GetHandle(modelData.GetString());
-    frameIdx = 1;
+    frameIdx = 0;
     objDir = VGet(0, 0, -1);
     MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(objPos)));
 
@@ -19,7 +19,7 @@ Player::Player()
     //移動速度は走る速度
     moveSpeed = RUN_SPEED;
 
-    capsule=new Capsule(VAdd(objPos, VGet(0, 5, 0)), VAdd(objPos, VGet(0, 25, 0)), 5.0f);
+    capsule=new Capsule(VAdd(objPos, VGet(0, 6, 0)), VAdd(objPos, VGet(0, 30, 0)), 6.0f);
 }
 
 Player::~Player()
@@ -52,6 +52,11 @@ void Player::Update(const float deltaTime)
 
         //サウンド再生
         sound->StartSound(sound->GetHandle(GetFilePass(soundData[jsondata::objKey.walk.c_str()])));
+    }
+
+    if (KeyStatus::KeyStateDecision(KEY_INPUT_SPACE, ONINPUT))
+    {
+        frameIdx++;
     }
 
     //座標更新
