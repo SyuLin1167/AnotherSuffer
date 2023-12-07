@@ -30,5 +30,7 @@ private:
     /// •`‰æˆ—
     /// </summary>
     void Draw() override;
+
+    const float CLIP_BOX_SIZE = 200.0f;
 };
 
