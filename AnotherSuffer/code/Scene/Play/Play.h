@@ -29,12 +29,19 @@ private:
     /// </summary>
     void DrawScene() override;
 
-    int box[5][5] = {
-        {0,1,1,1,0},
-        {1,0,1,0,1},
-        {0,0,1,0,0},
-        {0,1,0,1,0},
-        {1,1,1,1,1},
-    };
+
+    const int SCREEN_WIDTH = 640;
+    const int SCREEN_HEIGHT = 480;
+    const int CELL_SIZE = 20; // セルのサイズ
+    const int MAZE_WIDTH = 21;
+    const int MAZE_HEIGHT = 21;
+
+    int maze[21][21];
+
+    void InitializeMaze();
+
+    void GenerateMaze(int x, int y);
+
+    void DrawMaze();
 };
 
