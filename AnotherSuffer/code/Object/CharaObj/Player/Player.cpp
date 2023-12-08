@@ -12,13 +12,12 @@ Player::Player()
     frameIdx = 0;
     objDir = VGet(0, 0, -1);
     MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(objPos)));
-    MV1SetFrameUserLocalMatrix(objHandle, -1, MMult(MGetScale(objScale), MGetTranslate(objPos)));
 
     motion->StartMotion(objHandle,
         motion->GetHandle(GetFilePass(motionData[jsondata::objKey.nomal.c_str()])));
 
     //移動速度は走る速度
-    moveSpeed = RUN_SPEED;
+    moveSpeed = RUN_SPEED*2;
 
     capsule=new Capsule(VAdd(objPos, VGet(0, 6, 0)), VAdd(objPos, VGet(0, 30, 0)), 6.0f);
 }
@@ -65,7 +64,6 @@ void Player::Update(const float deltaTime)
 
     //行列でモデルの動作
     MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(objPos)));
-    MV1SetFrameUserLocalMatrix(objHandle, -1, MMult(MGetScale(objScale), MGetTranslate(objPos)));
 }
 
 void Player::MoveChara(const float deltaTime)

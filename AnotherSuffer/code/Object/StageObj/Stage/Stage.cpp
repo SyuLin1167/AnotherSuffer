@@ -8,7 +8,7 @@ Stage::Stage(VECTOR pos)
     MV1SetUseZBuffer(objHandle, true);
     objLocalPos = pos;
 
-    objScale = VGet(0.25f, 0.26f, 0.25f);
+    objScale = VGet(0.2f, 0.26f, 0.2f);
     MV1SetScale(objHandle, objScale);
 
 #ifdef _DEBUG
