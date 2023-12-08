@@ -12,6 +12,7 @@ Player::Player()
     frameIdx = 0;
     objDir = VGet(0, 0, -1);
     MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(objPos)));
+    MV1SetFrameUserLocalMatrix(objHandle, -1, MMult(MGetScale(objScale), MGetTranslate(objPos)));
 
     motion->StartMotion(objHandle,
         motion->GetHandle(GetFilePass(motionData[jsondata::objKey.nomal.c_str()])));
@@ -64,6 +65,7 @@ void Player::Update(const float deltaTime)
 
     //s—ñ‚Åƒ‚ƒfƒ‹‚Ì“®ì
     MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(objPos)));
+    MV1SetFrameUserLocalMatrix(objHandle, -1, MMult(MGetScale(objScale), MGetTranslate(objPos)));
 }
 
 void Player::MoveChara(const float deltaTime)
