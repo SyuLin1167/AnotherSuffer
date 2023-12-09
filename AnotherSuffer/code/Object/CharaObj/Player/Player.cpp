@@ -144,10 +144,9 @@ void Player::Draw()
     //当たり判定描画
     capsule->DrawCapsule();
 
-    int hitnum = 0;
+    // 当たったポリゴンの数だけ描画
     for (auto& iter : colData)
     {
-        // 当たったポリゴンの数だけ描画
         for (int i = 0; i < iter.second.HitNum; i++)
         {
             //当たったポリゴン
@@ -155,20 +154,8 @@ void Player::Draw()
                 iter.second.Dim[i].Position[0],
                 iter.second.Dim[i].Position[1],
                 iter.second.Dim[i].Position[2], GetColor(0, 255, 255), TRUE);
-
-
-            //2辺から法線ベクトル算出
-            VECTOR poligonVec1 = VSub(iter.second.Dim[i].Position[1], iter.second.Dim[i].Position[0]);
-            VECTOR poligonVec2 = VSub(iter.second.Dim[i].Position[2], iter.second.Dim[i].Position[0]);
-            VECTOR normalVec = VNorm(VCross(poligonVec1, poligonVec2));
-
-            DrawLine3D(iter.second.Dim[i].Position[0], VAdd(iter.second.Dim[i].Position[0], normalVec), GetColor(255, 200, 0));
         }
-
-        hitnum += iter.second.HitNum;
     }
-        // 当たったポリゴンの数を描画
-    DrawFormatString(0, 150, GetColor(255, 255, 255), "HitPolyNum %d", hitnum);
 
     DrawFormatString(0, 20, GetColor(255, 255, 255), "%f", a);
     DrawLine3D(objPos, VAdd(objPos, VScale(objDir,3)), GetColor(255, 0, 0));
