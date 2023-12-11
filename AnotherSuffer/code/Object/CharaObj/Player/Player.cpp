@@ -84,6 +84,7 @@ void Player::MoveChara(const float deltaTime)
     MoveByKey(KEY_INPUT_S, VScale(aimDir, -1), deltaTime);
     MoveByKey(KEY_INPUT_A, rightDir, deltaTime);
     MoveByKey(KEY_INPUT_D, VScale(rightDir, -1), deltaTime);
+    moveVel.y = 0;
 
     //ç¿ïWÅEï˚å¸ÇÃéZèo
     objLocalPos = VAdd(objLocalPos, VScale(moveVel, moveSpeed * deltaTime));

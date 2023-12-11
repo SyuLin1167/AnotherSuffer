@@ -29,14 +29,11 @@ private:
     /// </summary>
     void DrawScene() override;
 
-
-    const int SCREEN_WIDTH = 640;
-    const int SCREEN_HEIGHT = 480;
     const int CELL_SIZE = 20; // セルのサイズ
-    const int MAZE_WIDTH = 21;
-    const int MAZE_HEIGHT = 21;
+    const int MAZE_WIDTH = 16;
+    const int MAZE_HEIGHT = 16;
 
-    int maze[21][21];
+    int maze[16][16];
 
     void InitializeMaze();
 
