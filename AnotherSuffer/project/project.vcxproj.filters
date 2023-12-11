@@ -112,6 +112,9 @@
     <Filter Include="ソース ファイル\Object\StageObj\MazeAlgorithm">
       <UniqueIdentifier>{638a5359-016b-4fd2-a2ec-26f099895663}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Collision\CollisionManager">
+      <UniqueIdentifier>{9bbff5f8-d31f-4ce7-8490-c2d4d0ccca37}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\code\Scene\SceneBase\SceneBase.cpp">
@@ -191,6 +194,9 @@
     </ClCompile>
     <ClCompile Include="..\code\Collision\Line\Line.cpp">
       <Filter>ソース ファイル\Collision\Line</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\Collision\CollisionManager\ColManager.cpp">
+      <Filter>ソース ファイル\Collision\CollisionManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -275,6 +281,9 @@
     <ClInclude Include="..\code\Collision\Line\Line.h">
       <Filter>ソース ファイル\Collision\Line</Filter>
     </ClInclude>
+    <ClInclude Include="..\code\Collision\CollisionManager\ColManager.h">
+      <Filter>ソース ファイル\Collision\CollisionManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\json\SoundData.json">
@@ -285,6 +294,9 @@
     </None>
     <None Include="..\json\MotionData.json">
       <Filter>ソース ファイル\Asset\Motion</Filter>
+    </None>
+    <None Include="..\json\ColData.json">
+      <Filter>ソース ファイル\Collision\CollisionManager</Filter>
     </None>
   </ItemGroup>
 </Project>
