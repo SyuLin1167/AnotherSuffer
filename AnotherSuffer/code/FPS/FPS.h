@@ -8,7 +8,7 @@ class FPS final
 {
 public:
     /// <summary>
-    /// FPS初期化処理
+    /// FPS初期化
     /// </summary>
     static void InitFPS();
 
@@ -18,12 +18,12 @@ public:
     ~FPS();
 
     /// <summary>
-    /// 更新処理
+    /// 更新
     /// </summary>
     static void Update();
 
     /// <summary>
-    /// デルタタイム取得処理
+    /// デルタタイム取得
     /// </summary>
     /// <returns>デルタタイム</returns>
     static const float GetDeltaTime() { return singleton->deltaTime; }

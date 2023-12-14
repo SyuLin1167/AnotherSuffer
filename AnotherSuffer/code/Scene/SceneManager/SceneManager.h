@@ -9,7 +9,7 @@ class SceneManager final
 {
 public:
     /// <summary>
-    /// シーン管理初期化処理
+    /// シーン管理初期化
     /// </summary>
     static void InitSceneManager();
 
@@ -29,17 +29,17 @@ private:
     /// </summary>
     SceneManager();
 
-    /// シーン更新処理
+    /// シーン更新
     /// </summary>
     static void UpdateScene();
 
     /// <summary>
-    /// シーン描画処理
+    /// シーン描画
     /// </summary>
     static void DrawScene();
 
     /// <summary>
-    /// シーン切り替え処理
+    /// シーン切り替え
     /// </summary>
     static void ChangeScene();
 

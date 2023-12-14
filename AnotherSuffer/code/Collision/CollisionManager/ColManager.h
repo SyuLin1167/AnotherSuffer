@@ -8,17 +8,17 @@ class ColManager
 {
 public:
     /// <summary>
-    /// コリジョンマネージャー初期化処理
+    /// コリジョンマネージャー初期化
     /// </summary>
     static void InitColManager();
 
     /// <summary>
-    /// 当たり判定組み合わせ判別処理
+    /// 当たり判定組み合わせ判別
     /// </summary>
     static void CheckCollisionPair();
 
     /// <summary>
-    /// 当たり判定処理
+    /// 当たり判定
     /// </summary>
     static void OnCollisionEnter();
 

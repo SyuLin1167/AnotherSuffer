@@ -9,7 +9,7 @@ GameManager::GameManager()
     //ƒƒO‚Ì”ñ•\¦
     SetOutApplicationLogValidFlag(false);
 
-    //‰Šú‰»ˆ—
+    //‰Šú‰»
     Window::InitWindow();
     GameSetting::InitGameSetting();
     SceneManager::InitSceneManager();

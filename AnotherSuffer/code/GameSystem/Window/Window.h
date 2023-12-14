@@ -9,7 +9,7 @@ class Window
 {
 public:
     /// <summary>
-    /// ウィンドウ初期化処理
+    /// ウィンドウ初期化
     /// </summary>
     static void InitWindow();
 
@@ -19,7 +19,7 @@ public:
     ~Window();
 
     /// <summary>
-    /// ウィンドウサイズ取得処理
+    /// ウィンドウサイズ取得
     /// </summary>
     /// <returns>ウィンドウサイズ</returns>
     static const VECTOR GetWindowSize() { return singleton->WINDOW_SIZE; }

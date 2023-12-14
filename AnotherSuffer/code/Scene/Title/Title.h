@@ -24,14 +24,14 @@ public:
     ~Title();
 
     /// <summary>
-    /// シーン更新処理
+    /// シーン更新
     /// </summary>
     /// <param name="deltaTime">:フレームレート</param>
     /// <returns>次フレームのシーン</returns>
     SceneBase* UpdateScene(const float deltaTime) override;
 
     /// <summary>
-    /// シーン描画処理
+    /// シーン描画
     /// </summary>
     void DrawScene() override;
 };

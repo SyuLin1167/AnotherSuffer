@@ -8,7 +8,7 @@ class GameSetting final
 {
 public:
     /// <summary>
-    /// ゲーム設定初期化処理
+    /// ゲーム設定初期化
     /// </summary>
     static void InitGameSetting();
 
@@ -25,12 +25,12 @@ private:
     GameSetting();
 
     /// <summary>
-    /// ライブラリ初期化前処理
+    /// ライブラリ初期化前
     /// </summary>
     static void BeforeLibInit();
 
     /// <summary>
-    /// ライブラリ初期化後処理
+    /// ライブラリ初期化後
     /// </summary>
     static void AfterLibInit();
 

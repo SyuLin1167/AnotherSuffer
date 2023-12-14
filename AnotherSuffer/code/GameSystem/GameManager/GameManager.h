@@ -19,7 +19,7 @@ public:
     ~GameManager();
 
     /// <summary>
-    /// Àsˆ—
+    /// Às
     /// </summary>
     void Procces();
 };

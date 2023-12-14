@@ -19,20 +19,20 @@ public:
     ~Motion();
 
     /// <summary>
-    /// モーション時間経過処理
+    /// モーション時間経過
     /// </summary>
     /// <param name="deltaTime">:デルタタイム</param>
     void AddMotionTime( const float deltaTime);
 
     /// <summary>
-    /// モーション再生処理
+    /// モーション再生
     /// </summary>
     /// <param name="model">:モデルハンドル</param>
     /// <param name="handle">:ハンドル</param>
     void StartMotion(int model, int handle);
 
     /// <summary>
-    /// モーション停止処理
+    /// モーション停止
     /// </summary>
     /// <param name="handle">:ハンドル</param>
     void StopMotion();
@@ -44,19 +44,19 @@ public:
     bool IsPlaying();
 
     /// <summary>
-    /// ハンドル削除処理
+    /// ハンドル削除
     /// </summary>
     virtual void DeleteHandle() override;
 
 private:
     /// <summary>
-    /// ハンドル追加処理
+    /// ハンドル追加
     /// </summary>
     /// <param name="fileName">:ファイル名</param>
     void AddHandle(std::string fileName) override;
 
     /// <summary>
-    /// データ追加処理
+    /// データ追加
     /// </summary>
     /// <param name="key">:jsonデータ取得キー</param>
     void AddData(const rapidjson::Value& key);

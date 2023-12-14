@@ -18,14 +18,14 @@ public:
     virtual ~SceneBase();
 
     /// <summary>
-    /// シーン更新処理
+    /// シーン更新
     /// </summary>
     /// <param name="deltaTime">:デルタタイム</param>
     /// <returns>次フレームのシーン</returns>
     virtual SceneBase* UpdateScene(const float deltaTime) = 0;
 
     /// <summary>
-    /// シーン描画処理
+    /// シーン描画
     /// </summary>
     virtual void DrawScene() = 0;
 

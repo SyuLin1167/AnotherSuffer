@@ -14,12 +14,12 @@ class KeyStatus final
 {
 public:
     /// <summary>
-    /// キー入力初期化処理
+    /// キー入力初期化
     /// </summary>
     static void InitKeyStatus();
 
     /// <summary>
-    /// 入力判定処理
+    /// 入力判定
     /// </summary>
     /// <param name="key">:判定したいキー</param>
     /// <param name="flag">:判定フラグ</param>
@@ -52,7 +52,7 @@ private:
     };
 
     /// <summary>
-    /// キーステータス切り替え処理
+    /// キーステータス切り替え
     /// </summary>
     /// <param name="key">:切り替えたいキー</param>
     static void ChangeKeyState(int key);
