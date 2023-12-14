@@ -19,31 +19,31 @@ public:
     ~Sound();
 
     /// <summary>
-    /// サウンド再生処理
+    /// サウンド再生
     /// </summary>
     /// <param name="handle">:ハンドル</param>
     void StartSound(const int& handle);
 
     /// <summary>
-    /// サウンド停止処理
+    /// サウンド停止
     /// </summary>
     /// <param name="handle">:ハンドル</param>
     void StopSound(const int& handle);
 
     /// <summary>
-    /// ハンドル削除処理
+    /// ハンドル削除
     /// </summary>
     virtual void DeleteHandle() override;
 
 private:
     /// <summary>
-    /// ハンドル追加処理
+    /// ハンドル追加
     /// </summary>
     /// <param name="fileName">:ファイル名</param>
     void AddHandle(std::string fileName) override ;
 
     /// <summary>
-    /// データ追加処理
+    /// データ追加
     /// </summary>
     /// <param name="key">:jsonデータ取得キー</param>
     void AddData(const rapidjson::Value& key);

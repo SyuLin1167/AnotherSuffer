@@ -4,7 +4,7 @@
 namespace math
 {
     /// <summary>
-    /// 角度からラジアンへの変換処理
+    /// 角度からラジアンへの変換
     /// </summary>
     /// <param name="degre">:角度</param>
     /// <returns>変換後のラジアン角</returns>
@@ -14,7 +14,7 @@ namespace math
     }
 
     /// <summary>
-    /// ラジアンから角度への変換処理
+    /// ラジアンから角度への変換
     /// </summary>
     /// <param name="rad">:</param>
     /// <returns>変換後の角度</returns>

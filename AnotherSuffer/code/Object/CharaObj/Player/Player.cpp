@@ -93,7 +93,7 @@ void Player::MoveChara(const float deltaTime)
 
 void Player::MoveByKey(const int keyName, const VECTOR dir, const float deltaTime)
 {
-    //キーが入力されていたら移動時の処理実行
+    //キーが入力されていたら移動時の実行
     if (KeyStatus::KeyStateDecision(keyName, ONINPUT | NOWONINPUT))
     {
         moveVel = VNorm(VAdd(moveVel, dir));

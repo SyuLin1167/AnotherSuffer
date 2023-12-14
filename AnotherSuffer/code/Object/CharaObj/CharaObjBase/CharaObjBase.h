@@ -21,27 +21,27 @@ public:
 
 protected:
     /// <summary>
-    /// データ内ファイルパス取得処理
+    /// データ内ファイルパス取得
     /// </summary>
     /// <param name="objData">:取得したいオブジェクトデータ</param>
     /// <returns>ファイルパス</returns>
     const std::string GetFilePass(const rapidjson::Value& objData) { return objData[jsondata::dataKey.pass.c_str()].GetString(); }
 
     /// <summary>
-    /// キャラ動作処理
+    /// キャラ動作
     /// </summary>
     /// <param name="deltaTime">:デルタタイム</param>
     virtual void MoveChara(const float deltaTime) = 0;
 
     /// <summary>
-    /// Y軸回転処理
+    /// Y軸回転
     /// </summary>
     /// <param name="dir">:目標の向き</param>
     /// <param name="velocity">:角速度</param>
     void RotateYAxis(const VECTOR dir, float velocity);
 
     /// <summary>
-    /// 回転方向算出処理
+    /// 回転方向算出
     /// </summary>
     /// <returns>:</returns>
     /// <param name="velocity">:角速度</param>

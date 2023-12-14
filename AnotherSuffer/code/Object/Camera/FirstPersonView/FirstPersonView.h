@@ -22,7 +22,7 @@ public:
 
 private:
     /// <summary>
-    /// 更新処理
+    /// 更新
     /// </summary>
     /// <param name="deltaTime">:デルタタイム</param>
     void Update(const float deltaTime) override;
@@ -34,7 +34,7 @@ private:
     void CalcMoveView(const float deltaTime);
 
     /// <summary>
-    /// 描画処理
+    /// 描画
     /// </summary>
     void Draw() override;
 

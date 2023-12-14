@@ -18,13 +18,13 @@ public:
     ~Model();
 
     /// <summary>
-    /// ハンドル削除処理
+    /// ハンドル削除
     /// </summary>
     void DeleteHandle() override;
 
 private:
     /// <summary>
-    /// ハンドル追加処理
+    /// ハンドル追加
     /// </summary>
     /// <param name="fileName">:ファイル名</param>
     void AddHandle(const std::string fileName) override;

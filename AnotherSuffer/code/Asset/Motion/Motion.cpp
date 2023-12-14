@@ -102,7 +102,7 @@ void Motion::AddMotionTime(const float deltaTime)
     {
         nowMotionTime += motionData[nowHandle].playSpeed * deltaTime;
 
-        //ループ再生処理
+        //ループ再生
         if (motionData[nowHandle].isLoop &&
             nowMotionTime > motionData[nowHandle].totalTime)
         {

@@ -20,13 +20,13 @@ public:
     ~Line();
 
     /// <summary>
-    /// 更新処理
+    /// 更新
     /// </summary>
     /// <param name="pos">:移動座標</param>
     void Update(const VECTOR& pos);
 
     /// <summary>
-    /// メッシュとの衝突判定処理
+    /// メッシュとの衝突判定
     /// </summary>
     /// <param name="modelHandle">:モデルハンドル</param>
     /// <param name="colInfo">:当たり判定情報</param>

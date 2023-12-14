@@ -8,7 +8,7 @@ class AssetManager final
 {
 public:
     /// <summary>
-    /// アセットマネージャー初期化処理
+    /// アセットマネージャー初期化
     /// </summary>
     static void InitAssetManager();
 

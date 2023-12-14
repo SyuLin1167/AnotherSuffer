@@ -19,19 +19,19 @@ public:
 
 private:
     /// <summary>
-    /// 更新処理
+    /// 更新
     /// </summary>
     /// <param name="deltaTime">デルタタイム</param>
     void Update(const float deltaTime) override;
 
     /// <summary>
-    /// キャラ動作処理
+    /// キャラ動作
     /// </summary>
     /// <param name="deltaTime">:デルタタイム</param>
     void MoveChara(const float deltaTime)override;
 
     /// <summary>
-    /// キー入力による移動処理
+    /// キー入力による移動
     /// </summary>
     /// <param name="keyName">:キー名</param>
     /// <param name="dir">:移動方向</param>
@@ -39,13 +39,13 @@ private:
     void MoveByKey(const int keyName, const VECTOR dir, const float deltaTime);
 
     /// <summary>
-    /// 当たり判定処理
+    /// 当たり判定
     /// </summary>
     /// <param name="colObj">:判定するオブジェクト</param>
     void OnCollisionEnter(class ObjBase* colObj) override;
 
     /// <summary>
-    /// 描画処理
+    /// 描画
     /// </summary>
     void Draw() override;
 

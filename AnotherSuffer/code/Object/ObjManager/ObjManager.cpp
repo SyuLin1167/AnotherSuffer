@@ -33,7 +33,7 @@ void ObjManager::AddObj(class ObjBase* newObj)
 
 void ObjManager::UpdateObj(const float deltaTime)
 {
-    //全タグ分更新処理をまとめて行う
+    //全タグ分更新をまとめて行う
     for (auto& tag : objTagAll)
     {
         for (int i = 0; i < singleton->object[tag].size(); i++)
@@ -46,7 +46,7 @@ void ObjManager::UpdateObj(const float deltaTime)
 
 void ObjManager::DrawObj()
 {
-    //全タグ分描画処理をまとめて行う
+    //全タグ分描画をまとめて行う
     for (auto& tag : objTagAll)
     {
         for (int i = 0; i < singleton->object[tag].size(); i++)

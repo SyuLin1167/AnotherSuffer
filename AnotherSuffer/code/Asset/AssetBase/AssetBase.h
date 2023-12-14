@@ -26,13 +26,13 @@ public:
     virtual ~AssetBase();
 
     /// <summary>
-    /// Jsonファイルデータ取得処理
+    /// Jsonファイルデータ取得
     /// </summary>
     /// <returns>jsonファイルデータ</returns>
     rapidjson::Value& GetJsonData() { return doc[assetType.c_str()]; }
 
     /// <summary>
-    /// ハンドル取得処理
+    /// ハンドル取得
     /// </summary>
     /// <param name="handleName">:ハンドル名</param>
     /// <returns>ハンドル</returns>
@@ -40,18 +40,18 @@ public:
 
 protected:
     /// <summary>
-    /// Jsonファイル読み込み処理
+    /// Jsonファイル読み込み
     /// </summary>
     /// <param name="fileName">:ファイル名</param>
     void LoadJsonFile(const std::string fileName);
 
     /// <summary>
-    /// ハンドル追加処理
+    /// ハンドル追加
     /// </summary>
     virtual void AddHandle(const std::string fileName) = 0;
 
     /// <summary>
-    /// ハンドル削除処理
+    /// ハンドル削除
     /// </summary>
     virtual void DeleteHandle() = 0;
 

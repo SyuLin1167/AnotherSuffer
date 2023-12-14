@@ -14,18 +14,18 @@ class ObjManager final
 {
 public:
     /// <summary>
-    /// オブジェクトマネージャー初期化処理
+    /// オブジェクトマネージャー初期化
     /// </summary>
     static void InitObjManager();
 
     /// <summary>
-    /// オブジェクト追加処理
+    /// オブジェクト追加
     /// </summary>
     /// <param name="newObj">:追加オブジェクト</param>
     static void AddObj(class ObjBase* newObj);
 
     /// <summary>
-    /// オブジェクト更新処理
+    /// オブジェクト更新
     /// </summary>
     /// <param name="deltaTime">:デルタタイム</param>
     static void UpdateObj(const float deltaTime);
@@ -41,12 +41,12 @@ public:
     static void OnColllsionObj();
 
     /// <summary>
-    /// 全オブジェクト削除処理
+    /// 全オブジェクト削除
     /// </summary>
     static void DeleteAllObj();
 
     /// <summary>
-    /// オブジェクト取得処理
+    /// オブジェクト取得
     /// </summary>
     /// <param name="tag">:タグ</param>
     /// <returns>:オブジェクトの配列</returns>
@@ -64,12 +64,12 @@ private:
     ObjManager();
 
     /// <summary>
-    /// オブジェクト死亡処理
+    /// オブジェクト死亡
     /// </summary>
     static void OnDeadObj();
 
     /// <summary>
-    /// オブジェクト削除処理
+    /// オブジェクト削除
     /// </summary>
     /// <param name="unnecObj">:不必要オブジェクト</param>
     static void DeleteObj(std::shared_ptr<class ObjBase> unnecObj);

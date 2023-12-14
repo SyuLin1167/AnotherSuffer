@@ -109,11 +109,11 @@
     <Filter Include="ソース ファイル\Collision\Line">
       <UniqueIdentifier>{b8552427-7756-4098-bfbf-70f0655ac760}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Object\StageObj\MazeAlgorithm">
-      <UniqueIdentifier>{638a5359-016b-4fd2-a2ec-26f099895663}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\Collision\CollisionManager">
       <UniqueIdentifier>{9bbff5f8-d31f-4ce7-8490-c2d4d0ccca37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Object\StageObj\StageAlgorithm">
+      <UniqueIdentifier>{638a5359-016b-4fd2-a2ec-26f099895663}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

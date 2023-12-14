@@ -28,19 +28,19 @@ public:
     virtual ~ObjBase();
 
     /// <summary>
-    /// 更新処理
+    /// 更新
     /// </summary>
     /// <param name="deltaTime">:デルタタイム</param>
     virtual void Update(const float deltaTime) = 0;
 
     /// <summary>
-    /// 当たり判定処理
+    /// 当たり判定
     /// </summary>
     /// <param name="colObj">:判定するオブジェクト</param>
     virtual void OnCollisionEnter(ObjBase* colObj) {};
 
     /// <summary>
-    /// 描画処理
+    /// 描画
     /// </summary>
     virtual void Draw() = 0;
 
@@ -88,7 +88,7 @@ public:
 
 protected:
     /// <summary>
-    /// オブジェクト座標算出処理
+    /// オブジェクト座標算出
     /// </summary>
     /// <returns>座標</returns>
     void CalcObjPos();

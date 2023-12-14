@@ -41,7 +41,7 @@ bool KeyStatus::KeyStateDecision(int key, int flag)
 
 void KeyStatus::ChangeKeyState(int key)
 {
-    //キーが格納されてたら切り替え処理
+    //キーが格納されてたら切り替え
     auto findData = singleton->keyData.find(key);
     if (findData != singleton->keyData.end())
     {
@@ -50,7 +50,7 @@ void KeyStatus::ChangeKeyState(int key)
         //ステータスの切り替えをする
         if (CheckHitKey(key))
         {
-            //初期化処理
+            //初期化
             if (data.inputState & (UNINPUT | NOWUNINPUT))
             {
                 data.inputState = ONINPUT;
@@ -60,7 +60,7 @@ void KeyStatus::ChangeKeyState(int key)
         }
         else
         {
-            //初期化処理
+            //初期化
             if (data.inputState & (ONINPUT | NOWONINPUT))
             {
                 data.inputState = UNINPUT;
