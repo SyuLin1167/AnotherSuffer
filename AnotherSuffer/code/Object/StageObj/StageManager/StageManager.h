@@ -53,7 +53,12 @@ private:
     /// <summary>
     /// 障壁ブロック設置
     /// </summary>
-    //void SetBarricade();
+    void SetBarricade();
+
+    /// <summary>
+    /// オブジェクト配置
+    /// </summary>
+    void PlacementObject();
 
     /// <summary>
     /// デバッグ用描画

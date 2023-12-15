@@ -9,7 +9,7 @@ StageManager::StageManager()
     std::srand(unsigned int(time(NULL)));
     InitStageData();
     CreateStage();
-    //SetBarricade();
+    SetBarricade();
 }
 
 StageManager::~StageManager()
@@ -42,9 +42,12 @@ void StageManager::CreateStage(int indexX, int indexY)
         int nextY = indexY + CalcNextCell(UP | DOWN);
 
         //2ƒ}ƒXˆÚ“®Œã‚ªŠO•Ç‚ð’´‚¦‚È‚©‚Á‚½‚ç’Ê˜H‚ðì‚é
-        if (nx > 0 && nx < STAGE_SIZE && ny > 0 && ny < STAGE_SIZE && (stageData[ny][nx] & WALL)) {
-            stageData[indexY + dy][x + dx] = AISLE;
-            GenerateMaze(nx, ny);
+        int secondNextX = indexX + CalcNextCell(LEFT | RIGHT) * TWO_CELL;
+        int secondNextY = indexX + CalcNextCell(LEFT | RIGHT) * TWO_CELL;
+        if (IsOnStage(secondNextX) && IsOnStage(secondNextY) &&
+            (stageData[secondNextY][secondNextX] & WALL)) {
+            stageData[nextY][nextX] = AISLE;
+            CreateStage(secondNextY, secondNextX);
         }
     }
 }
@@ -81,6 +84,41 @@ bool StageManager::IsOnStage(int index)
         return true;
     }
     return false;
+}
+
+void StageManager::SetBarricade()
+{
+    //•Ç‚ð’T‚·
+    for (int i = 1; i < STAGE_SIZE - 1; ++i) 
+    {
+        for (int j = 1; j < STAGE_SIZE - 1; ++j)
+        {
+            if (stageData[i][j] & WALL) 
+            {
+                //•Ç‚É‹²‚Ü‚ê‚Ä‚¢‚½‚ç4•ª‚Ì1‚ÌŠm—§‚Åá•Ç‚É‚·‚é
+                int trapProb = rand() % 4;
+                if (trapProb & 1)
+                {
+                    if ((stageData[i][j + 1] & stageData[i][j - 1] & WALL) ||
+                        (stageData[i + 1][j] & stageData[i - 1][j] & WALL))
+                    {
+                        stageData[i][j] = BARRICADE;
+                    }
+                }
+            }
+        }
+    }
+}
+
+void StageManager::PlacementObject()
+{
+    for (auto& indexY : stageData)
+    {
+        for (auto& indexX : indexY.second)
+        {
+
+        }
+    }
 }
 
 

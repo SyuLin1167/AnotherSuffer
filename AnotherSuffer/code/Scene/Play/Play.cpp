@@ -29,11 +29,7 @@ Play::Play()
                     if ((stageData[i][j + 1] & stageData[i][j - 1] & WALL) ||
                         (stageData[i + 1][j] & stageData[i - 1][j] & WALL))
                     {
-                        if ((stageData[i][j + 1] != BARRICADE && stageData[i][j - 1] != BARRICADE) &&
-                            (stageData[i + 1][j] != BARRICADE && stageData[i - 1][j] != BARRICADE))
-                        {
-                            stageData[i][j] = BARRICADE;
-                        }
+                        stageData[i][j] = BARRICADE;
                     }
                 }
             }
