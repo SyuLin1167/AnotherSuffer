@@ -37,18 +37,33 @@ private:
     void ShuffleDirection();
 
     /// <summary>
-    /// 障壁ブロック変更判定
+    /// 次に進むセル算出
     /// </summary>
-    /// <returns></returns>
-    void ChangeToBarricade();
+    /// <param name="dir">:進行方向</param>
+    /// <returns>次に進むセルの位置</returns>
+    int CalcNextCell (int dir);
+
+    /// <summary>
+    /// ステージ内外判定
+    /// </summary>
+    /// <param name="index">:判定する添え字番号</param>
+    /// <returns>ステージ内:true|外:false</returns>
+    bool IsOnStage(int index);
+
+    /// <summary>
+    /// 障壁ブロック設置
+    /// </summary>
+    //void SetBarricade();
 
     /// <summary>
     /// デバッグ用描画
     /// </summary>
-    void DebugDraw();
+    //void DebugDraw();
 
     const float BLOCK_SIZE = 40.0f;                             //ブロックサイズ
     const int STAGE_SIZE = 17;                                  //ステージサイズ
+    const int MOVE_CELL = 1;                                    //セルの移動量
+    const int TWO_CELL = 2;
 
     const int UP = 0x0001;                                      //上
     const int DOWN = 0x0002;                                    //下
