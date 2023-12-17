@@ -56,6 +56,5 @@ private:
     VECTOR moveVel;
 
     MV1_COLL_RESULT_POLY_DIM colInfo;
-    std::unordered_map<class ObjBase*, MV1_COLL_RESULT_POLY_DIM> colData;
 };
 

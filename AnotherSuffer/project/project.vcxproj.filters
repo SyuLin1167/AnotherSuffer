@@ -91,9 +91,6 @@
     <Filter Include="ソース ファイル\Object\StageObj">
       <UniqueIdentifier>{4f76e792-2fa9-46f9-adfb-3b9f1e283c2a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Object\StageObj\Stage">
-      <UniqueIdentifier>{e6fe8648-34ec-45e5-b050-5ed52d59548b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\Collision">
       <UniqueIdentifier>{8954f12b-1042-4704-99a3-2863034f6039}</UniqueIdentifier>
     </Filter>
@@ -114,6 +111,9 @@
     </Filter>
     <Filter Include="ソース ファイル\Object\StageObj\StageAlgorithm">
       <UniqueIdentifier>{638a5359-016b-4fd2-a2ec-26f099895663}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Object\StageObj\Wall">
+      <UniqueIdentifier>{e6fe8648-34ec-45e5-b050-5ed52d59548b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -183,9 +183,6 @@
     <ClCompile Include="..\code\Object\Camera\FirstPersonView\FirstPersonView.cpp">
       <Filter>ソース ファイル\Object\Camera\FirstPersonView</Filter>
     </ClCompile>
-    <ClCompile Include="..\code\Object\StageObj\Stage\Stage.cpp">
-      <Filter>ソース ファイル\Object\StageObj\Stage</Filter>
-    </ClCompile>
     <ClCompile Include="..\code\Collision\Capsule\Capsule.cpp">
       <Filter>ソース ファイル\Collision\Capsule</Filter>
     </ClCompile>
@@ -197,6 +194,9 @@
     </ClCompile>
     <ClCompile Include="..\code\Collision\CollisionManager\ColManager.cpp">
       <Filter>ソース ファイル\Collision\CollisionManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\Object\StageObj\Wall\Wall.cpp">
+      <Filter>ソース ファイル\Object\StageObj\Wall</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -269,9 +269,6 @@
     <ClInclude Include="..\code\Object\Camera\FirstPersonView\FirstPersonView.h">
       <Filter>ソース ファイル\Object\Camera\FirstPersonView</Filter>
     </ClInclude>
-    <ClInclude Include="..\code\Object\StageObj\Stage\Stage.h">
-      <Filter>ソース ファイル\Object\StageObj\Stage</Filter>
-    </ClInclude>
     <ClInclude Include="..\code\Collision\Capsule\Capsule.h">
       <Filter>ソース ファイル\Collision\Capsule</Filter>
     </ClInclude>
@@ -283,6 +280,9 @@
     </ClInclude>
     <ClInclude Include="..\code\Collision\CollisionManager\ColManager.h">
       <Filter>ソース ファイル\Collision\CollisionManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Object\StageObj\Wall\Wall.h">
+      <Filter>ソース ファイル\Object\StageObj\Wall</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
