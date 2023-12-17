@@ -2,22 +2,20 @@
 #include"../../ObjBase/ObjBase.h"
 
 /// <summary>
-/// ステージのブロック
+/// 壁ブロック
 /// </summary>
-class Stage final:public ObjBase
+class Wall final:public ObjBase
 {
 public:
-    Stage() :ObjBase(ObjTag.STAGE) {};
-
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    Stage(VECTOR pos);
+    Wall(VECTOR pos);
 
     /// <summary>
     /// デストラクタ
     /// </summary>
-    ~Stage();
+    ~Wall();
 
 private:
     /// <summary>
@@ -31,6 +29,7 @@ private:
     /// </summary>
     void Draw() override;
 
-    const float CLIP_BOX_SIZE = 200.0f;
+    const float CLIP_BOX_SIZE = 150.0f;
+    int texHandle;
 };
 

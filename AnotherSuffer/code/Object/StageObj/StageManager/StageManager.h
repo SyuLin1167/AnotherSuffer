@@ -18,6 +18,11 @@ public:
     /// </summary>
     ~StageManager();
 
+    /// <summary>
+    /// デバッグ用描画
+    /// </summary>
+    void DebugDraw();
+
 private:
     /// <summary>
     /// ステージデータ初期化
@@ -25,7 +30,7 @@ private:
     void InitStageData();
 
     /// <summary>
-    /// ステージ生成
+    /// ステージ作成
     /// </summary>
     /// <param name="indexX">横軸添え字番号</param>
     /// <param name="indexY">縦軸添え字番号</param>
@@ -40,8 +45,10 @@ private:
     /// 次に進むセル算出
     /// </summary>
     /// <param name="dir">:進行方向</param>
+    /// <param name="subDir">:判定フラグ</param>
+    /// <param name="addDir">:判定フラグ</param>
     /// <returns>次に進むセルの位置</returns>
-    int CalcNextCell (int dir);
+    int CalcNextCell(int dir, int subDir, int addDir);
 
     /// <summary>
     /// ステージ内外判定
@@ -53,12 +60,12 @@ private:
     /// <summary>
     /// 障壁ブロック設置
     /// </summary>
-    //void SetBarricade();
+    void SetBarricade();
 
     /// <summary>
-    /// デバッグ用描画
+    /// オブジェクト配置
     /// </summary>
-    //void DebugDraw();
+    void PlacementObject();
 
     const float BLOCK_SIZE = 40.0f;                             //ブロックサイズ
     const int STAGE_SIZE = 17;                                  //ステージサイズ
@@ -74,6 +81,7 @@ private:
     const int WALL = 0x0001;                                    //壁
     const int AISLE = 0x0002;                                   //通路
     const int BARRICADE = 0x0004;                               //障壁
-    std::unordered_map<int, std::vector<int>> stageData;        //ステージデータ
+    std::unordered_map<int, 
+        std::unordered_map<int, int>> stageData;                //ステージデータ
 };
 

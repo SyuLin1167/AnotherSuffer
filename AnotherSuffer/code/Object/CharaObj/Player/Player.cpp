@@ -5,9 +5,10 @@
 
 Player::Player()
     :CharaObjBase(ObjTag.PLAYER)
+    ,colInfo()
+    ,moveVel()
 {
     //モデル読み込み
-    texHandle = LoadGraph("../assets/model/Chara/Player/PlayerFace.png");
     objHandle = model->GetHandle(modelData.GetString());
     frameIdx = 0;
     objDir = VGet(0, 0, -1);
@@ -20,11 +21,13 @@ Player::Player()
     moveSpeed = RUN_SPEED*2;
 
     capsule=new Capsule(VAdd(objPos, VGet(0, 6, 0)), VAdd(objPos, VGet(0, 30, 0)), 6.0f);
+
+    texHandle = CreatePointLightHandle(objPos, 150.0f, 0.0f, 0.0f, 0.001f);
 }
 
 Player::~Player()
 {
-    colData.clear();
+    //処理なし
 }
 
 void Player::Update(const float deltaTime)
@@ -73,6 +76,7 @@ void Player::MoveChara(const float deltaTime)
 
     //カメラの向きを自身の移動方向とする
     std::shared_ptr<ObjBase> camera = ObjManager::GetObj(ObjTag.CAMERA)[0];
+    SetLightPositionHandle(texHandle, camera->GetObjPos());
     VECTOR aimDir = camera->GetObjDir();
     VECTOR rightDir = VCross(VGet(0, -1, 0), aimDir);
     aimDir.y = 0;
@@ -109,20 +113,13 @@ void Player::MoveByKey(const int keyName, const VECTOR dir, const float deltaTim
 
 void Player::OnCollisionEnter(ObjBase* colObj)
 {
-    auto findCol = colData.find(colObj);
-    if (findCol == colData.end())
-    {
-        colData.emplace(colObj, colInfo);
-    }
-
-    if (capsule->OnCollisionWithMesh(colObj->GetObjHandle(), colData[colObj]))
+    if (capsule->OnCollisionWithMesh(colObj->GetObjHandle(), colInfo))
     {
         a = 0;
-        objLocalPos = VAdd(objLocalPos, capsule->CalcPushBackFromMesh(colData[colObj]));
+        objLocalPos = VAdd(objLocalPos, capsule->CalcPushBackFromMesh(colInfo));
 
-        MV1CollResultPolyDimTerminate(colData[colObj]);
+        MV1CollResultPolyDimTerminate(colInfo);
     }
-
 
     //座標更新
     CalcObjPos();
@@ -134,10 +131,6 @@ void Player::OnCollisionEnter(ObjBase* colObj)
 
 void Player::Draw()
 {
-    // テクスチャで使用するグラフィックハンドルを変更する
-    int texIndex = MV1GetMaterialDifMapTexture(objHandle, 0);
-    MV1SetTextureGraphHandle(objHandle, texIndex, texHandle, FALSE);
-
     //モデル描画
     MV1DrawModel(objHandle);
 
@@ -145,17 +138,13 @@ void Player::Draw()
     //当たり判定描画
     capsule->DrawCapsule();
 
-    // 当たったポリゴンの数だけ描画
-    for (auto& iter : colData)
+    //当たったポリゴン
+    for (int i = 0; i < colInfo.HitNum; i++)
     {
-        for (int i = 0; i < iter.second.HitNum; i++)
-        {
-            //当たったポリゴン
-            DrawTriangle3D(
-                iter.second.Dim[i].Position[0],
-                iter.second.Dim[i].Position[1],
-                iter.second.Dim[i].Position[2], GetColor(0, 255, 255), TRUE);
-        }
+        DrawTriangle3D(
+            colInfo.Dim[i].Position[0],
+            colInfo.Dim[i].Position[1],
+            colInfo.Dim[i].Position[2], GetColor(0, 255, 255), TRUE);
     }
 
     DrawFormatString(0, 20, GetColor(255, 255, 255), "%f", a);
