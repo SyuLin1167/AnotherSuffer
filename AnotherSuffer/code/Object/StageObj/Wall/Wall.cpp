@@ -1,7 +1,14 @@
 #include "Wall.h"
+#include"../../ObjManager/ObjManager.h"
+
+constexpr float CLIP_BOX_SIZE = 100.0f;     //切り抜きボックスサイズ
+constexpr float CLIP_DISTANCE = 450.0f;     //切り抜き距離
 
 Wall::Wall(VECTOR pos)
     :ObjBase(ObjTag.STAGE)
+    , clipBoxScale()
+    , clipBoxPos1()
+    , clipBoxPos2()
 {
     //texHandle = LoadGraph("");
     objHandle = MV1DuplicateModel(model->GetHandle(model->GetJsonData()[objTag.c_str()].GetString()));
@@ -28,20 +35,35 @@ Wall::~Wall()
 
 void Wall::Update(const float deltaTime)
 {
-    //視野にモデルがなかったら描画しない
-    if (!CheckCameraViewClip_Box(VSub(objPos, VScale(objScale, CLIP_BOX_SIZE)),
-        VAdd(objPos, VScale(objScale, CLIP_BOX_SIZE))))
-    {
-        isVisible = true;
-    }
-    else
-    {
-        isVisible = false;
-    }
+    ViewClipBox();
 
     //行列でモデルの動作
     CalcObjPos();
     MV1SetMatrix(objHandle, MMult(MGetScale(objScale), MGetTranslate(objPos)));
+}
+
+void Wall::ViewClipBox()
+{
+    player = ObjManager::GetObj(ObjTag.PLAYER)[0];
+    VECTOR distance = VSub(objPos, player->GetObjPos());
+    if (VSize(distance) > CLIP_DISTANCE)
+    {
+        isVisible = false;
+        return;
+    }
+
+
+    //視野にモデルがなかったら描画しない
+    clipBoxScale = VScale(objScale, CLIP_BOX_SIZE);
+    clipBoxPos1 = VSub(objPos, clipBoxScale);
+    clipBoxPos2 = VAdd(objPos, VAdd(clipBoxScale, VGet(0, clipBoxScale.y, 0)));
+    if (CheckCameraViewClip_Box(clipBoxPos1, clipBoxPos2))
+    {
+        isVisible = false;
+        return;
+    }
+
+    isVisible = true;
 }
 
 void Wall::Draw()

@@ -25,11 +25,21 @@ private:
     void Update(const float deltaTime) override;
 
     /// <summary>
+    /// 視野外切り抜き処理
+    /// </summary>
+    void ViewClipBox();
+
+    /// <summary>
     /// 描画
     /// </summary>
     void Draw() override;
 
-    const float CLIP_BOX_SIZE = 150.0f;
+    std::shared_ptr<ObjBase> player;        //プレイヤー
+
+    VECTOR clipBoxScale;                    //切り抜きボックススケール
+    VECTOR clipBoxPos1;                     //切り抜きボックス座標1
+    VECTOR clipBoxPos2;                     //切り抜きボックス座標2
+
     int texHandle;
 };
 

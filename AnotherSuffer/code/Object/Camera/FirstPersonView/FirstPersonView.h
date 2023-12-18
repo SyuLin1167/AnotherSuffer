@@ -38,6 +38,8 @@ private:
     /// </summary>
     void Draw() override;
 
+    std::shared_ptr<ObjBase> player;            //プレイヤー
+
     int mousePosX;                              //マウス座標X
     int mousePosY;                              //マウス座標Y
     VECTOR angleVel;                            //移動量
