@@ -41,5 +41,6 @@ private:
     VECTOR clipBoxPos2;                     //切り抜きボックス座標2
 
     int texHandle;
+    int texIndex;
 };
 

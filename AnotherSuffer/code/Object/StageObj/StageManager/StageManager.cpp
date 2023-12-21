@@ -1,4 +1,6 @@
 #include<DxLib.h>
+#include<vector>
+#include<unordered_map>
 #include<time.h>
 #include<stack>
 
@@ -6,7 +8,22 @@
 #include"../../ObjManager/ObjManager.h"
 #include"../Wall/Wall.h"
 
+static constexpr float BLOCK_SIZE = 40.0f;                             //ブロックサイズ
+static constexpr int STAGE_SIZE = 17;                                  //ステージサイズ
+static constexpr int MOVE_CELL = 1;                                    //セルの移動量
+static constexpr int TWO_CELL = 2;
+
+static constexpr int UP = 0x0001;                                      //上
+static constexpr int DOWN = 0x0002;                                    //下
+static constexpr int LEFT = 0x0004;                                    //左
+static constexpr int RIGHT = 0x0008;                                   //右
+
+static constexpr int WALL = 0x0001;                                    //壁
+static constexpr int AISLE = 0x0002;                                   //通路
+static constexpr int BARRICADE = 0x0004;                               //障壁
+
 StageManager::StageManager()
+    :dirArray{ UP, DOWN, LEFT, RIGHT }
 {
     //ステージ作成&生成
     std::srand(unsigned int(time(NULL)));

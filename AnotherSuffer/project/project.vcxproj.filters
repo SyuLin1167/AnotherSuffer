@@ -109,11 +109,14 @@
     <Filter Include="ソース ファイル\Collision\CollisionManager">
       <UniqueIdentifier>{9bbff5f8-d31f-4ce7-8490-c2d4d0ccca37}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Object\StageObj\StageAlgorithm">
-      <UniqueIdentifier>{638a5359-016b-4fd2-a2ec-26f099895663}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\Object\StageObj\Wall">
       <UniqueIdentifier>{e6fe8648-34ec-45e5-b050-5ed52d59548b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Object\StageObj\Barricade">
+      <UniqueIdentifier>{7fefd0f5-ebe2-45e1-9747-76667a3651ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Object\StageObj\StageObjBase">
+      <UniqueIdentifier>{af924a2e-8965-4b5b-a488-acaf6a2b8425}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -197,6 +200,12 @@
     </ClCompile>
     <ClCompile Include="..\code\Object\StageObj\Wall\Wall.cpp">
       <Filter>ソース ファイル\Object\StageObj\Wall</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\Object\StageObj\Barricade\Barricade.cpp">
+      <Filter>ソース ファイル\Object\StageObj\Barricade</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\Object\StageObj\StageObjBase\StageObjBase.cpp">
+      <Filter>ソース ファイル\Object\StageObj\StageObjBase</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -283,6 +292,12 @@
     </ClInclude>
     <ClInclude Include="..\code\Object\StageObj\Wall\Wall.h">
       <Filter>ソース ファイル\Object\StageObj\Wall</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Object\StageObj\Barricade\Barricade.h">
+      <Filter>ソース ファイル\Object\StageObj\Barricade</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Object\StageObj\StageObjBase\StageObjBase.h">
+      <Filter>ソース ファイル\Object\StageObj\StageObjBase</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
