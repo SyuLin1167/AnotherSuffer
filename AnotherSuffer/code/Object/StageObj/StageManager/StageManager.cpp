@@ -7,6 +7,7 @@
 #include "StageManager.h"
 #include"../../ObjManager/ObjManager.h"
 #include"../Wall/Wall.h"
+#include"../Barricade/Barricade.h"
 
 static constexpr float BLOCK_SIZE = 40.0f;                             //ブロックサイズ
 static constexpr int STAGE_SIZE = 17;                                  //ステージサイズ
@@ -143,6 +144,11 @@ void StageManager::PlacementObject()
             if (indexX.second & WALL)
             {
                 ObjManager::AddObj(new Wall(
+                    VGet(indexY.first * BLOCK_SIZE - BLOCK_SIZE, 0, indexX.first * BLOCK_SIZE - BLOCK_SIZE)));
+            }
+            if (indexX.second & BARRICADE)
+            {
+                ObjManager::AddObj(new Barricade(
                     VGet(indexY.first * BLOCK_SIZE - BLOCK_SIZE, 0, indexX.first * BLOCK_SIZE - BLOCK_SIZE)));
             }
         }

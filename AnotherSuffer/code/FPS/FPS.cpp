@@ -7,7 +7,7 @@ std::unique_ptr<FPS> FPS::singleton = nullptr;
 FPS::FPS()
     :nowTime(static_cast<float>(GetNowCount()))
     ,prevTime(nowTime)
-    ,deltaTime(0.0f)
+    ,deltaTime()
 {
     //ˆ—‚È‚µ
 }

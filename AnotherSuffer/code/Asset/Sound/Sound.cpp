@@ -64,7 +64,7 @@ void Sound::AddData(const rapidjson::Value& key)
 Sound::SoundParam::SoundParam()
     :soundType("")
     , isLoop(false)
-    , volume(0)
+    , volume()
 {
     //ˆ—‚È‚µ
 }

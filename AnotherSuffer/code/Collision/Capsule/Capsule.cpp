@@ -9,7 +9,7 @@ Capsule::Capsule(const VECTOR& startPos, const VECTOR& endPos, float rad)
     , localEnd(endPos)
     , worldStart(startPos)
     , worldEnd(endPos)
-    , worldCenter(VGet(0, 0, 0))
+    , worldCenter()
     , radius(rad)
 {
     //ˆ—‚È‚µ

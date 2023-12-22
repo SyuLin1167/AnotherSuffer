@@ -1,14 +1,24 @@
+#include<DxLib.h>
+
+#include"../../ObjBase/ObjBase.h"
+#include"../../Math/Math.h"
 #include "CharaObjBase.h"
+
+static constexpr float SIMILAR_ANGLE = 0.999f;     //‘ŠŽ—Šp
+const float CharaObjBase::ROTATE_SPEED = 3.0f;     //‰ñ“]‘¬“x
 
 using namespace math;
 
 CharaObjBase::CharaObjBase(std::string tag)
     :ObjBase(tag)
     , isMove(false)
-    , moveSpeed(0.0f)
+    , moveSpeed()
     , nowRotate(false)
-    , aimDir(VGet(0, 0, 0))
-    , rotRad(0.0f)
+    , modelData(model->GetJsonData()[objTag.c_str()])
+    , soundData(sound->GetJsonData()[objTag.c_str()])
+    , motionData(motion->GetJsonData()[objTag.c_str()])
+    , aimDir()
+    , rotRad()
     , rotYRad(-DX_PI_F / 2)
 {
     rotYMat = MGetRotY(rotYRad);

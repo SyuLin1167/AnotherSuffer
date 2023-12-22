@@ -1,5 +1,7 @@
 #pragma once
 
+#include"../../ObjBase/ObjBase.h"
+
 /// <summary>
 /// ステージオブジェクトの基底クラス
 /// </summary>
@@ -9,12 +11,13 @@ public:
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    StageObjBase();
+    /// <param name="pos">:座標</param>
+    StageObjBase(const VECTOR pos);
 
     /// <summary>
     /// デストラクタ
     /// </summary>
-    ~StageObjBase();
+    virtual ~StageObjBase();
 
 private:
     /// <summary>
@@ -34,8 +37,13 @@ private:
     void Draw() override;
 
 protected:
-    VECTOR clipBoxScale;                    //切り抜きボックススケール
-    VECTOR clipBoxPos1;                     //切り抜きボックス座標1
-    VECTOR clipBoxPos2;                     //切り抜きボックス座標2
+    std::shared_ptr<ObjBase> player;        //プレイヤー
+
+    VECTOR clipBoxScale;        //切り抜きボックススケール
+    VECTOR clipBoxPos1;         //切り抜きボックス座標1
+    VECTOR clipBoxPos2;         //切り抜きボックス座標2
+
+    int texHandle;              //テクスチャハンドル
+    int texIndex;               //テクスチャインデックス
 };
 

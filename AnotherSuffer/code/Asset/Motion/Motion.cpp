@@ -6,9 +6,9 @@
 
 Motion::Motion(class Model* model)
     :modelHandle(-1)
-    , nowMotionTime(0)
+    , nowMotionTime()
     , nowHandle(-1)
-    ,attachedIndex(0)
+    ,attachedIndex()
 {
     //jsonÉtÉ@ÉCÉãì«Ç›çûÇ›
     jsonFile = "../json/MotionData.json";
@@ -77,9 +77,9 @@ void Motion::AddData(const rapidjson::Value& key)
 
 Motion::MotionParam::MotionParam()
     : isLoop(false)
-    , playSpeed(0)
-    , index(0)
-    , totalTime(0)
+    , playSpeed()
+    , index()
+    , totalTime()
 {
     //èàóùÇ»Çµ
 }

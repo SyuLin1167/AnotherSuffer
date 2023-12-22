@@ -1,14 +1,21 @@
 #pragma once
+#include"../StageObjBase/StageObjBase.h"
 
 /// <summary>
 /// 障壁
 /// </summary>
-class Barricade
+class Barricade final:public StageObjBase
 {
 public:
-    Barricade();
-    ~Barricade();
-private:
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
+    /// <param name="pos">:座標</param>
+    Barricade(const VECTOR pos);
 
+    /// <summary>
+    /// デストラクタ
+    /// </summary>
+    ~Barricade();
 };
 
