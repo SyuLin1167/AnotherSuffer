@@ -1,10 +1,8 @@
 {
-  "collision": {
-    "player": {
-      "stage": {
-        "hitcheck": true,
-        "bushback": true
-      }
+  "player": {
+    "stage": {
+      "hitcheck": true,
+      "bushback": true
     }
   }
 }

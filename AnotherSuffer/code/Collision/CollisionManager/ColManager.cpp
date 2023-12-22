@@ -1,4 +1,5 @@
 #include "ColManager.h"
+#include"../../Object/ObjManager/ObjManager.h"
 
 std::unique_ptr<ColManager> ColManager::singleton;
 
@@ -33,12 +34,19 @@ ColManager::~ColManager()
 
 void ColManager::CheckCollisionPair()
 {
-    for (rapidjson::Value::ConstMemberIterator objType =singleton->doc.MemberBegin();
-        objType != singleton->doc.MemberEnd(); objType++)
+    for (rapidjson::Value::ConstMemberIterator mainObj =singleton->doc.MemberBegin();
+        mainObj != singleton->doc.MemberEnd(); mainObj++)
     {
-        for (rapidjson::Value::ConstMemberIterator motionType = objType->value.MemberBegin();
-            motionType != objType->value.MemberEnd(); motionType++)
+        for (rapidjson::Value::ConstMemberIterator pairObj = mainObj->value.MemberBegin();
+            pairObj != mainObj->value.MemberEnd(); pairObj++)
         {
+            for (auto& colMain:ObjManager::GetObj(mainObj->name.GetString()))
+            {
+                for (auto& colPair : ObjManager::GetObj(pairObj->name.GetString()))
+                {
+                    colMain->OnCollisionEnter(colPair.get());
+                }
+            }
         }
     }
 }

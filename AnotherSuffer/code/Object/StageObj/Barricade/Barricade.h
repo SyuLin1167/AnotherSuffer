@@ -13,11 +13,14 @@ public:
     /// <param name="pos">:座標</param>
     Barricade(const VECTOR pos);
 
-
-
     /// <summary>
     /// デストラクタ
     /// </summary>
     ~Barricade();
+
+    /// <summary>
+    /// 障壁破壊
+    /// </summary>
+    void BreakBarricade();
 };
 

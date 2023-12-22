@@ -9,4 +9,13 @@ Barricade::Barricade(const VECTOR pos)
 
 Barricade::~Barricade()
 {
+
+}
+
+void Barricade::BreakBarricade()
+{
+    if (player->GetColInfo().HitNum > 0)
+    {
+
+    }
 }
