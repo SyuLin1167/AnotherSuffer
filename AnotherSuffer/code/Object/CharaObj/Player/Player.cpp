@@ -5,7 +5,6 @@
 
 Player::Player()
     :CharaObjBase(ObjTag.PLAYER)
-    ,colInfo()
     ,moveVel()
 {
     //ƒ‚ƒfƒ‹“Ç‚İ‚İ

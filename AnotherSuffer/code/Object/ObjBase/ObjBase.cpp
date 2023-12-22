@@ -14,6 +14,7 @@ ObjBase::ObjBase(std::string tag)
     , objWorldPos()
     , objLocalPos()
     , objDir(VGet(1, 0, 0))
+    , colInfo()
 {
     //ˆ—‚È‚µ
 }
