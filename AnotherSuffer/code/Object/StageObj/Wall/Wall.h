@@ -25,7 +25,7 @@ private:
     void Update(const float deltaTime) override;
 
     /// <summary>
-    /// ‹–ìŠOØ‚è”²‚«ˆ—
+    /// ‹–ìŠOØ‚è”²‚«
     /// </summary>
     void ViewClipBox();
 
