@@ -19,6 +19,12 @@ public:
     ~Barricade();
 
     /// <summary>
+    /// 当たり判定
+    /// </summary>
+    /// <param name="colObj">:判定するオブジェクト</param>
+    void OnCollisionEnter(class ObjBase* colObj) override;
+
+    /// <summary>
     /// 障壁破壊
     /// </summary>
     void BreakBarricade();

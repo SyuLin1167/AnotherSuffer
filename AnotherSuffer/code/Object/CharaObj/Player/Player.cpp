@@ -3,13 +3,15 @@
 #include"../../../Collision/Capsule/Capsule.h"
 #include "Player.h"
 
+static constexpr float RUN_SPEED = 40.0f;
+
 Player::Player()
     :CharaObjBase(ObjTag.PLAYER)
     ,moveVel()
 {
     //ƒ‚ƒfƒ‹“Ç‚Ýž‚Ý
     objHandle = model->GetHandle(modelData.GetString());
-    frameIdx = 0;
+    frameIdx = -1;
     objDir = VGet(0, 0, -1);
     MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(objPos)));
 
@@ -17,7 +19,7 @@ Player::Player()
         motion->GetHandle(GetFilePass(motionData[jsondata::objKey.nomal.c_str()])));
 
     //ˆÚ“®‘¬“x‚Í‘–‚é‘¬“x
-    moveSpeed = RUN_SPEED*2;
+    moveSpeed = RUN_SPEED;
 
     capsule=new Capsule(VAdd(objPos, VGet(0, 6, 0)), VAdd(objPos, VGet(0, 30, 0)), 6.0f);
 

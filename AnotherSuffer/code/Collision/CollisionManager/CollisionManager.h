@@ -1,10 +1,11 @@
 #pragma once
 #include"../../Object/ObjBase/ObjBase.h"
+#include"../CollisionBase/CollisionBase.h"
 
 /// <summary>
 /// 当たり判定の管理
 /// </summary>
-class ColManager
+class CollisionManager final
 {
 public:
     /// <summary>
@@ -12,27 +13,32 @@ public:
     /// </summary>
     static void InitColManager();
 
+    static void AddCol();
+    static CollisionBase* GetCol();
+
     /// <summary>
     /// 当たり判定組み合わせ判別
     /// </summary>
     static void CheckCollisionPair();
 
     /// <summary>
-    /// 当たり判定
-    /// </summary>
-    static void OnCollisionEnter();
-
-    /// <summary>
     /// デストラクタ
     /// </summary>
-    ~ColManager();
+    ~CollisionManager();
 private:
     /// <summary>
     /// コンストラクタ(シングルトン)
     /// </summary>
-    ColManager();
+    CollisionManager();
 
-    static std::unique_ptr<ColManager> singleton;   //自身の実体
+    /// <summary>
+    /// 当たり判定
+    /// </summary>
+    /// <param name="mainObj">:主オブジェクトタグ</param>
+    /// <param name="pairObj">:ペアオブジェクトタグ</param>
+    static void OnCollisionEnter(std::string mainObjTag, std::string pairObjTag);
+
+    static std::unique_ptr<CollisionManager> singleton;   //自身の実体
     rapidjson::Document doc;                            //ドキュメント
 };
 

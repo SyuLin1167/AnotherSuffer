@@ -1,3 +1,4 @@
+#include<DxLib.h>
 #include<memory>
 
 #include"../../Object/ObjBase/ObjBase.h"
@@ -5,14 +6,12 @@
 #include "Capsule.h"
 
 Capsule::Capsule(const VECTOR& startPos, const VECTOR& endPos, float rad)
-    :localStart(startPos)
-    , localEnd(endPos)
-    , worldStart(startPos)
-    , worldEnd(endPos)
-    , worldCenter()
-    , radius(rad)
 {
-    //èàóùÇ»Çµ
+    localStart = startPos;
+    localEnd = endPos;
+    worldStart = startPos;
+    worldEnd = endPos;
+    radius = rad;
 }
 
 Capsule::~Capsule()

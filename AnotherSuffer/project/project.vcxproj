@@ -25,7 +25,9 @@
     <ClCompile Include="..\code\Asset\Motion\Motion.cpp" />
     <ClCompile Include="..\code\Asset\Sound\Sound.cpp" />
     <ClCompile Include="..\code\Collision\Capsule\Capsule.cpp" />
-    <ClCompile Include="..\code\Collision\CollisionManager\ColManager.cpp" />
+    <ClCompile Include="..\code\Collision\CollisionBase\CollisionBase.cpp" />
+    <ClCompile Include="..\code\Collision\CollisionManager\CollisionManager.cpp" />
+    <ClCompile Include="..\code\Collision\ColModel\ColModel.cpp" />
     <ClCompile Include="..\code\Collision\Line\Line.cpp" />
     <ClCompile Include="..\code\FPS\FPS.cpp" />
     <ClCompile Include="..\code\GameSystem\GameManager\GameManager.cpp" />
@@ -57,7 +59,9 @@
     <ClInclude Include="..\code\Asset\Motion\Motion.h" />
     <ClInclude Include="..\code\Asset\Sound\Sound.h" />
     <ClInclude Include="..\code\Collision\Capsule\Capsule.h" />
-    <ClInclude Include="..\code\Collision\CollisionManager\ColManager.h" />
+    <ClInclude Include="..\code\Collision\CollisionBase\CollisionBase.h" />
+    <ClInclude Include="..\code\Collision\CollisionManager\CollisionManager.h" />
+    <ClInclude Include="..\code\Collision\ColModel\ColModel.h" />
     <ClInclude Include="..\code\Collision\Line\Line.h" />
     <ClInclude Include="..\code\FPS\FPS.h" />
     <ClInclude Include="..\code\GameSystem\GameManager\GameManager.h" />
@@ -82,7 +86,7 @@
     <ClInclude Include="..\code\Scene\Title\Title.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\json\ColData.json" />
+    <None Include="..\json\ColPairData.json" />
     <None Include="..\json\ModelData.json" />
     <None Include="..\json\MotionData.json" />
     <None Include="..\json\SoundData.json" />

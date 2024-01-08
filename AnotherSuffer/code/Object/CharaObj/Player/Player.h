@@ -49,7 +49,6 @@ private:
     /// </summary>
     void Draw() override;
 
-    const float RUN_SPEED = 20.0f;
     float a = 0;
     int texHandle;
     class Capsule* capsule;

@@ -1,8 +1,0 @@
-{
-  "player": {
-    "stage": {
-      "hitcheck": true,
-      "bushback": true
-    }
-  }
-}

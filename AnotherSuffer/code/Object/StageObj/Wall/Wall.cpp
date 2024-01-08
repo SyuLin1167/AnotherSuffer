@@ -4,6 +4,7 @@
 Wall::Wall(const VECTOR pos)
     :StageObjBase(pos)
 {
+    //テクスチャ貼り換え
     texHandle = LoadGraph("../assets/model/texture/Wall.png");
     texIndex = MV1GetMaterialDifMapTexture(objHandle, 0);
 }

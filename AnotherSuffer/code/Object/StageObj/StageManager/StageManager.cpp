@@ -31,7 +31,10 @@ StageManager::StageManager()
     InitStageData();
     CreateStage();
     SetBarricade();
+
+    SetUseASyncLoadFlag(true);
     PlacementObject();
+    SetUseASyncLoadFlag(false);
 }
 
 StageManager::~StageManager()
