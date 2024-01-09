@@ -27,6 +27,7 @@ void CollisionManager::InitColManager()
     }
 }
 
+
 CollisionManager::~CollisionManager()
 {
     //ˆ—‚È‚µ
