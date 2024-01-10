@@ -1,4 +1,5 @@
 #pragma once
+#include<vector>
 #include<unordered_map>
 
 #include"../../Object/ObjBase/ObjBase.h"
@@ -18,15 +19,16 @@ public:
     /// <summary>
     /// 当たり判定追加
     /// </summary>
+    /// <param name="obj">:オブジェクト</param>
     /// <param name="col">:当たり判定</param>
-    static void AddCol(CollisionBase* col);
+    static void AddCol(ObjBase* obj, CollisionBase* col);
 
     /// <summary>
     /// 当たり判定取得
     /// </summary>
     /// <param name="obj">:オブジェクト</param>
     /// <returns>オブジェクトの当たり判定</returns>
-    static CollisionBase* GetCol(ObjBase* obj);
+    static const std::vector<CollisionBase*> GetCol(ObjBase* obj) { return singleton->colData[obj]; }
 
     /// <summary>
     /// 当たり判定組み合わせ判別
@@ -52,6 +54,6 @@ private:
 
     static std::unique_ptr<CollisionManager> singleton;     //自身の実体
     rapidjson::Document doc;                                //ドキュメント
-    std::unordered_map<ObjBase*, CollisionBase*> colData;   //当たり判定データ
+    std::unordered_map<ObjBase*, std::vector<CollisionBase*>> colData;   //当たり判定データ
 };
 

@@ -27,6 +27,26 @@ void CollisionManager::InitColManager()
     }
 }
 
+void CollisionManager::AddCol(ObjBase* obj, CollisionBase* col)
+{
+    //オブジェクト検索
+    auto findObj = singleton->colData.find(obj);
+    if(findObj==singleton->colData.end())
+    {
+        //未登録なら当たり判定追加
+        singleton->colData.emplace(obj, col);
+    }
+    else
+    {
+        //オブジェクト登録後の新規当たり判定追加
+        auto findCol = std::find(singleton->colData[obj].begin(), singleton->colData[obj].end(), col);
+        if (findCol == singleton->colData[obj].end())
+        {
+            singleton->colData[obj].push_back(col);
+        }
+    }
+}
+
 
 CollisionManager::~CollisionManager()
 {
