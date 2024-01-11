@@ -1,11 +1,11 @@
 #pragma once
-#include<DxLib.h>
 #include<unordered_map>
+#include"../CollisionBase/CollisionBase.h"
 
 /// <summary>
 /// カプセル型当たり判定
 /// </summary>
-class Capsule final
+class Capsule final:public CollisionBase
 {
 public:
     /// <summary>
@@ -25,32 +25,23 @@ public:
     /// 更新
     /// </summary>
     /// <param name="pos">:移動座標</param>
-    void Update(const VECTOR& pos);
+    void Update(const VECTOR& pos)override;
 
     /// <summary>
     /// メッシュとの衝突判定
     /// </summary>
     /// <param name="modelHandle">:モデルハンドル</param>
-    /// <param name="colInfo">:当たり判定情報</param>
-    /// <returns>ぶつかった:true|ぶつかっていない:false</returns>
-    bool OnCollisionWithMesh(const int modelHandle, MV1_COLL_RESULT_POLY_DIM& colInfo);
+    /// <returns>衝突:true|未衝突:false</returns>
+    bool OnCollisionWithMesh(const int modelHandle);
 
     /// <summary>
     /// メッシュとの衝突時押し戻し量算出
     /// </summary>
-    /// <param name="colInfo">:当たり判定情報</param>
     /// <returns>押し戻し量</returns>
-    VECTOR CalcPushBackFromMesh(MV1_COLL_RESULT_POLY_DIM& colInfo);
+    VECTOR CalcPushBackFromMesh();
+
     /// <summary>
     /// カプセル描画
     /// </summary>
     void DrawCapsule();
-
-private:
-    VECTOR localStart;                  //カプセルのローカル座標始点
-    VECTOR localEnd;                    //カプセルのローカル座標終点
-    VECTOR worldStart;                  //カプセルのワールド座標始点
-    VECTOR worldEnd;                    //カプセルのワールド座標終点
-    VECTOR worldCenter;                 //カプセルのワールド中心座標
-    float radius;                       //カプセルの半径
 };

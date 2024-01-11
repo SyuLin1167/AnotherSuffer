@@ -75,6 +75,12 @@ public:
     VECTOR GetObjDir() const { return objDir; }
 
     /// <summary>
+    /// “–‚½‚è”»’èî•ñæ“¾
+    /// </summary>
+    /// <returns>:“–‚½‚è”»’èî•ñ</returns>
+    MV1_COLL_RESULT_POLY_DIM GetColInfo()const { return colInfo; }
+
+    /// <summary>
     /// ¶€”»’è
     /// </summary>
     /// <returns>¶:true|€:false</returns>
@@ -111,5 +117,6 @@ protected:
     VECTOR objLocalPos;     //ƒ[ƒJƒ‹À•W
     VECTOR objDir;          //•ûŒü
 
+    MV1_COLL_RESULT_POLY_DIM colInfo;
 };
 

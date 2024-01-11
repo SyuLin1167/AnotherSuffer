@@ -22,8 +22,7 @@ public:
     /// ウィンドウサイズ取得
     /// </summary>
     /// <returns>ウィンドウサイズ</returns>
-    static const VECTOR GetWindowSize() { return singleton->WINDOW_SIZE; }
-
+    static const VECTOR GetWindowSize();
 private:
     /// <summary>
     /// コンストラクタ(シングルトン)
@@ -31,8 +30,5 @@ private:
     Window();
 
     static std::unique_ptr<Window> singleton;           //自身の実体
-
-    const VECTOR WINDOW_SIZE = VGet(1920, 1080, 0);     //ウィンドウサイズ
-    const int COLOR_BIT = 16;                           //カラービット
 };
 

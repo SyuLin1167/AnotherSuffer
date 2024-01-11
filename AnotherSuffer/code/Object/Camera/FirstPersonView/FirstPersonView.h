@@ -38,11 +38,13 @@ private:
     /// </summary>
     void Draw() override;
 
+    std::shared_ptr<ObjBase> player;            //プレイヤー
+
     int mousePosX;                              //マウス座標X
     int mousePosY;                              //マウス座標Y
     VECTOR angleVel;                            //移動量
 
-    const VECTOR ANGLE_POS = VGet(0, 25, 0);    //視点座標
+    const VECTOR ANGLE_POS = VGet(0, 10, 0);    //視点座標
 
     const float MAX_PITCH = 1.0f;               //ピッチマックス値
     float cameraYaw;                            //カメラヨー

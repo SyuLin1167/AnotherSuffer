@@ -7,7 +7,7 @@ FirstPersonView::FirstPersonView()
     :ObjBase(ObjTag.CAMERA)
     , mousePosX(static_cast<int>(Window::GetWindowSize().x / 2))
     , mousePosY(static_cast<int>(Window::GetWindowSize().y / 2))
-    , angleVel(VGet(0, 0, 0))
+    , angleVel()
     , cameraYaw(-DX_PI_F / 2)
     , cameraPitch(-DX_PI_F / 4)
     , cameraViewMat(MGetIdent())
@@ -27,7 +27,7 @@ FirstPersonView::~FirstPersonView()
 void FirstPersonView::Update(const float deltaTime)
 {
     //ç¿ïWéÊìæ
-    std::shared_ptr<ObjBase> player = ObjManager::GetObj(ObjTag.PLAYER)[0];
+    player = ObjManager::GetObj(ObjTag.PLAYER)[0];
     assert(player);
     objWorldPos = player->GetObjFramePos();
 

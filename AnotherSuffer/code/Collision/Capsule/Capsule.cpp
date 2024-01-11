@@ -1,3 +1,4 @@
+#include<DxLib.h>
 #include<memory>
 
 #include"../../Object/ObjBase/ObjBase.h"
@@ -5,14 +6,13 @@
 #include "Capsule.h"
 
 Capsule::Capsule(const VECTOR& startPos, const VECTOR& endPos, float rad)
-    :localStart(startPos)
-    , localEnd(endPos)
-    , worldStart(startPos)
-    , worldEnd(endPos)
-    , worldCenter(VGet(0, 0, 0))
-    , radius(rad)
+    :CollisionBase(ColTag.CAPSULE)
 {
-    //ˆ—‚È‚µ
+    localStart = startPos;
+    localEnd = endPos;
+    worldStart = startPos;
+    worldEnd = endPos;
+    radius = rad;
 }
 
 Capsule::~Capsule()
@@ -28,7 +28,7 @@ void Capsule::Update(const VECTOR& pos)
     worldCenter = VAdd(worldStart, VScale(VSub(worldEnd, worldStart), 0.5f));
 }
 
-bool Capsule::OnCollisionWithMesh(const int modelHandle, MV1_COLL_RESULT_POLY_DIM& colInfo)
+bool Capsule::OnCollisionWithMesh(const int modelHandle)
 {
     //“–‚½‚è”»’èî•ñ‚©‚ç”»’èŒ‹‰Ê‚ğ•Ô‚·
     colInfo = MV1CollCheck_Capsule(modelHandle, -1, worldStart, worldEnd, radius);
@@ -39,7 +39,7 @@ bool Capsule::OnCollisionWithMesh(const int modelHandle, MV1_COLL_RESULT_POLY_DI
     return true;
 }
 
-VECTOR Capsule::CalcPushBackFromMesh(MV1_COLL_RESULT_POLY_DIM& colInfo)
+VECTOR Capsule::CalcPushBackFromMesh()
 {
     //‰Ÿ‚µ–ß‚µ—Ê‰Šú‰»
     VECTOR pushBack = worldCenter;

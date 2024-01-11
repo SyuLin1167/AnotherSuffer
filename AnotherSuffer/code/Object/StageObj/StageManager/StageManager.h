@@ -1,6 +1,4 @@
 #pragma once
-#include<vector>
-#include<unordered_map>
 
 /// <summary>
 /// ステージの管理
@@ -67,21 +65,8 @@ private:
     /// </summary>
     void PlacementObject();
 
-    const float BLOCK_SIZE = 40.0f;                             //ブロックサイズ
-    const int STAGE_SIZE = 17;                                  //ステージサイズ
-    const int MOVE_CELL = 1;                                    //セルの移動量
-    const int TWO_CELL = 2;
+    std::vector<int> dirArray;      //ステージ生成用方向配列
 
-    const int UP = 0x0001;                                      //上
-    const int DOWN = 0x0002;                                    //下
-    const int LEFT = 0x0004;                                    //左
-    const int RIGHT = 0x0008;                                   //右
-    std::vector<int> dirArray = { UP, DOWN, LEFT, RIGHT };      //ステージ生成用方向配列
-
-    const int WALL = 0x0001;                                    //壁
-    const int AISLE = 0x0002;                                   //通路
-    const int BARRICADE = 0x0004;                               //障壁
-    std::unordered_map<int, 
-        std::unordered_map<int, int>> stageData;                //ステージデータ
+    std::unordered_map<int, std::unordered_map<int, int>> stageData;                //ステージデータ
 };
 

@@ -2,6 +2,7 @@
 
 #include"../../KeyStatus/KeyStatus.h"
 #include"../../Object/ObjManager/ObjManager.h"
+#include"../../Collision/CollisionManager/CollisionManager.h"
 #include"../../Object/Camera/FirstPersonView/FirstPersonView.h"
 #include"../../Object/CharaObj/Player/Player.h"
 #include"../../Object/StageObj/StageManager/StageManager.h"
@@ -11,6 +12,7 @@
 
 Play::Play()
 {
+    CollisionManager::InitColManager();
     ObjManager::AddObj(new FirstPersonView);
     ObjManager::AddObj(new Player);
     stageManager.reset(new StageManager);
@@ -25,8 +27,8 @@ SceneBase* Play::UpdateScene(const float deltaTime)
 {
     //オブジェクト更新
     ObjManager::UpdateObj(deltaTime);
-    ObjManager::OnColllsionObj();
-
+    //ObjManager::OnColllsionObj();
+    CollisionManager::CheckCollisionPair();
     //シーン切り替え
     if (KeyStatus::KeyStateDecision(KEY_INPUT_RETURN, ONINPUT))
     {

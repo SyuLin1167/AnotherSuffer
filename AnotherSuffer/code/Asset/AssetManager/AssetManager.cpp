@@ -1,3 +1,5 @@
+#include<DxLib.h>
+
 #include"../Model/Model.h"
 #include"../Motion/Motion.h"
 #include"../Sound/Sound.h"
@@ -10,7 +12,9 @@ void AssetManager::InitAssetManager()
     //自身の中身が空だったらインスタンス生成
     if (!assetManager)
     {
+        SetUseASyncLoadFlag(true);
         assetManager.reset(new AssetManager);
+        SetUseASyncLoadFlag(false);
     }
 }
 
