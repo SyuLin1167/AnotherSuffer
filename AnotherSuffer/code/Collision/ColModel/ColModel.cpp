@@ -3,10 +3,9 @@
 #include "ColModel.h"
 
 ColModel::ColModel(int handle)
-    :colHandle(handle)
-    ,colInfo()
+    :CollisionBase(ColTag.MODEL)
 {
-    //ˆ—‚È‚µ
+    colHandle = handle;
 }
 
 ColModel::~ColModel()

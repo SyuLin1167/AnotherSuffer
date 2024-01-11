@@ -317,6 +317,9 @@
     <ClInclude Include="..\code\Collision\ColModel\ColModel.h">
       <Filter>ソース ファイル\Collision\ColModel</Filter>
     </ClInclude>
+    <ClInclude Include="..\code\Collision\CollisionBase\CollisionTag.h">
+      <Filter>ソース ファイル\Collision\CollisionBase</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\json\SoundData.json">

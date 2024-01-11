@@ -2,8 +2,11 @@
 
 #include "CollisionBase.h"
 
-CollisionBase::CollisionBase()
-    :localStart()
+CollisionBase::CollisionBase(std::string tag)
+    :colTag(tag)
+    , colHandle(-1)
+    , colInfo()
+    , localStart()
     , localEnd()
     , worldStart()
     , worldEnd()
@@ -15,7 +18,7 @@ CollisionBase::CollisionBase()
 
 CollisionBase::~CollisionBase()
 {
-
+    //èàóùÇ»Çµ
 }
 
 void CollisionBase::Update(const VECTOR& pos)

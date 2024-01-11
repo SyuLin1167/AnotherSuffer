@@ -31,16 +31,14 @@ public:
     /// メッシュとの衝突判定
     /// </summary>
     /// <param name="modelHandle">:モデルハンドル</param>
-    /// <param name="colInfo">:当たり判定情報</param>
     /// <returns>衝突:true|未衝突:false</returns>
-    bool OnCollisionWithMesh(const int modelHandle, MV1_COLL_RESULT_POLY_DIM& colInfo);
+    bool OnCollisionWithMesh(const int modelHandle);
 
     /// <summary>
     /// メッシュとの衝突時押し戻し量算出
     /// </summary>
-    /// <param name="colInfo">:当たり判定情報</param>
     /// <returns>押し戻し量</returns>
-    VECTOR CalcPushBackFromMesh(MV1_COLL_RESULT_POLY_DIM& colInfo);
+    VECTOR CalcPushBackFromMesh();
 
     /// <summary>
     /// カプセル描画

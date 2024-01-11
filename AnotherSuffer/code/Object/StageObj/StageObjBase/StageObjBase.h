@@ -36,8 +36,8 @@ private:
     /// </summary>
     void Draw() override;
 
-protected:
     std::shared_ptr<ObjBase> player;        //プレイヤー
+protected:
 
     VECTOR clipBoxScale;        //切り抜きボックススケール
     VECTOR clipBoxPos1;         //切り抜きボックス座標1
@@ -45,5 +45,7 @@ protected:
 
     int texHandle;              //テクスチャハンドル
     int texIndex;               //テクスチャインデックス
+
+    std::unique_ptr<class ColModel> colModel;   //当たり判定
 };
 

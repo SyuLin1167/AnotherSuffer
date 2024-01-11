@@ -1,5 +1,8 @@
 #include "StageObjBase.h"
+#include"../../../KeyStatus/KeyStatus.h"
 #include"../../ObjManager/ObjManager.h"
+#include"../../../Collision/CollisionManager/CollisionManager.h"
+#include"../../../Collision/ColModel/ColModel.h"
 
 static constexpr float CLIP_BOX_SIZE = 100.0f;     //切り抜きボックスサイズ
 static constexpr float CLIP_DISTANCE = 400.0f;     //切り抜き距離
@@ -27,11 +30,15 @@ StageObjBase::StageObjBase(const VECTOR pos)
     //行列でモデルの動作
     CalcObjPos();
     MV1SetMatrix(objHandle, MMult(MGetScale(objScale), MGetTranslate(objPos)));
+
+    //当たり判定はモデル型
+    colModel.reset(new ColModel(objHandle));
+    CollisionManager::AddCol(this, colModel.get());
 }
 
 StageObjBase::~StageObjBase()
 {
-
+    //処理なし
 }
 
 void StageObjBase::Update(const float deltaTime)

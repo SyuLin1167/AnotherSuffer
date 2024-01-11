@@ -80,7 +80,7 @@ void ObjManager::OnDeadObj()
         for (auto& dead: singleton->object[tag])
         {
             //死んでいたらオブジェクト削除
-            if (!dead->IsAlive())
+            if (dead && !dead->IsAlive())
             {
                 DeleteObj(dead);
             }
@@ -94,14 +94,12 @@ void ObjManager::DeleteObj(std::shared_ptr<ObjBase> unnecObj)
     std::string tag = unnecObj->GetTag();
 
     //オブジェクトを検索
-    auto endObj= singleton->object[tag].end();
-    auto findObj = std::find(singleton->object[tag].begin(), endObj, unnecObj);
+    auto findObj = std::find(singleton->object[tag].begin(), singleton->object[tag].end(), unnecObj);
 
     //見つかったら末尾に移動させて削除
-    if (findObj != endObj)
+    if (findObj != singleton->object[tag].end())
     {
-        std::swap(findObj, endObj);
-        singleton->object[tag].pop_back();
+        singleton->object[tag].erase(findObj);
     }
 }
 

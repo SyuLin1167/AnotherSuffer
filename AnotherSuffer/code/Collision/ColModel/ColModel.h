@@ -23,15 +23,5 @@ public:
     /// <param name="radius">:”¼Œa</param>
     /// <returns>Õ“Ë:true|–¢Õ“Ë:false</returns>
     bool OnCollisionWithCapsule(const VECTOR startPos, const VECTOR endPos,const float radius);
-
-    /// <summary>
-    /// Õ“Ë”»’èî•ñæ“¾
-    /// </summary>
-    /// <returns>Õ“Ë”»’èî•ñ</returns>
-    MV1_COLL_RESULT_POLY_DIM GetColInfo() const { return colInfo; }
-
-private:
-    int colHandle;                          //ƒnƒ“ƒhƒ‹
-    MV1_COLL_RESULT_POLY_DIM colInfo;       //“–‚½‚è”»’èî•ñ
 };
 

@@ -1,5 +1,6 @@
 #include"../../../KeyStatus/KeyStatus.h"
 #include"../../ObjManager/ObjManager.h"
+#include"../../../Collision/CollisionManager/CollisionManager.h"
 #include"../../../Collision/Capsule/Capsule.h"
 #include "Player.h"
 
@@ -21,8 +22,11 @@ Player::Player()
     //移動速度は走る速度
     moveSpeed = RUN_SPEED;
 
+    //当たり判定はカプセル型
     capsule=new Capsule(VAdd(objPos, VGet(0, 6, 0)), VAdd(objPos, VGet(0, 30, 0)), 6.0f);
+    CollisionManager::AddCol(this, capsule);
 
+    //仮ライト
     texHandle = CreatePointLightHandle(objPos, 150.0f, 0.0f, 0.0f, 0.001f);
 }
 
@@ -114,12 +118,17 @@ void Player::MoveByKey(const int keyName, const VECTOR dir, const float deltaTim
 
 void Player::OnCollisionEnter(ObjBase* colObj)
 {
-    if (capsule->OnCollisionWithMesh(colObj->GetObjHandle(), colInfo))
+    for (auto& obj : CollisionManager::GetCol(colObj))
     {
-        a = 0;
-        objLocalPos = VAdd(objLocalPos, capsule->CalcPushBackFromMesh(colInfo));
+        if (obj->GetColTag() == ColTag.MODEL)
+        {
+            if (capsule->OnCollisionWithMesh(obj->GetColModel()))
+            {
+                objLocalPos = VAdd(objLocalPos, capsule->CalcPushBackFromMesh());
 
-        MV1CollResultPolyDimTerminate(colInfo);
+                MV1CollResultPolyDimTerminate(capsule->GetColInfo());
+            }
+        }
     }
 
     //座標更新

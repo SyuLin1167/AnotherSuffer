@@ -60,6 +60,7 @@
     <ClInclude Include="..\code\Asset\Sound\Sound.h" />
     <ClInclude Include="..\code\Collision\Capsule\Capsule.h" />
     <ClInclude Include="..\code\Collision\CollisionBase\CollisionBase.h" />
+    <ClInclude Include="..\code\Collision\CollisionBase\CollisionTag.h" />
     <ClInclude Include="..\code\Collision\CollisionManager\CollisionManager.h" />
     <ClInclude Include="..\code\Collision\ColModel\ColModel.h" />
     <ClInclude Include="..\code\Collision\Line\Line.h" />
