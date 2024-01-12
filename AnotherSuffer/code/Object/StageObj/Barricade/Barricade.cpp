@@ -7,7 +7,7 @@ Barricade::Barricade(const VECTOR pos)
     :StageObjBase(pos)
 {
     //テクスチャ貼り換え
-    texHandle = LoadGraph("../assets/model/texture/Barricade.png");
+    texHandle = AssetManager::GraphInstance()->GetHandle(graphData[jsondata::objKey.barricade.c_str()].GetString());
     texIndex = MV1GetMaterialDifMapTexture(objHandle, 0);
 }
 

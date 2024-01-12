@@ -23,7 +23,7 @@ Sound::Sound()
 
 Sound::~Sound()
 {
-    //ˆ—‚È‚µ
+    DeleteHandle();
 }
 
 void Sound::AddHandle(const std::string fileName)

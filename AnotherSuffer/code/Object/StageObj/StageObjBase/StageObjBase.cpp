@@ -1,4 +1,4 @@
-#include"../../ObjBase/ObjBase.h"
+
 #include "StageObjBase.h"
 #include"../../../KeyStatus/KeyStatus.h"
 #include"../../ObjManager/ObjManager.h"

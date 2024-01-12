@@ -20,7 +20,7 @@ Model::Model()
 
 Model::~Model()
 {
-    //ˆ—‚È‚µ
+    DeleteHandle();
 }
 
 void Model::AddHandle(const std::string fileName)

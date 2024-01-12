@@ -5,8 +5,7 @@ Wall::Wall(const VECTOR pos)
     :StageObjBase(pos)
 {
     //テクスチャ貼り換え
-    texHandle = AssetManager::GraphInstance()->GetHandle(
-    graphData[jsondata::objKey.wall.c_str()][jsondata::dataKey.pass.c_str()].GetString());
+    texHandle = AssetManager::GraphInstance()->GetHandle(graphData[jsondata::objKey.wall.c_str()].GetString());
     texIndex = MV1GetMaterialDifMapTexture(objHandle, 0);
 }
 

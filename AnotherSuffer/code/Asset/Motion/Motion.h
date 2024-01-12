@@ -21,15 +21,16 @@ public:
     /// <summary>
     /// モーション時間経過
     /// </summary>
+    /// <param name="obj">:オブジェクト</param>
     /// <param name="deltaTime">:デルタタイム</param>
-    void AddMotionTime( const float deltaTime);
+    void AddMotionTime(class ObjBase* obj, const float deltaTime);
 
     /// <summary>
     /// モーション再生
     /// </summary>
-    /// <param name="model">:モデルハンドル</param>
+    /// <param name="obj">:オブジェクト</param>
     /// <param name="handle">:ハンドル</param>
-    void StartMotion(int model, int handle);
+    void StartMotion(class ObjBase* obj, int handle);
 
     /// <summary>
     /// モーション停止
@@ -79,7 +80,7 @@ private:
 
     int modelHandle;                                    //モデルハンドル
 
-
+    std::unordered_map<ObjBase*, int> nowHandle;         //現在のハンドル
     std::unordered_map<int, MotionParam> motionData;    //モーションデータ
     std::unordered_map<int, int> attachedIndex;         //アタッチ後のインデックスデータ
 };

@@ -1,5 +1,6 @@
 #pragma once
 #include"../../../Asset/AssetManager/AssetManager.h"
+#include"../../ObjBase/ObjBase.h"
 
 /// <summary>
 /// ステージオブジェクトの基底クラス

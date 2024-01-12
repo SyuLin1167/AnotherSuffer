@@ -17,8 +17,9 @@ Player::Player()
     objDir = VGet(0, 0, -1);
     MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(objPos)));
 
-    AssetManager::MotionInstance()->StartMotion(objHandle,
-        AssetManager::MotionInstance()->GetHandle(GetFilePass(motionData[jsondata::objKey.nomal.c_str()])));
+    AssetManager::MotionInstance()->StartMotion(this,
+        AssetManager::MotionInstance()->GetHandle(
+            AssetManager::GetFilePass(motionData[jsondata::objKey.nomal.c_str()])));
 
     //移動速度は走る速度
     moveSpeed = RUN_SPEED;
@@ -40,7 +41,7 @@ void Player::Update(const float deltaTime)
 {
     a += deltaTime;
     //アニメーション時間再生
-    AssetManager::MotionInstance()->AddMotionTime(deltaTime);
+    AssetManager::MotionInstance()->AddMotionTime(this, deltaTime);
 
     //キャラ移動
     MoveChara(deltaTime);
@@ -49,7 +50,7 @@ void Player::Update(const float deltaTime)
     if(!isMove)
     {
         //通常時アニメーション再生
-        AssetManager::MotionInstance()->StartMotion(objHandle,
+        AssetManager::MotionInstance()->StartMotion(this,
             AssetManager::MotionInstance()->GetHandle(
                 AssetManager::GetFilePass(motionData[jsondata::objKey.nomal.c_str()])));
     }
@@ -112,7 +113,7 @@ void Player::MoveByKey(const int keyName, const VECTOR dir, const float deltaTim
         moveVel = VNorm(VAdd(moveVel, dir));
 
         //移動アニメーション再生
-        AssetManager::MotionInstance()->StartMotion(objHandle,
+        AssetManager::MotionInstance()->StartMotion(this,
             AssetManager::MotionInstance()->GetHandle(
             AssetManager::GetFilePass(motionData[jsondata::objKey.walk.c_str()])));
 
