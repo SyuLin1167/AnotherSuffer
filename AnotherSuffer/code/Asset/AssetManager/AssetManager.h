@@ -1,6 +1,11 @@
 #pragma once
 #include<memory>
 
+#include"../Graph/Graph.h"
+#include"../Model/Model.h"
+#include"../Motion/Motion.h"
+#include"../Sound/Sound.h"
+
 /// <summary>
 /// アセット管理
 /// </summary>
@@ -18,22 +23,38 @@ public:
     ~AssetManager();
 
     /// <summary>
+    /// グラフインスタンス
+    /// </summary>
+    /// <returns>Graphクラス</returns>
+    static class Graph* GraphInstance(){return singleton->graph.get(); }
+
+    /// <summary>
     /// モデルインスタンス
     /// </summary>
     /// <returns>Modelクラス</returns>
-    static class Model* ModelInstance() { return assetManager->model.get(); }
+    static class Model* ModelInstance(){ return singleton->model.get(); }
 
     /// <summary>
     /// モーションインスタンス
     /// </summary>
     /// <returns>Motionクラス</returns>
-    static class Motion* MotionInstance() { return assetManager->motion.get(); }
+    static class Motion* MotionInstance(){ return singleton->motion.get(); }
 
     /// <summary>
     /// サウンドインスタンス
     /// </summary>
     /// <returns>Soundクラス</returns>
-    static class Sound* SoundInstance() { return assetManager->sound.get(); }
+    static class Sound* SoundInstance(){ return singleton->sound.get(); }
+
+    /// <summary>
+    /// データ内ファイルパス取得
+    /// </summary>
+    /// <param name="objData">:取得したいオブジェクトデータ</param>
+    /// <returns>ファイルパス</returns>
+    static const std::string GetFilePass(const rapidjson::Value& objData)
+    {
+        return objData[jsondata::dataKey.pass.c_str()].GetString();
+    }
 
 private:
     /// <summary>
@@ -41,8 +62,9 @@ private:
     /// </summary>
     AssetManager();
 
-    static std::unique_ptr<AssetManager> assetManager;      //自身の実体
+    static std::unique_ptr<AssetManager> singleton;      //自身の実体
 
+    std::unique_ptr<class Graph> graph;                           //画像
     std::unique_ptr<class Model> model;                           //モデル
     std::unique_ptr<class Motion> motion;                         //モーション
     std::unique_ptr<class Sound> sound;                           //サウンド

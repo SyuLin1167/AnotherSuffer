@@ -1,0 +1,9 @@
+{
+    "graph": {
+        "stage": {
+            "wall": "../assets/model/texture/Wall.png",
+            "barricade": "../assets/model/texture/Barricade.png",
+            "graound": "../assets/model/texture/Ground.png"
+        }
+    }
+}

@@ -1,5 +1,6 @@
 #include"../../../KeyStatus/KeyStatus.h"
 #include"../../ObjManager/ObjManager.h"
+#include"../../../Asset/AssetManager/AssetManager.h"
 #include"../../../Collision/CollisionManager/CollisionManager.h"
 #include"../../../Collision/Capsule/Capsule.h"
 #include "Player.h"
@@ -11,13 +12,13 @@ Player::Player()
     ,moveVel()
 {
     //モデル読み込み
-    objHandle = model->GetHandle(modelData.GetString());
+    objHandle = AssetManager::ModelInstance()->GetHandle(modelData.GetString());
     frameIdx = -1;
     objDir = VGet(0, 0, -1);
     MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(objPos)));
 
-    motion->StartMotion(objHandle,
-        motion->GetHandle(GetFilePass(motionData[jsondata::objKey.nomal.c_str()])));
+    AssetManager::MotionInstance()->StartMotion(objHandle,
+        AssetManager::MotionInstance()->GetHandle(GetFilePass(motionData[jsondata::objKey.nomal.c_str()])));
 
     //移動速度は走る速度
     moveSpeed = RUN_SPEED;
@@ -39,7 +40,7 @@ void Player::Update(const float deltaTime)
 {
     a += deltaTime;
     //アニメーション時間再生
-    motion->AddMotionTime(deltaTime);
+    AssetManager::MotionInstance()->AddMotionTime(deltaTime);
 
     //キャラ移動
     MoveChara(deltaTime);
@@ -48,8 +49,9 @@ void Player::Update(const float deltaTime)
     if(!isMove)
     {
         //通常時アニメーション再生
-        motion->StartMotion(objHandle,
-            motion->GetHandle(GetFilePass(motionData[jsondata::objKey.nomal.c_str()])));
+        AssetManager::MotionInstance()->StartMotion(objHandle,
+            AssetManager::MotionInstance()->GetHandle(
+                AssetManager::GetFilePass(motionData[jsondata::objKey.nomal.c_str()])));
     }
 
     //Pキーが押されたら
@@ -59,7 +61,9 @@ void Player::Update(const float deltaTime)
         isAlive = false;
 
         //サウンド再生
-        sound->StartSound(sound->GetHandle(GetFilePass(soundData[jsondata::objKey.walk.c_str()])));
+        AssetManager::SoundInstance()->StartSound(
+        AssetManager::SoundInstance()->GetHandle(
+        AssetManager::GetFilePass(soundData[jsondata::objKey.walk.c_str()])));
     }
 
     if (KeyStatus::KeyStateDecision(KEY_INPUT_SPACE, ONINPUT))
@@ -108,8 +112,9 @@ void Player::MoveByKey(const int keyName, const VECTOR dir, const float deltaTim
         moveVel = VNorm(VAdd(moveVel, dir));
 
         //移動アニメーション再生
-        motion->StartMotion(objHandle,
-            motion->GetHandle(GetFilePass(motionData[jsondata::objKey.walk.c_str()])));
+        AssetManager::MotionInstance()->StartMotion(objHandle,
+            AssetManager::MotionInstance()->GetHandle(
+            AssetManager::GetFilePass(motionData[jsondata::objKey.walk.c_str()])));
 
         //動作中にする
         isMove = true;

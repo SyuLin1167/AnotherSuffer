@@ -1,4 +1,7 @@
 #pragma once
+#include<../Rapidjson/istreamwrapper.h>
+#include<../Rapidjson/document.h>
+#include<fstream>
 #include<vector>
 #include<unordered_map>
 

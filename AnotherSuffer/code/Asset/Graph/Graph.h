@@ -2,20 +2,20 @@
 #include"../AssetBase/AssetBase.h"
 
 /// <summary>
-/// モデル管理
+/// 画像管理
 /// </summary>
-class Model final:public AssetBase
+class Graph final :public AssetBase
 {
 public:
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    Model();
+    Graph();
 
     /// <summary>
     /// デストラクタ
     /// </summary>
-    ~Model();
+    ~Graph();
 
 private:
     /// <summary>

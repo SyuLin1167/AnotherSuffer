@@ -2,9 +2,6 @@
 
 ObjBase::ObjBase(std::string tag)
     :objTag(tag)
-    , model(AssetManager::ModelInstance())
-    , motion(AssetManager::MotionInstance())
-    , sound(AssetManager::SoundInstance())
     , isAlive(true)
     , isVisible(true)
     , objHandle(-1)

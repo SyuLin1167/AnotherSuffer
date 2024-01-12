@@ -19,16 +19,6 @@ public:
 
 protected:
     /// <summary>
-    /// データ内ファイルパス取得
-    /// </summary>
-    /// <param name="objData">:取得したいオブジェクトデータ</param>
-    /// <returns>ファイルパス</returns>
-    const std::string GetFilePass(const rapidjson::Value& objData)
-    {
-        return objData[jsondata::dataKey.pass.c_str()].GetString();
-    }
-
-    /// <summary>
     /// キャラ動作
     /// </summary>
     /// <param name="deltaTime">:デルタタイム</param>

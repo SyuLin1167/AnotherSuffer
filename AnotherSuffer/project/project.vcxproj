@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="..\code\Asset\AssetBase\AssetBase.cpp" />
     <ClCompile Include="..\code\Asset\AssetManager\AssetManager.cpp" />
+    <ClCompile Include="..\code\Asset\Graph\Graph.cpp" />
     <ClCompile Include="..\code\Asset\Model\Model.cpp" />
     <ClCompile Include="..\code\Asset\Motion\Motion.cpp" />
     <ClCompile Include="..\code\Asset\Sound\Sound.cpp" />
@@ -55,6 +56,7 @@
     <ClInclude Include="..\code\Asset\AssetBase\AssetBase.h" />
     <ClInclude Include="..\code\Asset\AssetBase\JsonKey.h" />
     <ClInclude Include="..\code\Asset\AssetManager\AssetManager.h" />
+    <ClInclude Include="..\code\Asset\Graph\Graph.h" />
     <ClInclude Include="..\code\Asset\Model\Model.h" />
     <ClInclude Include="..\code\Asset\Motion\Motion.h" />
     <ClInclude Include="..\code\Asset\Sound\Sound.h" />
@@ -88,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\json\ColPairData.json" />
+    <None Include="..\json\GraphData.json" />
     <None Include="..\json\ModelData.json" />
     <None Include="..\json\MotionData.json" />
     <None Include="..\json\SoundData.json" />

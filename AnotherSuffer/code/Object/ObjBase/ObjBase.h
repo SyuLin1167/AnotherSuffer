@@ -1,14 +1,11 @@
 #pragma once
 #include<DxLib.h>
 #include<../Rapidjson/rapidjson.h>
+#include<../Rapidjson/document.h>
 #include<string.h>
 #include<string>
 
 #include"ObjTag.h"
-#include"../../Asset/AssetManager/AssetManager.h"
-#include"../../Asset/Model/Model.h"
-#include"../../Asset/Motion/Motion.h"
-#include"../../Asset/Sound/Sound.h"
 
 /// <summary>
 /// オブジェクト基底クラス
@@ -100,10 +97,6 @@ protected:
     void CalcObjPos();
 
     std::string objTag;     //オブジェクトのタグ
-
-    class Model* model;     //モデル
-    class Sound* sound;     //サウンド
-    class Motion* motion;   //モーション
 
     bool isAlive;           //生存状態
     bool isVisible;         //可視判定

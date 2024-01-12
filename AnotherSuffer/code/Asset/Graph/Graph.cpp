@@ -1,9 +1,9 @@
 #include<DxLib.h>
 #include<future>
 
-#include "Model.h"
+#include "Graph.h"
 
-Model::Model()
+Graph::Graph()
     :AssetBase()
 {
     //jsonファイル読み込み
@@ -18,33 +18,31 @@ Model::Model()
     }
 }
 
-Model::~Model()
+Graph::~Graph()
 {
     //処理なし
 }
 
-void Model::AddHandle(const std::string fileName)
+void Graph::AddHandle(const std::string fileName)
 {
     //仮ハンドル初期化
     holdHandle = -1;
-    dupHandle = -1;
 
     //ファイルが見つからなかったらハンドルを複製して追加
     auto iter = handle.find(fileName);
     if (iter == handle.end())
     {
-            holdHandle = MV1LoadModel(fileName.c_str());
-            dupHandle = MV1DuplicateModel(holdHandle);
-            handle.emplace(fileName, dupHandle);
+        holdHandle = LoadGraph(fileName.c_str());
+        handle.emplace(fileName, holdHandle);
     }
 }
 
-void Model::DeleteHandle()
+void Graph::DeleteHandle()
 {
     //ハンドルとデータ解放
     for (auto& iter : handle)
     {
-        MV1DeleteModel(iter.second);
+        DeleteGraph(iter.second);
     }
     handle.clear();
 }

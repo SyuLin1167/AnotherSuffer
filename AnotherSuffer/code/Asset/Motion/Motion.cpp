@@ -6,8 +6,6 @@
 
 Motion::Motion(class Model* model)
     :modelHandle(-1)
-    , nowMotionTime()
-    , nowHandle(-1)
     ,attachedIndex()
 {
     //jsonファイル読み込み
@@ -79,6 +77,7 @@ Motion::MotionParam::MotionParam()
     : isLoop(false)
     , playSpeed()
     , index()
+    , nowMotionTime()
     , totalTime()
 {
     //処理なし
@@ -100,17 +99,17 @@ void Motion::AddMotionTime(const float deltaTime)
     //再生速度に合わせて加算
     if (nowHandle && IsPlaying())
     {
-        nowMotionTime += motionData[nowHandle].playSpeed * deltaTime;
+        motionData[nowHandle].nowMotionTime += motionData[nowHandle].playSpeed * deltaTime;
 
         //ループ再生
         if (motionData[nowHandle].isLoop &&
-            nowMotionTime > motionData[nowHandle].totalTime)
+            motionData[nowHandle].nowMotionTime > motionData[nowHandle].totalTime)
         {
-            nowMotionTime = 0.0f;
+            motionData[nowHandle].nowMotionTime = 0.0f;
         }
 
         //モーション時間アタッチ
-        MV1SetAttachAnimTime(modelHandle, attachedIndex[modelHandle], nowMotionTime);
+        MV1SetAttachAnimTime(modelHandle, attachedIndex[modelHandle], motionData[nowHandle].nowMotionTime);
     }
 }
 
@@ -129,22 +128,22 @@ void Motion::StartMotion(int model, int handle)
             nowHandle, TRUE);
 
         //時間をリセットして再生
-        nowMotionTime = 0.0f;
-        MV1SetAttachAnimTime(modelHandle, attachedIndex[modelHandle], nowMotionTime);
+        motionData[nowHandle].nowMotionTime = 0.0f;
+        MV1SetAttachAnimTime(modelHandle, attachedIndex[modelHandle], motionData[nowHandle].nowMotionTime);
     }
 }
 
 void Motion::StopMotion()
 {
     //モーション時間を総再生時間にする
-    nowMotionTime = motionData[nowHandle].totalTime;
+    motionData[nowHandle].nowMotionTime = motionData[nowHandle].totalTime;
 }
 
 bool Motion::IsPlaying()
 {
     //ループ再生不可でモーションが再生しきったら停止中
     if (!motionData[nowHandle].isLoop &&
-        nowMotionTime > motionData[nowHandle].totalTime)
+        motionData[nowHandle].nowMotionTime > motionData[nowHandle].totalTime)
     {
         return false;
     }

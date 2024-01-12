@@ -36,6 +36,7 @@ void CollisionManager::AddCol(ObjBase* obj, CollisionBase* col)
 
 CollisionManager::~CollisionManager()
 {
+    //ƒf[ƒ^íœ
     singleton->colData.clear();
 }
 

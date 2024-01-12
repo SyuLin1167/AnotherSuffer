@@ -13,7 +13,7 @@ AssetBase::AssetBase()
 
 AssetBase::~AssetBase()
 {
-    //ˆ—‚È‚µ
+    DeleteHandle();
 }
 
 void AssetBase::LoadJsonFile(std::string fileName)

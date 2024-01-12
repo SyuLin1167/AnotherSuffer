@@ -1,6 +1,5 @@
 #pragma once
-
-#include"../../ObjBase/ObjBase.h"
+#include"../../../Asset/AssetManager/AssetManager.h"
 
 /// <summary>
 /// ステージオブジェクトの基底クラス
@@ -37,7 +36,9 @@ private:
     void Draw() override;
 
     std::shared_ptr<ObjBase> player;        //プレイヤー
+
 protected:
+    const rapidjson::Value& graphData;      //グラフパスデータ
 
     VECTOR clipBoxScale;        //切り抜きボックススケール
     VECTOR clipBoxPos1;         //切り抜きボックス座標1

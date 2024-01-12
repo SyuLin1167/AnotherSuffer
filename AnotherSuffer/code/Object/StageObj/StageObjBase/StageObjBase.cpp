@@ -1,3 +1,4 @@
+#include"../../ObjBase/ObjBase.h"
 #include "StageObjBase.h"
 #include"../../../KeyStatus/KeyStatus.h"
 #include"../../ObjManager/ObjManager.h"
@@ -9,13 +10,15 @@ static constexpr float CLIP_DISTANCE = 400.0f;     //Ø‚è”²‚«‹——£
 
 StageObjBase::StageObjBase(const VECTOR pos)
     :ObjBase(ObjTag.STAGE)
+    , graphData(AssetManager::GraphInstance()->GetJsonData()[objTag.c_str()])
     , clipBoxScale()
     , clipBoxPos1()
     , clipBoxPos2()
     , texHandle(-1)
     , texIndex()
 {
-    objHandle = MV1DuplicateModel(model->GetHandle(model->GetJsonData()[objTag.c_str()].GetString()));
+    objHandle = MV1DuplicateModel(AssetManager::ModelInstance()->GetHandle(
+    AssetManager::ModelInstance()->GetJsonData()[objTag.c_str()].GetString()));
     MV1SetMeshBackCulling(objHandle, -1, true);
     MV1SetUseZBuffer(objHandle, true);
     objLocalPos = pos;
