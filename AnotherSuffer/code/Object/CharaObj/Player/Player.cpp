@@ -124,6 +124,7 @@ void Player::MoveByKey(const int keyName, const VECTOR dir, const float deltaTim
 
 void Player::OnCollisionEnter(ObjBase* colObj)
 {
+    //“–‚½‚è”»’èˆ—
     for (auto& obj : CollisionManager::GetCol(colObj))
     {
         if (obj->GetColTag() == ColTag.MODEL)

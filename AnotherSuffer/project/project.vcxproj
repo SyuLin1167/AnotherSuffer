@@ -44,6 +44,7 @@
     <ClCompile Include="..\code\Object\ObjBase\ObjBase.cpp" />
     <ClCompile Include="..\code\Object\ObjManager\ObjManager.cpp" />
     <ClCompile Include="..\code\Object\StageObj\Barricade\Barricade.cpp" />
+    <ClCompile Include="..\code\Object\StageObj\Ground\Ground.cpp" />
     <ClCompile Include="..\code\Object\StageObj\StageManager\StageManager.cpp" />
     <ClCompile Include="..\code\Object\StageObj\StageObjBase\StageObjBase.cpp" />
     <ClCompile Include="..\code\Object\StageObj\Wall\Wall.cpp" />
@@ -80,6 +81,7 @@
     <ClInclude Include="..\code\Object\ObjBase\ObjTag.h" />
     <ClInclude Include="..\code\Object\ObjManager\ObjManager.h" />
     <ClInclude Include="..\code\Object\StageObj\Barricade\Barricade.h" />
+    <ClInclude Include="..\code\Object\StageObj\Ground\Ground.h" />
     <ClInclude Include="..\code\Object\StageObj\StageManager\StageManager.h" />
     <ClInclude Include="..\code\Object\StageObj\StageObjBase\StageObjBase.h" />
     <ClInclude Include="..\code\Object\StageObj\Wall\Wall.h" />

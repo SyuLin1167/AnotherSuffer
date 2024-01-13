@@ -2,7 +2,7 @@
 
 std::unique_ptr<Window> Window::singleton = nullptr;
 static const VECTOR WINDOW_SIZE = VGet(1920, 1080, 0);     //ウィンドウサイズ
-static constexpr int COLOR_BIT = 16;                           //カラービット
+static constexpr int COLOR_BIT = 16;                       //カラービット
 
 void Window::InitWindow()
 {
@@ -19,7 +19,7 @@ Window::Window()
     ChangeWindowMode(true);
     SetGraphMode(static_cast<int>(WINDOW_SIZE.x), static_cast<int>(WINDOW_SIZE.y), COLOR_BIT);
     SetWindowSizeExtendRate(1.0);
-    SetMainWindowText("Pass&Over");
+    SetMainWindowText("AnotherSuffer");
 }
 
 Window::~Window()
