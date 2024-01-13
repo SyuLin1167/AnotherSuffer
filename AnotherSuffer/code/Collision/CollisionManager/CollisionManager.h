@@ -1,4 +1,7 @@
 #pragma once
+#include<../Rapidjson/istreamwrapper.h>
+#include<../Rapidjson/document.h>
+#include<fstream>
 #include<vector>
 #include<unordered_map>
 
@@ -34,6 +37,11 @@ public:
     /// 当たり判定組み合わせ判別
     /// </summary>
     static void CheckCollisionPair();
+
+    /// <summary>
+    /// 当たり判定削除
+    /// </summary>
+    static void DeleteCollision();
 
     /// <summary>
     /// デストラクタ

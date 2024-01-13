@@ -3,17 +3,21 @@
 #include "FirstPersonView.h"
 #include"../../Math/Math.h"
 
+static constexpr float LOOK_HEIGHT = 2.0f;    //視点高さ
+static constexpr float LOOK_SCALE = 5.0f;    //視点スケール
+static constexpr int PLAYER_HEAD_FRAME = 10;      //プレイヤー頭部フレーム
+static constexpr float MAX_PITCH = 1.0f;               //ピッチ最大値
+
 FirstPersonView::FirstPersonView()
     :ObjBase(ObjTag.CAMERA)
     , mousePosX(static_cast<int>(Window::GetWindowSize().x / 2))
     , mousePosY(static_cast<int>(Window::GetWindowSize().y / 2))
     , angleVel()
-    , cameraYaw(-DX_PI_F / 2)
-    , cameraPitch(-DX_PI_F / 4)
+    , cameraYaw(-DX_PI_F / 2.0f)
+    , cameraPitch(-DX_PI_F / 4.0f)
     , cameraViewMat(MGetIdent())
 {
     SetCameraNearFar(CAMERA_NEAR, CAMERA_FAR);
-    objLocalPos = ANGLE_POS;
 
     SetMousePoint(mousePosX, mousePosY);
     SetMouseDispFlag(false);
@@ -29,12 +33,16 @@ void FirstPersonView::Update(const float deltaTime)
     //座標取得
     player = ObjManager::GetObj(ObjTag.PLAYER)[0];
     assert(player);
-    objWorldPos = player->GetObjFramePos();
+    objWorldPos = VAdd(player->GetObjFramePos(PLAYER_HEAD_FRAME),objDir);
 
     //視点移動算出
     CalcMoveView(deltaTime);
     objDir =  VGet(sinf(-cameraYaw), cameraPitch, cosf(-cameraYaw));
     cameraViewMat = MMult(MGetRotY(cameraYaw), MGetRotX(cameraPitch));
+
+    //視点分カメラ座標を僅かに動かす
+    objLocalPos=VScale(VNorm(objDir),LOOK_SCALE);
+    objLocalPos.y=LOOK_HEIGHT;
 
     //マウスポインターは画面の中心
     SetMousePoint(static_cast<int>(Window::GetWindowSize().x / 2), static_cast<int>(Window::GetWindowSize().y / 2));

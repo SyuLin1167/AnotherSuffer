@@ -1,6 +1,7 @@
 #include<DxLib.h>
 
 #include"../../ObjBase/ObjBase.h"
+#include"../../../Asset/AssetManager/AssetManager.h"
 #include"../../Math/Math.h"
 #include "CharaObjBase.h"
 
@@ -14,9 +15,9 @@ CharaObjBase::CharaObjBase(std::string tag)
     , isMove(false)
     , moveSpeed()
     , nowRotate(false)
-    , modelData(model->GetJsonData()[objTag.c_str()])
-    , soundData(sound->GetJsonData()[objTag.c_str()])
-    , motionData(motion->GetJsonData()[objTag.c_str()])
+    , modelData(AssetManager::ModelInstance()->GetJsonData()[objTag.c_str()])
+    , soundData(AssetManager::SoundInstance()->GetJsonData()[objTag.c_str()])
+    , motionData(AssetManager::MotionInstance()->GetJsonData()[objTag.c_str()])
     , aimDir()
     , rotRad()
     , rotYRad(-DX_PI_F / 2)

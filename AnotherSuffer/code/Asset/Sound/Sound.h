@@ -1,5 +1,4 @@
 #pragma once
-
 #include"../AssetBase/AssetBase.h"
 
 /// <summary>
@@ -30,11 +29,6 @@ public:
     /// <param name="handle">:ハンドル</param>
     void StopSound(const int& handle);
 
-    /// <summary>
-    /// ハンドル削除
-    /// </summary>
-    virtual void DeleteHandle() override;
-
 private:
     /// <summary>
     /// ハンドル追加
@@ -47,6 +41,11 @@ private:
     /// </summary>
     /// <param name="key">:jsonデータ取得キー</param>
     void AddData(const rapidjson::Value& key);
+
+    /// <summary>
+    /// ハンドル削除
+    /// </summary>
+    virtual void DeleteHandle() override;
 
     /// <summary>
     /// サウンドパラメーター

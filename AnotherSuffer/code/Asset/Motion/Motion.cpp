@@ -1,13 +1,12 @@
 #include<DxLib.h>
 
+#include"../../Object/ObjBase/ObjBase.h"
 #include "../AssetManager/AssetManager.h"
 #include"../Model/Model.h"
 #include "Motion.h"
 
 Motion::Motion(class Model* model)
     :modelHandle(-1)
-    , nowMotionTime()
-    , nowHandle(-1)
     ,attachedIndex()
 {
     //jsonファイル読み込み
@@ -32,7 +31,7 @@ Motion::Motion(class Model* model)
 
 Motion::~Motion()
 {
-    //処理なし
+    DeleteHandle();
 }
 
 void Motion::AddHandle(const std::string fileName)
@@ -79,6 +78,7 @@ Motion::MotionParam::MotionParam()
     : isLoop(false)
     , playSpeed()
     , index()
+    , nowMotionTime()
     , totalTime()
 {
     //処理なし
@@ -92,59 +92,71 @@ void Motion::DeleteHandle()
         DeleteSoundMem(iter.second);
     }
     handle.clear();
+    nowHandle.clear();
     motionData.clear();
 }
 
-void Motion::AddMotionTime(const float deltaTime)
+void Motion::AddMotionTime(class ObjBase* obj, const float deltaTime)
 {
     //再生速度に合わせて加算
-    if (nowHandle && IsPlaying())
+    if (nowHandle[obj] && IsPlaying(nowHandle[obj]))
     {
-        nowMotionTime += motionData[nowHandle].playSpeed * deltaTime;
+        motionData[nowHandle[obj]].nowMotionTime += motionData[nowHandle[obj]].playSpeed * deltaTime;
 
         //ループ再生
-        if (motionData[nowHandle].isLoop &&
-            nowMotionTime > motionData[nowHandle].totalTime)
+        if (motionData[nowHandle[obj]].isLoop &&
+            motionData[nowHandle[obj]].nowMotionTime > motionData[nowHandle[obj]].totalTime)
         {
-            nowMotionTime = 0.0f;
+            motionData[nowHandle[obj]].nowMotionTime = 0.0f;
         }
 
         //モーション時間アタッチ
-        MV1SetAttachAnimTime(modelHandle, attachedIndex[modelHandle], nowMotionTime);
+        MV1SetAttachAnimTime(modelHandle, attachedIndex[modelHandle], motionData[nowHandle[obj]].nowMotionTime);
     }
 }
 
-void Motion::StartMotion(int model, int handle)
+void Motion::StartMotion(class ObjBase* obj, int handle)
 {
-    //モーション切り替え
-    modelHandle = model;
-    if (handle != nowHandle)
+    auto findHandle = nowHandle.find(obj);
+    if (findHandle == nowHandle.end())
     {
-        nowHandle = handle;
-        if (nowHandle != -1)
+        nowHandle.emplace(obj, -1);
+    }
+
+    //モーション切り替え
+    modelHandle = obj->GetObjHandle();
+    if (nowHandle[obj] != handle)
+    {
+        nowHandle[obj] = handle;
+        if (nowHandle[obj] != -1)
         {
             MV1DetachAnim(modelHandle, attachedIndex[modelHandle]);
         }
-        attachedIndex[modelHandle] = MV1AttachAnim(modelHandle, motionData[nowHandle].index,
-            nowHandle, TRUE);
+        attachedIndex[modelHandle] = MV1AttachAnim(modelHandle, motionData[nowHandle[obj]].index,
+            nowHandle[obj], TRUE);
 
         //時間をリセットして再生
-        nowMotionTime = 0.0f;
-        MV1SetAttachAnimTime(modelHandle, attachedIndex[modelHandle], nowMotionTime);
+        motionData[nowHandle[obj]].nowMotionTime = 0.0f;
+        MV1SetAttachAnimTime(modelHandle, attachedIndex[modelHandle], motionData[nowHandle[obj]].nowMotionTime);
     }
 }
 
-void Motion::StopMotion()
+void Motion::StopMotion(int handle)
 {
-    //モーション時間を総再生時間にする
-    nowMotionTime = motionData[nowHandle].totalTime;
+    //ハンドルを検索
+    auto findHandle = motionData.find(handle);
+    if (findHandle != motionData.end())
+    {
+        //見つかったらモーション時間を総再生時間にする
+        motionData[handle].nowMotionTime = motionData[handle].totalTime;
+    }
 }
 
-bool Motion::IsPlaying()
+bool Motion::IsPlaying(int handle)
 {
     //ループ再生不可でモーションが再生しきったら停止中
-    if (!motionData[nowHandle].isLoop &&
-        nowMotionTime > motionData[nowHandle].totalTime)
+    if (!motionData[handle].isLoop &&
+        motionData[handle].nowMotionTime > motionData[handle].totalTime)
     {
         return false;
     }

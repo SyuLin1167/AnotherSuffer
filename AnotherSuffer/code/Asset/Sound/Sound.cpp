@@ -23,8 +23,7 @@ Sound::Sound()
 
 Sound::~Sound()
 {
-    MV1DeleteModel(holdHandle);
-    MV1DeleteModel(dupHandle);
+    DeleteHandle();
 }
 
 void Sound::AddHandle(const std::string fileName)

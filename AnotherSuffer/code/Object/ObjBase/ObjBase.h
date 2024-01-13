@@ -1,14 +1,11 @@
 #pragma once
 #include<DxLib.h>
 #include<../Rapidjson/rapidjson.h>
+#include<../Rapidjson/document.h>
 #include<string.h>
 #include<string>
 
 #include"ObjTag.h"
-#include"../../Asset/AssetManager/AssetManager.h"
-#include"../../Asset/Model/Model.h"
-#include"../../Asset/Motion/Motion.h"
-#include"../../Asset/Sound/Sound.h"
 
 /// <summary>
 /// オブジェクト基底クラス
@@ -65,8 +62,8 @@ public:
     /// <summary>
     /// フレーム座標取得
     /// </summary>
-    /// <returns></returns>
-    VECTOR GetObjFramePos() const { return MV1GetFramePosition(objHandle, frameIdx); }
+    /// <returns>指定のフレーム座標</returns>
+    VECTOR GetObjFramePos(int frameIdx) const { return MV1GetFramePosition(objHandle, frameIdx); }
 
     /// <summary>
     /// 方向取得
@@ -101,15 +98,11 @@ protected:
 
     std::string objTag;     //オブジェクトのタグ
 
-    class Model* model;     //モデル
-    class Sound* sound;     //サウンド
-    class Motion* motion;   //モーション
-
     bool isAlive;           //生存状態
     bool isVisible;         //可視判定
 
     int objHandle;          //ハンドル
-    int frameIdx;           //フレームのインデックス番号
+    //int frameIdx;           //フレームのインデックス番号
 
     VECTOR objScale;        //オブジェクトの大きさ
     VECTOR objPos;          //座標

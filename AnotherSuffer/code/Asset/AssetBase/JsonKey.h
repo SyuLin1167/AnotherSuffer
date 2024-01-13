@@ -10,6 +10,9 @@ namespace jsondata
     {
         std::string nomal = "nomal";
         std::string walk = "walk";
+        std::string wall="wall";
+        std::string barricade="barricade";
+        std::string aisle="aisle";
     }objKey;
 
     /// <summary>

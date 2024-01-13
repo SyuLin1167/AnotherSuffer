@@ -44,9 +44,6 @@ private:
     int mousePosY;                              //マウス座標Y
     VECTOR angleVel;                            //移動量
 
-    const VECTOR ANGLE_POS = VGet(0, 10, 0);    //視点座標
-
-    const float MAX_PITCH = 1.0f;               //ピッチマックス値
     float cameraYaw;                            //カメラヨー
     float cameraPitch;                          //カメラピッチ
     MATRIX cameraViewMat;                       //ビュー行列

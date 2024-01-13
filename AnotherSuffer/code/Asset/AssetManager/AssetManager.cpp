@@ -1,25 +1,23 @@
 #include<DxLib.h>
 
-#include"../Model/Model.h"
-#include"../Motion/Motion.h"
-#include"../Sound/Sound.h"
 #include "AssetManager.h"
 
-std::unique_ptr<AssetManager> AssetManager::assetManager=nullptr;
+std::unique_ptr<AssetManager> AssetManager::singleton;
 
 void AssetManager::InitAssetManager()
 {
     //自身の中身が空だったらインスタンス生成
-    if (!assetManager)
+    if (!singleton)
     {
         SetUseASyncLoadFlag(true);
-        assetManager.reset(new AssetManager);
+        singleton.reset(new AssetManager);
         SetUseASyncLoadFlag(false);
     }
 }
 
 AssetManager::AssetManager()
-    :model(new Model)
+    :graph(new Graph)
+    , model(new Model)
     , motion(new Motion(model.get()))
     , sound(new Sound)
 {
@@ -28,8 +26,5 @@ AssetManager::AssetManager()
 
 AssetManager::~AssetManager()
 {
-    //ハンドル削除
-    model->DeleteHandle();
-    motion->DeleteHandle();
-    sound->DeleteHandle();
+    //処理なし
 }

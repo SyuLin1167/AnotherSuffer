@@ -1,3 +1,4 @@
+
 #include "StageObjBase.h"
 #include"../../../KeyStatus/KeyStatus.h"
 #include"../../ObjManager/ObjManager.h"
@@ -9,18 +10,21 @@ static constexpr float CLIP_DISTANCE = 400.0f;     //Ø‚è”²‚«‹——£
 
 StageObjBase::StageObjBase(const VECTOR pos)
     :ObjBase(ObjTag.STAGE)
+    , graphData(AssetManager::GraphInstance()->GetJsonData()[objTag.c_str()])
+    , color()
     , clipBoxScale()
     , clipBoxPos1()
     , clipBoxPos2()
     , texHandle(-1)
     , texIndex()
 {
-    objHandle = MV1DuplicateModel(model->GetHandle(model->GetJsonData()[objTag.c_str()].GetString()));
+    objHandle = MV1DuplicateModel(AssetManager::ModelInstance()->GetHandle(
+    AssetManager::ModelInstance()->GetJsonData()[objTag.c_str()].GetString()));
     MV1SetMeshBackCulling(objHandle, -1, true);
     MV1SetUseZBuffer(objHandle, true);
     objLocalPos = pos;
 
-    objScale = VGet(0.2f, 0.3f, 0.2f);
+    objScale = VGet(0.2f, 0.4f, 0.2f);
     MV1SetScale(objHandle, objScale);
 
 #ifdef _DEBUG
@@ -81,5 +85,5 @@ void StageObjBase::Draw()
     //ƒ‚ƒfƒ‹•`‰æ
     MV1SetTextureGraphHandle(objHandle, texIndex, texHandle, true);
     MV1DrawModel(objHandle);
-    DrawBox(objPos.z + 40, objPos.x + 40, objPos.z + 80, objPos.x + 80, GetColor(150, 100, 10), true);
+    DrawBox(objPos.z, objPos.x, objPos.z + 40, objPos.x + 40, color, true);
 }
