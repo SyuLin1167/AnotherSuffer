@@ -39,6 +39,11 @@ public:
     static void CheckCollisionPair();
 
     /// <summary>
+    /// 当たり判定削除
+    /// </summary>
+    static void DeleteCollision();
+
+    /// <summary>
     /// デストラクタ
     /// </summary>
     ~CollisionManager();

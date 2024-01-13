@@ -33,11 +33,9 @@ void CollisionManager::AddCol(ObjBase* obj, CollisionBase* col)
     singleton->colData[obj].emplace_back(col);
 }
 
-
 CollisionManager::~CollisionManager()
 {
-    //データ削除
-    singleton->colData.clear();
+    DeleteCollision();
 }
 
 void CollisionManager::CheckCollisionPair()
@@ -53,6 +51,12 @@ void CollisionManager::CheckCollisionPair()
             OnCollisionEnter(mainObj->name.GetString(), pairObj->name.GetString());
         }
     }
+}
+
+void CollisionManager::DeleteCollision()
+{
+    //データ削除
+    singleton->colData.clear();
 }
 
 void CollisionManager::OnCollisionEnter(std::string mainObjTag, std::string pairObjTag)

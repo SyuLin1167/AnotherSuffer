@@ -12,7 +12,6 @@
 
 Play::Play()
 {
-    CollisionManager::InitColManager();
     ObjManager::AddObj(new FirstPersonView);
     ObjManager::AddObj(new Player);
     stageManager.reset(new StageManager);
@@ -20,7 +19,7 @@ Play::Play()
 
 Play::~Play()
 {
-    //ˆ—‚È‚µ
+    CollisionManager::DeleteCollision();
 }
 
 SceneBase* Play::UpdateScene(const float deltaTime)

@@ -127,7 +127,7 @@
     <Filter Include="ソース ファイル\Asset\Graph">
       <UniqueIdentifier>{8fd492f7-05fe-4c28-ae95-c789bd377560}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Object\StageObj\Ground">
+    <Filter Include="ソース ファイル\Object\StageObj\Aisle">
       <UniqueIdentifier>{c4e85f77-b12f-4f43-8ffd-ba278ff60254}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -228,8 +228,8 @@
     <ClCompile Include="..\code\Asset\Graph\Graph.cpp">
       <Filter>ソース ファイル\Asset\Graph</Filter>
     </ClCompile>
-    <ClCompile Include="..\code\Object\StageObj\Ground\Ground.cpp">
-      <Filter>ソース ファイル\Object\StageObj\Ground</Filter>
+    <ClCompile Include="..\code\Object\StageObj\Aisle\Aisle.cpp">
+      <Filter>ソース ファイル\Object\StageObj\Aisle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -335,8 +335,8 @@
     <ClInclude Include="..\code\Asset\Graph\Graph.h">
       <Filter>ソース ファイル\Asset\Graph</Filter>
     </ClInclude>
-    <ClInclude Include="..\code\Object\StageObj\Ground\Ground.h">
-      <Filter>ソース ファイル\Object\StageObj\Ground</Filter>
+    <ClInclude Include="..\code\Object\StageObj\Aisle\Aisle.h">
+      <Filter>ソース ファイル\Object\StageObj\Aisle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -6,7 +6,7 @@
 
 #include "StageManager.h"
 #include"../../ObjManager/ObjManager.h"
-#include"../Ground/Ground.h"
+#include"../Aisle/Aisle.h"
 #include"../Wall/Wall.h"
 #include"../Barricade/Barricade.h"
 
@@ -147,8 +147,8 @@ void StageManager::PlacementObject()
         {
             if (indexX.second & AISLE)
             {
-                ObjManager::AddObj(new Ground(
-                    VGet(indexY.first * BLOCK_SIZE - BLOCK_SIZE, -BLOCK_SIZE, indexX.first * BLOCK_SIZE - BLOCK_SIZE)));
+                ObjManager::AddObj(new Aisle(
+                    VGet(indexY.first * BLOCK_SIZE - BLOCK_SIZE, 0, indexX.first * BLOCK_SIZE - BLOCK_SIZE)));
             }
             else if (indexX.second & WALL)
             {

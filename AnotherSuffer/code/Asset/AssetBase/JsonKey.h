@@ -12,7 +12,7 @@ namespace jsondata
         std::string walk = "walk";
         std::string wall="wall";
         std::string barricade="barricade";
-        std::string ground="ground";
+        std::string aisle="aisle";
     }objKey;
 
     /// <summary>

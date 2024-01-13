@@ -13,7 +13,6 @@ Player::Player()
 {
     //モデル読み込み
     objHandle = AssetManager::ModelInstance()->GetHandle(modelData.GetString());
-    frameIdx = -1;
     objDir = VGet(0, 0, -1);
     MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(objPos)));
 
@@ -65,11 +64,6 @@ void Player::Update(const float deltaTime)
         AssetManager::SoundInstance()->StartSound(
         AssetManager::SoundInstance()->GetHandle(
         AssetManager::GetFilePass(soundData[jsondata::objKey.walk.c_str()])));
-    }
-
-    if (KeyStatus::KeyStateDecision(KEY_INPUT_SPACE, ONINPUT))
-    {
-        frameIdx++;
     }
 
     //座標更新

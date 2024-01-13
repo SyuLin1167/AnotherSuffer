@@ -7,6 +7,7 @@ Wall::Wall(const VECTOR pos)
     //テクスチャ貼り換え
     texHandle = AssetManager::GraphInstance()->GetHandle(graphData[jsondata::objKey.wall.c_str()].GetString());
     texIndex = MV1GetMaterialDifMapTexture(objHandle, 0);
+    color = GetColor(75, 50, 5);
 }
 
 Wall::~Wall()

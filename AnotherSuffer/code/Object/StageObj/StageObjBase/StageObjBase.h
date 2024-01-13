@@ -48,6 +48,8 @@ protected:
     int texHandle;              //テクスチャハンドル
     int texIndex;               //テクスチャインデックス
 
+    unsigned int color;
+
     std::unique_ptr<class ColModel> colModel;   //当たり判定
 };
 

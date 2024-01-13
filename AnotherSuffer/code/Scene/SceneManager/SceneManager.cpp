@@ -3,6 +3,7 @@
 #include"../SceneBase/SceneBase.h"
 #include"../../Object/ObjManager/ObjManager.h"
 #include"../../Asset/AssetManager/AssetManager.h"
+#include"../../Collision/CollisionManager/CollisionManager.h"
 #include"../../FPS/FPS.h"
 #include"../../KeyStatus/KeyStatus.h"
 #include"../Title/Title.h"
@@ -22,11 +23,12 @@ void SceneManager::InitSceneManager()
 SceneManager::SceneManager()
     :holdScene(nullptr)
 {
-    //
+    //管理クラス類初期化
     FPS::InitFPS();
     KeyStatus::InitKeyStatus();
     ObjManager::InitObjManager();
     AssetManager::InitAssetManager();
+    CollisionManager::InitColManager();
 
     //初期シーン設定
     nowScene.emplace(new Title);
