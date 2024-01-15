@@ -26,15 +26,7 @@ static constexpr int RIGHT = 0x0008;                                   //右
 StageManager::StageManager()
     :dirArray{ UP, DOWN, LEFT, RIGHT }
 {
-    //ステージ作成&生成
-    std::srand(unsigned int(time(NULL)));
-    InitStageData();
-    CreateStage();
-    SetBarricade();
-
-    SetUseASyncLoadFlag(true);
-    PlacementObject();
-    SetUseASyncLoadFlag(false);
+    //処理なし
 }
 
 void StageManager::InitStageManager()
@@ -42,6 +34,16 @@ void StageManager::InitStageManager()
     if (!singleton)
     {
         singleton.reset(new StageManager);
+
+        //ステージ作成&生成
+        std::srand(unsigned int(time(NULL)));
+        singleton->InitStageData();
+        singleton->CreateStage();
+        singleton->SetBarricade();
+
+        SetUseASyncLoadFlag(true);
+        singleton->PlacementObject();
+        SetUseASyncLoadFlag(false);
     }
 }
 
@@ -58,17 +60,15 @@ void StageManager::InitStageData()
     {
         for (int j = 0; j < STAGE_SIZE; j++)
         {
-            StageParam stageParam = {};
-
-            stageParam.type = WALL;
-            stageParam.pos = VGet(j * BLOCK_SIZE - BLOCK_SIZE, 0, i * BLOCK_SIZE - BLOCK_SIZE);
-            singleton->stageData[i][j].type = WALL;
-            singleton->stageData[i][j].pos = VGet(j * BLOCK_SIZE - BLOCK_SIZE, 0, i * BLOCK_SIZE - BLOCK_SIZE);
+            BlockParam blockParam = {};
+            blockParam.type = WALL;
+            blockParam.pos = VGet(j * BLOCK_SIZE - BLOCK_SIZE, 0, i * BLOCK_SIZE - BLOCK_SIZE);
+singleton->stageData[i].emplace(j, blockParam);
         }
     }
 }
 
-StageManager::StageParam::StageParam()
+StageManager::BlockParam::BlockParam()
     :type()
     , pos()
 {

@@ -31,5 +31,6 @@ void Enemy::MoveChara(const float deltaTime)
 
 void Enemy::Draw()
 {
-
+    //ƒ‚ƒfƒ‹•`‰æ
+    MV1DrawModel(objHandle);
 }

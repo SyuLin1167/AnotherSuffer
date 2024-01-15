@@ -5,6 +5,7 @@
 #include"../../Collision/CollisionManager/CollisionManager.h"
 #include"../../Object/Camera/FirstPersonView/FirstPersonView.h"
 #include"../../Object/CharaObj/Player/Player.h"
+#include"../../Object/CharaObj/Enemy/Enemy.h"
 #include"../../Object/StageObj/StageManager/StageManager.h"
 #include"../SceneBase/SceneBase.h"
 #include"../Title/Title.h"
@@ -14,6 +15,7 @@ Play::Play()
 {
     ObjManager::AddObj(new FirstPersonView);
     ObjManager::AddObj(new Player);
+    ObjManager::AddObj(new Enemy);
     StageManager::InitStageManager();
 }
 

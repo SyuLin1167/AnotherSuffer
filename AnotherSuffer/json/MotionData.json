@@ -11,6 +11,13 @@
         "speed": 30.0,
         "loop": true
       }
+    },
+    "enemy": {
+      "nomal": {
+        "pass": "../assets/model/Chara/Player/PlayerNomal.mv1",
+        "speed": 30.0,
+        "loop": true
+      }
     }
   }
 }

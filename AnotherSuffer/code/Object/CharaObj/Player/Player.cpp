@@ -27,11 +27,12 @@ Player::Player()
     //当たり判定はカプセル型
     capsule=new Capsule(VAdd(objPos, VGet(0, 6, 0)), VAdd(objPos, VGet(0, 30, 0)), 6.0f);
     CollisionManager::AddCol(this, capsule);
-    line = new Line(VAdd(objPos, VGet(0, -5, 0)), VAdd(objPos, VGet(0, 5, 0)));
+    line = new Line(VAdd(objPos, VGet(0, 5, 0)), VAdd(objPos, VGet(0, -5, 0)));
     CollisionManager::AddCol(this, line);
 
     //仮ライト
     texHandle = CreatePointLightHandle(objPos, 150.0f, 0.0f, 0.0f, 0.001f);
+    test = 0;
 }
 
 Player::~Player()
@@ -122,7 +123,6 @@ void Player::MoveByKey(const int keyName, const VECTOR dir, const float deltaTim
 void Player::OnCollisionEnter(ObjBase* colObj)
 {
     //当たり判定処理
-    texHandle = 0;
     for (auto& obj : CollisionManager::GetCol(colObj))
     {
         if (obj->GetColTag() == ColTag.MODEL)
@@ -135,7 +135,7 @@ void Player::OnCollisionEnter(ObjBase* colObj)
             }
             if (line->OnCollisionWithMesh(obj->GetColModel()))
             {
-                texHandle = -1;
+                test = -1;
             }
         }
     }
@@ -143,6 +143,7 @@ void Player::OnCollisionEnter(ObjBase* colObj)
     //座標更新
     CalcObjPos();
     capsule->Update(objPos);
+    line->Update(objPos);
 
     //行列でモデルの動作
     MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(objPos)));
@@ -165,9 +166,8 @@ void Player::Draw()
             colInfo.Dim[i].Position[1],
             colInfo.Dim[i].Position[2], GetColor(0, 255, 255), TRUE);
     }
-
-    DrawFormatString(0, 20, GetColor(255, 255, 255), "%d", texHandle);
     DrawLine3D(objPos, VAdd(objPos, VScale(objDir,3)), GetColor(255, 0, 0));
 
+    DrawFormatString(0, 100, GetColor(255, 255, 255), "%d",test);
 #endif // _DEBUG
 }

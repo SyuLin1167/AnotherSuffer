@@ -85,5 +85,5 @@ void StageObjBase::Draw()
     //ƒ‚ƒfƒ‹•`‰æ
     MV1SetTextureGraphHandle(objHandle, texIndex, texHandle, true);
     MV1DrawModel(objHandle);
-    DrawBox(objPos.z, objPos.x, objPos.z + 40, objPos.x + 40, color, true);
+    DrawBox(objPos.z+40, objPos.x+40, objPos.z + 80, objPos.x + 80, color, true);
 }

@@ -7,6 +7,14 @@
         "loop": false,
         "volume": 150
       }
+    },
+    "enemy": {
+      "walk": {
+        "pass": "../assets/sound/DoorOpenSE.wav",
+        "type": "SE",
+        "loop": false,
+        "volume": 150
+      }
     }
   }
 }
