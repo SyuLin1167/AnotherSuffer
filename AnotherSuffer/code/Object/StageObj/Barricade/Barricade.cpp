@@ -32,7 +32,7 @@ void Barricade::OnCollisionEnter(ObjBase* colObj)
                 {
                     //á•Ç‚ð”j‰ó
                     BreakBarricade();
-                    MV1CollResultPolyDimTerminate(colModel->GetColInfo());
+                    MV1CollResultPolyDimTerminate(colModel->GetColInfoDim());
                     break;
                 }
             }

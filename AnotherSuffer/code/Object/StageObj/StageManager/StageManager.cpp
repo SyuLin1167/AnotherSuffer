@@ -1,4 +1,5 @@
 #include<DxLib.h>
+#include<memory>
 #include<vector>
 #include<unordered_map>
 #include<time.h>
@@ -10,6 +11,8 @@
 #include"../Wall/Wall.h"
 #include"../Barricade/Barricade.h"
 
+std::unique_ptr<StageManager> StageManager::singleton;
+
 static constexpr float BLOCK_SIZE = 40.0f;                             //ブロックサイズ
 static constexpr int STAGE_SIZE = 17;                                  //ステージサイズ
 static constexpr int MOVE_CELL = 1;                                    //セルの移動量
@@ -19,10 +22,6 @@ static constexpr int UP = 0x0001;                                      //上
 static constexpr int DOWN = 0x0002;                                    //下
 static constexpr int LEFT = 0x0004;                                    //左
 static constexpr int RIGHT = 0x0008;                                   //右
-
-static constexpr int WALL = 0x0001;                                    //壁
-static constexpr int AISLE = 0x0002;                                   //通路
-static constexpr int BARRICADE = 0x0004;                               //障壁
 
 StageManager::StageManager()
     :dirArray{ UP, DOWN, LEFT, RIGHT }
@@ -38,6 +37,14 @@ StageManager::StageManager()
     SetUseASyncLoadFlag(false);
 }
 
+void StageManager::InitStageManager()
+{
+    if (!singleton)
+    {
+        singleton.reset(new StageManager);
+    }
+}
+
 StageManager::~StageManager()
 {
     dirArray.clear();
@@ -51,15 +58,27 @@ void StageManager::InitStageData()
     {
         for (int j = 0; j < STAGE_SIZE; j++)
         {
-            stageData[i][j] = WALL;
+            StageParam stageParam = {};
+
+            stageParam.type = WALL;
+            stageParam.pos = VGet(j * BLOCK_SIZE - BLOCK_SIZE, 0, i * BLOCK_SIZE - BLOCK_SIZE);
+            singleton->stageData[i][j].type = WALL;
+            singleton->stageData[i][j].pos = VGet(j * BLOCK_SIZE - BLOCK_SIZE, 0, i * BLOCK_SIZE - BLOCK_SIZE);
         }
     }
+}
+
+StageManager::StageParam::StageParam()
+    :type()
+    , pos()
+{
+    //処理なし
 }
 
 void StageManager::CreateStage(int indexX, int indexY)
 {
     //現在のマスを通路にする
-    stageData[indexY][indexX] = AISLE;
+    stageData[indexY][indexX].type = AISLE;
 
     //進行方向を通路に
     ShuffleDirection();
@@ -72,9 +91,9 @@ void StageManager::CreateStage(int indexX, int indexY)
         int secondNextX = indexX + CalcNextCell(direction, LEFT, RIGHT) * TWO_CELL;
         int secondNextY = indexY + CalcNextCell(direction, UP, DOWN) * TWO_CELL;
         if (IsOnStage(secondNextX) && IsOnStage(secondNextY) &&
-            (stageData[secondNextY][secondNextX] & WALL))
+            (stageData[secondNextY][secondNextX].type & WALL))
         {
-            stageData[nextY][nextX] = AISLE;
+            stageData[nextY][nextX].type = AISLE;
             CreateStage(secondNextX, secondNextY);
         }
     }
@@ -121,16 +140,16 @@ void StageManager::SetBarricade()
     {
         for (int j = 1; j < STAGE_SIZE - 1; ++j)
         {
-            if (stageData[i][j] & WALL) 
+            if (stageData[i][j].type & WALL)
             {
                 //壁に挟まれていたら5分の1の確立で障壁にする
                 int trapProb = rand() % 5;
                 if (trapProb & 1)
                 {
-                    if ((stageData[i][j + 1] & stageData[i][j - 1] & WALL) ||
-                        (stageData[i + 1][j] & stageData[i - 1][j] & WALL))
+                    if (((stageData[i][j + 1].type & stageData[i][j - 1].type) & WALL) ||
+                        ((stageData[i + 1][j].type & stageData[i - 1][j].type) & WALL))
                     {
-                        stageData[i][j] = BARRICADE;
+                        stageData[i][j].type = BARRICADE;
                     }
                 }
             }
@@ -145,49 +164,21 @@ void StageManager::PlacementObject()
     {
         for (auto& indexX : indexY.second)
         {
-            if (indexX.second & AISLE)
+            if (indexX.second.type & AISLE)
             {
-                ObjManager::AddObj(new Aisle(
-                    VGet(indexY.first * BLOCK_SIZE - BLOCK_SIZE, 0, indexX.first * BLOCK_SIZE - BLOCK_SIZE)));
+                ObjManager::AddObj(new Aisle(indexX.second.pos));
             }
-            else if (indexX.second & WALL)
+            else if (indexX.second.type & WALL)
             {
-                ObjManager::AddObj(new Wall(
-                    VGet(indexY.first * BLOCK_SIZE - BLOCK_SIZE, 0, indexX.first * BLOCK_SIZE - BLOCK_SIZE)));
+                ObjManager::AddObj(new Wall(indexX.second.pos));
             }
-            else if (indexX.second & BARRICADE)
+            else if (indexX.second.type & BARRICADE)
             {
-                ObjManager::AddObj(new Barricade(
-                    VGet(indexY.first * BLOCK_SIZE - BLOCK_SIZE, 0, indexX.first * BLOCK_SIZE - BLOCK_SIZE)));
+                ObjManager::AddObj(new Barricade(indexX.second.pos));
             }
         }
     }
 }
-
-void StageManager::DebugDraw()
-{
-    for (auto& indexY : stageData)
-    {
-        for (auto& indexX : indexY.second)
-        {
-            if (indexX.second & WALL) {
-                DrawBox(indexX.first * 20, indexY.first * 20,
-                    (indexX.first + 1) * 20, (indexY.first + 1) * 20, GetColor(150, 100, 10), TRUE);
-            }
-            if (indexX.second & BARRICADE)
-            {
-                DrawBox(indexX.first * 20, indexY.first * 20,
-                    (indexX.first + 1) * 20, (indexY.first + 1) * 20, GetColor(100, 10, 120), TRUE);
-            }
-            if (indexX.second & AISLE)
-            {
-                DrawBox(indexX.first * 20, indexY.first * 20,
-                    (indexX.first + 1) * 20, (indexY.first + 1) * 20, GetColor(50, 150, 150), TRUE);
-            }
-        }
-    }
-}
-
 
 
 

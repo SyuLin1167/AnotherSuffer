@@ -27,9 +27,5 @@ bool Line::OnCollisionWithMesh(const int modelHandle)
 {
     //“–‚½‚è”»’èî•ñ‚©‚ç”»’èŒ‹‰Ê‚ð•Ô‚·
     colInfo = MV1CollCheck_Line(modelHandle, -1, worldStartPos, worldEndPos);
-    if (colInfo.HitNum > 0)
-    {
-        return true;
-    }
-    return false;
+    return colInfo.HitFlag;
 }

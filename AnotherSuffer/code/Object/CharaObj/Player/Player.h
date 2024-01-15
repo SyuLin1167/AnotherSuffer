@@ -2,7 +2,7 @@
 #include"../CharaObjBase/CharaObjBase.h"
 
 /// <summary>
-/// Playerクラス
+/// プレイヤー
 /// </summary>
 class Player final:public CharaObjBase
 {

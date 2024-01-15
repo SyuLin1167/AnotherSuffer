@@ -131,7 +131,7 @@ void Player::OnCollisionEnter(ObjBase* colObj)
             {
                 objLocalPos = VAdd(objLocalPos, capsule->CalcPushBackFromMesh());
 
-                MV1CollResultPolyDimTerminate(capsule->GetColInfo());
+                MV1CollResultPolyDimTerminate(capsule->GetColInfoDim());
             }
             if (line->OnCollisionWithMesh(obj->GetColModel()))
             {

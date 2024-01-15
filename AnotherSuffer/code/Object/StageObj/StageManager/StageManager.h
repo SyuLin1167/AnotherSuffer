@@ -1,5 +1,9 @@
 #pragma once
 
+static constexpr int WALL = 0x0001;                                    //壁
+static constexpr int AISLE = 0x0002;                                   //通路
+static constexpr int BARRICADE = 0x0004;                               //障壁
+
 /// <summary>
 /// ステージの管理
 /// </summary>
@@ -7,25 +11,25 @@ class StageManager final
 {
 public:
     /// <summary>
-    /// コンストラクタ
+    /// ステージ管理初期化
     /// </summary>
-    StageManager();
+    static void InitStageManager();
 
     /// <summary>
     /// デストラクタ
     /// </summary>
     ~StageManager();
 
-    /// <summary>
-    /// デバッグ用描画
-    /// </summary>
-    void DebugDraw();
-
 private:
+    /// <summary>
+    /// コンストラクタ(シングルトン)
+    /// </summary>
+    StageManager();
+
     /// <summary>
     /// ステージデータ初期化
     /// </summary>
-    void InitStageData();
+    static void InitStageData();
 
     /// <summary>
     /// ステージ作成
@@ -65,8 +69,28 @@ private:
     /// </summary>
     void PlacementObject();
 
-    std::vector<int> dirArray;      //ステージ生成用方向配列
+    struct StageParam
+    {
+        public:
+            /// <summary>
+            /// コンストラクタ
+            /// </summary>
+            StageParam();
 
-    std::unordered_map<int, std::unordered_map<int, int>> stageData;                //ステージデータ
+            int type;      //ブロックタイプ
+            VECTOR pos;    //座標
+    };
+
+    static std::unique_ptr<StageManager> singleton;    //自身の実体
+
+    std::vector<int> dirArray;      //ステージ生成用方向配列
+    std::unordered_map<int, std::unordered_map<int, StageParam>> stageData;                //ステージデータ
+
+public:
+    /// <summary>
+    /// ステージデータ取得
+    /// </summary>
+    /// <returns>ステージデータ</returns>
+    static std::unordered_map<int, std::unordered_map<int, StageParam>> GetStageData() {return singleton->stageData;}
 };
 

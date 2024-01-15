@@ -130,6 +130,9 @@
     <Filter Include="ソース ファイル\Object\StageObj\Aisle">
       <UniqueIdentifier>{c4e85f77-b12f-4f43-8ffd-ba278ff60254}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Object\CharaObj\Enemy">
+      <UniqueIdentifier>{c52f0835-8d45-4a07-b566-c2ef9f6ac6b3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\code\Scene\SceneBase\SceneBase.cpp">
@@ -230,6 +233,9 @@
     </ClCompile>
     <ClCompile Include="..\code\Object\StageObj\Aisle\Aisle.cpp">
       <Filter>ソース ファイル\Object\StageObj\Aisle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\Object\CharaObj\Enemy\Enemy.cpp">
+      <Filter>ソース ファイル\Object\CharaObj\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -337,6 +343,9 @@
     </ClInclude>
     <ClInclude Include="..\code\Object\StageObj\Aisle\Aisle.h">
       <Filter>ソース ファイル\Object\StageObj\Aisle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Object\CharaObj\Enemy\Enemy.h">
+      <Filter>ソース ファイル\Object\CharaObj\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

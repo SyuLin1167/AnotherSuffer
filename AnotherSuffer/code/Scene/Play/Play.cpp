@@ -14,7 +14,7 @@ Play::Play()
 {
     ObjManager::AddObj(new FirstPersonView);
     ObjManager::AddObj(new Player);
-    stageManager.reset(new StageManager);
+    StageManager::InitStageManager();
 }
 
 Play::~Play()

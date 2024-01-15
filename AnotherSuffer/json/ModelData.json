@@ -1,6 +1,7 @@
 {
-  "model": {
-    "player": "../assets/model/Chara/Player/Player.mv1",
-    "stage": "../assets/model/Map/Box.mv1"
-  }
+    "model": {
+        "player": "../assets/model/Chara/Player/Player.mv1",
+        "enemy": "../assets/model/Chara/Player/Player.mv1",
+        "stage": "../assets/model/Map/Box.mv1"
+    }
 }
