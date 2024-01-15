@@ -31,10 +31,16 @@ public:
     int GetColModel() const { return colHandle; }
 
     /// <summary>
+    /// 配列型衝突判定情報取得
+    /// </summary>
+    /// <returns>配列型衝突判定情報</returns>
+    MV1_COLL_RESULT_POLY_DIM GetColInfoDim() const { return colInfoDim; }
+
+    /// <summary>
     /// 衝突判定情報取得
     /// </summary>
     /// <returns>衝突判定情報</returns>
-    MV1_COLL_RESULT_POLY_DIM GetColInfo() const { return colInfo; }
+    MV1_COLL_RESULT_POLY GetColInfo() const { return colInfo; }
 
     /// <summary>
     /// ワールド始点座標取得
@@ -64,7 +70,8 @@ protected:
     std::string colTag;                     //当たり判定タグ
 
     int colHandle;                          //ハンドル
-    MV1_COLL_RESULT_POLY_DIM colInfo;       //当たり判定情報
+    MV1_COLL_RESULT_POLY_DIM colInfoDim;    //当たり判定情報配列
+    MV1_COLL_RESULT_POLY colInfo;           //当たり判定情報
 
     VECTOR localStart;                      //ローカル始点座標
     VECTOR localEnd;                        //ローカル終点座標

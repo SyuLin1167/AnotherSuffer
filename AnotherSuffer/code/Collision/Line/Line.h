@@ -1,10 +1,10 @@
 #pragma once
-#include<DxLib.h>
+#include"../CollisionBase/CollisionBase.h"
 
 /// <summary>
 /// ü•ª“–‚½‚è”»’è
 /// </summary>
-class Line final
+class Line final :public CollisionBase
 {
 public:
     /// <summary>
@@ -31,7 +31,7 @@ public:
     /// <param name="modelHandle">:ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹</param>
     /// <param name="colInfo">:“–‚½‚è”»’èî•ñ</param>
     /// <returns>‚Ô‚Â‚©‚Á‚½:true|‚Ô‚Â‚©‚Á‚Ä‚¢‚È‚¢:false</returns>
-    bool OnCollisionWithMesh(const int modelHandle, MV1_COLL_RESULT_POLY& colInfo);
+    bool OnCollisionWithMesh(const int modelHandle);
 
 private:
     VECTOR localStartPos;

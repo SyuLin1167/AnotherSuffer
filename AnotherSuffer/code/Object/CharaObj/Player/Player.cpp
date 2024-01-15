@@ -3,6 +3,7 @@
 #include"../../../Asset/AssetManager/AssetManager.h"
 #include"../../../Collision/CollisionManager/CollisionManager.h"
 #include"../../../Collision/Capsule/Capsule.h"
+#include"../../../Collision/Line/Line.h"
 #include "Player.h"
 
 static constexpr float RUN_SPEED = 40.0f;
@@ -26,6 +27,8 @@ Player::Player()
     //当たり判定はカプセル型
     capsule=new Capsule(VAdd(objPos, VGet(0, 6, 0)), VAdd(objPos, VGet(0, 30, 0)), 6.0f);
     CollisionManager::AddCol(this, capsule);
+    line = new Line(VAdd(objPos, VGet(0, -5, 0)), VAdd(objPos, VGet(0, 5, 0)));
+    CollisionManager::AddCol(this, line);
 
     //仮ライト
     texHandle = CreatePointLightHandle(objPos, 150.0f, 0.0f, 0.0f, 0.001f);
@@ -119,6 +122,7 @@ void Player::MoveByKey(const int keyName, const VECTOR dir, const float deltaTim
 void Player::OnCollisionEnter(ObjBase* colObj)
 {
     //当たり判定処理
+    texHandle = 0;
     for (auto& obj : CollisionManager::GetCol(colObj))
     {
         if (obj->GetColTag() == ColTag.MODEL)
@@ -128,6 +132,10 @@ void Player::OnCollisionEnter(ObjBase* colObj)
                 objLocalPos = VAdd(objLocalPos, capsule->CalcPushBackFromMesh());
 
                 MV1CollResultPolyDimTerminate(capsule->GetColInfo());
+            }
+            if (line->OnCollisionWithMesh(obj->GetColModel()))
+            {
+                texHandle = -1;
             }
         }
     }
@@ -158,7 +166,7 @@ void Player::Draw()
             colInfo.Dim[i].Position[2], GetColor(0, 255, 255), TRUE);
     }
 
-    DrawFormatString(0, 20, GetColor(255, 255, 255), "%f", a);
+    DrawFormatString(0, 20, GetColor(255, 255, 255), "%d", texHandle);
     DrawLine3D(objPos, VAdd(objPos, VScale(objDir,3)), GetColor(255, 0, 0));
 
 #endif // _DEBUG

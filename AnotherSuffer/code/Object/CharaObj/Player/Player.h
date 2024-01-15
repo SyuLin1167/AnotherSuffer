@@ -52,6 +52,7 @@ private:
     float a = 0;
     int texHandle;
     class Capsule* capsule;
+    class Line* line;
     VECTOR moveVel;
 };
 
