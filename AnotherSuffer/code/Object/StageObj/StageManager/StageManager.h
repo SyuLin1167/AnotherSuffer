@@ -25,6 +25,8 @@ private:
         VECTOR pos;    //座標
     };
 
+    std::unordered_map<int, std::unordered_map<int, BlockParam>> stageData;                //ステージデータ
+
 public:
     /// <summary>
     /// ステージ管理初期化
@@ -94,6 +96,5 @@ private:
     static std::unique_ptr<StageManager> singleton;    //自身の実体
 
     std::vector<int> dirArray;      //ステージ生成用方向配列
-    std::unordered_map<int, std::unordered_map<int, BlockParam>> stageData;                //ステージデータ
 };
 

@@ -24,10 +24,29 @@ private:
     void MoveChara(const float deltaTime) override;
 
     /// <summary>
+    /// 当たり判定
+    /// </summary>
+    /// <param name="colObj">:判定するオブジェクト</param>
+    void OnCollisionEnter(class ObjBase* colObj) override;
+
+    /// <summary>
+    /// ノードのリセット
+    /// </summary>
+    /// <param name="pos">:座標</param>
+    /// <param name="node">:ノード</param>
+    void ResetNode(VECTOR pos, std::pair<int, int>* node);
+
+    /// <summary>
     /// 描画
     /// </summary>
     void Draw() override;
 
     class Astar* astar;
     std::vector<std::pair<int, int>> path;
+    std::pair<int, int> start = {}, goal = {};
+    float timer;
+    
+    std::shared_ptr<ObjBase> player;            //プレイヤー
+    class Line* line;
+    class Capsule* capsule;
 };

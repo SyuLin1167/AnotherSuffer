@@ -39,6 +39,11 @@ private:
     std::shared_ptr<ObjBase> player;        //プレイヤー
 
 protected:
+    /// <summary>
+    /// 当たり判定初期化
+    /// </summary>
+    void InitCollision();
+
     const rapidjson::Value& graphData;      //グラフパスデータ
 
     VECTOR clipBoxScale;        //切り抜きボックススケール

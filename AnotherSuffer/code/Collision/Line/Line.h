@@ -22,8 +22,15 @@ public:
     /// <summary>
     /// 更新
     /// </summary>
-    /// <param name="pos">:移動座標</param>
+    /// <param name="pos">:座標</param>
     void Update(const VECTOR& pos);
+
+    /// <summary>
+    /// 更新
+    /// </summary>
+    /// <param name="pos1">:座標1</param>
+    /// <param name="pos2">:座標2</param>
+    void Update(const VECTOR& pos1,const VECTOR& pos2);
 
     /// <summary>
     /// メッシュとの衝突判定

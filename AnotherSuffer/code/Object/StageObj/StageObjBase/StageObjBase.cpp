@@ -35,10 +35,16 @@ StageObjBase::StageObjBase(const VECTOR pos)
     CalcObjPos();
     MV1SetMatrix(objHandle, MMult(MGetScale(objScale), MGetTranslate(objPos)));
 
+}
+
+
+void StageObjBase::InitCollision()
+{
     //“–‚½‚è”»’è‚Íƒ‚ƒfƒ‹Œ^
     colModel.reset(new ColModel(objHandle));
     CollisionManager::AddCol(this, colModel.get());
 }
+
 
 StageObjBase::~StageObjBase()
 {

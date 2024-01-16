@@ -34,6 +34,6 @@ public:
     }
 
     // A*ƒAƒ‹ƒSƒŠƒYƒ€
-    std::vector< std::pair<int, int>> Algorithm(const  std::vector< std::vector<int>>& maze, std::pair<int, int> start,  std::pair<int, int> goal) ;
+    std::vector< std::pair<int, int>> Algorithm(std::pair<int, int> start,  std::pair<int, int> goal) ;
 };
 

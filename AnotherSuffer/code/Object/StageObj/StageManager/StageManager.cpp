@@ -171,7 +171,7 @@ void StageManager::PlacementObject()
             }
             else if (indexX.second.type & BARRICADE)
             {
-                ObjManager::AddObj(new Barricade(indexX.second.pos));
+                ObjManager::AddObj(new Barricade(indexX.second.pos, { indexX.first,indexY.first }));
             }
         }
     }

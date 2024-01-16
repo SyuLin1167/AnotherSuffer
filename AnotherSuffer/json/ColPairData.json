@@ -4,5 +4,8 @@
   },
   "stage": {
     "player": {}
+  },
+  "enemy": {
+    "stage": {}
   }
 }
