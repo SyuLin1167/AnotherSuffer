@@ -27,4 +27,7 @@ private:
     /// •`‰æ
     /// </summary>
     void Draw() override;
+
+    class Astar* astar;
+    std::vector<std::pair<int, int>> path;
 };

@@ -31,8 +31,6 @@ StageManager::StageManager()
 
 void StageManager::InitStageManager()
 {
-    if (!singleton)
-    {
         singleton.reset(new StageManager);
 
         //ステージ作成&生成
@@ -44,7 +42,6 @@ void StageManager::InitStageManager()
         SetUseASyncLoadFlag(true);
         singleton->PlacementObject();
         SetUseASyncLoadFlag(false);
-    }
 }
 
 StageManager::~StageManager()
@@ -63,7 +60,7 @@ void StageManager::InitStageData()
             BlockParam blockParam = {};
             blockParam.type = WALL;
             blockParam.pos = VGet(j * BLOCK_SIZE - BLOCK_SIZE, 0, i * BLOCK_SIZE - BLOCK_SIZE);
-singleton->stageData[i].emplace(j, blockParam);
+            singleton->stageData[i].emplace(j, blockParam);
         }
     }
 }

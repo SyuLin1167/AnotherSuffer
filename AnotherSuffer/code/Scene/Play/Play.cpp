@@ -13,10 +13,10 @@
 
 Play::Play()
 {
-    ObjManager::AddObj(new FirstPersonView);
-    ObjManager::AddObj(new Player);
-    ObjManager::AddObj(new Enemy);
     StageManager::InitStageManager();
+    ObjManager::AddObj(new Player);
+    ObjManager::AddObj(new FirstPersonView);
+    ObjManager::AddObj(new Enemy);
 }
 
 Play::~Play()

@@ -133,6 +133,9 @@
     <Filter Include="ソース ファイル\Object\CharaObj\Enemy">
       <UniqueIdentifier>{c52f0835-8d45-4a07-b566-c2ef9f6ac6b3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Object\CharaObj\Astar">
+      <UniqueIdentifier>{ea7c5761-626c-4a0b-a137-6067591e1e8a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\code\Scene\SceneBase\SceneBase.cpp">
@@ -236,6 +239,9 @@
     </ClCompile>
     <ClCompile Include="..\code\Object\CharaObj\Enemy\Enemy.cpp">
       <Filter>ソース ファイル\Object\CharaObj\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\Object\CharaObj\Astar\Astar.cpp">
+      <Filter>ソース ファイル\Object\CharaObj\Astar</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -346,6 +352,9 @@
     </ClInclude>
     <ClInclude Include="..\code\Object\CharaObj\Enemy\Enemy.h">
       <Filter>ソース ファイル\Object\CharaObj\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Object\CharaObj\Astar\Astar.h">
+      <Filter>ソース ファイル\Object\CharaObj\Astar</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

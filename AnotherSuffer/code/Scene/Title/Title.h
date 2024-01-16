@@ -34,5 +34,8 @@ public:
     /// ƒV[ƒ“•`‰æ
     /// </summary>
     void DrawScene() override;
+
+    //class Astar* a;
+    std::vector<std::pair<int, int>> path;
 };
 
