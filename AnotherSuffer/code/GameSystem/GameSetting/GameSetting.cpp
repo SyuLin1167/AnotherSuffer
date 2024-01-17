@@ -49,4 +49,8 @@ void GameSetting::AfterLibInit()
     //Zバッファ設定
     SetUseZBuffer3D(true);
     SetWriteZBuffer3D(true);
+
+    //標準ライトを無効化
+    SetLightEnable(false);
+    SetUsePixelLighting(true);
 }

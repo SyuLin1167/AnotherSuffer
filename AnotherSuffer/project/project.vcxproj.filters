@@ -136,6 +136,9 @@
     <Filter Include="ソース ファイル\Object\CharaObj\Astar">
       <UniqueIdentifier>{ea7c5761-626c-4a0b-a137-6067591e1e8a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Object\Camera\Camera">
+      <UniqueIdentifier>{7cf49f97-0c76-4511-8fb1-ba2ea3d65f15}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\code\Scene\SceneBase\SceneBase.cpp">
@@ -167,9 +170,6 @@
     </ClCompile>
     <ClCompile Include="..\code\Asset\AssetBase\AssetBase.cpp">
       <Filter>ソース ファイル\Asset\AssetBase</Filter>
-    </ClCompile>
-    <ClCompile Include="..\code\Object\Camera\Camera.cpp">
-      <Filter>ソース ファイル\Object\Camera</Filter>
     </ClCompile>
     <ClCompile Include="..\code\Object\ObjManager\ObjManager.cpp">
       <Filter>ソース ファイル\Object\ObjManager</Filter>
@@ -243,6 +243,9 @@
     <ClCompile Include="..\code\Object\CharaObj\Astar\Astar.cpp">
       <Filter>ソース ファイル\Object\CharaObj\Astar</Filter>
     </ClCompile>
+    <ClCompile Include="..\code\Object\Camera\Camera.cpp">
+      <Filter>ソース ファイル\Object\Camera\Camera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\code\Scene\SceneBase\SceneBase.h">
@@ -274,9 +277,6 @@
     </ClInclude>
     <ClInclude Include="..\code\Asset\AssetBase\AssetBase.h">
       <Filter>ソース ファイル\Asset\AssetBase</Filter>
-    </ClInclude>
-    <ClInclude Include="..\code\Object\Camera\Camera.h">
-      <Filter>ソース ファイル\Object\Camera</Filter>
     </ClInclude>
     <ClInclude Include="..\code\Object\ObjManager\ObjManager.h">
       <Filter>ソース ファイル\Object\ObjManager</Filter>
@@ -355,6 +355,9 @@
     </ClInclude>
     <ClInclude Include="..\code\Object\CharaObj\Astar\Astar.h">
       <Filter>ソース ファイル\Object\CharaObj\Astar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Object\Camera\Camera.h">
+      <Filter>ソース ファイル\Object\Camera\Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -54,7 +54,10 @@ StageObjBase::~StageObjBase()
 void StageObjBase::Update(const float deltaTime)
 {
     //ƒ‚ƒfƒ‹Ø‚è”²‚«
-    ViewClipBox();
+    if (!ObjManager::GetObj(ObjTag.PLAYER).empty())
+    {
+        ViewClipBox();
+    }
 
     //s—ñ‚Åƒ‚ƒfƒ‹‚Ì“®ì
     CalcObjPos();

@@ -117,5 +117,10 @@ void ObjManager::DeleteAllObj()
 
 std::vector<std::shared_ptr<ObjBase>> ObjManager::GetObj(std::string tag)
 {
-    return singleton->object[tag];
+    if (!singleton->object[tag].empty())
+    {
+        return singleton->object[tag];
+    }
+
+    return {};
 }

@@ -1,5 +1,7 @@
 #pragma once
 
+static constexpr float BLOCK_SIZE = 40.0f;                             //ブロックサイズ
+
 static constexpr int WALL = 0x0001;                                    //壁
 static constexpr int AISLE = 0x0002;                                   //通路
 static constexpr int BARRICADE = 0x0004;                               //障壁

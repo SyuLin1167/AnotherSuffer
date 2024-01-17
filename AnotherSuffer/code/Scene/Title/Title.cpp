@@ -5,27 +5,27 @@
 #include"../SceneBase/SceneBase.h"
 #include"../Play/Play.h"
 #include"../../Object/ObjManager/ObjManager.h"
-#include"../../Object/CharaObj/Astar/Astar.h"
+#include"../../Object/Camera/Camera.h"
+#include"../../Object/CharaObj/Player/Player.h"
+#include"../../Object/StageObj/StageManager/StageManager.h"
+#include"../../Object/StageObj/Wall/Wall.h"
 #include "Title.h"
 
 Title::Title()
     :SceneBase()
 {
-
-    //// 5x5‚Ì–À˜H
-    //std::vector<std::vector<int>> maze = {
-    //    {0, 1, 0, 0, 0},
-    //    {0, 1, 0, 1, 0},
-    //    {0, 0, 0, 1, 0},
-    //    {0, 1, 0, 0, 0},
-    //    {0, 0, 0, 1, 0}
-    //};
-
-    //std::pair<int, int> start = { 0, 0 };
-    //std::pair<int, int> goal = { 4, 4 };
-
-    //a = new Astar;
-    //path = a->Algorithm(maze, start, goal);
+    ObjManager::AddObj(new Camera);
+    for (int i = 0; i < stage.size(); i++)
+    {
+        for (int j=0; j<stage[i].size(); j++)
+        {
+            if (stage[j][i] & 1)
+            {
+                ObjManager::AddObj(new Wall(VGet(j * BLOCK_SIZE - BLOCK_SIZE, 0, i * BLOCK_SIZE - BLOCK_SIZE)));
+            }
+        }
+    }
+    stage.clear();
 }
 
 Title::~Title()
@@ -53,14 +53,4 @@ void Title::DrawScene()
     //ƒIƒuƒWƒFƒNƒg•`‰æ
     ObjManager::DrawObj();
     DrawFormatString(0, 0, GetColor(255, 255, 255), "title");
-
-    //if (path.empty()) {
-    //    DrawFormatString(0, 50, GetColor(255, 255, 255), "ƒS[ƒ‹‚É“ž’B‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B");
-    //}
-    //else {
-    //    DrawFormatString(0, 100, GetColor(255, 255, 255), "Å’ZŒo˜H: ");
-    //    for (const auto& point : path) {
-    //        DrawFormatString(point.second*50, point.first *50+200, GetColor(255, 255, 255), "(%d,%d)", point.first, point.second);
-    //    }
-    //}
 }

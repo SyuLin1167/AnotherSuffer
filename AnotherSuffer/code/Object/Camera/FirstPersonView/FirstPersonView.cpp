@@ -31,7 +31,6 @@ void FirstPersonView::Update(const float deltaTime)
 {
     //À•WŽæ“¾
     player = ObjManager::GetObj(ObjTag.PLAYER)[0];
-    assert(player);
     objWorldPos = VAdd(player->GetObjFramePos(PLAYER_HEAD_FRAME),objDir);
 
     //Ž‹“_ˆÚ“®ŽZo
@@ -60,13 +59,13 @@ void FirstPersonView::CalcMoveView(const float deltaTime)
     //ƒJƒƒ‰‰ñ“]’lŽZo
     if (abs(angleVel.x) > 0)
     {
-        cameraYaw -= angleVel.x * DX_PI_F * deltaTime/10;
+        cameraYaw -= angleVel.x * DX_PI_F * deltaTime / 10.0f;
     }
     if (abs(angleVel.y) > 0)
     {
         if (abs(cameraPitch) <= MAX_PITCH)
         {
-            cameraPitch -= angleVel.y * DX_PI_F * deltaTime / 10;
+            cameraPitch -= angleVel.y * DX_PI_F * deltaTime / 10.0f;
         }
         else
         {

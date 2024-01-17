@@ -13,7 +13,6 @@
 
 std::unique_ptr<StageManager> StageManager::singleton;
 
-static constexpr float BLOCK_SIZE = 40.0f;                             //ブロックサイズ
 static constexpr int STAGE_SIZE = 17;                                  //ステージサイズ
 static constexpr int MOVE_CELL = 1;                                    //セルの移動量
 static constexpr int TWO_CELL = 2;

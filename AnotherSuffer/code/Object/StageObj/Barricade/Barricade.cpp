@@ -10,6 +10,8 @@ Barricade::Barricade(const VECTOR pos, std::pair<int, int> node)
     :StageObjBase(pos)
     , myNode(node)
 {
+    MV1SetEmiColorScale(objHandle,GetColorF(1.0f,0,1.0f,1.0f));
+
     //テクスチャ貼り換え
     texHandle = AssetManager::GraphInstance()->GetHandle(graphData[jsondata::objKey.barricade.c_str()].GetString());
     texIndex = MV1GetMaterialDifMapTexture(objHandle, 0);
@@ -46,8 +48,8 @@ void Barricade::OnCollisionEnter(ObjBase* colObj)
 
 void Barricade::BreakBarricade()
 {
-    //Bキーで破壊
-    if (KeyStatus::KeyStateDecision(KEY_INPUT_B, (ONINPUT | NOWONINPUT)))
+    //左クリックで破壊
+    if (GetMouseInput() & MOUSE_INPUT_LEFT)
     {
         StageManager::ChangeStageData(myNode, AISLE);
         ObjManager::AddObj(new Aisle(objPos));

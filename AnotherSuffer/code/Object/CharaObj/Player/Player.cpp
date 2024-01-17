@@ -31,7 +31,7 @@ Player::Player()
     CollisionManager::AddCol(this, line);
 
     //仮ライト
-    texHandle = CreatePointLightHandle(objPos, 150.0f, 0.0f, 0.0f, 0.001f);
+    texHandle = CreateSpotLightHandle(objPos,objDir,DX_PI_F,DX_PI_F/2, 150.0f, 0.0f, 0.0f, 0.0005f);
     test = 0;
 }
 
@@ -84,6 +84,7 @@ void Player::MoveChara(const float deltaTime)
 
     //カメラの向きを自身の移動方向とする
     std::shared_ptr<ObjBase> camera = ObjManager::GetObj(ObjTag.CAMERA)[0];
+    SetLightDirectionHandle(texHandle, camera->GetObjDir());
     SetLightPositionHandle(texHandle, camera->GetObjPos());
     VECTOR aimDir = camera->GetObjDir();
     VECTOR rightDir = VCross(VGet(0, -1, 0), aimDir);

@@ -33,12 +33,13 @@ Enemy::Enemy()
     //当たり判定はカプセル型
     capsule = new Capsule(VAdd(objPos, VGet(0, 6, 0)), VAdd(objPos, VGet(0, 30, 0)), 6.0f);
     CollisionManager::AddCol(this, capsule);
-    line = new Line(VAdd(objPos, VGet(0, 0, 0)), VAdd(objPos, VGet(0, 0, 0)));
+    line = new Line(objPos,objPos);
     CollisionManager::AddCol(this, line);
 
     //経路探索設定
     astar.reset(new Astar);
     player = ObjManager::GetObj(ObjTag.PLAYER)[0];
+
     ResetNode(objPos, &start);
     ResetNode(player->GetObjPos(), &goal);
     path = astar->Algorithm(start, goal);
@@ -88,7 +89,7 @@ void Enemy::MoveChara(const float deltaTime)
             {
                 //目標地点に移動
                 VECTOR vec = VNorm(VSub(stage[point.first][point.second].pos, objPos));
-                objLocalPos = VAdd(objLocalPos, VScale(vec, 1.5f));
+                objLocalPos = VAdd(objLocalPos, VScale(vec, 0.8f));
                 rotateMat = MMult(MGetScale(objScale), MGetRotVec2(objDir, vec));
                 break;
             }

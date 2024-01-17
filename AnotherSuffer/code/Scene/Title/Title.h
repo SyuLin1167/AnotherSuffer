@@ -35,7 +35,13 @@ public:
     /// </summary>
     void DrawScene() override;
 
-    //class Astar* a;
-    std::vector<std::pair<int, int>> path;
+    std::vector<std::vector<int>> stage
+    {
+        {1,1,1,1,1},
+        {1,0,0,1,1},
+        {1,0,1,1,1},
+        {1,0,0,1,1},
+        {1,1,1,1,1},
+    };
 };
 
