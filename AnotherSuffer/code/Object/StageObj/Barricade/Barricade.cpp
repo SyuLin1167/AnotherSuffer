@@ -49,7 +49,7 @@ void Barricade::BreakBarricade()
     //BÉLÅ[Ç≈îjâÛ
     if (KeyStatus::KeyStateDecision(KEY_INPUT_B, (ONINPUT | NOWONINPUT)))
     {
-        StageManager::GetStageData()[myNode.second][myNode.first];
+        StageManager::ChangeStageData(myNode, AISLE);
         ObjManager::AddObj(new Aisle(objPos));
         isAlive= false;
     }

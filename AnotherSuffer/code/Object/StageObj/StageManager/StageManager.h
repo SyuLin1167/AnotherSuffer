@@ -44,6 +44,12 @@ public:
     /// <returns>ステージデータ</returns>
     static std::unordered_map<int, std::unordered_map<int, BlockParam>> GetStageData() { return singleton->stageData; }
 
+    /// <summary>
+    /// データ変更
+    /// </summary>
+    /// <param name="cell">:セル</param>
+    /// <param name="type">:ブロックタイプ</param>
+    static void ChangeStageData(std::pair<int,int> cell,int type);
 private:
     /// <summary>
     /// コンストラクタ(シングルトン)

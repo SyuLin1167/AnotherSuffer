@@ -3,6 +3,21 @@
 
 static const std::vector< std::pair<int, int>> directions = { {-1, 0}, {1, 0}, {0, -1}, {0, 1} };
 
+Astar::Astar()
+{
+    //ˆ—‚È‚µ
+}
+
+Astar::~Astar()
+{
+    //ˆ—‚È‚µ
+}
+
+int Astar::Heuristic(int x, int y, int goalX, int goalY)
+{
+    return abs(x - goalX) + abs(y - goalY);
+}
+
 std::vector<std::pair<int, int>> Astar::Algorithm(std::pair<int, int> start, std::pair<int, int> goal)
 {
     auto stage = StageManager::GetStageData();

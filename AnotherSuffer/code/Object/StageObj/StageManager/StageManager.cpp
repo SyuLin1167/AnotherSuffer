@@ -177,5 +177,10 @@ void StageManager::PlacementObject()
     }
 }
 
+void StageManager::ChangeStageData(std::pair<int, int> cell,int type)
+{
+    singleton->stageData[cell.second][cell.first].type = type;
+}
+
 
 

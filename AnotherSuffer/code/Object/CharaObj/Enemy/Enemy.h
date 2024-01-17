@@ -24,6 +24,11 @@ private:
     void MoveChara(const float deltaTime) override;
 
     /// <summary>
+    /// 視野外切り抜き
+    /// </summary>
+    void ViewClipBox();
+
+    /// <summary>
     /// 当たり判定
     /// </summary>
     /// <param name="colObj">:判定するオブジェクト</param>
@@ -41,11 +46,15 @@ private:
     /// </summary>
     void Draw() override;
 
-    class Astar* astar;
+    VECTOR clipBoxScale;        //切り抜きボックススケール
+    VECTOR clipBoxPos1;         //切り抜きボックス座標1
+    VECTOR clipBoxPos2;         //切り抜きボックス座標2
+
+    std::unique_ptr<class Astar> astar;
     std::vector<std::pair<int, int>> path;
     std::pair<int, int> start = {}, goal = {};
     float timer;
-    
+
     std::shared_ptr<ObjBase> player;            //プレイヤー
     class Line* line;
     class Capsule* capsule;
