@@ -25,7 +25,7 @@ Player::Player()
     moveSpeed = RUN_SPEED;
 
     //“–‚½‚è”»’è‚ÍƒJƒvƒZƒ‹Œ^
-    capsule=new Capsule(VAdd(objPos, VGet(0, 6, 0)), VAdd(objPos, VGet(0, 30, 0)), 6.0f);
+    capsule=new Capsule(VAdd(objPos, VGet(0, 6, 0)), VAdd(objPos, VGet(0, 30, 0)), 7.0f);
     CollisionManager::AddCol(this, capsule);
     line = new Line(VAdd(objPos, VGet(0, 5, 0)), VAdd(objPos, VGet(0, -5, 0)));
     CollisionManager::AddCol(this, line);

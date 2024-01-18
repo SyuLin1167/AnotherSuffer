@@ -5,6 +5,7 @@
 #include"../SceneBase/SceneBase.h"
 #include"../Play/Play.h"
 #include"../../Object/ObjManager/ObjManager.h"
+#include"../../Collision/CollisionManager/CollisionManager.h"
 #include"../../Object/Camera/Camera.h"
 #include"../../Object/CharaObj/Player/Player.h"
 #include"../../Object/StageObj/StageManager/StageManager.h"
@@ -15,6 +16,7 @@ Title::Title()
     :SceneBase()
 {
     ObjManager::AddObj(new Camera);
+    ObjManager::AddObj(new Player);
     for (int i = 0; i < stage.size(); i++)
     {
         for (int j=0; j<stage[i].size(); j++)
@@ -37,11 +39,13 @@ SceneBase* Title::UpdateScene(const float deltaTime)
 {
     //オブジェクト更新
     ObjManager::UpdateObj(deltaTime);
+    CollisionManager::CheckCollisionPair();
 
     //シーン切り替え
     if (KeyStatus::KeyStateDecision(KEY_INPUT_RETURN, ONINPUT))
     {
         ObjManager::DeleteAllObj();
+        CollisionManager::DeleteCollision();
         return new Play;
     }
 

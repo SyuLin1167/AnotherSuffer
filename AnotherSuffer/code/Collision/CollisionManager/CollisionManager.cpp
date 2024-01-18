@@ -64,15 +64,21 @@ void CollisionManager::OnCollisionEnter(std::string mainObjTag, std::string pair
     //‘g‚İ‡‚í‚¹‚Ç‚¨‚è‚É“–‚½‚è”»’èÀs
     for (auto& colMain : ObjManager::GetObj(mainObjTag))
     {
-        for (auto& colPair : ObjManager::GetObj(pairObjTag))
+        if (colMain)
         {
-            colMain->OnCollisionEnter(colPair.get());
-            if (!colMain->IsAlive())
+            for (auto& colPair : ObjManager::GetObj(pairObjTag))
             {
-                auto findCol = singleton->colData.find(colMain.get());
-                if (findCol != singleton->colData.end())
+                if (colPair)
                 {
-                    singleton->colData.erase(findCol->first);
+                    colMain->OnCollisionEnter(colPair.get());
+                    if (!colMain->IsAlive())
+                    {
+                        auto findCol = singleton->colData.find(colMain.get());
+                        if (findCol != singleton->colData.end())
+                        {
+                            singleton->colData.erase(findCol->first);
+                        }
+                    }
                 }
             }
         }

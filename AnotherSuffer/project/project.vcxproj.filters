@@ -139,6 +139,15 @@
     <Filter Include="ソース ファイル\Object\Camera\Camera">
       <UniqueIdentifier>{7cf49f97-0c76-4511-8fb1-ba2ea3d65f15}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\UI">
+      <UniqueIdentifier>{c2846a37-62ae-4f04-8578-6aa528270ca8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\UI\UIBase">
+      <UniqueIdentifier>{317c3c34-da2f-40dd-a732-b34789ee7544}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\UI\UIManager">
+      <UniqueIdentifier>{b03814a4-2f19-4d50-8908-26a5eaacf640}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\code\Scene\SceneBase\SceneBase.cpp">
@@ -245,6 +254,12 @@
     </ClCompile>
     <ClCompile Include="..\code\Object\Camera\Camera.cpp">
       <Filter>ソース ファイル\Object\Camera\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\UIBase\UIBase.cpp">
+      <Filter>ソース ファイル\UI\UIBase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\UI\UIManager\UIManager.cpp">
+      <Filter>ソース ファイル\UI\UIManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -358,6 +373,12 @@
     </ClInclude>
     <ClInclude Include="..\code\Object\Camera\Camera.h">
       <Filter>ソース ファイル\Object\Camera\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\UIBase\UIBase.h">
+      <Filter>ソース ファイル\UI\UIBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\UI\UIManager\UIManager.h">
+      <Filter>ソース ファイル\UI\UIManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

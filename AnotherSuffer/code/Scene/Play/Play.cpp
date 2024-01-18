@@ -21,7 +21,7 @@ Play::Play()
 
 Play::~Play()
 {
-    CollisionManager::DeleteCollision();
+    //èàóùÇ»Çµ
 }
 
 SceneBase* Play::UpdateScene(const float deltaTime)
@@ -34,6 +34,7 @@ SceneBase* Play::UpdateScene(const float deltaTime)
     if (KeyStatus::KeyStateDecision(KEY_INPUT_RETURN, ONINPUT))
     {
         ObjManager::DeleteAllObj();
+        CollisionManager::DeleteCollision();
         return new Title;
     }
 

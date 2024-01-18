@@ -54,6 +54,8 @@
     <ClCompile Include="..\code\Scene\SceneBase\SceneBase.cpp" />
     <ClCompile Include="..\code\Scene\SceneManager\SceneManager.cpp" />
     <ClCompile Include="..\code\Scene\Title\Title.cpp" />
+    <ClCompile Include="..\code\UIBase\UIBase.cpp" />
+    <ClCompile Include="..\code\UI\UIManager\UIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\code\Asset\AssetBase\AssetBase.h" />
@@ -93,6 +95,8 @@
     <ClInclude Include="..\code\Scene\SceneBase\SceneBase.h" />
     <ClInclude Include="..\code\Scene\SceneManager\SceneManager.h" />
     <ClInclude Include="..\code\Scene\Title\Title.h" />
+    <ClInclude Include="..\code\UIBase\UIBase.h" />
+    <ClInclude Include="..\code\UI\UIManager\UIManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\json\ColPairData.json" />
