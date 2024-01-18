@@ -19,22 +19,18 @@ Camera::~Camera()
 
 void Camera::Update(const float deltaTime)
 {
+    //ƒJƒƒ‰‚ð–³‘¢ì‚ÉˆÚ“®
     rotAngle += deltaTime;
     rotRad = math::DegToRad(rotAngle);
-    float x = cosf(rotAngle) - cosf(rotAngle) * sinf(rotAngle);
-    float z= sinf(rotAngle) - sinf(rotAngle) * cosf(rotAngle);
-    objLocalPos=VAdd(objWorldPos,VGet(x*x, cosf(rotAngle) * sinf(rotAngle) + 50, z * z ));
-    //player = ObjManager::GetObj(ObjTag.PLAYER)[0];
-    //objLocalPos = player->GetObjFramePos(PLAYER_HEAD_FRAME);
-    //MV1SetOpacityRate(player->GetObjHandle(), 1.0f);
+    float moveX = cosf(rotAngle) - cosf(rotAngle) * sinf(rotAngle);
+    float moveZ= sinf(rotAngle) - sinf(rotAngle) * cosf(rotAngle);
+    objLocalPos=VAdd(objWorldPos,VGet(moveX*moveX, cosf(rotAngle) * sinf(rotAngle) + 50, moveZ * moveZ ));
+
     CalcObjPos();
     SetLightPositionHandle(handle, objPos);
-    //objPos = VGet(0, 50, 0);
 }
 
 void Camera::Draw()
 {
-    player = ObjManager::GetObj(ObjTag.PLAYER)[0];
-    VECTOR aimPos = player->GetObjFramePos(10);
     SetCameraPositionAndTarget_UpVecY(objPos,VGet(50,10,20));
 }

@@ -148,6 +148,9 @@
     <Filter Include="ソース ファイル\UI\UIManager">
       <UniqueIdentifier>{b03814a4-2f19-4d50-8908-26a5eaacf640}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\UI\TitleUI">
+      <UniqueIdentifier>{9f2b6cb6-c749-488a-b86b-0d38cbce643d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\code\Scene\SceneBase\SceneBase.cpp">
