@@ -258,9 +258,6 @@
     <ClCompile Include="..\code\Object\Camera\Camera.cpp">
       <Filter>ソース ファイル\Object\Camera\Camera</Filter>
     </ClCompile>
-    <ClCompile Include="..\code\UIBase\UIBase.cpp">
-      <Filter>ソース ファイル\UI\UIBase</Filter>
-    </ClCompile>
     <ClCompile Include="..\code\UI\UIManager\UIManager.cpp">
       <Filter>ソース ファイル\UI\UIManager</Filter>
     </ClCompile>
@@ -376,9 +373,6 @@
     </ClInclude>
     <ClInclude Include="..\code\Object\Camera\Camera.h">
       <Filter>ソース ファイル\Object\Camera\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="..\code\UIBase\UIBase.h">
-      <Filter>ソース ファイル\UI\UIBase</Filter>
     </ClInclude>
     <ClInclude Include="..\code\UI\UIManager\UIManager.h">
       <Filter>ソース ファイル\UI\UIManager</Filter>

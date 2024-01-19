@@ -31,7 +31,7 @@ public:
     /// </summary>
     /// <param name="obj">:オブジェクト</param>
     /// <returns>オブジェクトの当たり判定</returns>
-    static const std::vector<CollisionBase*> GetCol(ObjBase* obj) { return singleton->colData[obj]; }
+    static const std::vector<CollisionBase*> GetCol(ObjBase* obj);
 
     /// <summary>
     /// 当たり判定組み合わせ判別

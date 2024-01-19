@@ -22,8 +22,8 @@ std::vector<std::pair<int, int>> Astar::Algorithm(std::pair<int, int> start, std
 {
     //ステージのサイズを行と列に分ける
     auto stage = StageManager::GetStageData();
-    const int rows = stage.size();
-    const int cols = stage[0].size();
+    const int rows = static_cast<int>(stage.size());
+    const int cols = static_cast<int>(stage[0].size());
 
     //評価が小さい順にまとめるリスト
     std::priority_queue<Node*, std::vector<Node*>, std::function<bool(Node*, Node*)>> openList(

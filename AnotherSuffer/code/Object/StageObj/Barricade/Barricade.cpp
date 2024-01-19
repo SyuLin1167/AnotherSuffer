@@ -48,11 +48,11 @@ void Barricade::OnCollisionEnter(ObjBase* colObj)
 
 void Barricade::BreakBarricade()
 {
-    //左クリックで破壊
-    if (GetMouseInput() & MOUSE_INPUT_LEFT)
+    //自身が見えていたら左クリックで破壊
+    if (isVisible && GetMouseInput() & MOUSE_INPUT_LEFT)
     {
         StageManager::ChangeStageData(myNode, AISLE);
         ObjManager::AddObj(new Aisle(objPos));
-        isAlive= false;
+        isAlive = false;
     }
 }
