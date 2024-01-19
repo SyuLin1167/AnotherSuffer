@@ -167,7 +167,6 @@ void Player::Draw()
             colInfo.Dim[i].Position[1],
             colInfo.Dim[i].Position[2], GetColor(0, 255, 255), TRUE);
     }
-    DrawLine3D(objPos, VAdd(objPos, VScale(objDir,3)), GetColor(255, 0, 0));
 
     DrawFormatString(0, 100, GetColor(255, 255, 255), "%d",test);
 #endif // _DEBUG

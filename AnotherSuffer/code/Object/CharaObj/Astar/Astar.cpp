@@ -1,6 +1,7 @@
 #include "Astar.h"
 #include"../../StageObj/StageManager/StageManager.h"
 
+//•ûŒüƒŠƒXƒg
 static const std::vector< std::pair<int, int>> directions = { {-1, 0}, {1, 0}, {0, -1}, {0, 1} };
 
 Astar::Astar()

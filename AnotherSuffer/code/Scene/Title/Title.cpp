@@ -32,16 +32,16 @@ Title::Title()
             }
         }
     }
-    vert[0].pos = VGet(-BLOCK_SIZE/2+BLOCK_SIZE,2, -BLOCK_SIZE/2);
+    vert[0].pos = VGet(BLOCK_SIZE/2+BLOCK_SIZE,2, BLOCK_SIZE/2);
     vert[0].norm = VGet(0, 1, 0);
-    vert[0].dif = GetColorU8(255, 255, 255, 255);
+    vert[0].dif = GetColorU8(255, 255, 255, 0);
     vert[0].spc = GetColorU8(0, 0, 0, 0);
     vert[0].u = vert[0].v = 0.0f;
     vert[0].su = vert[0].sv = 0.0f;
 
     vert[1].pos = VGet(BLOCK_SIZE/2 + BLOCK_SIZE, 2, -BLOCK_SIZE/2);
     vert[1].norm = VGet(0, 1, 0);
-    vert[1].dif = GetColorU8(255, 255, 255, 255);
+    vert[1].dif = GetColorU8(255, 255, 255, 0);
     vert[1].spc = GetColorU8(0, 0, 0, 0);
     vert[1].u = 1.0;
     vert[1].v = 0.0f;
@@ -49,19 +49,20 @@ Title::Title()
 
     vert[2].pos = VGet(-BLOCK_SIZE/2 + BLOCK_SIZE, 2, BLOCK_SIZE/2);
     vert[2].norm = VGet(0, 1, 0);
-    vert[2].dif = GetColorU8(255, 255, 255, 255);
+    vert[2].dif = GetColorU8(255, 255, 255, 0);
     vert[2].spc = GetColorU8(0, 0, 0, 0);
     vert[2].u = 0.0f;
     vert[2].v = 1.0f;
     vert[2].su = vert[2].sv = 0.0f;
 
-    vert[3].pos = VGet(BLOCK_SIZE/2 + BLOCK_SIZE, 2, BLOCK_SIZE/2);
+    vert[3].pos = VGet(-BLOCK_SIZE/2 + BLOCK_SIZE, 2, -BLOCK_SIZE/2);
     vert[3].norm = VGet(0, 1, 0);
-    vert[3].dif = GetColorU8(255, 255, 255, 255);
+    vert[3].dif = GetColorU8(255, 255, 255, 0);
     vert[3].spc = GetColorU8(0, 0, 0, 0);
     vert[3].u = vert[3].v = 1.0f;
     vert[3].su = vert[3].sv = 0.0f;
-    graph = AssetManager::GraphInstance()->GetHandle(AssetManager::GraphInstance()->GetJsonData()["stage"]["wall"].GetString());
+    graph = AssetManager::GraphInstance()->GetHandle(AssetManager::GraphInstance()->GetJsonData()["title"]["play"].GetString());
+    g = LoadGraph("../assets/ui/texture/test.png");
 }
 
 Title::~Title()
@@ -92,4 +93,5 @@ void Title::DrawScene()
     ObjManager::DrawObj();
     DrawPolygonIndexed3D(vert, 4, idx, 2, graph, false);
     DrawFormatString(0, 0, GetColor(255, 255, 255), "title");
+    DrawExtendGraph(0, 0,900,600, g, true);
 }
