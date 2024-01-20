@@ -8,6 +8,7 @@
 static struct ObjectTag
 {
     std::string CAMERA = "camera";
+    std::string BALL = "ball";
     std::string PLAYER = "player";
     std::string ENEMY = "enemy";
     std::string STAGE = "stage";
@@ -18,6 +19,7 @@ static struct ObjectTag
 /// </summary>
 static std::vector <std::string> objTagAll{
     ObjTag.CAMERA,
+    ObjTag.BALL,
     ObjTag.PLAYER,
     ObjTag.ENEMY,
     ObjTag.STAGE,

@@ -7,9 +7,10 @@ static constexpr int PLAYER_HEAD_FRAME = 10;      //プレイヤー頭部フレーム
 Camera::Camera()
     :ObjBase(ObjTag.CAMERA)
 {
+    objWorldPos = VGet(-5, 0, -5);
     SetCameraNearFar(0.1f, 500.0f) ;
     //仮ライト
-    handle = CreatePointLightHandle(objPos,  150.0f, 0.0f, 0.0f, 0.0005f);
+    handle = CreatePointLightHandle(objPos,  150.0f, 0.0f, 0.0001f, 0.0005f);
 }
 
 Camera::~Camera()

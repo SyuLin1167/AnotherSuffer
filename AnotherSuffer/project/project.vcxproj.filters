@@ -151,6 +151,9 @@
     <Filter Include="ソース ファイル\UI\TitleUI">
       <UniqueIdentifier>{9f2b6cb6-c749-488a-b86b-0d38cbce643d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Object\CharaObj\Ball">
+      <UniqueIdentifier>{bb8c6e4f-59fd-4071-a5e1-122d3f971078}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\code\Scene\SceneBase\SceneBase.cpp">
@@ -260,6 +263,9 @@
     </ClCompile>
     <ClCompile Include="..\code\UI\UIManager\UIManager.cpp">
       <Filter>ソース ファイル\UI\UIManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\Object\CharaObj\Ball\Ball.cpp">
+      <Filter>ソース ファイル\Object\CharaObj\Ball</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -376,6 +382,9 @@
     </ClInclude>
     <ClInclude Include="..\code\UI\UIManager\UIManager.h">
       <Filter>ソース ファイル\UI\UIManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Object\CharaObj\Ball\Ball.h">
+      <Filter>ソース ファイル\Object\CharaObj\Ball</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

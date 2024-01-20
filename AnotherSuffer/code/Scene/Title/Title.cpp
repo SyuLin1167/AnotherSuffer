@@ -7,7 +7,7 @@
 #include"../../Object/ObjManager/ObjManager.h"
 #include"../../Collision/CollisionManager/CollisionManager.h"
 #include"../../Object/Camera/Camera.h"
-#include"../../Object/CharaObj/Player/Player.h"
+#include"../../Object/CharaObj/Ball/Ball.h"
 #include"../../Object/StageObj/StageManager/StageManager.h"
 #include"../../Object/StageObj/Wall/Wall.h"
 #include"../../Object/StageObj/Aisle/Aisle.h"
@@ -17,7 +17,7 @@ Title::Title()
     :SceneBase()
 {
     ObjManager::AddObj(new Camera);
-    ObjManager::AddObj(new Player);
+    ObjManager::AddObj(new Ball);
     for (int i = 0; i < stage.size(); i++)
     {
         for (int j=0; j<stage[i].size(); j++)

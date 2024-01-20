@@ -39,6 +39,7 @@
     <ClCompile Include="..\code\Object\Camera\Camera.cpp" />
     <ClCompile Include="..\code\Object\Camera\FirstPersonView\FirstPersonView.cpp" />
     <ClCompile Include="..\code\Object\CharaObj\Astar\Astar.cpp" />
+    <ClCompile Include="..\code\Object\CharaObj\Ball\Ball.cpp" />
     <ClCompile Include="..\code\Object\CharaObj\CharaObjBase\CharaObjBase.cpp" />
     <ClCompile Include="..\code\Object\CharaObj\Enemy\Enemy.cpp" />
     <ClCompile Include="..\code\Object\CharaObj\Player\Player.cpp" />
@@ -78,6 +79,7 @@
     <ClInclude Include="..\code\Object\Camera\Camera.h" />
     <ClInclude Include="..\code\Object\Camera\FirstPersonView\FirstPersonView.h" />
     <ClInclude Include="..\code\Object\CharaObj\Astar\Astar.h" />
+    <ClInclude Include="..\code\Object\CharaObj\Ball\Ball.h" />
     <ClInclude Include="..\code\Object\CharaObj\CharaObjBase\CharaObjBase.h" />
     <ClInclude Include="..\code\Object\CharaObj\Enemy\Enemy.h" />
     <ClInclude Include="..\code\Object\CharaObj\Player\Player.h" />
