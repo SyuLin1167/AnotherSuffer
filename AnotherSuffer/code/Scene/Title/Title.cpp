@@ -17,6 +17,7 @@ Title::Title()
     :SceneBase()
 {
     ObjManager::AddObj(new Camera);
+
     ObjManager::AddObj(new Ball);
     for (int i = 0; i < stage.size(); i++)
     {

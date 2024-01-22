@@ -32,6 +32,20 @@ protected:
     void RotateYAxis(const VECTOR dir, float velocity);
 
     /// <summary>
+    /// X軸回転
+    /// </summary>
+    /// <param name="dir">:目標の向き</param>
+    /// <param name="velocity">:角速度</param>
+    void RotateXAxis(const VECTOR dir, float velocity);
+
+    /// <summary>
+    /// Z軸回転
+    /// </summary>
+    /// <param name="dir">:目標の向き</param>
+    /// <param name="velocity">:角速度</param>
+    void RotateZAxis(const VECTOR dir, float velocity);
+
+    /// <summary>
     /// 回転方向算出
     /// </summary>
     /// <returns>:</returns>
@@ -50,6 +64,12 @@ protected:
     const rapidjson::Value& motionData;     //モーションパスデータ
 
 private:
+    /// <summary>
+    /// アセットパスデータ取得
+    /// </summary>
+    /// <param name="asset">:任意のアセット</param>
+    rapidjson::Value& GetAssetPathData(class AssetBase* asset);
+
     VECTOR aimDir;                          //目標座標
     float rotRad;                           //角速度のラジアン角
     float rotYRad;                          //Y軸ラジアン角

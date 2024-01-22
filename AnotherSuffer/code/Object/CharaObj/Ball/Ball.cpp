@@ -43,7 +43,8 @@ void Ball::Update(const float deltaTime)
     CalcObjPos();
 
     //行列でモデルの動作
-    MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(objPos)));
+    VECTOR objCenter= VGet(0, capsule->GetRadius(), 0);
+    MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(VAdd(objPos, objCenter))));
 }
 
 void Ball::MoveChara(const float deltaTime)
@@ -52,7 +53,6 @@ void Ball::MoveChara(const float deltaTime)
     isMove = false;
 
     //キー入力による移動量
-    //moveVel = VGet(0, 0, 0);
     MoveByKey(KEY_INPUT_W, VGet(1,0,0), deltaTime);
     MoveByKey(KEY_INPUT_S, VGet(-1,0,0), deltaTime);
     MoveByKey(KEY_INPUT_A, VGet(0,0,1), deltaTime);
@@ -68,8 +68,9 @@ void Ball::MoveChara(const float deltaTime)
             moveSpeed = MAX_SPEED;
         }
         objLocalPos = VAdd(objLocalPos, VScale(moveVel, moveSpeed * deltaTime));
-        RotateYAxis(moveVel, VSize(moveVel) * 10.0f);
     }
+        RotateXAxis(moveVel, VSize(moveVel) * 5.0f);
+        RotateZAxis(moveVel, VSize(moveVel) * 5.0f);
 }
 
 void Ball::MoveByKey(const int keyName, const VECTOR dir, const float deltaTime)
@@ -105,7 +106,7 @@ void Ball::OnCollisionEnter(ObjBase* colObj)
     capsule->Update(objPos);
 
     //行列でモデルの動作
-    MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(objPos)));
+    //MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(objPos)));
 }
 
 void Ball::Draw()
@@ -125,7 +126,5 @@ void Ball::Draw()
             colInfo.Dim[i].Position[1],
             colInfo.Dim[i].Position[2], GetColor(0, 255, 255), TRUE);
     }
-
-    DrawFormatString(0, 100, GetColor(255, 255, 255), "%d", test);
 #endif // _DEBUG
 }
