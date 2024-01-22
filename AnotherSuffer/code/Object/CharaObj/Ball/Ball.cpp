@@ -17,7 +17,7 @@ Ball::Ball()
     objHandle = AssetManager::ModelInstance()->GetHandle(modelData.GetString());
     objScale = VGet(0.08f, 0.08f, 0.08f);
     objDir = VGet(-1, 0, -1);
-    MV1SetMatrix(objHandle, MMult(rotateYMat, MGetTranslate(objPos)));
+    MV1SetMatrix(objHandle, MMult(MMult(MGetScale(objScale),rotateZMat), MGetTranslate(objPos)));
 
     //移動速度は走る速度
     moveSpeed = MIN_SPEED;
@@ -44,8 +44,7 @@ void Ball::Update(const float deltaTime)
 
     //行列でモデルの動作
     objPos.y = capsule->GetRadius();
-    MATRIX rotateMat = MMult(MGetScale(objScale), MMult(rotateYMat, rotateZMat));
-    MV1SetMatrix(objHandle, MMult(rotateMat , MGetTranslate(objPos)));
+    MV1SetMatrix(objHandle, MMult(MMult(MGetScale(objScale), RotateVel()), MGetTranslate(objPos)));
 }
 
 void Ball::MoveChara(const float deltaTime)
@@ -79,11 +78,7 @@ void Ball::MoveChara(const float deltaTime)
     }
     objLocalPos = VAdd(objLocalPos, VScale(moveVel, moveSpeed * deltaTime));
 
-    if (objDir.x != 0)
-    {
-        RotateZAxis(moveVel, VSize(objDir) *moveSpeed/ 8.0f);
-    }
-    RotateYAxis(moveVel, VSize(objDir) * moveSpeed/ 8.0f);
+
 }
 
 void Ball::MoveByKey(const int keyName, const VECTOR dir, const float deltaTime)
@@ -139,5 +134,22 @@ void Ball::Draw()
             colInfo.Dim[i].Position[1],
             colInfo.Dim[i].Position[2], GetColor(0, 255, 255), TRUE);
     }
+
+    DrawFormatString(20, 800, GetColor(255, 255, 255), "%f,%f,%f", moveVel.x, moveVel.y, moveVel.z);
 #endif // _DEBUG
+}
+
+MATRIX Ball::RotateVel()
+{
+    if (abs(moveVel.x) > 0)
+    {
+        RotateXAxis(moveVel, VSize(moveVel) * moveSpeed / 8.0f);
+        return rotateXMat;
+    }
+    if (abs(moveVel.z) > 0)
+    {
+        RotateZAxis(moveVel, VSize(moveVel) * moveSpeed / 8.0f);
+        return rotateZMat;
+    }
+    return MGetIdent();
 }

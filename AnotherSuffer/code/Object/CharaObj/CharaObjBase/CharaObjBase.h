@@ -39,11 +39,25 @@ protected:
     void RotateXAxis(const VECTOR dir, float velocity);
 
     /// <summary>
+    /// X軸目標方向回転
+    /// </summary>
+    /// <param name="dir">:目標の向き</param>
+    /// <param name="velocity">:角速度</param>
+    void RotateToAimXAxis(const VECTOR dir, float velocity);
+
+    /// <summary>
     /// Z軸回転
     /// </summary>
     /// <param name="dir">:目標の向き</param>
     /// <param name="velocity">:角速度</param>
     void RotateZAxis(const VECTOR dir, float velocity);
+
+    /// <summary>
+    /// Z軸目標方向回転
+    /// </summary>
+    /// <param name="dir">:目標の向き</param>
+    /// <param name="velocity">:角速度</param>
+    void RotateToAimZAxis(const VECTOR dir, float velocity);
 
     /// <summary>
     /// 回転方向算出
