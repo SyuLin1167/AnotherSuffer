@@ -50,14 +50,30 @@ protected:
     /// </summary>
     /// <returns>:</returns>
     /// <param name="velocity">:角速度</param>
-    float CalcRotDir(float velocity);
+    float CalcRotDirX(float velocity);
+
+    /// <summary>
+    /// 回転方向算出
+    /// </summary>
+    /// <returns>:</returns>
+    /// <param name="velocity">:角速度</param>
+    float CalcRotDirY(float velocity);
+
+    /// <summary>
+    /// 回転方向算出
+    /// </summary>
+    /// <returns>:</returns>
+    /// <param name="velocity">:角速度</param>
+    float CalcRotDirZ(float velocity);
 
     bool isMove;                            //動作判定
     float moveSpeed;                        //移動速度
 
     static const float ROTATE_SPEED;        //回転速度
     bool nowRotate;                         //回転判定
-    MATRIX rotateMat;                       //回転行列
+    MATRIX rotateXMat;                      //X軸回転行列
+    MATRIX rotateYMat;                      //Y軸回転行列
+    MATRIX rotateZMat;                      //Z軸回転行列
 
     const rapidjson::Value& modelData;      //モデルパスデータ
     const rapidjson::Value& soundData;      //サウンドパスデータ
@@ -72,7 +88,11 @@ private:
 
     VECTOR aimDir;                          //目標座標
     float rotRad;                           //角速度のラジアン角
+    float rotXRad;
     float rotYRad;                          //Y軸ラジアン角
+    float rotZRad;
     MATRIX rotYMat;                         //Y軸回転行列
+    MATRIX rotXMat;
+    MATRIX rotZMat;
 };
 

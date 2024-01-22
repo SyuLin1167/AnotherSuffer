@@ -5,7 +5,7 @@
 #include"../../../Collision/Capsule/Capsule.h"
 #include "Ball.h"
 
-static constexpr float SPEED = 0.1f;
+static constexpr float SPEED = 1.0f;
 static constexpr float MAX_SPEED = 40.0f;
 static constexpr float MIN_SPEED = 0.0f;
 
@@ -17,7 +17,7 @@ Ball::Ball()
     objHandle = AssetManager::ModelInstance()->GetHandle(modelData.GetString());
     objScale = VGet(0.08f, 0.08f, 0.08f);
     objDir = VGet(-1, 0, -1);
-    MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(objPos)));
+    MV1SetMatrix(objHandle, MMult(rotateYMat, MGetTranslate(objPos)));
 
     //移動速度は走る速度
     moveSpeed = MIN_SPEED;
@@ -43,8 +43,9 @@ void Ball::Update(const float deltaTime)
     CalcObjPos();
 
     //行列でモデルの動作
-    VECTOR objCenter= VGet(0, capsule->GetRadius(), 0);
-    MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(VAdd(objPos, objCenter))));
+    objPos.y = capsule->GetRadius();
+    MATRIX rotateMat = MMult(MGetScale(objScale), MMult(rotateYMat, rotateZMat));
+    MV1SetMatrix(objHandle, MMult(rotateMat , MGetTranslate(objPos)));
 }
 
 void Ball::MoveChara(const float deltaTime)
@@ -67,10 +68,22 @@ void Ball::MoveChara(const float deltaTime)
         {
             moveSpeed = MAX_SPEED;
         }
-        objLocalPos = VAdd(objLocalPos, VScale(moveVel, moveSpeed * deltaTime));
     }
-        RotateXAxis(moveVel, VSize(moveVel) * 5.0f);
-        RotateZAxis(moveVel, VSize(moveVel) * 5.0f);
+    else
+    {
+        moveSpeed *= 0.9f;
+        if (moveSpeed < MIN_SPEED)
+        {
+            moveSpeed = MIN_SPEED;
+        }
+    }
+    objLocalPos = VAdd(objLocalPos, VScale(moveVel, moveSpeed * deltaTime));
+
+    if (objDir.x != 0)
+    {
+        RotateZAxis(moveVel, VSize(objDir) *moveSpeed/ 8.0f);
+    }
+    RotateYAxis(moveVel, VSize(objDir) * moveSpeed/ 8.0f);
 }
 
 void Ball::MoveByKey(const int keyName, const VECTOR dir, const float deltaTime)
@@ -95,7 +108,7 @@ void Ball::OnCollisionEnter(ObjBase* colObj)
             if (capsule->OnCollisionWithMesh(obj->GetColModel()))
             {
                 objLocalPos = VAdd(objLocalPos, capsule->CalcPushBackFromMesh());
-
+                moveVel = VScale(moveVel, -1);
                 MV1CollResultPolyDimTerminate(capsule->GetColInfoDim());
             }
         }

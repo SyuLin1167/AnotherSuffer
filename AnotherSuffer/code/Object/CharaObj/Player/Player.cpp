@@ -15,7 +15,7 @@ Player::Player()
     //モデル読み込み
     objHandle = AssetManager::ModelInstance()->GetHandle(modelData.GetString());
     objDir = VGet(0, 0, -1);
-    MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(objPos)));
+    MV1SetMatrix(objHandle, MMult(rotateYMat, MGetTranslate(objPos)));
 
     AssetManager::MotionInstance()->StartMotion(this,
         AssetManager::MotionInstance()->GetHandle(
@@ -74,7 +74,7 @@ void Player::Update(const float deltaTime)
     CalcObjPos();
 
     //行列でモデルの動作
-    MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(objPos)));
+    MV1SetMatrix(objHandle, MMult(rotateYMat, MGetTranslate(objPos)));
 }
 
 void Player::MoveChara(const float deltaTime)
@@ -101,7 +101,7 @@ void Player::MoveChara(const float deltaTime)
 
     //座標・方向の算出
     objLocalPos = VAdd(objLocalPos, VScale(moveVel, moveSpeed * deltaTime));
-    rotateMat = MMult(MGetScale(objScale), MGetRotVec2(objDir, aimDir));
+    rotateYMat = MMult(MGetScale(objScale), MGetRotVec2(objDir, aimDir));
 }
 
 void Player::MoveByKey(const int keyName, const VECTOR dir, const float deltaTime)
@@ -147,7 +147,7 @@ void Player::OnCollisionEnter(ObjBase* colObj)
     line->Update(objPos);
 
     //行列でモデルの動作
-    MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(objPos)));
+    MV1SetMatrix(objHandle, MMult(rotateYMat, MGetTranslate(objPos)));
 }
 
 void Player::Draw()
