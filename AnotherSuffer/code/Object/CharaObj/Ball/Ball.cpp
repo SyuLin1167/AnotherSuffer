@@ -11,7 +11,8 @@ static constexpr float MIN_SPEED = 0.0f;
 
 Ball::Ball()
     :CharaObjBase(ObjTag.BALL)
-    , moveVel(VGet(1,0,0))
+    , moveVel(VGet(1, 0, 0))
+    , canMove(true)
 {
     //モデル読み込み
     objHandle = AssetManager::ModelInstance()->GetHandle(modelData.GetString());
@@ -41,10 +42,11 @@ void Ball::Update(const float deltaTime)
 
     //座標更新
     CalcObjPos();
+    RotateVel();
 
     //行列でモデルの動作
     objPos.y = capsule->GetRadius();
-    MV1SetMatrix(objHandle, MMult(MMult(MGetScale(objScale), RotateVel()), MGetTranslate(objPos)));
+    MV1SetMatrix(objHandle, MMult(MMult(MGetScale(objScale), MMult(rotateXMat,rotateZMat)), MGetTranslate(objPos)));
 }
 
 void Ball::MoveChara(const float deltaTime)
@@ -53,10 +55,13 @@ void Ball::MoveChara(const float deltaTime)
     isMove = false;
 
     //キー入力による移動量
-    MoveByKey(KEY_INPUT_W, VGet(1.0f,0,0), deltaTime);
-    MoveByKey(KEY_INPUT_S, VGet(-1.0f,0,0), deltaTime);
-    MoveByKey(KEY_INPUT_A, VGet(0,0,1.0f), deltaTime);
-    MoveByKey(KEY_INPUT_D, VGet(0,0,-1.0f), deltaTime);
+    if (canMove)
+    {
+        MoveByKey(KEY_INPUT_W, VGet(1.0f, 0, 0), deltaTime);
+        MoveByKey(KEY_INPUT_S, VGet(-1.0f, 0, 0), deltaTime);
+        MoveByKey(KEY_INPUT_A, VGet(0, 0, 1.0f), deltaTime);
+        MoveByKey(KEY_INPUT_D, VGet(0, 0, -1.0f), deltaTime);
+    }
     moveVel = VNorm(moveVel);
     moveVel.y = 0;
 
@@ -72,9 +77,10 @@ void Ball::MoveChara(const float deltaTime)
     else
     {
         moveSpeed *= 0.9f;
-        if (moveSpeed < MIN_SPEED)
+        if (moveSpeed < 0.1f)
         {
             moveSpeed = MIN_SPEED;
+            canMove = true;
         }
     }
     objLocalPos = VAdd(objLocalPos, VScale(moveVel, moveSpeed * deltaTime));
@@ -104,6 +110,7 @@ void Ball::OnCollisionEnter(ObjBase* colObj)
             {
                 objLocalPos = VAdd(objLocalPos, capsule->CalcPushBackFromMesh());
                 moveVel = VScale(moveVel, -1);
+                canMove = false;
                 MV1CollResultPolyDimTerminate(capsule->GetColInfoDim());
             }
         }
@@ -114,6 +121,7 @@ void Ball::OnCollisionEnter(ObjBase* colObj)
     capsule->Update(objPos);
 
     //行列でモデルの動作
+    
     //MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(objPos)));
 }
 
@@ -139,24 +147,20 @@ void Ball::Draw()
 #endif // _DEBUG
 }
 
-MATRIX Ball::RotateVel()
+void Ball::RotateVel()
 {
+    rotateXMat = MGetIdent();
+    rotateZMat = MGetIdent();
+
     if (static_cast<int>(abs(moveVel.z)) > 0)
     {
         RotateXAxis(moveVel, VSize(moveVel) * moveSpeed / 8.0f);
-        if (objDir.z>0)
-        {
-            return rotateXMat;
-        }
-        else
-        {
-            return MInverse(rotateXMat);
-        }
+        rotateXMat = MMult(rotateXMat, rotateZMat);
     }
+
     if (static_cast<int>(abs(moveVel.x)) > 0)
     {
         RotateZAxis(moveVel, VSize(moveVel) * moveSpeed / 8.0f);
-        return rotateZMat;
     }
-    return MGetIdent();
+
 }
