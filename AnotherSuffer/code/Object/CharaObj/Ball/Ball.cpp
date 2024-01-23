@@ -11,7 +11,7 @@ static constexpr float MIN_SPEED = 0.0f;
 
 Ball::Ball()
     :CharaObjBase(ObjTag.BALL)
-    , moveVel()
+    , moveVel(VGet(1,0,0))
 {
     //モデル読み込み
     objHandle = AssetManager::ModelInstance()->GetHandle(modelData.GetString());
@@ -53,10 +53,11 @@ void Ball::MoveChara(const float deltaTime)
     isMove = false;
 
     //キー入力による移動量
-    MoveByKey(KEY_INPUT_W, VGet(1,0,0), deltaTime);
-    MoveByKey(KEY_INPUT_S, VGet(-1,0,0), deltaTime);
-    MoveByKey(KEY_INPUT_A, VGet(0,0,1), deltaTime);
-    MoveByKey(KEY_INPUT_D, VGet(0,0,-1), deltaTime);
+    MoveByKey(KEY_INPUT_W, VGet(1.0f,0,0), deltaTime);
+    MoveByKey(KEY_INPUT_S, VGet(-1.0f,0,0), deltaTime);
+    MoveByKey(KEY_INPUT_A, VGet(0,0,1.0f), deltaTime);
+    MoveByKey(KEY_INPUT_D, VGet(0,0,-1.0f), deltaTime);
+    moveVel = VNorm(moveVel);
     moveVel.y = 0;
 
     if (isMove)
@@ -78,7 +79,6 @@ void Ball::MoveChara(const float deltaTime)
     }
     objLocalPos = VAdd(objLocalPos, VScale(moveVel, moveSpeed * deltaTime));
 
-
 }
 
 void Ball::MoveByKey(const int keyName, const VECTOR dir, const float deltaTime)
@@ -86,7 +86,7 @@ void Ball::MoveByKey(const int keyName, const VECTOR dir, const float deltaTime)
     //キーが入力されていたら移動時の実行
     if (KeyStatus::KeyStateDecision(keyName, ONINPUT | NOWONINPUT))
     {
-        moveVel = VNorm(VAdd(moveVel, dir));
+        moveVel =VAdd(moveVel, dir);
 
         //動作中にする
         isMove = true;
@@ -141,12 +141,19 @@ void Ball::Draw()
 
 MATRIX Ball::RotateVel()
 {
-    if (abs(moveVel.x) > 0)
+    if (static_cast<int>(abs(moveVel.z)) > 0)
     {
         RotateXAxis(moveVel, VSize(moveVel) * moveSpeed / 8.0f);
-        return rotateXMat;
+        if (objDir.z>0)
+        {
+            return rotateXMat;
+        }
+        else
+        {
+            return MInverse(rotateXMat);
+        }
     }
-    if (abs(moveVel.z) > 0)
+    if (static_cast<int>(abs(moveVel.x)) > 0)
     {
         RotateZAxis(moveVel, VSize(moveVel) * moveSpeed / 8.0f);
         return rotateZMat;
