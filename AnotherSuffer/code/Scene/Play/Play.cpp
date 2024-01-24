@@ -45,6 +45,8 @@ void Play::DrawScene()
 {
     //オブジェクト描画
     ObjManager::DrawObj();
-    //stageManager->DebugDraw();
+
+#ifdef _DEBUG
     DrawFormatString(0, 0, GetColor(255, 255, 255), "play");
+#endif // _DEBUG
 }

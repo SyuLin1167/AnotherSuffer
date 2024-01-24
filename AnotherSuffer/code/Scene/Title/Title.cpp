@@ -93,6 +93,10 @@ void Title::DrawScene()
     //オブジェクト描画
     ObjManager::DrawObj();
     DrawPolygonIndexed3D(vert, 4, idx, 2, graph, false);
+    
+#ifdef _DEBUG
     DrawFormatString(0, 0, GetColor(255, 255, 255), "title");
+#endif // _DEBUG
+
     DrawExtendGraph(0, 0,900,600, g, true);
 }
