@@ -63,6 +63,7 @@ void Ball::MoveChara(const float deltaTime)
         MoveByKey(KEY_INPUT_D, VGet(0, 0, -1.0f), deltaTime);
     }
     moveVel.y = 0;
+    moveVel = VNorm(moveVel);
 
     if (isMove)
     {
@@ -151,20 +152,13 @@ void Ball::RotateVel()
 
     if (static_cast<int>(abs(moveVel.z)) > 0)
     {
+
         RotateXAxis(moveVel, VSize(moveVel) * moveSpeed / 8.0f);
         rotateXMat = MMult(rotateXMat, rotateZMat);
-    }
-    else
-    {
-        rotateXMat = MGetIdent();
     }
 
     if (static_cast<int>(abs(moveVel.x)) > 0)
     {
         RotateZAxis(moveVel, VSize(moveVel) * moveSpeed / 8.0f);
-    }
-    else
-    {
-        rotateZMat = MGetIdent();
     }
 }
