@@ -100,6 +100,7 @@ private:
     /// <param name="asset">:任意のアセット</param>
     rapidjson::Value& GetAssetPathData(class AssetBase* asset);
 
+protected:
     VECTOR aimDir;                          //目標座標
     float rotRad;                           //角速度のラジアン角
     float rotXRad;
