@@ -17,13 +17,53 @@ public:
     /// </summary>
     virtual ~CharaObjBase();
 
+private:
+    /// <summary>
+    /// アセットパスデータ取得
+    /// </summary>
+    /// <param name="asset">:任意のアセット</param>
+    rapidjson::Value& GetAssetPathData(class AssetBase* asset);
+
+    /// <summary>
+    /// 軸ごとのデータ
+    /// </summary>
+    struct AxisData
+    {
+    public:
+        /// <summary>
+        /// コンストラクタ 
+        /// </summary>
+        /// <param name="axis">：軸</param>
+        /// <param name="obj">:オブジェクト</param>
+        AxisData(std::string axis, CharaObjBase* obj);
+
+        ~AxisData();
+
+    private:
+
+        void Rotate();
+
+        void RotateToAim(const VECTOR dir, float velocity);
+        float CalcRotDir(const float velocity);
+
+        CharaObjBase* obj;
+        const std::string axisType;   //軸
+        VECTOR aimDir;              //目標方向
+        float rotRad;           //回転角
+        float rotVel;           //回転量
+        MATRIX rotMat;          //回転行列
+    };
+
+    std::string xAxis = "xAxis";
+    std::string yAxis = "yAxis";
+    std::string zAxis = "zAxis";
 protected:
     /// <summary>
     /// キャラ動作
     /// </summary>
     /// <param name="deltaTime">:デルタタイム</param>
     virtual void MoveChara(const float deltaTime) = 0;
-
+    
     /// <summary>
     /// Y軸回転
     /// </summary>
@@ -80,6 +120,10 @@ protected:
     /// <param name="velocity">:角速度</param>
     float CalcRotDirZ(float velocity);
 
+    AxisData* XAxisData;
+    AxisData* YAxisData;
+    AxisData* ZAxisData;
+
     bool isMove;                            //動作判定
     float moveSpeed;                        //移動速度
 
@@ -92,13 +136,6 @@ protected:
     const rapidjson::Value& modelData;      //モデルパスデータ
     const rapidjson::Value& soundData;      //サウンドパスデータ
     const rapidjson::Value& motionData;     //モーションパスデータ
-
-private:
-    /// <summary>
-    /// アセットパスデータ取得
-    /// </summary>
-    /// <param name="asset">:任意のアセット</param>
-    rapidjson::Value& GetAssetPathData(class AssetBase* asset);
 
 protected:
     VECTOR aimDir;                          //目標座標

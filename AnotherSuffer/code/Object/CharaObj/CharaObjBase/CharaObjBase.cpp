@@ -81,11 +81,7 @@ void CharaObjBase::RotateXAxis(const VECTOR dir, float velocity)
         }
         objDir = VTransform(objDir, rotXMat);
         VECTOR axis = VGet(1, 0, 0);
-        //if (rotZRad > DX_PI_F)
-        //{
-        //    axis = VScale(axis, -1);
-        //}
-        rotateXMat = MGetRotAxis(axis, rotXRad);
+        rotateXMat = MGetRotX( rotXRad);
     }
 }
 
@@ -132,11 +128,7 @@ void CharaObjBase::RotateZAxis(const VECTOR dir, float velocity)
         }
         objDir = VTransform(objDir, rotZMat);
         VECTOR axis = VGet(0, 0, 1);
-        //if (rotXRad > DX_PI_F)
-        //{
-        //    axis = VScale(axis, -1);
-        //}
-        rotateZMat = MGetRotAxis(axis, rotZRad);
+        rotateZMat = MGetRotZ(rotZRad);
     }
 }
 
@@ -230,3 +222,58 @@ rapidjson::Value& CharaObjBase::GetAssetPathData(AssetBase* asset)
     return null;
 }
 
+void CharaObjBase::AxisData::RotateToAim(const VECTOR dir, float velocity)
+{
+    //Œ»•ûŒü‚ª–Ú•W•ûŒü‚Å‚È‚¯‚ê‚Î‰ñ“]’†‚É‚·‚é
+    aimDir = dir;
+    if (obj->objDir != aimDir)
+    {
+        obj->nowRotate = true;
+    }
+
+    //‰ñ“]’†‚È‚ç
+    if (obj->nowRotate)
+    {
+        //–Ú•W•ûŒü•t‹ß‚Ü‚Å‰ñ“]
+        if (VDot(obj->objDir, aimDir) < SIMILAR_ANGLE)
+        {
+            //‰ñ“]•ûŒüŽZo‚µ‚ÄƒxƒNƒgƒ‹‚Æs—ñ‚Ì—¼•û‚ð‰ñ“]‚³‚¹‚é
+            rotVel += CalcRotDir(velocity);
+            obj->objDir = VTransform(obj->objDir, rotMat);
+            rotMat = MGetRotZ(rotVel);
+        }
+        else
+        {
+            //–Ú•W•ûŒü‚É‚µ‚Ä‰ñ“]’âŽ~
+            rotMat = MGetRotVec2(obj->objDir, aimDir);
+            obj->objDir = aimDir;
+            obj->nowRotate = false;
+        }
+    }
+}
+
+float CharaObjBase::AxisData::CalcRotDir(const float velocity)
+{
+    //ƒ‰ƒWƒAƒ“Šp‚É‚µ‚Ä‰ñ“]s—ñ‚Ö•ÏŠ·
+    rotRad = math::DegToRad(velocity);
+    if (axisType == obj->xAxis)
+    {
+        rotMat = MGetRotZ(rotRad);
+    }
+    else if (axisType == obj->yAxis)
+    {
+        rotMat = MGetRotY(rotRad);
+    }
+    else if(axisType==obj->zAxis)
+    {
+        rotMat = MGetRotZ(rotRad);
+    }
+
+    //‰ñ“]•ûŒü‚ðŽZo
+    if (VCross(obj->objDir, aimDir).y < 0)
+    {
+        rotMat = MTranspose(rotMat);
+        return -rotRad;
+    }
+    return rotRad;
+}

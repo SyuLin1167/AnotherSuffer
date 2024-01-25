@@ -63,7 +63,8 @@ void Ball::MoveChara(const float deltaTime)
         MoveByKey(KEY_INPUT_A, VGet(0, 0, 1.0f), deltaTime);
         MoveByKey(KEY_INPUT_D, VGet(0, 0, -1.0f), deltaTime);
     }
-
+    moveVel = VNorm(moveVel);
+    moveVel.y = 0;
 
     if (isMove)
     {
@@ -94,7 +95,7 @@ void Ball::MoveByKey(const int keyName, const VECTOR dir, const float deltaTime)
     //キーが入力されていたら移動時の実行
     if (KeyStatus::KeyStateDecision(keyName, ONINPUT | NOWONINPUT))
     {
-        moveVel = dir;
+        moveVel = VAdd(moveVel, dir);
 
         //動作中にする
         isMove = true;
@@ -136,17 +137,6 @@ void Ball::Draw()
 #ifdef _DEBUG
     //当たり判定描画
     capsule->DrawCapsule();
-
-    //当たったポリゴン
-    for (int i = 0; i < colInfo.HitNum; i++)
-    {
-        DrawTriangle3D(
-            colInfo.Dim[i].Position[0],
-            colInfo.Dim[i].Position[1],
-            colInfo.Dim[i].Position[2], GetColor(0, 255, 255), TRUE);
-    }
-
-    DrawFormatString(20, 800, GetColor(255, 255, 255), "%f,%f,%f", objDir.x, VDot(objDir,moveVel), objDir.z);
 #endif // _DEBUG
 }
 
