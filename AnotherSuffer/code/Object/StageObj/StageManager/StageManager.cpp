@@ -1,4 +1,5 @@
 #include<DxLib.h>
+#include<memory>
 #include<vector>
 #include<unordered_map>
 #include<time.h>
@@ -10,7 +11,8 @@
 #include"../Wall/Wall.h"
 #include"../Barricade/Barricade.h"
 
-static constexpr float BLOCK_SIZE = 40.0f;                             //ブロックサイズ
+std::unique_ptr<StageManager> StageManager::singleton;
+
 static constexpr int STAGE_SIZE = 17;                                  //ステージサイズ
 static constexpr int MOVE_CELL = 1;                                    //セルの移動量
 static constexpr int TWO_CELL = 2;
@@ -20,22 +22,25 @@ static constexpr int DOWN = 0x0002;                                    //下
 static constexpr int LEFT = 0x0004;                                    //左
 static constexpr int RIGHT = 0x0008;                                   //右
 
-static constexpr int WALL = 0x0001;                                    //壁
-static constexpr int AISLE = 0x0002;                                   //通路
-static constexpr int BARRICADE = 0x0004;                               //障壁
-
 StageManager::StageManager()
     :dirArray{ UP, DOWN, LEFT, RIGHT }
 {
-    //ステージ作成&生成
-    std::srand(unsigned int(time(NULL)));
-    InitStageData();
-    CreateStage();
-    SetBarricade();
+    //処理なし
+}
 
-    SetUseASyncLoadFlag(true);
-    PlacementObject();
-    SetUseASyncLoadFlag(false);
+void StageManager::InitStageManager()
+{
+        singleton.reset(new StageManager);
+
+        //ステージ作成&生成
+        std::srand(unsigned int(time(NULL)));
+        singleton->InitStageData();
+        singleton->CreateStage();
+        singleton->SetBarricade();
+
+        SetUseASyncLoadFlag(true);
+        singleton->PlacementObject();
+        SetUseASyncLoadFlag(false);
 }
 
 StageManager::~StageManager()
@@ -51,15 +56,25 @@ void StageManager::InitStageData()
     {
         for (int j = 0; j < STAGE_SIZE; j++)
         {
-            stageData[i][j] = WALL;
+            BlockParam blockParam = {};
+            blockParam.type = WALL;
+            blockParam.pos = VGet(j * BLOCK_SIZE - BLOCK_SIZE, 0, i * BLOCK_SIZE - BLOCK_SIZE);
+            singleton->stageData[i].emplace(j, blockParam);
         }
     }
+}
+
+StageManager::BlockParam::BlockParam()
+    :type()
+    , pos()
+{
+    //処理なし
 }
 
 void StageManager::CreateStage(int indexX, int indexY)
 {
     //現在のマスを通路にする
-    stageData[indexY][indexX] = AISLE;
+    stageData[indexY][indexX].type = AISLE;
 
     //進行方向を通路に
     ShuffleDirection();
@@ -72,9 +87,9 @@ void StageManager::CreateStage(int indexX, int indexY)
         int secondNextX = indexX + CalcNextCell(direction, LEFT, RIGHT) * TWO_CELL;
         int secondNextY = indexY + CalcNextCell(direction, UP, DOWN) * TWO_CELL;
         if (IsOnStage(secondNextX) && IsOnStage(secondNextY) &&
-            (stageData[secondNextY][secondNextX] & WALL))
+            (stageData[secondNextY][secondNextX].type & WALL))
         {
-            stageData[nextY][nextX] = AISLE;
+            stageData[nextY][nextX].type = AISLE;
             CreateStage(secondNextX, secondNextY);
         }
     }
@@ -121,16 +136,16 @@ void StageManager::SetBarricade()
     {
         for (int j = 1; j < STAGE_SIZE - 1; ++j)
         {
-            if (stageData[i][j] & WALL) 
+            if (stageData[i][j].type & WALL)
             {
                 //壁に挟まれていたら5分の1の確立で障壁にする
                 int trapProb = rand() % 5;
                 if (trapProb & 1)
                 {
-                    if ((stageData[i][j + 1] & stageData[i][j - 1] & WALL) ||
-                        (stageData[i + 1][j] & stageData[i - 1][j] & WALL))
+                    if (((stageData[i][j + 1].type & stageData[i][j - 1].type) & WALL) ||
+                        ((stageData[i + 1][j].type & stageData[i - 1][j].type) & WALL))
                     {
-                        stageData[i][j] = BARRICADE;
+                        stageData[i][j].type = BARRICADE;
                     }
                 }
             }
@@ -145,49 +160,26 @@ void StageManager::PlacementObject()
     {
         for (auto& indexX : indexY.second)
         {
-            if (indexX.second & AISLE)
+            if (indexX.second.type & AISLE)
             {
-                ObjManager::AddObj(new Aisle(
-                    VGet(indexY.first * BLOCK_SIZE - BLOCK_SIZE, 0, indexX.first * BLOCK_SIZE - BLOCK_SIZE)));
+                ObjManager::AddObj(new Aisle(indexX.second.pos));
             }
-            else if (indexX.second & WALL)
+            else if (indexX.second.type & WALL)
             {
-                ObjManager::AddObj(new Wall(
-                    VGet(indexY.first * BLOCK_SIZE - BLOCK_SIZE, 0, indexX.first * BLOCK_SIZE - BLOCK_SIZE)));
+                ObjManager::AddObj(new Wall(indexX.second.pos));
             }
-            else if (indexX.second & BARRICADE)
+            else if (indexX.second.type & BARRICADE)
             {
-                ObjManager::AddObj(new Barricade(
-                    VGet(indexY.first * BLOCK_SIZE - BLOCK_SIZE, 0, indexX.first * BLOCK_SIZE - BLOCK_SIZE)));
+                ObjManager::AddObj(new Barricade(indexX.second.pos, { indexX.first,indexY.first }));
             }
         }
     }
 }
 
-void StageManager::DebugDraw()
+void StageManager::ChangeStageData(std::pair<int, int> cell,int type)
 {
-    for (auto& indexY : stageData)
-    {
-        for (auto& indexX : indexY.second)
-        {
-            if (indexX.second & WALL) {
-                DrawBox(indexX.first * 20, indexY.first * 20,
-                    (indexX.first + 1) * 20, (indexY.first + 1) * 20, GetColor(150, 100, 10), TRUE);
-            }
-            if (indexX.second & BARRICADE)
-            {
-                DrawBox(indexX.first * 20, indexY.first * 20,
-                    (indexX.first + 1) * 20, (indexY.first + 1) * 20, GetColor(100, 10, 120), TRUE);
-            }
-            if (indexX.second & AISLE)
-            {
-                DrawBox(indexX.first * 20, indexY.first * 20,
-                    (indexX.first + 1) * 20, (indexY.first + 1) * 20, GetColor(50, 150, 150), TRUE);
-            }
-        }
-    }
+    singleton->stageData[cell.second][cell.first].type = type;
 }
-
 
 
 

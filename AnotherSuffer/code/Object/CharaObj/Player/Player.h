@@ -2,7 +2,7 @@
 #include"../CharaObjBase/CharaObjBase.h"
 
 /// <summary>
-/// Playerクラス
+/// プレイヤー
 /// </summary>
 class Player final:public CharaObjBase
 {
@@ -51,7 +51,9 @@ private:
 
     float a = 0;
     int texHandle;
+    int test;
     class Capsule* capsule;
+    class Line* line;
     VECTOR moveVel;
 };
 

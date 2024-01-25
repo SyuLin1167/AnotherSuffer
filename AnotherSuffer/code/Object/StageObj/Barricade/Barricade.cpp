@@ -1,17 +1,23 @@
 #include "Barricade.h"
 #include"../../../KeyStatus/KeyStatus.h"
 #include"../../../Object/ObjManager/ObjManager.h"
+#include"../StageManager/StageManager.h"
 #include"../../../Collision/CollisionManager/CollisionManager.h"
 #include"../../../Collision/ColModel/ColModel.h"
 #include"../Aisle/Aisle.h"
 
-Barricade::Barricade(const VECTOR pos)
+Barricade::Barricade(const VECTOR pos, std::pair<int, int> node)
     :StageObjBase(pos)
+    , myNode(node)
 {
+    MV1SetEmiColorScale(objHandle,GetColorF(1.0f,0,1.0f,1.0f));
+
     //テクスチャ貼り換え
     texHandle = AssetManager::GraphInstance()->GetHandle(graphData[jsondata::objKey.barricade.c_str()].GetString());
     texIndex = MV1GetMaterialDifMapTexture(objHandle, 0);
     color = GetColor(50, 5, 60);
+
+    InitCollision();
 }
 
 Barricade::~Barricade()
@@ -32,7 +38,7 @@ void Barricade::OnCollisionEnter(ObjBase* colObj)
                 {
                     //障壁を破壊
                     BreakBarricade();
-                    MV1CollResultPolyDimTerminate(colModel->GetColInfo());
+                    MV1CollResultPolyDimTerminate(colModel->GetColInfoDim());
                     break;
                 }
             }
@@ -42,10 +48,11 @@ void Barricade::OnCollisionEnter(ObjBase* colObj)
 
 void Barricade::BreakBarricade()
 {
-    //Bキーで破壊
-    if (KeyStatus::KeyStateDecision(KEY_INPUT_B, (ONINPUT | NOWONINPUT)))
+    //自身が見えていたら左クリックで破壊
+    if (isVisible && GetMouseInput() & MOUSE_INPUT_LEFT)
     {
+        StageManager::ChangeStageData(myNode, AISLE);
         ObjManager::AddObj(new Aisle(objPos));
-        isAlive= false;
+        isAlive = false;
     }
 }

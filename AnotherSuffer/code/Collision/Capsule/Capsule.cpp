@@ -1,5 +1,4 @@
 #include<DxLib.h>
-#include<memory>
 
 #include"../../Object/ObjBase/ObjBase.h"
 #include"../Line/Line.h"
@@ -31,8 +30,8 @@ void Capsule::Update(const VECTOR& pos)
 bool Capsule::OnCollisionWithMesh(const int modelHandle)
 {
     //当たり判定情報から判定結果を返す
-    colInfo = MV1CollCheck_Capsule(modelHandle, -1, worldStart, worldEnd, radius);
-    if (colInfo.HitNum == 0)
+    colInfoDim = MV1CollCheck_Capsule(modelHandle, -1, worldStart, worldEnd, radius);
+    if (colInfoDim.HitNum == 0)
     {
         return false;
     }
@@ -45,20 +44,20 @@ VECTOR Capsule::CalcPushBackFromMesh()
     VECTOR pushBack = worldCenter;
 
     // 衝突ポリゴン数分押し戻し量を計算する
-    for (int i = 0; i < colInfo.HitNum; ++i)
+    for (int i = 0; i < colInfoDim.HitNum; ++i)
     {
         //押し戻し後の座標がまだめり込んでいたら押し戻し量計算
         if (HitCheck_Capsule_Triangle(
             VAdd(worldStart, VSub(pushBack, worldCenter)), VAdd(worldEnd, VSub(pushBack, worldCenter)),
-            radius, colInfo.Dim[i].Position[0], colInfo.Dim[i].Position[1], colInfo.Dim[i].Position[2]))
+            radius, colInfoDim.Dim[i].Position[0], colInfoDim.Dim[i].Position[1], colInfoDim.Dim[i].Position[2]))
         {
             //2辺から法線ベクトル算出
-            VECTOR poligonVec1 = VSub(colInfo.Dim[i].Position[1], colInfo.Dim[i].Position[0]);
-            VECTOR poligonVec2 = VSub(colInfo.Dim[i].Position[2], colInfo.Dim[i].Position[0]);
+            VECTOR poligonVec1 = VSub(colInfoDim.Dim[i].Position[1], colInfoDim.Dim[i].Position[0]);
+            VECTOR poligonVec2 = VSub(colInfoDim.Dim[i].Position[2], colInfoDim.Dim[i].Position[0]);
             VECTOR normalVec = VNorm(VCross(poligonVec1, poligonVec2));
 
             //めり込み量算出
-            VECTOR distance = VSub(pushBack, colInfo.Dim[i].Position[0]);
+            VECTOR distance = VSub(pushBack, colInfoDim.Dim[i].Position[0]);
             float dot = VDot(normalVec, distance);
             float cavedLen = radius - VSize(VScale(normalVec, dot));
 

@@ -35,10 +35,16 @@ StageObjBase::StageObjBase(const VECTOR pos)
     CalcObjPos();
     MV1SetMatrix(objHandle, MMult(MGetScale(objScale), MGetTranslate(objPos)));
 
+}
+
+
+void StageObjBase::InitCollision()
+{
     //当たり判定はモデル型
     colModel.reset(new ColModel(objHandle));
     CollisionManager::AddCol(this, colModel.get());
 }
+
 
 StageObjBase::~StageObjBase()
 {
@@ -48,7 +54,10 @@ StageObjBase::~StageObjBase()
 void StageObjBase::Update(const float deltaTime)
 {
     //モデル切り抜き
-    ViewClipBox();
+    if (!ObjManager::GetObj(ObjTag.PLAYER).empty())
+    {
+        ViewClipBox();
+    }
 
     //行列でモデルの動作
     CalcObjPos();
@@ -85,5 +94,8 @@ void StageObjBase::Draw()
     //モデル描画
     MV1SetTextureGraphHandle(objHandle, texIndex, texHandle, true);
     MV1DrawModel(objHandle);
-    DrawBox(objPos.z, objPos.x, objPos.z + 40, objPos.x + 40, color, true);
+
+#ifdef _DEBUG
+    DrawBox(objPos.z+40, objPos.x+40, objPos.z + 80, objPos.x + 80, color, true);
+#endif // _DEBUG
 }

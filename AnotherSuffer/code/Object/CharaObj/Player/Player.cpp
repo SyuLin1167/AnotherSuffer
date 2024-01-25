@@ -3,6 +3,7 @@
 #include"../../../Asset/AssetManager/AssetManager.h"
 #include"../../../Collision/CollisionManager/CollisionManager.h"
 #include"../../../Collision/Capsule/Capsule.h"
+#include"../../../Collision/Line/Line.h"
 #include "Player.h"
 
 static constexpr float RUN_SPEED = 40.0f;
@@ -14,7 +15,7 @@ Player::Player()
     //モデル読み込み
     objHandle = AssetManager::ModelInstance()->GetHandle(modelData.GetString());
     objDir = VGet(0, 0, -1);
-    MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(objPos)));
+    MV1SetMatrix(objHandle, MMult(rotateYMat, MGetTranslate(objPos)));
 
     AssetManager::MotionInstance()->StartMotion(this,
         AssetManager::MotionInstance()->GetHandle(
@@ -24,11 +25,14 @@ Player::Player()
     moveSpeed = RUN_SPEED;
 
     //当たり判定はカプセル型
-    capsule=new Capsule(VAdd(objPos, VGet(0, 6, 0)), VAdd(objPos, VGet(0, 30, 0)), 6.0f);
+    capsule=new Capsule(VAdd(objPos, VGet(0, 6, 0)), VAdd(objPos, VGet(0, 30, 0)), 7.0f);
     CollisionManager::AddCol(this, capsule);
+    line = new Line(VAdd(objPos, VGet(0, 5, 0)), VAdd(objPos, VGet(0, -5, 0)));
+    CollisionManager::AddCol(this, line);
 
     //仮ライト
-    texHandle = CreatePointLightHandle(objPos, 150.0f, 0.0f, 0.0f, 0.001f);
+    texHandle = CreateSpotLightHandle(objPos,objDir,DX_PI_F,DX_PI_F/2, 150.0f, 0.0f, 0.0f, 0.0005f);
+    test = 0;
 }
 
 Player::~Player()
@@ -70,7 +74,7 @@ void Player::Update(const float deltaTime)
     CalcObjPos();
 
     //行列でモデルの動作
-    MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(objPos)));
+    MV1SetMatrix(objHandle, MMult(rotateYMat, MGetTranslate(objPos)));
 }
 
 void Player::MoveChara(const float deltaTime)
@@ -80,6 +84,7 @@ void Player::MoveChara(const float deltaTime)
 
     //カメラの向きを自身の移動方向とする
     std::shared_ptr<ObjBase> camera = ObjManager::GetObj(ObjTag.CAMERA)[0];
+    SetLightDirectionHandle(texHandle, camera->GetObjDir());
     SetLightPositionHandle(texHandle, camera->GetObjPos());
     VECTOR aimDir = camera->GetObjDir();
     VECTOR rightDir = VCross(VGet(0, -1, 0), aimDir);
@@ -96,7 +101,7 @@ void Player::MoveChara(const float deltaTime)
 
     //座標・方向の算出
     objLocalPos = VAdd(objLocalPos, VScale(moveVel, moveSpeed * deltaTime));
-    rotateMat = MMult(MGetScale(objScale), MGetRotVec2(objDir, aimDir));
+    rotateYMat = MMult(MGetScale(objScale), MGetRotVec2(objDir, aimDir));
 }
 
 void Player::MoveByKey(const int keyName, const VECTOR dir, const float deltaTime)
@@ -127,7 +132,11 @@ void Player::OnCollisionEnter(ObjBase* colObj)
             {
                 objLocalPos = VAdd(objLocalPos, capsule->CalcPushBackFromMesh());
 
-                MV1CollResultPolyDimTerminate(capsule->GetColInfo());
+                MV1CollResultPolyDimTerminate(capsule->GetColInfoDim());
+            }
+            if (line->OnCollisionWithMesh(obj->GetColModel()))
+            {
+                test = -1;
             }
         }
     }
@@ -135,9 +144,10 @@ void Player::OnCollisionEnter(ObjBase* colObj)
     //座標更新
     CalcObjPos();
     capsule->Update(objPos);
+    line->Update(objPos);
 
     //行列でモデルの動作
-    MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(objPos)));
+    MV1SetMatrix(objHandle, MMult(rotateYMat, MGetTranslate(objPos)));
 }
 
 void Player::Draw()
@@ -158,8 +168,6 @@ void Player::Draw()
             colInfo.Dim[i].Position[2], GetColor(0, 255, 255), TRUE);
     }
 
-    DrawFormatString(0, 20, GetColor(255, 255, 255), "%f", a);
-    DrawLine3D(objPos, VAdd(objPos, VScale(objDir,3)), GetColor(255, 0, 0));
-
+    DrawFormatString(0, 100, GetColor(255, 255, 255), "%d",test);
 #endif // _DEBUG
 }

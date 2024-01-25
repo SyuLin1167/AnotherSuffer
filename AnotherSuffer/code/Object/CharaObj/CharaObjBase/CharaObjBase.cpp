@@ -15,15 +15,19 @@ CharaObjBase::CharaObjBase(std::string tag)
     , isMove(false)
     , moveSpeed()
     , nowRotate(false)
-    , modelData(AssetManager::ModelInstance()->GetJsonData()[objTag.c_str()])
-    , soundData(AssetManager::SoundInstance()->GetJsonData()[objTag.c_str()])
-    , motionData(AssetManager::MotionInstance()->GetJsonData()[objTag.c_str()])
+    , modelData(GetAssetPathData(AssetManager::ModelInstance()))
+    , soundData(GetAssetPathData(AssetManager::SoundInstance()))
+    , motionData(GetAssetPathData(AssetManager::MotionInstance()))
     , aimDir()
     , rotRad()
-    , rotYRad(-DX_PI_F / 2)
+    , rotXRad()
+    , rotYRad(-DX_PI_F / 2.0f)
+    , rotZRad()
 {
+    rotXMat = MGetRotX(rotXRad);
     rotYMat = MGetRotY(rotYRad);
-    rotateMat = MMult(MGetScale(objScale), rotYMat);
+    rotZMat = MGetRotZ(rotZRad);
+    rotateYMat = MMult(MGetScale(objScale), rotYMat);
 }
 
 CharaObjBase::~CharaObjBase()
@@ -47,21 +51,133 @@ void CharaObjBase::RotateYAxis(const VECTOR dir, float velocity)
         if (VDot(objDir, aimDir) < SIMILAR_ANGLE )
         {
             //‰ñ“]•ûŒüŽZo‚µ‚ÄƒxƒNƒgƒ‹‚Æs—ñ‚Ì—¼•û‚ð‰ñ“]‚³‚¹‚é
-            rotYRad += CalcRotDir(velocity);
+            rotYRad += CalcRotDirY(velocity);
             objDir = VTransform(objDir, rotYMat);
-            rotateMat = MMult(MGetScale(objScale), MGetRotY(rotYRad));
+            rotateYMat = MGetRotY(rotYRad);
         }
         else
         {
             //–Ú•W•ûŒü‚É‚µ‚Ä‰ñ“]’âŽ~
-            rotateMat = MMult(MGetScale(objScale), MGetRotVec2(objDir, aimDir));
+            rotateYMat =  MGetRotVec2(objDir, aimDir);
             objDir = aimDir;
             nowRotate = false;
         }
     }
 }
 
-float CharaObjBase::CalcRotDir(float velocity)
+void CharaObjBase::RotateXAxis(const VECTOR dir, float velocity)
+{
+    if (VSize(dir) > 0)
+    {
+
+        aimDir = dir;
+        float rotDir = CalcRotDirX(velocity);
+
+        //‰ñ“]•ûŒüŽZo‚µ‚ÄƒxƒNƒgƒ‹‚Æs—ñ‚Ì—¼•û‚ð‰ñ“]‚³‚¹‚é
+        rotXRad += rotDir;
+        if (rotXRad > DX_PI_F * 2.0f)
+        {
+            rotXRad = 0;
+        }
+        objDir = VTransform(objDir, rotXMat);
+        VECTOR axis = VGet(1, 0, 0);
+        rotateXMat = MGetRotX( rotXRad);
+    }
+}
+
+void CharaObjBase::RotateToAimXAxis(const VECTOR dir, float velocity)
+{
+    //Œ»•ûŒü‚ª–Ú•W•ûŒü‚Å‚È‚¯‚ê‚Î‰ñ“]’†‚É‚·‚é
+    aimDir = dir;
+    if (objDir != aimDir)
+    {
+        nowRotate = true;
+    }
+
+    //‰ñ“]’†‚È‚ç
+    if (nowRotate)
+    {
+        //–Ú•W•ûŒü•t‹ß‚Ü‚Å‰ñ“]
+        if (VDot(objDir, aimDir) < SIMILAR_ANGLE)
+        {
+            //‰ñ“]•ûŒüŽZo‚µ‚ÄƒxƒNƒgƒ‹‚Æs—ñ‚Ì—¼•û‚ð‰ñ“]‚³‚¹‚é
+            rotXRad += CalcRotDirX(velocity);
+            objDir = VTransform(objDir, rotXMat);
+            rotateXMat = MGetRotX(rotXRad);
+        }
+        else
+        {
+            //–Ú•W•ûŒü‚É‚µ‚Ä‰ñ“]’âŽ~
+            rotateXMat =  MGetRotVec2(objDir, aimDir);
+            objDir = aimDir;
+            nowRotate = false;
+        }
+    }
+}
+
+void CharaObjBase::RotateZAxis(const VECTOR dir, float velocity)
+{
+    if (VSize(dir) > 0)
+    {
+        aimDir = dir;
+        //‰ñ“]•ûŒüŽZo‚µ‚ÄƒxƒNƒgƒ‹‚Æs—ñ‚Ì—¼•û‚ð‰ñ“]‚³‚¹‚é
+        rotZRad += CalcRotDirZ(velocity);
+        if (rotZRad > DX_PI_F * 2.0f)
+        {
+            rotZRad = 0;
+        }
+        objDir = VTransform(objDir, rotZMat);
+        VECTOR axis = VGet(0, 0, 1);
+        rotateZMat = MGetRotZ(rotZRad);
+    }
+}
+
+void CharaObjBase::RotateToAimZAxis(const VECTOR dir, float velocity)
+{
+    //Œ»•ûŒü‚ª–Ú•W•ûŒü‚Å‚È‚¯‚ê‚Î‰ñ“]’†‚É‚·‚é
+    aimDir = dir;
+    if (objDir != aimDir)
+    {
+        nowRotate = true;
+    }
+
+    //‰ñ“]’†‚È‚ç
+    if (nowRotate)
+    {
+        //–Ú•W•ûŒü•t‹ß‚Ü‚Å‰ñ“]
+        if (VDot(objDir, aimDir) < SIMILAR_ANGLE)
+        {
+            //‰ñ“]•ûŒüŽZo‚µ‚ÄƒxƒNƒgƒ‹‚Æs—ñ‚Ì—¼•û‚ð‰ñ“]‚³‚¹‚é
+            rotZRad += CalcRotDirZ(velocity);
+            objDir = VTransform(objDir, rotZMat);
+            rotateZMat = MGetRotZ(rotZRad);
+        }
+        else
+        {
+            //–Ú•W•ûŒü‚É‚µ‚Ä‰ñ“]’âŽ~
+            rotateZMat = MGetRotVec2(objDir, aimDir);
+            objDir = aimDir;
+            nowRotate = false;
+        }
+    }
+}
+
+float CharaObjBase::CalcRotDirX(float velocity)
+{
+    //ƒ‰ƒWƒAƒ“Šp‚É‚µ‚Ä‰ñ“]s—ñ‚Ö•ÏŠ·
+    rotRad = math::DegToRad(velocity);
+    rotXMat = MGetRotX(rotRad);
+
+    //‰ñ“]•ûŒü‚ðŽZo
+    if (VCross(objDir, aimDir).y < 0)
+    {
+        rotXMat = MTranspose(rotXMat);
+        return -rotRad;
+    }
+    return rotRad;
+}
+
+float CharaObjBase::CalcRotDirY(float velocity)
 {
     //ƒ‰ƒWƒAƒ“Šp‚É‚µ‚Ä‰ñ“]s—ñ‚Ö•ÏŠ·
     rotRad = math::DegToRad(velocity);
@@ -76,3 +192,88 @@ float CharaObjBase::CalcRotDir(float velocity)
     return rotRad;
 }
 
+float CharaObjBase::CalcRotDirZ(float velocity)
+{
+    //ƒ‰ƒWƒAƒ“Šp‚É‚µ‚Ä‰ñ“]s—ñ‚Ö•ÏŠ·
+    rotRad = math::DegToRad(velocity);
+    rotZMat = MGetRotZ(rotRad);
+
+    //‰ñ“]•ûŒü‚ðŽZo
+    if (VCross(objDir, aimDir).y < 0)
+    {
+        rotZMat = MTranspose(rotZMat);
+        return -rotRad;
+    }
+    return rotRad;
+}
+
+rapidjson::Value& CharaObjBase::GetAssetPathData(AssetBase* asset)
+{
+    //”CˆÓ‚ÌƒAƒZƒbƒgƒf[ƒ^‚ÉƒIƒuƒWƒFƒNƒg‚ª‚¢‚½‚çƒpƒXƒf[ƒ^‰Šú‰»
+    auto& jsonData = asset->GetJsonData();
+    if (jsonData.HasMember(objTag.c_str()))
+    {
+        return jsonData[objTag.c_str()];
+    }
+
+    //‚È‚©‚Á‚½‚ç‚©‚ç‚Ì’l‚ð•Ô‚·
+    rapidjson::Value null;
+    null.Set(-1);
+    return null;
+}
+
+void CharaObjBase::AxisData::RotateToAim(const VECTOR dir, float velocity)
+{
+    //Œ»•ûŒü‚ª–Ú•W•ûŒü‚Å‚È‚¯‚ê‚Î‰ñ“]’†‚É‚·‚é
+    aimDir = dir;
+    if (obj->objDir != aimDir)
+    {
+        obj->nowRotate = true;
+    }
+
+    //‰ñ“]’†‚È‚ç
+    if (obj->nowRotate)
+    {
+        //–Ú•W•ûŒü•t‹ß‚Ü‚Å‰ñ“]
+        if (VDot(obj->objDir, aimDir) < SIMILAR_ANGLE)
+        {
+            //‰ñ“]•ûŒüŽZo‚µ‚ÄƒxƒNƒgƒ‹‚Æs—ñ‚Ì—¼•û‚ð‰ñ“]‚³‚¹‚é
+            rotVel += CalcRotDir(velocity);
+            obj->objDir = VTransform(obj->objDir, rotMat);
+            rotMat = MGetRotZ(rotVel);
+        }
+        else
+        {
+            //–Ú•W•ûŒü‚É‚µ‚Ä‰ñ“]’âŽ~
+            rotMat = MGetRotVec2(obj->objDir, aimDir);
+            obj->objDir = aimDir;
+            obj->nowRotate = false;
+        }
+    }
+}
+
+float CharaObjBase::AxisData::CalcRotDir(const float velocity)
+{
+    //ƒ‰ƒWƒAƒ“Šp‚É‚µ‚Ä‰ñ“]s—ñ‚Ö•ÏŠ·
+    rotRad = math::DegToRad(velocity);
+    if (axisType == obj->xAxis)
+    {
+        rotMat = MGetRotZ(rotRad);
+    }
+    else if (axisType == obj->yAxis)
+    {
+        rotMat = MGetRotY(rotRad);
+    }
+    else if(axisType==obj->zAxis)
+    {
+        rotMat = MGetRotZ(rotRad);
+    }
+
+    //‰ñ“]•ûŒü‚ðŽZo
+    if (VCross(obj->objDir, aimDir).y < 0)
+    {
+        rotMat = MTranspose(rotMat);
+        return -rotRad;
+    }
+    return rotRad;
+}

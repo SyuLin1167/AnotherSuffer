@@ -38,6 +38,19 @@ CollisionManager::~CollisionManager()
     DeleteCollision();
 }
 
+const std::vector<CollisionBase*> CollisionManager::GetCol(ObjBase* obj)
+{
+    //データがあるなら返す
+    auto finddata = singleton->colData.find(obj);
+    if (finddata != singleton->colData.end())
+    {
+        return singleton->colData[obj];
+    }
+
+    //なかったら空を返す
+    return {};
+}
+
 void CollisionManager::CheckCollisionPair()
 {
     //オブジェクトの当たり判定組み合わせを確認
@@ -64,15 +77,21 @@ void CollisionManager::OnCollisionEnter(std::string mainObjTag, std::string pair
     //組み合わせどおりに当たり判定実行
     for (auto& colMain : ObjManager::GetObj(mainObjTag))
     {
-        for (auto& colPair : ObjManager::GetObj(pairObjTag))
+        if (colMain)
         {
-            colMain->OnCollisionEnter(colPair.get());
-            if (!colMain->IsAlive())
+            for (auto& colPair : ObjManager::GetObj(pairObjTag))
             {
-                auto findCol = singleton->colData.find(colMain.get());
-                if (findCol != singleton->colData.end())
+                if (colPair)
                 {
-                    singleton->colData.erase(findCol->first);
+                    colMain->OnCollisionEnter(colPair.get());
+                    if (!colMain->IsAlive())
+                    {
+                        auto findCol = singleton->colData.find(colMain.get());
+                        if (findCol != singleton->colData.end())
+                        {
+                            singleton->colData.erase(findCol->first);
+                        }
+                    }
                 }
             }
         }

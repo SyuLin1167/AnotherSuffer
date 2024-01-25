@@ -1,10 +1,10 @@
 #pragma once
-#include<DxLib.h>
+#include"../CollisionBase/CollisionBase.h"
 
 /// <summary>
 /// 線分当たり判定
 /// </summary>
-class Line final
+class Line final :public CollisionBase
 {
 public:
     /// <summary>
@@ -22,8 +22,15 @@ public:
     /// <summary>
     /// 更新
     /// </summary>
-    /// <param name="pos">:移動座標</param>
+    /// <param name="pos">:座標</param>
     void Update(const VECTOR& pos);
+
+    /// <summary>
+    /// 更新
+    /// </summary>
+    /// <param name="pos1">:座標1</param>
+    /// <param name="pos2">:座標2</param>
+    void Update(const VECTOR& pos1,const VECTOR& pos2);
 
     /// <summary>
     /// メッシュとの衝突判定
@@ -31,7 +38,7 @@ public:
     /// <param name="modelHandle">:モデルハンドル</param>
     /// <param name="colInfo">:当たり判定情報</param>
     /// <returns>ぶつかった:true|ぶつかっていない:false</returns>
-    bool OnCollisionWithMesh(const int modelHandle, MV1_COLL_RESULT_POLY& colInfo);
+    bool OnCollisionWithMesh(const int modelHandle);
 
 private:
     VECTOR localStartPos;

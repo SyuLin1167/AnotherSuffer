@@ -11,7 +11,8 @@ public:
     /// コンストラクタ
     /// </summary>
     /// <param name="pos">:座標</param>
-    Barricade(const VECTOR pos);
+    /// <param name="node">:ノード</param>
+    Barricade(const VECTOR pos, std::pair<int, int> node);
 
     /// <summary>
     /// デストラクタ
@@ -28,5 +29,7 @@ public:
     /// 障壁破壊
     /// </summary>
     void BreakBarricade();
+
+    std::pair<int, int> myNode;             //自身のノード
 };
 

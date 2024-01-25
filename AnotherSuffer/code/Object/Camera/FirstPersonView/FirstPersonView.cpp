@@ -3,8 +3,7 @@
 #include "FirstPersonView.h"
 #include"../../Math/Math.h"
 
-static constexpr float LOOK_HEIGHT = 2.0f;    //視点高さ
-static constexpr float LOOK_SCALE = 5.0f;    //視点スケール
+static constexpr float LOOK_HEIGHT = 10.0f;    //視点高さ
 static constexpr int PLAYER_HEAD_FRAME = 10;      //プレイヤー頭部フレーム
 static constexpr float MAX_PITCH = 1.0f;               //ピッチ最大値
 
@@ -32,7 +31,6 @@ void FirstPersonView::Update(const float deltaTime)
 {
     //座標取得
     player = ObjManager::GetObj(ObjTag.PLAYER)[0];
-    assert(player);
     objWorldPos = VAdd(player->GetObjFramePos(PLAYER_HEAD_FRAME),objDir);
 
     //視点移動算出
@@ -41,7 +39,7 @@ void FirstPersonView::Update(const float deltaTime)
     cameraViewMat = MMult(MGetRotY(cameraYaw), MGetRotX(cameraPitch));
 
     //視点分カメラ座標を僅かに動かす
-    objLocalPos=VScale(VNorm(objDir),LOOK_SCALE);
+    objLocalPos = VNorm(objDir);
     objLocalPos.y=LOOK_HEIGHT;
 
     //マウスポインターは画面の中心
@@ -61,13 +59,13 @@ void FirstPersonView::CalcMoveView(const float deltaTime)
     //カメラ回転値算出
     if (abs(angleVel.x) > 0)
     {
-        cameraYaw -= angleVel.x * DX_PI_F * deltaTime/10;
+        cameraYaw -= angleVel.x * DX_PI_F * deltaTime / 10.0f;
     }
     if (abs(angleVel.y) > 0)
     {
         if (abs(cameraPitch) <= MAX_PITCH)
         {
-            cameraPitch -= angleVel.y * DX_PI_F * deltaTime / 10;
+            cameraPitch -= angleVel.y * DX_PI_F * deltaTime / 10.0f;
         }
         else
         {
@@ -89,7 +87,5 @@ void FirstPersonView::Draw()
     //視点を移動
     SetCameraViewMatrix(MMult( MInverse(MGetTranslate(objPos)),cameraViewMat));
 
-    DrawFormatString(0, 300, GetColor(0, 255, 255), "%f", objDir.x);
-    DrawFormatString(0, 350, GetColor(0, 255, 255), "%f", objDir.y);
-    DrawFormatString(0, 400, GetColor(0, 255, 255), "%f", objDir.z);
+    DrawCircle(objPos.z+60, objPos.x+60, 10, GetColor(255, 255, 255));
 }

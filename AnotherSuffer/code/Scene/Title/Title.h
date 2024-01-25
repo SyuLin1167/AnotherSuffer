@@ -2,9 +2,6 @@
 #include <DxLib.h>
 #include <vector>
 #include <stack>
-#include <algorithm>
-#include <random>
-#include <ctime>
 
 
 /// <summary>
@@ -34,5 +31,19 @@ public:
     /// ÉVÅ[Éìï`âÊ
     /// </summary>
     void DrawScene() override;
+
+    const std::vector<std::vector<int>> stage
+    {
+        {1,1,1,1,1},
+        {1,0,0,1,1},
+        {1,0,1,1,1},
+        {1,0,0,1,1},
+        {1,1,1,1,1},
+    };
+
+    VERTEX3D vert[4];
+    WORD idx[6] = { 0,1,2,3,2,1 };
+    int graph;
+    int g;
 };
 

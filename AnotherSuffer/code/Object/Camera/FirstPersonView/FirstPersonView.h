@@ -1,8 +1,8 @@
 #pragma once
 #include"../../ObjBase/ObjBase.h"
 
-constexpr float CAMERA_NEAR = 0.1f;
-constexpr float CAMERA_FAR = 500.0f;
+static constexpr float CAMERA_NEAR = 0.1f;
+static constexpr float CAMERA_FAR = 500.0f;
 
 /// <summary>
 /// ˆêlÌ‹“_

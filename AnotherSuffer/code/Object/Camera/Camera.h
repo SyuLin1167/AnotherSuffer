@@ -28,5 +28,11 @@ private:
     /// •`‰æ
     /// </summary>
     void Draw() override;
+
+    std::shared_ptr<ObjBase> player;            //ƒvƒŒƒCƒ„[
+    int handle;
+
+    float rotRad;                               //‰ñ“]Šp
+    float rotAngle;                             //‰ñ“]•ûŒü
 };
 

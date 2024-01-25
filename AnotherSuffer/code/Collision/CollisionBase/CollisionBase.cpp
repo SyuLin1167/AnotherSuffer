@@ -5,6 +5,7 @@
 CollisionBase::CollisionBase(std::string tag)
     :colTag(tag)
     , colHandle(-1)
+    , colInfoDim()
     , colInfo()
     , localStart()
     , localEnd()

@@ -29,7 +29,5 @@ private:
     /// ƒV[ƒ“•`‰æ
     /// </summary>
     void DrawScene() override;
-
-    std::unique_ptr<class StageManager> stageManager;
 };
 

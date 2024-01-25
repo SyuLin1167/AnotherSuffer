@@ -5,6 +5,7 @@
 #include"../../Collision/CollisionManager/CollisionManager.h"
 #include"../../Object/Camera/FirstPersonView/FirstPersonView.h"
 #include"../../Object/CharaObj/Player/Player.h"
+#include"../../Object/CharaObj/Enemy/Enemy.h"
 #include"../../Object/StageObj/StageManager/StageManager.h"
 #include"../SceneBase/SceneBase.h"
 #include"../Title/Title.h"
@@ -12,14 +13,15 @@
 
 Play::Play()
 {
-    ObjManager::AddObj(new FirstPersonView);
+    StageManager::InitStageManager();
     ObjManager::AddObj(new Player);
-    stageManager.reset(new StageManager);
+    ObjManager::AddObj(new FirstPersonView);
+    ObjManager::AddObj(new Enemy);
 }
 
 Play::~Play()
 {
-    CollisionManager::DeleteCollision();
+    //処理なし
 }
 
 SceneBase* Play::UpdateScene(const float deltaTime)
@@ -32,6 +34,7 @@ SceneBase* Play::UpdateScene(const float deltaTime)
     if (KeyStatus::KeyStateDecision(KEY_INPUT_RETURN, ONINPUT))
     {
         ObjManager::DeleteAllObj();
+        CollisionManager::DeleteCollision();
         return new Title;
     }
 
@@ -42,6 +45,8 @@ void Play::DrawScene()
 {
     //オブジェクト描画
     ObjManager::DrawObj();
-    //stageManager->DebugDraw();
+
+#ifdef _DEBUG
     DrawFormatString(0, 0, GetColor(255, 255, 255), "play");
+#endif // _DEBUG
 }
