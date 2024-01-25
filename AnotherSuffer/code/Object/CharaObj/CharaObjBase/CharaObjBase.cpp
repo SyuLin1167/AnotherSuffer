@@ -67,13 +67,26 @@ void CharaObjBase::RotateYAxis(const VECTOR dir, float velocity)
 
 void CharaObjBase::RotateXAxis(const VECTOR dir, float velocity)
 {
-    aimDir = dir;
-    float rotDir = CalcRotDirX(velocity);
+    if (VSize(dir) > 0)
+    {
 
-    //‰ñ“]•ûŒüŽZo‚µ‚ÄƒxƒNƒgƒ‹‚Æs—ñ‚Ì—¼•û‚ð‰ñ“]‚³‚¹‚é
-    rotXRad += rotDir;
-    objDir = VTransform(objDir, rotXMat);
-    rotateXMat = MGetRotX(rotXRad);
+        aimDir = dir;
+        float rotDir = CalcRotDirX(velocity);
+
+        //‰ñ“]•ûŒüŽZo‚µ‚ÄƒxƒNƒgƒ‹‚Æs—ñ‚Ì—¼•û‚ð‰ñ“]‚³‚¹‚é
+        rotXRad += rotDir;
+        if (rotXRad > DX_PI_F * 2.0f)
+        {
+            rotXRad = 0;
+        }
+        objDir = VTransform(objDir, rotXMat);
+        VECTOR axis = VGet(1, 0, 0);
+        //if (rotZRad > DX_PI_F)
+        //{
+        //    axis = VScale(axis, -1);
+        //}
+        rotateXMat = MGetRotAxis(axis, rotXRad);
+    }
 }
 
 void CharaObjBase::RotateToAimXAxis(const VECTOR dir, float velocity)
@@ -108,13 +121,23 @@ void CharaObjBase::RotateToAimXAxis(const VECTOR dir, float velocity)
 
 void CharaObjBase::RotateZAxis(const VECTOR dir, float velocity)
 {
-    aimDir = dir;
-    float rotDir = CalcRotDirZ(velocity);
-
-    //‰ñ“]•ûŒüŽZo‚µ‚ÄƒxƒNƒgƒ‹‚Æs—ñ‚Ì—¼•û‚ð‰ñ“]‚³‚¹‚é
-    rotZRad += rotDir;
-    objDir = VTransform(objDir, rotZMat);
-    rotateZMat = MGetRotZ(rotZRad);
+    if (VSize(dir) > 0)
+    {
+        aimDir = dir;
+        //‰ñ“]•ûŒüŽZo‚µ‚ÄƒxƒNƒgƒ‹‚Æs—ñ‚Ì—¼•û‚ð‰ñ“]‚³‚¹‚é
+        rotZRad += CalcRotDirZ(velocity);
+        if (rotZRad > DX_PI_F * 2.0f)
+        {
+            rotZRad = 0;
+        }
+        objDir = VTransform(objDir, rotZMat);
+        VECTOR axis = VGet(0, 0, 1);
+        //if (rotXRad > DX_PI_F)
+        //{
+        //    axis = VScale(axis, -1);
+        //}
+        rotateZMat = MGetRotAxis(axis, rotZRad);
+    }
 }
 
 void CharaObjBase::RotateToAimZAxis(const VECTOR dir, float velocity)

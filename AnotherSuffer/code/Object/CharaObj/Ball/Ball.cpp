@@ -3,6 +3,7 @@
 #include"../../../Asset/AssetManager/AssetManager.h"
 #include"../../../Collision/CollisionManager/CollisionManager.h"
 #include"../../../Collision/Capsule/Capsule.h"
+#include"../../Math/Math.h"
 #include "Ball.h"
 
 static constexpr float SPEED = 1.0f;
@@ -11,7 +12,7 @@ static constexpr float MIN_SPEED = 0.0f;
 
 Ball::Ball()
     :CharaObjBase(ObjTag.BALL)
-    , moveVel(VGet(1, 0, 0))
+    , moveVel(VGet(0, 0, 0))
     , canMove(true)
 {
     //モデル読み込み
@@ -46,7 +47,7 @@ void Ball::Update(const float deltaTime)
 
     //行列でモデルの動作
     objPos.y = capsule->GetRadius();
-    MV1SetMatrix(objHandle, MMult(MMult(MGetScale(objScale), MMult(rotateXMat,rotateZMat)), MGetTranslate(objPos)));
+    MV1SetMatrix(objHandle, MMult(MMult(MGetScale(objScale),MMult(rotateXMat,rotateZMat)), MGetTranslate(VAdd(objPos,objDir))));
 }
 
 void Ball::MoveChara(const float deltaTime)
@@ -62,8 +63,7 @@ void Ball::MoveChara(const float deltaTime)
         MoveByKey(KEY_INPUT_A, VGet(0, 0, 1.0f), deltaTime);
         MoveByKey(KEY_INPUT_D, VGet(0, 0, -1.0f), deltaTime);
     }
-    moveVel.y = 0;
-    moveVel = VNorm(moveVel);
+
 
     if (isMove)
     {
@@ -77,8 +77,9 @@ void Ball::MoveChara(const float deltaTime)
     else
     {
         moveSpeed *= 0.9f;
-        if (moveSpeed < 0.1f)
+        if (moveSpeed < 0.2f)
         {
+            moveVel = VGet(0, 0, 0);
             moveSpeed = MIN_SPEED;
             canMove = true;
         }
@@ -89,10 +90,11 @@ void Ball::MoveChara(const float deltaTime)
 
 void Ball::MoveByKey(const int keyName, const VECTOR dir, const float deltaTime)
 {
+
     //キーが入力されていたら移動時の実行
     if (KeyStatus::KeyStateDecision(keyName, ONINPUT | NOWONINPUT))
     {
-        moveVel =VAdd(moveVel, dir);
+        moveVel = dir;
 
         //動作中にする
         isMove = true;
@@ -115,6 +117,7 @@ void Ball::OnCollisionEnter(ObjBase* colObj)
             }
         }
     }
+    
 
     //座標更新
     CalcObjPos();
@@ -143,22 +146,36 @@ void Ball::Draw()
             colInfo.Dim[i].Position[2], GetColor(0, 255, 255), TRUE);
     }
 
-    DrawFormatString(20, 800, GetColor(255, 255, 255), "%f,%f,%f", moveVel.x, moveVel.y, moveVel.z);
+    DrawFormatString(20, 800, GetColor(255, 255, 255), "%f,%f,%f", objDir.x, VDot(objDir,moveVel), objDir.z);
 #endif // _DEBUG
 }
 
 void Ball::RotateVel()
 {
+    rotateXMat = MGetIdent();
+    rotateZMat = MGetIdent();
 
     if (static_cast<int>(abs(moveVel.z)) > 0)
     {
-
-        RotateXAxis(moveVel, VSize(moveVel) * moveSpeed / 8.0f);
-        rotateXMat = MMult(rotateXMat, rotateZMat);
+        if (objDir.x > 0)
+        {
+            RotateXAxis(VScale(moveVel, -1), VSize(moveVel) * moveSpeed / 8.0f);
+        }
+        else
+        {
+            RotateXAxis(moveVel, VSize(moveVel) * moveSpeed / 8.0f);
+        }
     }
 
     if (static_cast<int>(abs(moveVel.x)) > 0)
     {
-        RotateZAxis(moveVel, VSize(moveVel) * moveSpeed / 8.0f);
+        if (objDir.z > 0)
+        {
+            RotateZAxis(VScale(moveVel, -1), VSize(moveVel) * moveSpeed / 8.0f);
+        }
+        else
+        {
+            RotateZAxis(moveVel, VSize(moveVel) * moveSpeed / 8.0f);
+        }
     }
 }
