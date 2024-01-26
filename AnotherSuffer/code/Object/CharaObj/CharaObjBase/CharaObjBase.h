@@ -38,11 +38,11 @@ private:
         /// <param name="rad">:‰ŠúŠp“x</param>
         AxisData(std::string axis, CharaObjBase* obj, float rad = 0.0f);
 
-        ~AxisData();
+        ~AxisData() {};
 
     private:
 
-        void Rotate();
+        void Rotate(const VECTOR& dir, const float& velocity);
 
         void RotateToAim(const VECTOR& dir,const float& velocity);
         float CalcRotDir(const float& velocity);
@@ -65,62 +65,6 @@ protected:
     /// <param name="deltaTime">:ƒfƒ‹ƒ^ƒ^ƒCƒ€</param>
     virtual void MoveChara(const float deltaTime) = 0;
     
-    /// <summary>
-    /// Y²‰ñ“]
-    /// </summary>
-    /// <param name="dir">:–Ú•W‚ÌŒü‚«</param>
-    /// <param name="velocity">:Šp‘¬“x</param>
-    void RotateYAxis(const VECTOR dir, float velocity);
-
-    /// <summary>
-    /// X²‰ñ“]
-    /// </summary>
-    /// <param name="dir">:–Ú•W‚ÌŒü‚«</param>
-    /// <param name="velocity">:Šp‘¬“x</param>
-    void RotateXAxis(const VECTOR dir, float velocity);
-
-    /// <summary>
-    /// X²–Ú•W•ûŒü‰ñ“]
-    /// </summary>
-    /// <param name="dir">:–Ú•W‚ÌŒü‚«</param>
-    /// <param name="velocity">:Šp‘¬“x</param>
-    void RotateToAimXAxis(const VECTOR dir, float velocity);
-
-    /// <summary>
-    /// Z²‰ñ“]
-    /// </summary>
-    /// <param name="dir">:–Ú•W‚ÌŒü‚«</param>
-    /// <param name="velocity">:Šp‘¬“x</param>
-    void RotateZAxis(const VECTOR dir, float velocity);
-
-    /// <summary>
-    /// Z²–Ú•W•ûŒü‰ñ“]
-    /// </summary>
-    /// <param name="dir">:–Ú•W‚ÌŒü‚«</param>
-    /// <param name="velocity">:Šp‘¬“x</param>
-    void RotateToAimZAxis(const VECTOR dir, float velocity);
-
-    /// <summary>
-    /// ‰ñ“]•ûŒüZo
-    /// </summary>
-    /// <returns>:</returns>
-    /// <param name="velocity">:Šp‘¬“x</param>
-    float CalcRotDirX(float velocity);
-
-    /// <summary>
-    /// ‰ñ“]•ûŒüZo
-    /// </summary>
-    /// <returns>:</returns>
-    /// <param name="velocity">:Šp‘¬“x</param>
-    float CalcRotDirY(float velocity);
-
-    /// <summary>
-    /// ‰ñ“]•ûŒüZo
-    /// </summary>
-    /// <returns>:</returns>
-    /// <param name="velocity">:Šp‘¬“x</param>
-    float CalcRotDirZ(float velocity);
-
     AxisData* XAxisData;
     AxisData* YAxisData;
     AxisData* ZAxisData;
