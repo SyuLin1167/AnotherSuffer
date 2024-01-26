@@ -35,7 +35,8 @@ private:
         /// </summary>
         /// <param name="axis">：軸</param>
         /// <param name="obj">:オブジェクト</param>
-        AxisData(std::string axis, CharaObjBase* obj);
+        /// <param name="rad">:初期角度</param>
+        AxisData(std::string axis, CharaObjBase* obj, float rad = 0.0f);
 
         ~AxisData();
 
@@ -43,10 +44,10 @@ private:
 
         void Rotate();
 
-        void RotateToAim(const VECTOR dir, float velocity);
-        float CalcRotDir(const float velocity);
+        void RotateToAim(const VECTOR& dir,const float& velocity);
+        float CalcRotDir(const float& velocity);
 
-        CharaObjBase* obj;
+        CharaObjBase* object;
         const std::string axisType;   //軸
         VECTOR aimDir;              //目標方向
         float rotRad;           //回転角

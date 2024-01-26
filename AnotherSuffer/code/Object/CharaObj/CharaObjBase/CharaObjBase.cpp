@@ -222,55 +222,87 @@ rapidjson::Value& CharaObjBase::GetAssetPathData(AssetBase* asset)
     return null;
 }
 
-void CharaObjBase::AxisData::RotateToAim(const VECTOR dir, float velocity)
+CharaObjBase::AxisData::AxisData(std::string axis, CharaObjBase* obj, float rad)
+    :object(obj)
+    ,axisType(axis)
+    ,aimDir()
+    ,rotRad(rad)
+{
+    if (axisType == obj->xAxis)
+    {
+        rotMat = MGetRotX(rotVel);
+    }
+    else if (axisType == obj->yAxis)
+    {
+        rotMat = MGetRotY(rotVel);
+    }
+    else if (axisType == obj->zAxis)
+    {
+        rotMat = MGetRotZ(rotVel);
+    }
+}
+
+void CharaObjBase::AxisData::RotateToAim(const VECTOR& dir,const float& velocity)
 {
     //Œ»•ûŒü‚ª–Ú•W•ûŒü‚Å‚È‚¯‚ê‚Î‰ñ“]’†‚É‚·‚é
     aimDir = dir;
-    if (obj->objDir != aimDir)
+    if (object->objDir != aimDir)
     {
-        obj->nowRotate = true;
+        object->nowRotate = true;
     }
 
     //‰ñ“]’†‚È‚ç
-    if (obj->nowRotate)
+    if (object->nowRotate)
     {
         //–Ú•W•ûŒü•t‹ß‚Ü‚Å‰ñ“]
-        if (VDot(obj->objDir, aimDir) < SIMILAR_ANGLE)
+        if (VDot(object->objDir, aimDir) < SIMILAR_ANGLE)
         {
             //‰ñ“]•ûŒüŽZo‚µ‚ÄƒxƒNƒgƒ‹‚Æs—ñ‚Ì—¼•û‚ð‰ñ“]‚³‚¹‚é
             rotVel += CalcRotDir(velocity);
-            obj->objDir = VTransform(obj->objDir, rotMat);
-            rotMat = MGetRotZ(rotVel);
+            object->objDir = VTransform(object->objDir, rotMat);
+
+            if (axisType == object->xAxis)
+            {
+                rotMat = MGetRotX(rotVel);
+            }
+            else if(axisType== object->yAxis)
+            {
+                rotMat = MGetRotY(rotVel);
+            }
+            else if (axisType == object->zAxis)
+            {
+                rotMat = MGetRotZ(rotVel);
+            }
         }
         else
         {
             //–Ú•W•ûŒü‚É‚µ‚Ä‰ñ“]’âŽ~
-            rotMat = MGetRotVec2(obj->objDir, aimDir);
-            obj->objDir = aimDir;
-            obj->nowRotate = false;
+            rotMat = MGetRotVec2(object->objDir, aimDir);
+            object->objDir = aimDir;
+            object->nowRotate = false;
         }
     }
 }
 
-float CharaObjBase::AxisData::CalcRotDir(const float velocity)
+float CharaObjBase::AxisData::CalcRotDir(const float& velocity)
 {
     //ƒ‰ƒWƒAƒ“Šp‚É‚µ‚Ä‰ñ“]s—ñ‚Ö•ÏŠ·
     rotRad = math::DegToRad(velocity);
-    if (axisType == obj->xAxis)
+    if (axisType == object->xAxis)
     {
         rotMat = MGetRotZ(rotRad);
     }
-    else if (axisType == obj->yAxis)
+    else if (axisType == object->yAxis)
     {
         rotMat = MGetRotY(rotRad);
     }
-    else if(axisType==obj->zAxis)
+    else if(axisType== object->zAxis)
     {
         rotMat = MGetRotZ(rotRad);
     }
 
     //‰ñ“]•ûŒü‚ðŽZo
-    if (VCross(obj->objDir, aimDir).y < 0)
+    if (VCross(object->objDir, aimDir).y < 0)
     {
         rotMat = MTranspose(rotMat);
         return -rotRad;
