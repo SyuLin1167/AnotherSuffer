@@ -28,7 +28,7 @@ Enemy::Enemy()
     auto stage=StageManager::GetStageData();
     objLocalPos = stage[15][15].pos;
     CalcObjPos();
-    MV1SetMatrix(objHandle, MMult(rotateYMat, MGetTranslate(objPos)));
+    MV1SetMatrix(objHandle, MMult(YAxisData->GetRotateMat(), MGetTranslate(objPos)));
 
     //当たり判定はカプセル型
     capsule = new Capsule(VAdd(objPos, VGet(0, 6, 0)), VAdd(objPos, VGet(0, 30, 0)), 6.0f);
@@ -38,7 +38,7 @@ Enemy::Enemy()
 
     //経路探索設定
     astar.reset(new Astar);
-    player = ObjManager::GetObj(ObjTag.PLAYER)[0];
+    player = ObjManager::GetObj(ObjTag.PLAYER,0);
 
     ResetNode(objPos, &start);
     ResetNode(player->GetObjPos(), &goal);
@@ -72,7 +72,8 @@ void Enemy::Update(const float deltaTime)
     //座標更新
     CalcObjPos();
     //行列でモデルの動作
-    MV1SetMatrix(objHandle, MMult(rotateYMat, MGetTranslate(objPos)));
+    MV1SetMatrix(objHandle, MMult(MMult(MGetScale(objScale), YAxisData->GetRotateMat()), MGetTranslate(objPos)));
+
 }
 
 void Enemy::MoveChara(const float deltaTime)
@@ -90,7 +91,7 @@ void Enemy::MoveChara(const float deltaTime)
                 //目標地点に移動
                 VECTOR vec = VNorm(VSub(stage[point.first][point.second].pos, objPos));
                 objLocalPos = VAdd(objLocalPos, VScale(vec, 0.8f));
-                rotateYMat = MMult(MGetScale(objScale), MGetRotVec2(objDir, vec));
+                YAxisData->RotateToAim(vec, 10.0f);
                 break;
             }
             else
@@ -142,7 +143,7 @@ void Enemy::OnCollisionEnter(ObjBase* colObj)
     line->Update(objPos, player->GetObjPos());
 
     //行列でモデルの動作
-    MV1SetMatrix(objHandle, MMult(rotateYMat, MGetTranslate(objPos)));
+    MV1SetMatrix(objHandle, MMult(MMult(MGetScale(objScale), YAxisData->GetRotateMat()), MGetTranslate(objPos)));
 }
 
 void Enemy::ResetNode(VECTOR pos, std::pair<int, int>* node)

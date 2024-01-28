@@ -60,18 +60,6 @@ void ObjManager::DrawObj()
     }
 }
 
-void ObjManager::OnColllsionObj()
-{
-
-    for (auto& ply: singleton->object[ObjTag.PLAYER])
-    {
-        for (auto& stg : singleton->object[ObjTag.STAGE])
-        {
-            ply->OnCollisionEnter(stg.get());
-        }
-    }
-}
-
 void ObjManager::OnDeadObj()
 {
     //全タグ分死亡オブジェクトを探して削除
@@ -115,12 +103,22 @@ void ObjManager::DeleteAllObj()
     }
 }
 
-std::vector<std::shared_ptr<ObjBase>> ObjManager::GetObj(std::string tag)
+std::vector<std::shared_ptr<ObjBase>> ObjManager::GetObjData(std::string tag)
 {
-    if (!singleton->object[tag].empty())
+    //データがあればタグのオブジェクトデータを返す
+    if (singleton->object[tag].empty())
     {
-        return singleton->object[tag];
+        return {};
     }
+    return singleton->object[tag];
+}
 
-    return {};
+ObjBase* ObjManager::GetObj(std::string tag, int num)
+{
+    //データがあればタグの指定オブジェクトを返す
+    if (singleton->object[tag].empty()||singleton->object[tag].size() < num)
+    {
+        return nullptr;
+    }
+    return singleton->object[tag][num].get();
 }

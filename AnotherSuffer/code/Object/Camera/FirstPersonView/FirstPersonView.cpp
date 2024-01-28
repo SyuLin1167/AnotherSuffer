@@ -12,7 +12,7 @@ FirstPersonView::FirstPersonView()
     , mousePosX(static_cast<int>(Window::GetWindowSize().x / 2))
     , mousePosY(static_cast<int>(Window::GetWindowSize().y / 2))
     , angleVel()
-    , cameraYaw(-DX_PI_F / 2.0f)
+    , cameraYaw(DX_PI_F)
     , cameraPitch(-DX_PI_F / 4.0f)
     , cameraViewMat(MGetIdent())
 {
@@ -30,13 +30,13 @@ FirstPersonView::~FirstPersonView()
 void FirstPersonView::Update(const float deltaTime)
 {
     //座標取得
-    player = ObjManager::GetObj(ObjTag.PLAYER)[0];
+    player = ObjManager::GetObj(ObjTag.PLAYER, 0);
     objWorldPos = VAdd(player->GetObjFramePos(PLAYER_HEAD_FRAME),objDir);
 
     //視点移動算出
     CalcMoveView(deltaTime);
-    objDir =  VGet(sinf(-cameraYaw), cameraPitch, cosf(-cameraYaw));
     cameraViewMat = MMult(MGetRotY(cameraYaw), MGetRotX(cameraPitch));
+    objDir =  VGet(sinf(-cameraYaw), cameraPitch, cosf(-cameraYaw));
 
     //視点分カメラ座標を僅かに動かす
     objLocalPos = VNorm(objDir);

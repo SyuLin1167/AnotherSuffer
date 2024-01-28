@@ -36,7 +36,7 @@ private:
     /// </summary>
     void Draw() override;
 
-    std::shared_ptr<ObjBase> player;        //プレイヤー
+    ObjBase* player;        //プレイヤー
 
 protected:
     /// <summary>

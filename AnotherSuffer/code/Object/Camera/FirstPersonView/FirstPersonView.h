@@ -38,7 +38,7 @@ private:
     /// </summary>
     void Draw() override;
 
-    std::shared_ptr<ObjBase> player;            //プレイヤー
+    ObjBase* player;            //プレイヤー
 
     int mousePosX;                              //マウス座標X
     int mousePosY;                              //マウス座標Y

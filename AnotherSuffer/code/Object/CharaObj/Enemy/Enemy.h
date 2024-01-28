@@ -55,7 +55,7 @@ private:
     std::pair<int, int> start = {}, goal = {};
     float timer;
 
-    std::shared_ptr<ObjBase> player;            //プレイヤー
+    ObjBase* player;            //プレイヤー
     class Line* line;
     class Capsule* capsule;
 };

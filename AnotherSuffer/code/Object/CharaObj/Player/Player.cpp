@@ -1,4 +1,5 @@
 #include"../../../KeyStatus/KeyStatus.h"
+#include"../../Math/Math.h"
 #include"../../ObjManager/ObjManager.h"
 #include"../../../Asset/AssetManager/AssetManager.h"
 #include"../../../Collision/CollisionManager/CollisionManager.h"
@@ -15,7 +16,7 @@ Player::Player()
     //モデル読み込み
     objHandle = AssetManager::ModelInstance()->GetHandle(modelData.GetString());
     objDir = VGet(0, 0, -1);
-    MV1SetMatrix(objHandle, MMult(rotateYMat, MGetTranslate(objPos)));
+    MV1SetMatrix(objHandle, MMult(MMult(MGetScale(objScale),YAxisData->GetRotateMat()), MGetTranslate(objPos)));
 
     AssetManager::MotionInstance()->StartMotion(this,
         AssetManager::MotionInstance()->GetHandle(
@@ -69,12 +70,6 @@ void Player::Update(const float deltaTime)
         AssetManager::SoundInstance()->GetHandle(
         AssetManager::GetFilePass(soundData[jsondata::objKey.walk.c_str()])));
     }
-
-    //座標更新
-    CalcObjPos();
-
-    //行列でモデルの動作
-    MV1SetMatrix(objHandle, MMult(rotateYMat, MGetTranslate(objPos)));
 }
 
 void Player::MoveChara(const float deltaTime)
@@ -83,13 +78,13 @@ void Player::MoveChara(const float deltaTime)
     isMove = false;
 
     //カメラの向きを自身の移動方向とする
-    std::shared_ptr<ObjBase> camera = ObjManager::GetObj(ObjTag.CAMERA)[0];
+    ObjBase* camera = ObjManager::GetObj(ObjTag.CAMERA,0);
     SetLightDirectionHandle(texHandle, camera->GetObjDir());
     SetLightPositionHandle(texHandle, camera->GetObjPos());
     VECTOR aimDir = camera->GetObjDir();
     VECTOR rightDir = VCross(VGet(0, -1, 0), aimDir);
-    aimDir.y = 0;
     aimDir = VNorm(aimDir);
+    aimDir.y = 0;
 
     //キー入力による移動量
     moveVel = VGet(0, 0, 0);
@@ -97,11 +92,17 @@ void Player::MoveChara(const float deltaTime)
     MoveByKey(KEY_INPUT_S, VScale(aimDir, -1), deltaTime);
     MoveByKey(KEY_INPUT_A, rightDir, deltaTime);
     MoveByKey(KEY_INPUT_D, VScale(rightDir, -1), deltaTime);
-    moveVel.y = 0;
 
     //座標・方向の算出
     objLocalPos = VAdd(objLocalPos, VScale(moveVel, moveSpeed * deltaTime));
-    rotateYMat = MMult(MGetScale(objScale), MGetRotVec2(objDir, aimDir));
+
+    YAxisData->RotateToAim(aimDir);
+
+    //座標更新
+    CalcObjPos();
+
+    //行列でモデルの動作
+    MV1SetMatrix(objHandle, MMult(MMult(MGetScale(objScale), YAxisData->GetRotateMat()), MGetTranslate(objPos)));
 }
 
 void Player::MoveByKey(const int keyName, const VECTOR dir, const float deltaTime)
@@ -147,7 +148,7 @@ void Player::OnCollisionEnter(ObjBase* colObj)
     line->Update(objPos);
 
     //行列でモデルの動作
-    MV1SetMatrix(objHandle, MMult(rotateYMat, MGetTranslate(objPos)));
+    //MV1SetMatrix(objHandle, MMult(MMult(MGetScale(objScale), YAxisData->GetRotateMat()), MGetTranslate(objPos)));
 }
 
 void Player::Draw()

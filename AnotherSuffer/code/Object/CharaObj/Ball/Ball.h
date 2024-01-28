@@ -49,7 +49,7 @@ private:
     /// </summary>
     void Draw() override;
 
-    void RotateVel();
+    MATRIX RotateVel();
     bool canMove;
     float a = 0;
     class Capsule* capsule;

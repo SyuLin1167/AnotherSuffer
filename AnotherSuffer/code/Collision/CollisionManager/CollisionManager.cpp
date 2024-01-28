@@ -75,11 +75,11 @@ void CollisionManager::DeleteCollision()
 void CollisionManager::OnCollisionEnter(std::string mainObjTag, std::string pairObjTag)
 {
     //ëgÇ›çáÇÌÇπÇ«Ç®ÇËÇ…ìñÇΩÇËîªíËé¿çs
-    for (auto& colMain : ObjManager::GetObj(mainObjTag))
+    for (auto& colMain : ObjManager::GetObjData(mainObjTag))
     {
         if (colMain)
         {
-            for (auto& colPair : ObjManager::GetObj(pairObjTag))
+            for (auto& colPair : ObjManager::GetObjData(pairObjTag))
             {
                 if (colPair)
                 {

@@ -10,5 +10,14 @@ namespace math
         }
         return false;
     }
+
+    VECTOR operator*=(const VECTOR& lhs, const VECTOR& rhs)
+    {
+        VECTOR vec{};
+        vec.x = lhs.x * rhs.x;
+        vec.y = lhs.y * rhs.y;
+        vec.z = lhs.z * rhs.z;
+        return vec;
+    }
 };
 

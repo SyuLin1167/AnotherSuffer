@@ -36,21 +36,24 @@ public:
     static void DrawObj();
 
     /// <summary>
-    /// オブジェクト当たり判定
-    /// </summary>
-    static void OnColllsionObj();
-
-    /// <summary>
     /// 全オブジェクト削除
     /// </summary>
     static void DeleteAllObj();
 
     /// <summary>
-    /// オブジェクト取得
+    /// オブジェクトデータ取得
     /// </summary>
     /// <param name="tag">:タグ</param>
     /// <returns>:オブジェクトの配列</returns>
-    static std::vector<std::shared_ptr<class ObjBase>> GetObj(std::string tag);
+    static std::vector<std::shared_ptr<class ObjBase>> GetObjData(std::string tag);
+
+    /// <summary>
+    /// オブジェクト取得
+    /// </summary>
+    /// <param name="tag">:タグ</param>
+    /// <param name="num">:番号</param>
+    /// <returns>指定のオブジェクト</returns>
+    static ObjBase* GetObj(std::string tag, int num);
 
     /// <summary>
     /// デストラクタ

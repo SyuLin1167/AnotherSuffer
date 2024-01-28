@@ -6,7 +6,7 @@
 #include"../../../Collision/ColModel/ColModel.h"
 
 static constexpr float CLIP_BOX_SIZE = 100.0f;     //切り抜きボックスサイズ
-static constexpr float CLIP_DISTANCE = 400.0f;     //切り抜き距離
+static constexpr float CLIP_DISTANCE = 300.0f;     //切り抜き距離
 
 StageObjBase::StageObjBase(const VECTOR pos)
     :ObjBase(ObjTag.STAGE)
@@ -54,7 +54,8 @@ StageObjBase::~StageObjBase()
 void StageObjBase::Update(const float deltaTime)
 {
     //モデル切り抜き
-    if (!ObjManager::GetObj(ObjTag.PLAYER).empty())
+    player = ObjManager::GetObj(ObjTag.PLAYER, 0);
+    if (player)
     {
         ViewClipBox();
     }
@@ -67,7 +68,6 @@ void StageObjBase::Update(const float deltaTime)
 void StageObjBase::ViewClipBox()
 {
     //プレイヤーから一定距離離れていたら描画しない
-    player = ObjManager::GetObj(ObjTag.PLAYER)[0];
     VECTOR distance = VSub(objPos, player->GetObjPos());
     if (VSize(distance) > CLIP_DISTANCE)
     {
