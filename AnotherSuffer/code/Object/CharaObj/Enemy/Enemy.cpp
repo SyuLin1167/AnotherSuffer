@@ -44,6 +44,7 @@ Enemy::Enemy()
     ResetNode(player->GetObjPos(), &goal);
     path = astar->Algorithm(start, goal);
 
+    moveSpeed = 40.0f;
 }
 
 Enemy::~Enemy()
@@ -71,6 +72,7 @@ void Enemy::Update(const float deltaTime)
 
     //座標更新
     CalcObjPos();
+
     //行列でモデルの動作
     MV1SetMatrix(objHandle, MMult(MMult(MGetScale(objScale), YAxisData->GetRotateMat()), MGetTranslate(objPos)));
 
@@ -90,7 +92,7 @@ void Enemy::MoveChara(const float deltaTime)
             {
                 //目標地点に移動
                 VECTOR vec = VNorm(VSub(stage[point.first][point.second].pos, objPos));
-                objLocalPos = VAdd(objLocalPos, VScale(vec, 0.8f));
+                objLocalPos = VAdd(objLocalPos, VScale(vec, moveSpeed * deltaTime));
                 YAxisData->RotateToAim(vec, 10.0f);
                 break;
             }

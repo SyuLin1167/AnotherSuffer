@@ -142,7 +142,7 @@ void CharaObjBase::AxisData::RotateToAim(const VECTOR& dir,const float& velocity
 void CharaObjBase::AxisData::RotateToAim(const VECTOR& dir)
 {
     //–Ú•W•ûŒü‚É‰ñ“]
-    rotMat = MGetRotVec2(aimDir, dir);
+    rotMat = MMult(MGetIdent(), MGetRotVec2(aimDir, dir));
     object->objDir = dir;
 }
 

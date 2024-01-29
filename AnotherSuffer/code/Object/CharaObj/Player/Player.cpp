@@ -70,6 +70,12 @@ void Player::Update(const float deltaTime)
         AssetManager::SoundInstance()->GetHandle(
         AssetManager::GetFilePass(soundData[jsondata::objKey.walk.c_str()])));
     }
+
+    //座標更新
+    CalcObjPos();
+
+    //行列でモデルの動作
+    MV1SetMatrix(objHandle, MMult(MMult(MGetScale(objScale), YAxisData->GetRotateMat()), MGetTranslate(objPos)));
 }
 
 void Player::MoveChara(const float deltaTime)
@@ -95,14 +101,7 @@ void Player::MoveChara(const float deltaTime)
 
     //座標・方向の算出
     objLocalPos = VAdd(objLocalPos, VScale(moveVel, moveSpeed * deltaTime));
-
     YAxisData->RotateToAim(aimDir);
-
-    //座標更新
-    CalcObjPos();
-
-    //行列でモデルの動作
-    MV1SetMatrix(objHandle, MMult(MMult(MGetScale(objScale), YAxisData->GetRotateMat()), MGetTranslate(objPos)));
 }
 
 void Player::MoveByKey(const int keyName, const VECTOR dir, const float deltaTime)
@@ -148,7 +147,7 @@ void Player::OnCollisionEnter(ObjBase* colObj)
     line->Update(objPos);
 
     //行列でモデルの動作
-    //MV1SetMatrix(objHandle, MMult(MMult(MGetScale(objScale), YAxisData->GetRotateMat()), MGetTranslate(objPos)));
+    MV1SetMatrix(objHandle, MMult(MMult(MGetScale(objScale), YAxisData->GetRotateMat()), MGetTranslate(objPos)));
 }
 
 void Player::Draw()

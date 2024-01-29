@@ -58,4 +58,6 @@ private:
     ObjBase* player;            //ƒvƒŒƒCƒ„[
     class Line* line;
     class Capsule* capsule;
+    VECTOR aimDir;
+    bool canAstar;
 };

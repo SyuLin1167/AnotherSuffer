@@ -18,7 +18,7 @@ Ball::Ball()
     //ƒ‚ƒfƒ‹“Ç‚Ýž‚Ý
     objHandle = AssetManager::ModelInstance()->GetHandle(modelData.GetString());
     objScale = VGet(0.08f, 0.08f, 0.08f);
-    objDir = VGet(-1, 0, -1);
+    objDir = VGet(0, 0, -1);
     MV1SetMatrix(objHandle, MMult(MMult(MGetScale(objScale),ZAxisData->GetRotateMat()), MGetTranslate(objPos)));
 
     //ˆÚ“®‘¬“x‚Í‘–‚é‘¬“x
