@@ -14,6 +14,8 @@ static constexpr float RESET_TIME = 2.0f;   //リセット時間
 static constexpr float MAX_DISTANCE = 1000.0f;  //最大距離
 static constexpr float CLEAR_DISTANCE = 0.0f;   //初期距離
 static constexpr float CLIP_BOX_SIZE = 100.0f;     //切り抜きボックスサイズ
+static constexpr float MOVE_SPEED = 40.0f;
+static constexpr float CAPSULE_RAD = 7.0f;
 
 Enemy::Enemy()
     :CharaObjBase(ObjTag.ENEMY)
@@ -26,12 +28,12 @@ Enemy::Enemy()
     objHandle = MV1DuplicateModel(AssetManager::ModelInstance()->GetHandle(modelData.GetString()));
     objDir = VGet(0, 0, -1);
     auto stage=StageManager::GetStageData();
-    objLocalPos = stage[15][15].pos;
+    objLocalPos = stage[1][2].pos;
     CalcObjPos();
     MV1SetMatrix(objHandle, MMult(YAxisData->GetRotateMat(), MGetTranslate(objPos)));
 
     //当たり判定はカプセル型
-    capsule = new Capsule(VAdd(objPos, VGet(0, 6, 0)), VAdd(objPos, VGet(0, 30, 0)), 6.0f);
+    capsule = new Capsule(VAdd(objPos, VGet(0, 6, 0)), VAdd(objPos, VGet(0, 30, 0)), CAPSULE_RAD);
     CollisionManager::AddCol(this, capsule);
     line = new Line(objPos,objPos);
     CollisionManager::AddCol(this, line);
@@ -44,7 +46,7 @@ Enemy::Enemy()
     ResetNode(player->GetObjPos(), &goal);
     path = astar->Algorithm(start, goal);
 
-    moveSpeed = 40.0f;
+    moveSpeed = MOVE_SPEED;
 }
 
 Enemy::~Enemy()
@@ -65,6 +67,10 @@ void Enemy::Update(const float deltaTime)
         timer = 0;
     }
 
+
+    //通常は動く
+    isMove = true;
+    ViewClipBox();
     if (isMove)
     {
         MoveChara(deltaTime);
@@ -93,7 +99,7 @@ void Enemy::MoveChara(const float deltaTime)
                 //目標地点に移動
                 VECTOR vec = VNorm(VSub(stage[point.first][point.second].pos, objPos));
                 objLocalPos = VAdd(objLocalPos, VScale(vec, moveSpeed * deltaTime));
-                YAxisData->RotateToAim(vec, 10.0f);
+                YAxisData->RotateToAim(vec);
                 break;
             }
             else
@@ -122,19 +128,14 @@ void Enemy::OnCollisionEnter(ObjBase* colObj)
     //当たり判定処理
     for (auto& obj : CollisionManager::GetCol(colObj))
     {
-        if (obj->GetColTag() == ColTag.MODEL)
+        if (obj->GetColTag() == ColTag.CAPSULE)
         {
-            if (capsule->OnCollisionWithMesh(obj->GetColModel()))
+            if(CheckHitKey(KEY_INPUT_Y))
             {
-                objLocalPos = VAdd(objLocalPos, capsule->CalcPushBackFromMesh());
-                MV1CollResultPolyDimTerminate(capsule->GetColInfoDim());
-            }
-
-            //通常は動く
-            isMove = true;
-            if (!line->OnCollisionWithMesh(obj->GetColModel()))
-            {
-                ViewClipBox();
+                if (capsule->OnCollisionWithCapsule(obj->GetWorldStartPos(), obj->GetWorldEndPos(), obj->GetRadius()*1.5f))
+                {
+                    isVisible = false;
+                }
             }
         }
     }
@@ -142,7 +143,6 @@ void Enemy::OnCollisionEnter(ObjBase* colObj)
     //座標更新
     CalcObjPos();
     capsule->Update(objPos);
-    line->Update(objPos, player->GetObjPos());
 
     //行列でモデルの動作
     MV1SetMatrix(objHandle, MMult(MMult(MGetScale(objScale), YAxisData->GetRotateMat()), MGetTranslate(objPos)));
@@ -203,5 +203,7 @@ void Enemy::Draw()
             DrawFormatString(point.second * 50, point.first * 50 + 200, GetColor(255, 255, 255), "(%d,%d)", point.first, point.second);
         }
     }
+
+    DrawFormatString(800, 0, GetColor(255, 255, 255), "敵座標%f,%f", objPos.x, objPos.z);
 #endif // _DEBUG
 }

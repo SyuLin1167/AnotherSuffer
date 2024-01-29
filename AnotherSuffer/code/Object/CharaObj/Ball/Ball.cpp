@@ -123,10 +123,6 @@ void Ball::OnCollisionEnter(ObjBase* colObj)
     //座標更新
     CalcObjPos();
     capsule->Update(objPos);
-
-    //行列でモデルの動作
-    
-    //MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(objPos)));
 }
 
 void Ball::Draw()

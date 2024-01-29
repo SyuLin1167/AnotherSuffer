@@ -4,12 +4,14 @@
         "stage": {}
     },
     "player": {
-        "stage": {}
+      "stage": {},
+      "enemy": {}
     },
     "stage": {
         "player": {}
     },
     "enemy": {
-        "stage": {}
+      "stage": {},
+      "player": {}
     }
 }

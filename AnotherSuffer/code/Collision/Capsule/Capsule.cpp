@@ -4,7 +4,7 @@
 #include"../Line/Line.h"
 #include "Capsule.h"
 
-Capsule::Capsule(const VECTOR& startPos, const VECTOR& endPos, float rad)
+Capsule::Capsule(const VECTOR& startPos, const VECTOR& endPos,const float& rad)
     :CollisionBase(ColTag.CAPSULE)
 {
     localStart = startPos;
@@ -27,7 +27,7 @@ void Capsule::Update(const VECTOR& pos)
     worldCenter = VAdd(worldStart, VScale(VSub(worldEnd, worldStart), 0.5f));
 }
 
-bool Capsule::OnCollisionWithMesh(const int modelHandle)
+bool Capsule::OnCollisionWithMesh(const int& modelHandle)
 {
     //ìñÇΩÇËîªíËèÓïÒÇ©ÇÁîªíËåãâ Çï‘Ç∑
     colInfoDim = MV1CollCheck_Capsule(modelHandle, -1, worldStart, worldEnd, radius);
@@ -36,6 +36,11 @@ bool Capsule::OnCollisionWithMesh(const int modelHandle)
         return false;
     }
     return true;
+}
+
+bool Capsule::OnCollisionWithCapsule(const VECTOR& pos, const VECTOR& pos2, const float& rad)
+{
+    return HitCheck_Capsule_Capsule(worldStart, worldEnd, radius, pos, pos2, rad);
 }
 
 VECTOR Capsule::CalcPushBackFromMesh()

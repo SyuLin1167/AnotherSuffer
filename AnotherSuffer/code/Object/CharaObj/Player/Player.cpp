@@ -8,6 +8,7 @@
 #include "Player.h"
 
 static constexpr float RUN_SPEED = 40.0f;
+static constexpr float CAPSULE_RAD = 7.0f;
 
 Player::Player()
     :CharaObjBase(ObjTag.PLAYER)
@@ -16,6 +17,7 @@ Player::Player()
     //モデル読み込み
     objHandle = AssetManager::ModelInstance()->GetHandle(modelData.GetString());
     objDir = VGet(0, 0, -1);
+    CalcObjPos();
     MV1SetMatrix(objHandle, MMult(MMult(MGetScale(objScale),YAxisData->GetRotateMat()), MGetTranslate(objPos)));
 
     AssetManager::MotionInstance()->StartMotion(this,
@@ -26,7 +28,7 @@ Player::Player()
     moveSpeed = RUN_SPEED;
 
     //当たり判定はカプセル型
-    capsule=new Capsule(VAdd(objPos, VGet(0, 6, 0)), VAdd(objPos, VGet(0, 30, 0)), 7.0f);
+    capsule=new Capsule(VAdd(objPos, VGet(0, 6, 0)), VAdd(objPos, VGet(0, 30, 0)), CAPSULE_RAD);
     CollisionManager::AddCol(this, capsule);
     line = new Line(VAdd(objPos, VGet(0, 5, 0)), VAdd(objPos, VGet(0, -5, 0)));
     CollisionManager::AddCol(this, line);
@@ -73,7 +75,7 @@ void Player::Update(const float deltaTime)
 
     //座標更新
     CalcObjPos();
-
+    
     //行列でモデルの動作
     MV1SetMatrix(objHandle, MMult(MMult(MGetScale(objScale), YAxisData->GetRotateMat()), MGetTranslate(objPos)));
 }
@@ -169,5 +171,7 @@ void Player::Draw()
     }
 
     DrawFormatString(0, 100, GetColor(255, 255, 255), "%d",test);
+
+    DrawFormatString(500, 0, GetColor(255, 255, 255), "自身座標%f,%f", objPos.x, objPos.z);
 #endif // _DEBUG
 }
