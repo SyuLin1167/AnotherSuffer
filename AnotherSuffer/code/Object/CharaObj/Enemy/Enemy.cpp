@@ -28,14 +28,15 @@ Enemy::Enemy()
     objHandle = MV1DuplicateModel(AssetManager::ModelInstance()->GetHandle(modelData.GetString()));
     objDir = VGet(0, 0, -1);
     auto stage=StageManager::GetStageData();
-    objLocalPos = stage[1][2].pos;
+    objLocalPos = stage[15][15].pos;
     CalcObjPos();
     MV1SetMatrix(objHandle, MMult(YAxisData->GetRotateMat(), MGetTranslate(objPos)));
 
     //当たり判定はカプセル型
-    capsule = new Capsule(VAdd(objPos, VGet(0, 6, 0)), VAdd(objPos, VGet(0, 30, 0)), CAPSULE_RAD);
+    capsule = new Capsule(VAdd(objWorldPos, VGet(0, 6, 0)), VAdd(objWorldPos, VGet(0, 30, 0)), CAPSULE_RAD);
+    capsule->Update(objPos);
     CollisionManager::AddCol(this, capsule);
-    line = new Line(objPos,objPos);
+    line = new Line(objWorldPos, objWorldPos);
     CollisionManager::AddCol(this, line);
 
     //経路探索設定
@@ -67,14 +68,14 @@ void Enemy::Update(const float deltaTime)
         timer = 0;
     }
 
-
-    //通常は動く
-    isMove = true;
-    ViewClipBox();
     if (isMove)
     {
         MoveChara(deltaTime);
     }
+
+    //通常は動く
+    isMove = true;
+    ViewClipBox();
 
     //座標更新
     CalcObjPos();
@@ -130,12 +131,21 @@ void Enemy::OnCollisionEnter(ObjBase* colObj)
     {
         if (obj->GetColTag() == ColTag.CAPSULE)
         {
-            if(CheckHitKey(KEY_INPUT_Y))
+            if (capsule->OnCollisionWithCapsule(obj->GetWorldStartPos(), obj->GetWorldEndPos(), obj->GetRadius() * 1.5f))
             {
-                if (capsule->OnCollisionWithCapsule(obj->GetWorldStartPos(), obj->GetWorldEndPos(), obj->GetRadius()*1.5f))
-                {
-                    isVisible = false;
-                }
+                isVisible = false;
+            }
+            else
+            {
+                isVisible = true;
+            }
+        }
+
+        if (obj->GetColTag() == ColTag.MODEL)
+        {
+            if (line->OnCollisionWithMesh(obj->GetColModel()));
+            {
+                isMove = true;
             }
         }
     }
@@ -143,6 +153,7 @@ void Enemy::OnCollisionEnter(ObjBase* colObj)
     //座標更新
     CalcObjPos();
     capsule->Update(objPos);
+    line->Update(objPos, player->GetObjPos());
 
     //行列でモデルの動作
     MV1SetMatrix(objHandle, MMult(MMult(MGetScale(objScale), YAxisData->GetRotateMat()), MGetTranslate(objPos)));
@@ -204,6 +215,9 @@ void Enemy::Draw()
         }
     }
 
-    DrawFormatString(800, 0, GetColor(255, 255, 255), "敵座標%f,%f", objPos.x, objPos.z);
+    //当たり判定描画
+    capsule->DrawCapsule();
+
+    DrawFormatString(800, 0, GetColor(255, 255, 255), "敵座標%f,%f", capsule->GetWorldStartPos().x, capsule->GetWorldStartPos().z);
 #endif // _DEBUG
 }

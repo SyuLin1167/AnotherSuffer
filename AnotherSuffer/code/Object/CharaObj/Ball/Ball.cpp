@@ -26,6 +26,7 @@ Ball::Ball()
 
     //“–‚½‚è”»’è‚ÍƒJƒvƒZƒ‹Œ^
     capsule = new Capsule(VAdd(objPos, VGet(0, 6, 0)), VAdd(objPos, VGet(0, 30, 0)), 7.0f);
+    capsule->Update(objPos);
     CollisionManager::AddCol(this, capsule);
 
 }

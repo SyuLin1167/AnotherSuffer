@@ -28,7 +28,8 @@ Player::Player()
     moveSpeed = RUN_SPEED;
 
     //当たり判定はカプセル型
-    capsule=new Capsule(VAdd(objPos, VGet(0, 6, 0)), VAdd(objPos, VGet(0, 30, 0)), CAPSULE_RAD);
+    capsule = new Capsule(VAdd(objWorldPos, VGet(0, 6, 0)), VAdd(objWorldPos, VGet(0, 30, 0)), CAPSULE_RAD);
+    capsule->Update(objPos);
     CollisionManager::AddCol(this, capsule);
     line = new Line(VAdd(objPos, VGet(0, 5, 0)), VAdd(objPos, VGet(0, -5, 0)));
     CollisionManager::AddCol(this, line);
@@ -172,6 +173,6 @@ void Player::Draw()
 
     DrawFormatString(0, 100, GetColor(255, 255, 255), "%d",test);
 
-    DrawFormatString(500, 0, GetColor(255, 255, 255), "自身座標%f,%f", objPos.x, objPos.z);
+    DrawFormatString(1050, 0, GetColor(255, 255, 255), "自身座標%f,%f", capsule->GetWorldStartPos().x, capsule->GetWorldStartPos().z);
 #endif // _DEBUG
 }
