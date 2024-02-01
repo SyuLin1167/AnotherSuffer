@@ -27,10 +27,15 @@ Enemy::Enemy()
     //モデル読み込み
     objHandle = MV1DuplicateModel(AssetManager::ModelInstance()->GetHandle(modelData.GetString()));
     objDir = VGet(0, 0, -1);
+    objScale = VGet(0.15f, 0.15f, 0.15f);
     auto stage=StageManager::GetStageData();
     objLocalPos = stage[15][15].pos;
     CalcObjPos();
     MV1SetMatrix(objHandle, MMult(YAxisData->GetRotateMat(), MGetTranslate(objPos)));
+
+    AssetManager::MotionInstance()->StartMotion(this,
+        AssetManager::MotionInstance()->GetHandle(
+            AssetManager::GetFilePass(motionData[jsondata::objKey.walk.c_str()])));
 
     //当たり判定はカプセル型
     capsule = new Capsule(VAdd(objWorldPos, VGet(0, 6, 0)), VAdd(objWorldPos, VGet(0, 30, 0)), CAPSULE_RAD);
@@ -68,8 +73,10 @@ void Enemy::Update(const float deltaTime)
         timer = 0;
     }
 
+
     if (isMove)
     {
+        AssetManager::MotionInstance()->AddMotionTime(this, deltaTime);
         MoveChara(deltaTime);
     }
 
@@ -99,6 +106,7 @@ void Enemy::MoveChara(const float deltaTime)
             {
                 //目標地点に移動
                 VECTOR vec = VNorm(VSub(stage[point.first][point.second].pos, objPos));
+                vec.y = 0;
                 objLocalPos = VAdd(objLocalPos, VScale(vec, moveSpeed * deltaTime));
                 YAxisData->RotateToAim(vec);
                 break;
@@ -143,7 +151,7 @@ void Enemy::OnCollisionEnter(ObjBase* colObj)
 
         if (obj->GetColTag() == ColTag.MODEL)
         {
-            if (line->OnCollisionWithMesh(obj->GetColModel()));
+            if (line->OnCollisionWithMesh(obj->GetColModel()))
             {
                 isMove = true;
             }

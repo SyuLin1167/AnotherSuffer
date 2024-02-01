@@ -154,6 +154,9 @@
     <Filter Include="ソース ファイル\Object\CharaObj\Ball">
       <UniqueIdentifier>{bb8c6e4f-59fd-4071-a5e1-122d3f971078}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Scene\GameOver">
+      <UniqueIdentifier>{5f61946e-29fa-41b0-9db7-26a34e20ce0c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\code\Scene\SceneBase\SceneBase.cpp">
@@ -266,6 +269,9 @@
     </ClCompile>
     <ClCompile Include="..\code\Object\CharaObj\Ball\Ball.cpp">
       <Filter>ソース ファイル\Object\CharaObj\Ball</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\Scene\GameOver\GameOver.cpp">
+      <Filter>ソース ファイル\Scene\GameOver</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -385,6 +391,9 @@
     </ClInclude>
     <ClInclude Include="..\code\Object\CharaObj\Ball\Ball.h">
       <Filter>ソース ファイル\Object\CharaObj\Ball</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Scene\GameOver\GameOver.h">
+      <Filter>ソース ファイル\Scene\GameOver</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

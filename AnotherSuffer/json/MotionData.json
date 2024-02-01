@@ -13,8 +13,8 @@
       }
     },
     "enemy": {
-      "nomal": {
-        "pass": "../assets/model/Chara/Player/PlayerNomal.mv1",
+      "walk": {
+        "pass": "../assets/model/Chara/Enemy/EnemyWalk.mv1",
         "speed": 30.0,
         "loop": true
       }

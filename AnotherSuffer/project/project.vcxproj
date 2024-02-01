@@ -51,6 +51,7 @@
     <ClCompile Include="..\code\Object\StageObj\StageManager\StageManager.cpp" />
     <ClCompile Include="..\code\Object\StageObj\StageObjBase\StageObjBase.cpp" />
     <ClCompile Include="..\code\Object\StageObj\Wall\Wall.cpp" />
+    <ClCompile Include="..\code\Scene\GameOver\GameOver.cpp" />
     <ClCompile Include="..\code\Scene\Play\Play.cpp" />
     <ClCompile Include="..\code\Scene\SceneBase\SceneBase.cpp" />
     <ClCompile Include="..\code\Scene\SceneManager\SceneManager.cpp" />
@@ -92,6 +93,7 @@
     <ClInclude Include="..\code\Object\StageObj\StageManager\StageManager.h" />
     <ClInclude Include="..\code\Object\StageObj\StageObjBase\StageObjBase.h" />
     <ClInclude Include="..\code\Object\StageObj\Wall\Wall.h" />
+    <ClInclude Include="..\code\Scene\GameOver\GameOver.h" />
     <ClInclude Include="..\code\Scene\Play\Play.h" />
     <ClInclude Include="..\code\Scene\SceneBase\SceneBase.h" />
     <ClInclude Include="..\code\Scene\SceneManager\SceneManager.h" />
