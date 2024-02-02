@@ -17,6 +17,16 @@
         "pass": "../assets/model/Chara/Enemy/EnemyWalk.mv1",
         "speed": 30.0,
         "loop": true
+      },
+      "look": {
+        "pass": "../assets/model/Chara/Enemy/EnemyLooking.mv1",
+        "speed": 30.0,
+        "loop": true
+      },
+      "hide": {
+        "pass": "../assets/model/Chara/Enemy/EnemyHide.mv1",
+        "speed": 30.0,
+        "loop": false
       }
     }
   }

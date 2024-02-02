@@ -10,6 +10,8 @@ namespace jsondata
     {
         std::string nomal = "nomal";
         std::string walk = "walk";
+        std::string look = "look";
+        std::string hide = "hide";
         std::string wall="wall";
         std::string barricade="barricade";
         std::string aisle="aisle";

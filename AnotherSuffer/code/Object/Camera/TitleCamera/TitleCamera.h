@@ -1,21 +1,21 @@
 #pragma once
-#include"../ObjBase/ObjBase.h"
+#include"../../ObjBase/ObjBase.h"
 
 /// <summary>
-/// Cameraクラス
+/// TitleCameraクラス
 /// </summary>
-class Camera final:public ObjBase
+class TitleCamera final:public ObjBase
 {
 public:
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    Camera();
+    TitleCamera();
 
     /// <summary>
     /// デストラクタ
     /// </summary>
-    ~Camera();
+    ~TitleCamera();
 
 private:
     /// <summary>

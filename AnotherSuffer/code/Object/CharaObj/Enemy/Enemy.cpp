@@ -15,7 +15,7 @@ static constexpr float MAX_DISTANCE = 1000.0f;  //最大距離
 static constexpr float CLEAR_DISTANCE = 0.0f;   //初期距離
 static constexpr float CLIP_BOX_SIZE = 100.0f;     //切り抜きボックスサイズ
 static constexpr float MOVE_SPEED = 40.0f;
-static constexpr float CAPSULE_RAD = 7.0f;
+static constexpr float CAPSULE_RAD = 8.0f;
 
 Enemy::Enemy()
     :CharaObjBase(ObjTag.ENEMY)
@@ -31,7 +31,7 @@ Enemy::Enemy()
     auto stage=StageManager::GetStageData();
     objLocalPos = stage[15][15].pos;
     CalcObjPos();
-    MV1SetMatrix(objHandle, MMult(YAxisData->GetRotateMat(), MGetTranslate(objPos)));
+    MV1SetMatrix(objHandle, MMult(MMult(MGetScale(objScale), YAxisData->GetRotateMat()), MGetTranslate(objPos)));
 
     AssetManager::MotionInstance()->StartMotion(this,
         AssetManager::MotionInstance()->GetHandle(
@@ -147,8 +147,8 @@ void Enemy::OnCollisionEnter(ObjBase* colObj)
             {
                 isVisible = true;
             }
+            continue;
         }
-
         if (obj->GetColTag() == ColTag.MODEL)
         {
             if (line->OnCollisionWithMesh(obj->GetColModel()))

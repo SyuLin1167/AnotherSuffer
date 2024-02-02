@@ -1,17 +1,19 @@
 {
     "ball" :
     {
-        "stage": {}
+      "stage": {},
+      "enemy": {}
     },
     "player": {
       "stage": {},
       "enemy": {}
     },
     "stage": {
-        "player": {}
+      "player": {}
     },
     "enemy": {
       "stage": {},
-      "player": {}
+      "player": {},
+      "ball": {}
     }
 }

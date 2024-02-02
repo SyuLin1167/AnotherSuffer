@@ -6,8 +6,9 @@
 #include"../Play/Play.h"
 #include"../../Object/ObjManager/ObjManager.h"
 #include"../../Collision/CollisionManager/CollisionManager.h"
-#include"../../Object/Camera/Camera.h"
+#include"../../Object/Camera/TitleCamera/TitleCamera.h"
 #include"../../Object/CharaObj/Ball/Ball.h"
+#include"../../Object/CharaObj/TitleEnemy/TitleEnemy.h"
 #include"../../Object/StageObj/StageManager/StageManager.h"
 #include"../../Object/StageObj/Wall/Wall.h"
 #include"../../Object/StageObj/Aisle/Aisle.h"
@@ -16,9 +17,9 @@
 Title::Title()
     :SceneBase()
 {
-    ObjManager::AddObj(new Camera);
-
+    ObjManager::AddObj(new TitleCamera);
     ObjManager::AddObj(new Ball);
+    ObjManager::AddObj(new TitleEnemy);
     for (int i = 0; i < stage.size(); i++)
     {
         for (int j=0; j<stage[i].size(); j++)
@@ -62,6 +63,7 @@ Title::Title()
     vert[3].spc = GetColorU8(0, 0, 0, 0);
     vert[3].u = vert[3].v = 1.0f;
     vert[3].su = vert[3].sv = 0.0f;
+
     graph = AssetManager::GraphInstance()->GetHandle(AssetManager::GraphInstance()->GetJsonData()["title"]["play"].GetString());
     g = LoadGraph("../assets/ui/texture/test.png");
 }
@@ -78,7 +80,7 @@ SceneBase* Title::UpdateScene(const float deltaTime)
     CollisionManager::CheckCollisionPair();
 
     //ÉVÅ[ÉìêÿÇËë÷Ç¶
-    if (KeyStatus::KeyStateDecision(KEY_INPUT_RETURN, ONINPUT))
+    if (!ObjManager::GetObj(ObjTag.ENEMY,0))
     {
         ObjManager::DeleteAllObj();
         CollisionManager::DeleteCollision();
@@ -98,5 +100,6 @@ void Title::DrawScene()
     DrawFormatString(0, 0, GetColor(255, 255, 255), "title");
 #endif // _DEBUG
 
+    DrawFormatString(950, 1000, GetColor(255, 255, 255), "- Move by WASD -");
     DrawExtendGraph(0, 0,900,600, g, true);
 }

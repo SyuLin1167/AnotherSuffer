@@ -31,6 +31,13 @@ void FirstPersonView::Update(const float deltaTime)
 {
     //À•WŽæ“¾
     player = ObjManager::GetObj(ObjTag.PLAYER, 0);
+
+    if (!player)
+    {
+        isAlive = false;
+        return;
+    }
+
     objWorldPos = VAdd(player->GetObjFramePos(PLAYER_HEAD_FRAME),objDir);
 
     //Ž‹“_ˆÚ“®ŽZo

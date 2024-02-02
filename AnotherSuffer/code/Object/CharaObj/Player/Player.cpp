@@ -4,8 +4,8 @@
 #include"../../../Asset/AssetManager/AssetManager.h"
 #include"../../../Collision/CollisionManager/CollisionManager.h"
 #include"../../../Collision/Capsule/Capsule.h"
-#include"../../../Collision/Line/Line.h"
 #include "Player.h"
+#include"../../Camera/TitleCamera/TitleCamera.h"
 
 static constexpr float RUN_SPEED = 40.0f;
 static constexpr float CAPSULE_RAD = 7.0f;
@@ -31,8 +31,6 @@ Player::Player()
     capsule = new Capsule(VAdd(objWorldPos, VGet(0, 6, 0)), VAdd(objWorldPos, VGet(0, 30, 0)), CAPSULE_RAD);
     capsule->Update(objPos);
     CollisionManager::AddCol(this, capsule);
-    line = new Line(VAdd(objPos, VGet(0, 5, 0)), VAdd(objPos, VGet(0, -5, 0)));
-    CollisionManager::AddCol(this, line);
 
     //仮ライト
     texHandle = CreateSpotLightHandle(objPos,objDir,DX_PI_F,DX_PI_F/2, 150.0f, 0.0f, 0.0f, 0.0005f);
@@ -41,7 +39,7 @@ Player::Player()
 
 Player::~Player()
 {
-    //処理なし
+    DeleteLightHandle(texHandle);
 }
 
 void Player::Update(const float deltaTime)
@@ -137,9 +135,14 @@ void Player::OnCollisionEnter(ObjBase* colObj)
 
                 MV1CollResultPolyDimTerminate(capsule->GetColInfoDim());
             }
-            if (line->OnCollisionWithMesh(obj->GetColModel()))
+            continue;
+        }
+        if (obj->GetColTag() == ColTag.CAPSULE)
+        {
+            if (capsule->OnCollisionWithCapsule(obj->GetWorldStartPos(), obj->GetWorldEndPos(), obj->GetRadius() * 1.5f))
             {
-                test = -1;
+                ObjManager::AddObj(new TitleCamera);
+                isAlive = false;
             }
         }
     }
@@ -147,7 +150,6 @@ void Player::OnCollisionEnter(ObjBase* colObj)
     //座標更新
     CalcObjPos();
     capsule->Update(objPos);
-    line->Update(objPos);
 
     //行列でモデルの動作
     MV1SetMatrix(objHandle, MMult(MMult(MGetScale(objScale), YAxisData->GetRotateMat()), MGetTranslate(objPos)));

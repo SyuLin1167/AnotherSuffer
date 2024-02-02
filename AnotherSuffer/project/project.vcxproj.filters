@@ -136,9 +136,6 @@
     <Filter Include="ソース ファイル\Object\CharaObj\Astar">
       <UniqueIdentifier>{ea7c5761-626c-4a0b-a137-6067591e1e8a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Object\Camera\Camera">
-      <UniqueIdentifier>{7cf49f97-0c76-4511-8fb1-ba2ea3d65f15}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\UI">
       <UniqueIdentifier>{c2846a37-62ae-4f04-8578-6aa528270ca8}</UniqueIdentifier>
     </Filter>
@@ -156,6 +153,12 @@
     </Filter>
     <Filter Include="ソース ファイル\Scene\GameOver">
       <UniqueIdentifier>{5f61946e-29fa-41b0-9db7-26a34e20ce0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Object\Camera\TitleCamera">
+      <UniqueIdentifier>{7cf49f97-0c76-4511-8fb1-ba2ea3d65f15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Object\CharaObj\TitleEnemy">
+      <UniqueIdentifier>{21291c94-d17a-49eb-84ea-ac5921bc89a7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -261,9 +264,6 @@
     <ClCompile Include="..\code\Object\CharaObj\Astar\Astar.cpp">
       <Filter>ソース ファイル\Object\CharaObj\Astar</Filter>
     </ClCompile>
-    <ClCompile Include="..\code\Object\Camera\Camera.cpp">
-      <Filter>ソース ファイル\Object\Camera\Camera</Filter>
-    </ClCompile>
     <ClCompile Include="..\code\UI\UIManager\UIManager.cpp">
       <Filter>ソース ファイル\UI\UIManager</Filter>
     </ClCompile>
@@ -272,6 +272,12 @@
     </ClCompile>
     <ClCompile Include="..\code\Scene\GameOver\GameOver.cpp">
       <Filter>ソース ファイル\Scene\GameOver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\Object\Camera\TitleCamera\TitleCamera.cpp">
+      <Filter>ソース ファイル\Object\Camera\TitleCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\Object\CharaObj\TitleEnemy\TitleEnemy.cpp">
+      <Filter>ソース ファイル\Object\CharaObj\TitleEnemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -383,9 +389,6 @@
     <ClInclude Include="..\code\Object\CharaObj\Astar\Astar.h">
       <Filter>ソース ファイル\Object\CharaObj\Astar</Filter>
     </ClInclude>
-    <ClInclude Include="..\code\Object\Camera\Camera.h">
-      <Filter>ソース ファイル\Object\Camera\Camera</Filter>
-    </ClInclude>
     <ClInclude Include="..\code\UI\UIManager\UIManager.h">
       <Filter>ソース ファイル\UI\UIManager</Filter>
     </ClInclude>
@@ -394,6 +397,12 @@
     </ClInclude>
     <ClInclude Include="..\code\Scene\GameOver\GameOver.h">
       <Filter>ソース ファイル\Scene\GameOver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Object\Camera\TitleCamera\TitleCamera.h">
+      <Filter>ソース ファイル\Object\Camera\TitleCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Object\CharaObj\TitleEnemy\TitleEnemy.h">
+      <Filter>ソース ファイル\Object\CharaObj\TitleEnemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
