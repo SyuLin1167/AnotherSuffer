@@ -15,6 +15,8 @@ namespace jsondata
         std::string wall="wall";
         std::string barricade="barricade";
         std::string aisle="aisle";
+        std::string play = "play";
+        std::string move = "move";
     }objKey;
 
     /// <summary>

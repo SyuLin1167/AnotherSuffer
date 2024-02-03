@@ -6,7 +6,7 @@
 #include"../../../Collision/ColModel/ColModel.h"
 
 static constexpr float CLIP_BOX_SIZE = 100.0f;     //切り抜きボックスサイズ
-static constexpr float CLIP_DISTANCE = 300.0f;     //切り抜き距離
+static constexpr float CLIP_DISTANCE = 150.0f;     //切り抜き距離
 
 StageObjBase::StageObjBase(const VECTOR pos)
     :ObjBase(ObjTag.STAGE)
@@ -96,6 +96,6 @@ void StageObjBase::Draw()
     MV1DrawModel(objHandle);
 
 #ifdef _DEBUG
-    DrawBox(objPos.z+40, objPos.x+40, objPos.z + 80, objPos.x + 80, color, true);
+    DrawBox((objPos.z+40)/2, (objPos.x+40)/2, (objPos.z + 80)/2, (objPos.x + 80)/2, color, true);
 #endif // _DEBUG
 }

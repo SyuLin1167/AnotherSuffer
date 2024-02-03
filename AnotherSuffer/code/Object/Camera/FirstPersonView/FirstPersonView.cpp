@@ -93,6 +93,4 @@ void FirstPersonView::Draw()
 {
     //Ž‹“_‚ðˆÚ“®
     SetCameraViewMatrix(MMult( MInverse(MGetTranslate(objPos)),cameraViewMat));
-
-    DrawCircle(objPos.z+60, objPos.x+60, 10, GetColor(255, 255, 255));
 }

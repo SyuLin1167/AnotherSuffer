@@ -12,6 +12,7 @@
 #include "Play.h"
 
 Play::Play()
+    :SceneBase(SceneTag.PLAY)
 {
     StageManager::InitStageManager();
     ObjManager::AddObj(new Player);
@@ -46,6 +47,7 @@ void Play::DrawScene()
     //オブジェクト描画
     ObjManager::DrawObj();
 
+    
 #ifdef _DEBUG
     DrawFormatString(0, 0, GetColor(255, 255, 255), "play");
 #endif // _DEBUG

@@ -14,8 +14,13 @@
 #include"../../Object/StageObj/Aisle/Aisle.h"
 #include "Title.h"
 
+static const int MOVEGRAPH_POS_X = 800;
+static const int MOVEGRAPH_POS_Y = 800;
+static const int MOVEGRAPH_SIZE_X = 300;
+static const int MOVEGRAPH_SIZE_Y = 100;
+
 Title::Title()
-    :SceneBase()
+    :SceneBase(SceneTag.TITLE)
 {
     ObjManager::AddObj(new TitleCamera);
     ObjManager::AddObj(new Ball);
@@ -64,8 +69,12 @@ Title::Title()
     vert[3].u = vert[3].v = 1.0f;
     vert[3].su = vert[3].sv = 0.0f;
 
-    graph = AssetManager::GraphInstance()->GetHandle(AssetManager::GraphInstance()->GetJsonData()["title"]["play"].GetString());
-    g = LoadGraph("../assets/ui/texture/test.png");
+    titleGraph = AssetManager::GraphInstance()->GetHandle(AssetManager::GraphInstance()->
+        GetJsonData()[scaneTag.c_str()][scaneTag.c_str()].GetString());
+     playGraph= AssetManager::GraphInstance()->GetHandle(AssetManager::GraphInstance()->
+        GetJsonData()[scaneTag.c_str()][jsondata::objKey.play.c_str()].GetString());
+    moveGraph= AssetManager::GraphInstance()->GetHandle(AssetManager::GraphInstance()->
+        GetJsonData()[scaneTag.c_str()][jsondata::objKey.move.c_str()].GetString());
 }
 
 Title::~Title()
@@ -78,7 +87,7 @@ SceneBase* Title::UpdateScene(const float deltaTime)
     //オブジェクト更新
     ObjManager::UpdateObj(deltaTime);
     CollisionManager::CheckCollisionPair();
-
+    fadePos = ConvWorldPosToScreenPos(ObjManager::GetObj(ObjTag.BALL, 0)->GetObjPos());
     //シーン切り替え
     if (!ObjManager::GetObj(ObjTag.ENEMY,0))
     {
@@ -94,12 +103,21 @@ void Title::DrawScene()
 {
     //オブジェクト描画
     ObjManager::DrawObj();
-    DrawPolygonIndexed3D(vert, 4, idx, 2, graph, false);
-    
+    DrawExtendGraph(0, 0,900,600,  titleGraph, true);
+    DrawPolygonIndexed3D(vert, 4, idx, 2, playGraph, false);
+    if (MOVEGRAPH_POS_X<fadePos.x && MOVEGRAPH_POS_Y<fadePos.y &&
+        MOVEGRAPH_POS_X + MOVEGRAPH_SIZE_X>fadePos.x && MOVEGRAPH_POS_Y + MOVEGRAPH_SIZE_Y * 4>fadePos.y)
+    {
+        SetDrawBlendMode(DX_BLENDMODE_ALPHA, 120);
+    }
+    DrawExtendGraph(MOVEGRAPH_POS_X, MOVEGRAPH_POS_Y,
+        MOVEGRAPH_POS_X + MOVEGRAPH_SIZE_X, MOVEGRAPH_POS_Y + MOVEGRAPH_SIZE_Y, moveGraph, true);
+    SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
+
 #ifdef _DEBUG
     DrawFormatString(0, 0, GetColor(255, 255, 255), "title");
+
+    DrawCircle(static_cast<int>(fadePos.x), static_cast<int>(fadePos.y), 5, GetColor(255, 255, 255));
 #endif // _DEBUG
 
-    DrawFormatString(950, 1000, GetColor(255, 255, 255), "- Move by WASD -");
-    DrawExtendGraph(0, 0,900,600, g, true);
 }

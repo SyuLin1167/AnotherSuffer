@@ -176,5 +176,7 @@ void Player::Draw()
     DrawFormatString(0, 100, GetColor(255, 255, 255), "%d",test);
 
     DrawFormatString(1050, 0, GetColor(255, 255, 255), "Ž©gÀ•W%f,%f", capsule->GetWorldStartPos().x, capsule->GetWorldStartPos().z);
+
+    DrawCircle(static_cast<int>(objPos.z + 60) / 2, static_cast<int>(objPos.x + 60) / 2, 5, GetColor(255, 255, 255));
 #endif // _DEBUG
 }

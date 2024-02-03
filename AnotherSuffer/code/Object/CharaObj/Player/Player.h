@@ -53,7 +53,6 @@ private:
     int texHandle;
     int test;
     class Capsule* capsule;
-    class Line* line;
     VECTOR moveVel;
 };
 

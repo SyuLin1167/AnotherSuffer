@@ -6,7 +6,9 @@
         "aisle": "../assets/model/Texture/Aisle.png"
       },
       "title": {
-        "play": "../assets/ui/Texture/Play.png"
+        "title": "../assets/ui/Texture/Title.png",
+        "play": "../assets/ui/Texture/Play.png",
+        "move": "../assets/ui/Texture/Move.png"
       }
     }
 }

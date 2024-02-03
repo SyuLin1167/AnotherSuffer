@@ -98,6 +98,7 @@
     <ClInclude Include="..\code\Scene\GameOver\GameOver.h" />
     <ClInclude Include="..\code\Scene\Play\Play.h" />
     <ClInclude Include="..\code\Scene\SceneBase\SceneBase.h" />
+    <ClInclude Include="..\code\Scene\SceneBase\SceneTag.h" />
     <ClInclude Include="..\code\Scene\SceneManager\SceneManager.h" />
     <ClInclude Include="..\code\Scene\Title\Title.h" />
     <ClInclude Include="..\code\UI\UIManager\UIManager.h" />

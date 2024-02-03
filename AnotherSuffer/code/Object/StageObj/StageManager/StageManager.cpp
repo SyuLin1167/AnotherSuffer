@@ -24,6 +24,7 @@ static constexpr int RIGHT = 0x0008;                                   //âE
 
 StageManager::StageManager()
     :dirArray{ UP, DOWN, LEFT, RIGHT }
+    ,barricadeNum()
 {
     //èàóùÇ»Çµ
 }
@@ -170,6 +171,7 @@ void StageManager::PlacementObject()
             }
             else if (indexX.second.type & BARRICADE)
             {
+                barricadeNum++;
                 ObjManager::AddObj(new Barricade(indexX.second.pos, { indexX.first,indexY.first }));
             }
         }

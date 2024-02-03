@@ -47,6 +47,12 @@ public:
     static std::unordered_map<int, std::unordered_map<int, BlockParam>> GetStageData() { return singleton->stageData; }
 
     /// <summary>
+    /// 障壁の数取得
+    /// </summary>
+    /// <returns>障壁の数</returns>
+    static const int GetBarricadeNum() { return singleton->barricadeNum; }
+
+    /// <summary>
     /// データ変更
     /// </summary>
     /// <param name="cell">:セル</param>
@@ -101,8 +107,9 @@ private:
     /// </summary>
     void PlacementObject();
 
-    static std::unique_ptr<StageManager> singleton;    //自身の実体
+    static std::unique_ptr<StageManager> singleton;     //自身の実体
 
-    std::vector<int> dirArray;      //ステージ生成用方向配列
+    std::vector<int> dirArray;                          //ステージ生成用方向配列
+    int barricadeNum;                                   //障壁の数
 };
 
