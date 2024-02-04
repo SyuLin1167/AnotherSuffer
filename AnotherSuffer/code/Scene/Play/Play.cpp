@@ -15,8 +15,8 @@ Play::Play()
     :SceneBase(SceneTag.PLAY)
 {
     StageManager::InitStageManager();
-    ObjManager::AddObj(new Player);
     ObjManager::AddObj(new FirstPersonView);
+    ObjManager::AddObj(new Player);
     ObjManager::AddObj(new Enemy);
 }
 
@@ -32,7 +32,7 @@ SceneBase* Play::UpdateScene(const float deltaTime)
     //ObjManager::OnColllsionObj();
     CollisionManager::CheckCollisionPair();
     //ÉVÅ[ÉìêÿÇËë÷Ç¶
-    if (KeyStatus::KeyStateDecision(KEY_INPUT_RETURN, ONINPUT))
+    if (!ObjManager::GetObj(ObjTag.ENEMY, 0) || KeyStatus::KeyStateDecision(KEY_INPUT_RETURN, ONINPUT))
     {
         ObjManager::DeleteAllObj();
         CollisionManager::DeleteCollision();
@@ -49,6 +49,6 @@ void Play::DrawScene()
 
     
 #ifdef _DEBUG
-    DrawFormatString(0, 0, GetColor(255, 255, 255), "play");
+    DrawFormatString(0, 0, GetColor(255, 255, 255), "play %d",StageManager::GetBarricadeNum());
 #endif // _DEBUG
 }

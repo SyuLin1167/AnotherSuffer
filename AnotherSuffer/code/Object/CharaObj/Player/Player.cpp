@@ -5,10 +5,9 @@
 #include"../../../Collision/CollisionManager/CollisionManager.h"
 #include"../../../Collision/Capsule/Capsule.h"
 #include "Player.h"
-#include"../../Camera/TitleCamera/TitleCamera.h"
 
 static constexpr float RUN_SPEED = 40.0f;
-static constexpr float CAPSULE_RAD = 7.0f;
+static constexpr float CAPSULE_RAD = 8.0f;
 
 Player::Player()
     :CharaObjBase(ObjTag.PLAYER)
@@ -35,6 +34,8 @@ Player::Player()
     //仮ライト
     texHandle = CreateSpotLightHandle(objPos,objDir,DX_PI_F,DX_PI_F/2, 150.0f, 0.0f, 0.0f, 0.0005f);
     test = 0;
+
+    camera = ObjManager::GetObj(ObjTag.CAMERA, 0);
 }
 
 Player::~Player()
@@ -81,28 +82,36 @@ void Player::Update(const float deltaTime)
 
 void Player::MoveChara(const float deltaTime)
 {
-    //停止中にする
-    isMove = false;
+    if (isVisible)
+    {
+        //停止中にする
+        isMove = false;
 
-    //カメラの向きを自身の移動方向とする
-    ObjBase* camera = ObjManager::GetObj(ObjTag.CAMERA,0);
-    SetLightDirectionHandle(texHandle, camera->GetObjDir());
-    SetLightPositionHandle(texHandle, camera->GetObjPos());
-    VECTOR aimDir = camera->GetObjDir();
-    VECTOR rightDir = VCross(VGet(0, -1, 0), aimDir);
-    aimDir = VNorm(aimDir);
-    aimDir.y = 0;
+        //カメラの向きにライトを照らす
+        SetLightDirectionHandle(texHandle, camera->GetObjDir());
+        SetLightPositionHandle(texHandle, camera->GetObjPos());
 
-    //キー入力による移動量
-    moveVel = VGet(0, 0, 0);
-    MoveByKey(KEY_INPUT_W, aimDir, deltaTime);
-    MoveByKey(KEY_INPUT_S, VScale(aimDir, -1), deltaTime);
-    MoveByKey(KEY_INPUT_A, rightDir, deltaTime);
-    MoveByKey(KEY_INPUT_D, VScale(rightDir, -1), deltaTime);
+        //カメラの向きを自身の移動方向とする
+        VECTOR aimDir = camera->GetObjDir();
+        VECTOR rightDir = VCross(VGet(0, -1, 0), aimDir);
+        aimDir = VNorm(aimDir);
+        aimDir.y = 0;
 
-    //座標・方向の算出
-    objLocalPos = VAdd(objLocalPos, VScale(moveVel, moveSpeed * deltaTime));
-    YAxisData->RotateToAim(aimDir);
+        //キー入力による移動量
+        moveVel = VGet(0, 0, 0);
+        MoveByKey(KEY_INPUT_W, aimDir, deltaTime);
+        MoveByKey(KEY_INPUT_S, VScale(aimDir, -1), deltaTime);
+        MoveByKey(KEY_INPUT_A, rightDir, deltaTime);
+        MoveByKey(KEY_INPUT_D, VScale(rightDir, -1), deltaTime);
+
+        //座標・方向の算出
+        objLocalPos = VAdd(objLocalPos, VScale(moveVel, moveSpeed * deltaTime));
+        YAxisData->RotateToAim(aimDir);
+    }
+    else
+    {
+        DeleteLightHandle(texHandle);
+    }
 }
 
 void Player::MoveByKey(const int keyName, const VECTOR dir, const float deltaTime)
@@ -139,10 +148,10 @@ void Player::OnCollisionEnter(ObjBase* colObj)
         }
         if (obj->GetColTag() == ColTag.CAPSULE)
         {
-            if (capsule->OnCollisionWithCapsule(obj->GetWorldStartPos(), obj->GetWorldEndPos(), obj->GetRadius() * 1.5f))
+            if (capsule->OnCollisionWithCapsule(obj->GetWorldStartPos(), obj->GetWorldEndPos(), obj->GetRadius() * 2.6f))
             {
-                ObjManager::AddObj(new TitleCamera);
-                isAlive = false;
+                isVisible = false;
+                return;
             }
         }
     }

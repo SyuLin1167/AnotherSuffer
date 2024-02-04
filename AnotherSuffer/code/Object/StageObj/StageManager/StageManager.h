@@ -53,11 +53,17 @@ public:
     static const int GetBarricadeNum() { return singleton->barricadeNum; }
 
     /// <summary>
+    /// 障壁のカウント
+    /// </summary>
+    static void CountBarricade() { singleton->barricadeNum--; }
+
+    /// <summary>
     /// データ変更
     /// </summary>
     /// <param name="cell">:セル</param>
     /// <param name="type">:ブロックタイプ</param>
     static void ChangeStageData(std::pair<int,int> cell,int type);
+
 private:
     /// <summary>
     /// コンストラクタ(シングルトン)

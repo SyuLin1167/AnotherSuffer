@@ -27,6 +27,11 @@
         "pass": "../assets/model/Chara/Enemy/EnemyHide.mv1",
         "speed": 30.0,
         "loop": false
+      },
+      "scream": {
+        "pass": "../assets/model/Chara/Enemy/EnemyScream.mv1",
+        "speed": 30.0,
+        "loop": false
       }
     }
   }

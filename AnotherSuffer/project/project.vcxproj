@@ -37,6 +37,7 @@
     <ClCompile Include="..\code\KeyStatus\KeyStatus.cpp" />
     <ClCompile Include="..\code\main.cpp" />
     <ClCompile Include="..\code\Object\Camera\FirstPersonView\FirstPersonView.cpp" />
+    <ClCompile Include="..\code\Object\Camera\FixedCamera\FixedCamera.cpp" />
     <ClCompile Include="..\code\Object\Camera\TitleCamera\TitleCamera.cpp" />
     <ClCompile Include="..\code\Object\CharaObj\Astar\Astar.cpp" />
     <ClCompile Include="..\code\Object\CharaObj\Ball\Ball.cpp" />
@@ -79,6 +80,7 @@
     <ClInclude Include="..\code\GameSystem\Window\Window.h" />
     <ClInclude Include="..\code\KeyStatus\KeyStatus.h" />
     <ClInclude Include="..\code\Object\Camera\FirstPersonView\FirstPersonView.h" />
+    <ClInclude Include="..\code\Object\Camera\FixedCamera\FixedCamera.h" />
     <ClInclude Include="..\code\Object\Camera\TitleCamera\TitleCamera.h" />
     <ClInclude Include="..\code\Object\CharaObj\Astar\Astar.h" />
     <ClInclude Include="..\code\Object\CharaObj\Ball\Ball.h" />

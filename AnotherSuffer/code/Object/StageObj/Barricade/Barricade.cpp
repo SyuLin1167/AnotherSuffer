@@ -52,6 +52,7 @@ void Barricade::BreakBarricade()
     if (isVisible && GetMouseInput() & MOUSE_INPUT_LEFT)
     {
         StageManager::ChangeStageData(myNode, AISLE);
+        StageManager::CountBarricade();
         ObjManager::AddObj(new Aisle(objPos));
         isAlive = false;
     }

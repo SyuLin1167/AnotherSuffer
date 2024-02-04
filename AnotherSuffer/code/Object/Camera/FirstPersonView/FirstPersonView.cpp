@@ -2,6 +2,7 @@
 #include"../../../GameSystem/Window/Window.h"
 #include "FirstPersonView.h"
 #include"../../Math/Math.h"
+#include"../FixedCamera/FixedCamera.h"
 
 static constexpr float LOOK_HEIGHT = 10.0f;    //視点高さ
 static constexpr int PLAYER_HEAD_FRAME = 10;      //プレイヤー頭部フレーム
@@ -20,6 +21,8 @@ FirstPersonView::FirstPersonView()
 
     SetMousePoint(mousePosX, mousePosY);
     SetMouseDispFlag(false);
+
+    player = nullptr;
 }
 
 FirstPersonView::~FirstPersonView()
@@ -32,8 +35,9 @@ void FirstPersonView::Update(const float deltaTime)
     //座標取得
     player = ObjManager::GetObj(ObjTag.PLAYER, 0);
 
-    if (!player)
+    if (!player->IsVisible())
     {
+        ObjManager::AddObj(new FixedCamera(objPos, objDir));
         isAlive = false;
         return;
     }
@@ -92,5 +96,5 @@ void FirstPersonView::CalcMoveView(const float deltaTime)
 void FirstPersonView::Draw()
 {
     //視点を移動
-    SetCameraViewMatrix(MMult( MInverse(MGetTranslate(objPos)),cameraViewMat));
+    SetCameraViewMatrix(MMult(MInverse(MGetTranslate(objPos)), cameraViewMat));
 }

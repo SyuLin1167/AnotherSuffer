@@ -28,7 +28,7 @@ private:
     /// キャラ動作
     /// </summary>
     /// <param name="deltaTime">:デルタタイム</param>
-    void MoveChara(const float deltaTime)override;
+    void MoveChara(const float deltaTime) override;
 
     /// <summary>
     /// キー入力による移動
@@ -52,6 +52,7 @@ private:
     float a = 0;
     int texHandle;
     int test;
+    ObjBase* camera;
     class Capsule* capsule;
     VECTOR moveVel;
 };

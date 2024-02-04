@@ -100,7 +100,7 @@ void CharaObjBase::AxisData::RotateToAim(const VECTOR& dir,const float& velocity
     {
         //Œ»•ûŒü‚ª–Ú•W•ûŒü‚Å‚È‚¯‚ê‚Î‰ñ“]’†‚É‚·‚é
         aimDir = dir;
-        if (object->objDir != aimDir)
+        if (VDot(object->objDir, aimDir) < SIMILAR_ANGLE)
         {
             object->nowRotate = true;
         }

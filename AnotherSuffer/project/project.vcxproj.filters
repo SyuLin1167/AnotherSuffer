@@ -142,37 +142,40 @@
     <Filter Include="ソース ファイル\Object\CharaObj\TitleEnemy">
       <UniqueIdentifier>{21291c94-d17a-49eb-84ea-ac5921bc89a7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Object\StageObj\Wall\Scene">
+    <Filter Include="ソース ファイル\Object\Camera\FixedCamera">
+      <UniqueIdentifier>{559598d7-3db7-4cf2-808b-90261fc4395a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene">
       <UniqueIdentifier>{5dd704fb-8592-44aa-a8b1-772f2a9cd23e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Object\StageObj\Wall\Scene\SceneBase">
+    <Filter Include="ソース ファイル\Scene\SceneBase">
       <UniqueIdentifier>{c608d71d-b5ad-4ff3-b976-c6d578339f2c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Object\StageObj\Wall\Scene\Play">
+    <Filter Include="ソース ファイル\Scene\Play">
       <UniqueIdentifier>{edfadfde-4ce8-4386-bc7b-d817975aca69}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Object\StageObj\Wall\Scene\Title">
+    <Filter Include="ソース ファイル\Scene\Title">
       <UniqueIdentifier>{12a44715-9b63-44b0-82b5-3aa1824dacb6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Object\StageObj\Wall\Scene\SceneManager">
+    <Filter Include="ソース ファイル\Scene\SceneManager">
       <UniqueIdentifier>{021fbd35-95eb-476d-8a2e-373f4db2a904}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Object\StageObj\Wall\Scene\GameOver">
+    <Filter Include="ソース ファイル\Scene\GameOver">
       <UniqueIdentifier>{5f61946e-29fa-41b0-9db7-26a34e20ce0c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\code\Scene\SceneBase\SceneBase.cpp">
-      <Filter>ソース ファイル\Object\StageObj\Wall\Scene\SceneBase</Filter>
+      <Filter>ソース ファイル\Scene\SceneBase</Filter>
     </ClCompile>
     <ClCompile Include="..\code\Scene\Title\Title.cpp">
-      <Filter>ソース ファイル\Object\StageObj\Wall\Scene\Title</Filter>
+      <Filter>ソース ファイル\Scene\Title</Filter>
     </ClCompile>
     <ClCompile Include="..\code\main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="..\code\Scene\Play\Play.cpp">
-      <Filter>ソース ファイル\Object\StageObj\Wall\Scene\Play</Filter>
+      <Filter>ソース ファイル\Scene\Play</Filter>
     </ClCompile>
     <ClCompile Include="..\code\Object\ObjBase\ObjBase.cpp">
       <Filter>ソース ファイル\Object\ObjBase</Filter>
@@ -211,7 +214,7 @@
       <Filter>ソース ファイル\Asset\AssetMgr</Filter>
     </ClCompile>
     <ClCompile Include="..\code\Scene\SceneManager\SceneManager.cpp">
-      <Filter>ソース ファイル\Object\StageObj\Wall\Scene\SceneManager</Filter>
+      <Filter>ソース ファイル\Scene\SceneManager</Filter>
     </ClCompile>
     <ClCompile Include="..\code\KeyStatus\KeyStatus.cpp">
       <Filter>ソース ファイル\KeyStatus</Filter>
@@ -271,7 +274,7 @@
       <Filter>ソース ファイル\Object\CharaObj\Ball</Filter>
     </ClCompile>
     <ClCompile Include="..\code\Scene\GameOver\GameOver.cpp">
-      <Filter>ソース ファイル\Object\StageObj\Wall\Scene\GameOver</Filter>
+      <Filter>ソース ファイル\Scene\GameOver</Filter>
     </ClCompile>
     <ClCompile Include="..\code\Object\Camera\TitleCamera\TitleCamera.cpp">
       <Filter>ソース ファイル\Object\Camera\TitleCamera</Filter>
@@ -279,16 +282,19 @@
     <ClCompile Include="..\code\Object\CharaObj\TitleEnemy\TitleEnemy.cpp">
       <Filter>ソース ファイル\Object\CharaObj\TitleEnemy</Filter>
     </ClCompile>
+    <ClCompile Include="..\code\Object\Camera\FixedCamera\FixedCamera.cpp">
+      <Filter>ソース ファイル\Object\Camera\FixedCamera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\code\Scene\SceneBase\SceneBase.h">
-      <Filter>ソース ファイル\Object\StageObj\Wall\Scene\SceneBase</Filter>
+      <Filter>ソース ファイル\Scene\SceneBase</Filter>
     </ClInclude>
     <ClInclude Include="..\code\Scene\Title\Title.h">
-      <Filter>ソース ファイル\Object\StageObj\Wall\Scene\Title</Filter>
+      <Filter>ソース ファイル\Scene\Title</Filter>
     </ClInclude>
     <ClInclude Include="..\code\Scene\Play\Play.h">
-      <Filter>ソース ファイル\Object\StageObj\Wall\Scene\Play</Filter>
+      <Filter>ソース ファイル\Scene\Play</Filter>
     </ClInclude>
     <ClInclude Include="..\code\Object\ObjBase\ObjBase.h">
       <Filter>ソース ファイル\Object\ObjBase</Filter>
@@ -330,7 +336,7 @@
       <Filter>ソース ファイル\Asset\AssetMgr</Filter>
     </ClInclude>
     <ClInclude Include="..\code\Scene\SceneManager\SceneManager.h">
-      <Filter>ソース ファイル\Object\StageObj\Wall\Scene\SceneManager</Filter>
+      <Filter>ソース ファイル\Scene\SceneManager</Filter>
     </ClInclude>
     <ClInclude Include="..\code\KeyStatus\KeyStatus.h">
       <Filter>ソース ファイル\KeyStatus</Filter>
@@ -396,7 +402,7 @@
       <Filter>ソース ファイル\Object\CharaObj\Ball</Filter>
     </ClInclude>
     <ClInclude Include="..\code\Scene\GameOver\GameOver.h">
-      <Filter>ソース ファイル\Object\StageObj\Wall\Scene\GameOver</Filter>
+      <Filter>ソース ファイル\Scene\GameOver</Filter>
     </ClInclude>
     <ClInclude Include="..\code\Object\Camera\TitleCamera\TitleCamera.h">
       <Filter>ソース ファイル\Object\Camera\TitleCamera</Filter>
@@ -405,7 +411,10 @@
       <Filter>ソース ファイル\Object\CharaObj\TitleEnemy</Filter>
     </ClInclude>
     <ClInclude Include="..\code\Scene\SceneBase\SceneTag.h">
-      <Filter>ソース ファイル\Object\StageObj\Wall\Scene\SceneBase</Filter>
+      <Filter>ソース ファイル\Scene\SceneBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Object\Camera\FixedCamera\FixedCamera.h">
+      <Filter>ソース ファイル\Object\Camera\FixedCamera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

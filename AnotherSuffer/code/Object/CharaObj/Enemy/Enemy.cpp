@@ -13,8 +13,8 @@
 static constexpr float RESET_TIME = 2.0f;   //リセット時間
 static constexpr float MAX_DISTANCE = 1000.0f;  //最大距離
 static constexpr float CLEAR_DISTANCE = 0.0f;   //初期距離
-static constexpr float CLIP_BOX_SIZE = 100.0f;     //切り抜きボックスサイズ
-static constexpr float MOVE_SPEED = 40.0f;
+static constexpr float CLIP_BOX_SIZE = 150.0f;     //切り抜きボックスサイズ
+static constexpr float MOVE_SPEED = 70.0f;
 static constexpr float CAPSULE_RAD = 8.0f;
 
 Enemy::Enemy()
@@ -23,6 +23,7 @@ Enemy::Enemy()
     , clipBoxScale()
     , clipBoxPos1()
     , clipBoxPos2()
+    , isScream(false)
 {
     //モデル読み込み
     objHandle = MV1DuplicateModel(AssetManager::ModelInstance()->GetHandle(modelData.GetString()));
@@ -52,7 +53,6 @@ Enemy::Enemy()
     ResetNode(player->GetObjPos(), &goal);
     path = astar->Algorithm(start, goal);
 
-    moveSpeed = MOVE_SPEED;
 }
 
 Enemy::~Enemy()
@@ -62,27 +62,47 @@ Enemy::~Enemy()
 
 void Enemy::Update(const float deltaTime)
 {
+    //残り障壁数に応じて加速
+    moveSpeed = MOVE_SPEED - (StageManager::GetBarricadeNum() * 1.5f);
+
     //リセット時間ごとに経路の再構成を行う
-    timer += deltaTime;
-    if (timer >= RESET_TIME)
+    if (!isScream)
     {
-        path.clear();
-        ResetNode(objPos, &start);
-        ResetNode(player->GetObjPos(), &goal);
-        path = astar->Algorithm(start, goal);
-        timer = 0;
+        timer += deltaTime;
+        if (timer >= RESET_TIME)
+        {
+            path.clear();
+            ResetNode(objPos, &start);
+            ResetNode(player->GetObjPos(), &goal);
+            path = astar->Algorithm(start, goal);
+            timer = 0;
+        }
+
+
+        if (isMove)
+        {
+            AssetManager::MotionInstance()->AddMotionTime(this, deltaTime);
+            MoveChara(deltaTime);
+        }
+
+        //通常は動く
+        isMove = true;
+        ViewClipBox();
     }
-
-
-    if (isMove)
+    else
     {
+        AssetManager::MotionInstance()->StartMotion(this,
+            AssetManager::MotionInstance()->GetHandle(
+                AssetManager::GetFilePass(motionData[jsondata::objKey.scream.c_str()])));
+
         AssetManager::MotionInstance()->AddMotionTime(this, deltaTime);
-        MoveChara(deltaTime);
-    }
 
-    //通常は動く
-    isMove = true;
-    ViewClipBox();
+        if (!AssetManager::MotionInstance()->IsPlaying(AssetManager::MotionInstance()->GetHandle(
+            AssetManager::GetFilePass(motionData[jsondata::objKey.scream.c_str()]))))
+        {
+            isAlive = false;
+        }
+    }
 
     //座標更新
     CalcObjPos();
@@ -118,6 +138,11 @@ void Enemy::MoveChara(const float deltaTime)
             }
         }
     }
+    else
+    {
+        VECTOR vec = VNorm(VSub(player->GetObjPos(), objPos));
+        objLocalPos = VAdd(objLocalPos, VScale(vec, moveSpeed * deltaTime));
+    }
 }
 
 void Enemy::ViewClipBox()
@@ -137,23 +162,20 @@ void Enemy::OnCollisionEnter(ObjBase* colObj)
     //当たり判定処理
     for (auto& obj : CollisionManager::GetCol(colObj))
     {
-        if (obj->GetColTag() == ColTag.CAPSULE)
-        {
-            if (capsule->OnCollisionWithCapsule(obj->GetWorldStartPos(), obj->GetWorldEndPos(), obj->GetRadius() * 1.5f))
-            {
-                isVisible = false;
-            }
-            else
-            {
-                isVisible = true;
-            }
-            continue;
-        }
         if (obj->GetColTag() == ColTag.MODEL)
         {
             if (line->OnCollisionWithMesh(obj->GetColModel()))
             {
                 isMove = true;
+            }
+            continue;
+        }
+        if (obj->GetColTag() == ColTag.CAPSULE)
+        {
+            if (capsule->OnCollisionWithCapsule(obj->GetWorldStartPos(), obj->GetWorldEndPos(), obj->GetRadius() * 2.5f))
+            {
+                isScream = true;
+                YAxisData->RotateToAim(VNorm(VSub(player->GetObjPos(), objPos)));
             }
         }
     }
@@ -226,6 +248,6 @@ void Enemy::Draw()
     //当たり判定描画
     capsule->DrawCapsule();
 
-    DrawFormatString(800, 0, GetColor(255, 255, 255), "敵座標%f,%f", capsule->GetWorldStartPos().x, capsule->GetWorldStartPos().z);
+    DrawFormatString(800, 0, GetColor(255, 255, 255), "敵座標%f,%f\n移動速度%f", capsule->GetWorldStartPos().x, capsule->GetWorldStartPos().z,moveSpeed);
 #endif // _DEBUG
 }

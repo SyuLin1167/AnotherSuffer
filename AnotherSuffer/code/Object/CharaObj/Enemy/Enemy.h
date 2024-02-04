@@ -59,5 +59,5 @@ private:
     class Line* line;
     class Capsule* capsule;
     VECTOR aimDir;
-    bool canAstar;
+    bool isScream;
 };
