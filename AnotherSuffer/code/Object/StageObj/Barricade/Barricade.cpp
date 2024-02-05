@@ -10,7 +10,7 @@ Barricade::Barricade(const VECTOR pos, std::pair<int, int> node)
     :StageObjBase(pos)
     , myNode(node)
 {
-    MV1SetEmiColorScale(objHandle,GetColorF(1.0f,0,1.0f,1.0f));
+    MV1SetMaterialEmiColor(objHandle, 0, GetColorF(50, 0, 50, 0.1f));
 
     //テクスチャ貼り換え
     texHandle = AssetManager::GraphInstance()->GetHandle(graphData[jsondata::objKey.barricade.c_str()].GetString());

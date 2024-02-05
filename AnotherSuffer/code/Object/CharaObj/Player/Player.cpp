@@ -32,7 +32,7 @@ Player::Player()
     CollisionManager::AddCol(this, capsule);
 
     //‰¼ƒ‰ƒCƒg
-    texHandle = CreateSpotLightHandle(objPos,objDir,DX_PI_F,DX_PI_F/2, 150.0f, 0.0f, 0.0f, 0.0005f);
+    texHandle = CreateSpotLightHandle(objPos,objDir,DX_PI_F/2,DX_PI_F/4, 150.0f, 0.0f, 0.0f, 0.0005f);
     test = 0;
 
     camera = ObjManager::GetObj(ObjTag.CAMERA, 0);

@@ -39,6 +39,7 @@ Title::Title()
             }
         }
     }
+
     vert[0].pos = VGet(BLOCK_SIZE/2+BLOCK_SIZE,2, BLOCK_SIZE/2);
     vert[0].norm = VGet(0, 1, 0);
     vert[0].dif = GetColorU8(255, 255, 255, 0);
