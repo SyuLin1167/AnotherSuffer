@@ -164,6 +164,12 @@ void Enemy::OnCollisionEnter(ObjBase* colObj)
     {
         if (obj->GetColTag() == ColTag.MODEL)
         {
+            if (capsule->OnCollisionWithMesh(obj->GetColModel()))
+            {
+                objLocalPos = VAdd(objLocalPos, capsule->CalcPushBackFromMesh());
+
+                MV1CollResultPolyDimTerminate(capsule->GetColInfoDim());
+            }
             if (line->OnCollisionWithMesh(obj->GetColModel()))
             {
                 isMove = true;
@@ -172,7 +178,7 @@ void Enemy::OnCollisionEnter(ObjBase* colObj)
         }
         if (obj->GetColTag() == ColTag.CAPSULE)
         {
-            if (capsule->OnCollisionWithCapsule(obj->GetWorldStartPos(), obj->GetWorldEndPos(), obj->GetRadius() * 2.5f))
+            if (capsule->OnCollisionWithCapsule(obj->GetWorldStartPos(), obj->GetWorldEndPos(), obj->GetRadius() * 2.5f) || !player->IsVisible())
             {
                 isScream = true;
                 YAxisData->RotateToAim(VNorm(VSub(player->GetObjPos(), objPos)));

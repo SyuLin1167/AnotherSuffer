@@ -4,9 +4,10 @@
 #include"../../Object/ObjManager/ObjManager.h"
 #include"../../Collision/CollisionManager/CollisionManager.h"
 #include"../../Object/Camera/FirstPersonView/FirstPersonView.h"
+#include"../../Object/StageObj/StageManager/StageManager.h"
 #include"../../Object/CharaObj/Player/Player.h"
 #include"../../Object/CharaObj/Enemy/Enemy.h"
-#include"../../Object/StageObj/StageManager/StageManager.h"
+#include"../../UI/MiniMap/MiniMap.h"
 #include"../SceneBase/SceneBase.h"
 #include"../Title/Title.h"
 #include "Play.h"
@@ -24,6 +25,8 @@ Play::Play()
     ObjManager::AddObj(new Player);
     ObjManager::AddObj(new Enemy);
 
+    MiniMap::InitMiniMap();
+
     AddFontResource(fileName);
     SetFontSize(TEXT_SIZE);
 }
@@ -37,8 +40,9 @@ SceneBase* Play::UpdateScene(const float deltaTime)
 {
     //オブジェクト更新
     ObjManager::UpdateObj(deltaTime);
-    //ObjManager::OnColllsionObj();
     CollisionManager::CheckCollisionPair();
+    MiniMap::Update();
+
     //シーン切り替え
     if (!ObjManager::GetObj(ObjTag.ENEMY, 0) || KeyStatus::KeyStateDecision(KEY_INPUT_RETURN, ONINPUT))
     {
@@ -54,11 +58,18 @@ void Play::DrawScene()
 {
     //オブジェクト描画
     ObjManager::DrawObj();
-    DrawBox(25, 25, 280, 160, GetColor(255, 255, 0), true);
 
+    SetDrawBlendMode(DX_BLENDMODE_ALPHA, 150);
+    DrawBox(25, 25, 280, 160, GetColor(255, 255, 0), true);
+    SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+
+    MiniMap::Draw();
+
+    SetFontSize(TEXT_SIZE);
     ChangeFont(HElP_ME.c_str(), DX_CHARSET_DEFAULT);
     DrawFormatString(50, 50, GetColor(0, 0, 0), "%d LEFT", StageManager::GetBarricadeNum());
     ChangeFont(msGothic.c_str(), DX_CHARSET_DEFAULT);
+    SetFontSize(10);
     
 #ifdef _DEBUG
     DrawFormatString(0, 0, GetColor(255, 255, 255), "play %d",StageManager::GetBarricadeNum());

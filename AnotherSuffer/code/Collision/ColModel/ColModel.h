@@ -8,7 +8,7 @@ public:
     /// コンストラクタ
     /// </summary>
     /// <param name="handle">:ハンドル</param>
-    ColModel(int handle);
+    ColModel(int& handle);
 
     /// <summary>
     /// デストラクタ

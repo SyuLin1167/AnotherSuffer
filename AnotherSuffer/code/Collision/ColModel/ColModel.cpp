@@ -2,7 +2,7 @@
 
 #include "ColModel.h"
 
-ColModel::ColModel(int handle)
+ColModel::ColModel(int& handle)
     :CollisionBase(ColTag.MODEL)
 {
     colHandle = handle;

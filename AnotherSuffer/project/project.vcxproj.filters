@@ -163,6 +163,9 @@
     <Filter Include="ソース ファイル\Scene\GameOver">
       <UniqueIdentifier>{5f61946e-29fa-41b0-9db7-26a34e20ce0c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\UI\MiniMap">
+      <UniqueIdentifier>{854b1c28-8cd9-4be9-8e41-42553ee42159}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\code\Scene\SceneBase\SceneBase.cpp">
@@ -284,6 +287,9 @@
     </ClCompile>
     <ClCompile Include="..\code\Object\Camera\FixedCamera\FixedCamera.cpp">
       <Filter>ソース ファイル\Object\Camera\FixedCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\UI\MiniMap\MiniMap.cpp">
+      <Filter>ソース ファイル\UI\MiniMap</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -415,6 +421,9 @@
     </ClInclude>
     <ClInclude Include="..\code\Object\Camera\FixedCamera\FixedCamera.h">
       <Filter>ソース ファイル\Object\Camera\FixedCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\UI\MiniMap\MiniMap.h">
+      <Filter>ソース ファイル\UI\MiniMap</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

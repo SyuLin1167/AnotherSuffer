@@ -6,7 +6,9 @@
 #include"../../../Collision/Capsule/Capsule.h"
 #include "Player.h"
 
-static constexpr float RUN_SPEED = 40.0f;
+static constexpr float WALK_SPEED = 40.0f;
+static constexpr float RUN_SPEED = 80.0f;
+static constexpr float SNIKE_SPEED = 20.0f;
 static constexpr float CAPSULE_RAD = 8.0f;
 
 Player::Player()
@@ -24,10 +26,10 @@ Player::Player()
             AssetManager::GetFilePass(motionData[jsondata::objKey.nomal.c_str()])));
 
     //移動速度は走る速度
-    moveSpeed = RUN_SPEED;
+    moveSpeed = WALK_SPEED;
 
     //当たり判定はカプセル型
-    capsule = new Capsule(VAdd(objWorldPos, VGet(0, 6, 0)), VAdd(objWorldPos, VGet(0, 30, 0)), CAPSULE_RAD);
+    capsule = new Capsule(VAdd(objWorldPos, VGet(0, 7, 0)), VAdd(objWorldPos, VGet(0, 30, 0)), CAPSULE_RAD);
     capsule->Update(objPos);
     CollisionManager::AddCol(this, capsule);
 
@@ -50,6 +52,18 @@ void Player::Update(const float deltaTime)
     AssetManager::MotionInstance()->AddMotionTime(this, deltaTime);
 
     //キャラ移動
+    if (KeyStatus::KeyStateDecision(KEY_INPUT_SPACE, (ONINPUT | NOWONINPUT)))
+    {
+        moveSpeed = SNIKE_SPEED;
+    }
+    else if (KeyStatus::KeyStateDecision(KEY_INPUT_LSHIFT, (ONINPUT | NOWONINPUT)))
+    {
+        moveSpeed = RUN_SPEED;
+    }
+    else
+    {
+        moveSpeed = WALK_SPEED;
+    }
     MoveChara(deltaTime);
 
     //停止中
@@ -64,9 +78,6 @@ void Player::Update(const float deltaTime)
     //Pキーが押されたら
     if (KeyStatus::KeyStateDecision(KEY_INPUT_P, ONINPUT))
     {
-        //死亡にする
-        isAlive = false;
-
         //サウンド再生
         AssetManager::SoundInstance()->StartSound(
         AssetManager::SoundInstance()->GetHandle(
@@ -168,7 +179,6 @@ void Player::Draw()
 {
     //モデル描画
     MV1DrawModel(objHandle);
-
 #ifdef _DEBUG
     //当たり判定描画
     capsule->DrawCapsule();
@@ -185,7 +195,5 @@ void Player::Draw()
     DrawFormatString(0, 100, GetColor(255, 255, 255), "%d",test);
 
     DrawFormatString(1050, 0, GetColor(255, 255, 255), "自身座標%f,%f", capsule->GetWorldStartPos().x, capsule->GetWorldStartPos().z);
-
-    DrawCircle(static_cast<int>(objPos.z + 60) / 2, static_cast<int>(objPos.x + 60) / 2, 5, GetColor(255, 255, 255));
 #endif // _DEBUG
 }
