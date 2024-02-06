@@ -166,6 +166,12 @@
     <Filter Include="ソース ファイル\UI\MiniMap">
       <UniqueIdentifier>{854b1c28-8cd9-4be9-8e41-42553ee42159}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\UI\MousePoint">
+      <UniqueIdentifier>{1f96cb00-1902-4ef9-a9b7-e4c1463d3d46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\UI\PhysicalMeter">
+      <UniqueIdentifier>{21ecaaa8-bf00-4499-b9c6-6da1b6f3d3f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\code\Scene\SceneBase\SceneBase.cpp">
@@ -290,6 +296,12 @@
     </ClCompile>
     <ClCompile Include="..\code\UI\MiniMap\MiniMap.cpp">
       <Filter>ソース ファイル\UI\MiniMap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\UI\MousePoint\MousePoint.cpp">
+      <Filter>ソース ファイル\UI\MousePoint</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\UI\PhysicalMeter\PhysicalMeter.cpp">
+      <Filter>ソース ファイル\UI\PhysicalMeter</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -424,6 +436,12 @@
     </ClInclude>
     <ClInclude Include="..\code\UI\MiniMap\MiniMap.h">
       <Filter>ソース ファイル\UI\MiniMap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\UI\MousePoint\MousePoint.h">
+      <Filter>ソース ファイル\UI\MousePoint</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\UI\PhysicalMeter\PhysicalMeter.h">
+      <Filter>ソース ファイル\UI\PhysicalMeter</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

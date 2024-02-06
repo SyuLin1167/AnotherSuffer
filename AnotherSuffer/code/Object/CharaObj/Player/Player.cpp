@@ -179,6 +179,7 @@ void Player::Draw()
 {
     //ƒ‚ƒfƒ‹•`‰æ
     MV1DrawModel(objHandle);
+
 #ifdef _DEBUG
     //“–‚½‚è”»’è•`‰æ
     capsule->DrawCapsule();

@@ -59,6 +59,8 @@
     <ClCompile Include="..\code\Scene\SceneManager\SceneManager.cpp" />
     <ClCompile Include="..\code\Scene\Title\Title.cpp" />
     <ClCompile Include="..\code\UI\MiniMap\MiniMap.cpp" />
+    <ClCompile Include="..\code\UI\MousePoint\MousePoint.cpp" />
+    <ClCompile Include="..\code\UI\PhysicalMeter\PhysicalMeter.cpp" />
     <ClCompile Include="..\code\UI\UIManager\UIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -105,6 +107,8 @@
     <ClInclude Include="..\code\Scene\SceneManager\SceneManager.h" />
     <ClInclude Include="..\code\Scene\Title\Title.h" />
     <ClInclude Include="..\code\UI\MiniMap\MiniMap.h" />
+    <ClInclude Include="..\code\UI\MousePoint\MousePoint.h" />
+    <ClInclude Include="..\code\UI\PhysicalMeter\PhysicalMeter.h" />
     <ClInclude Include="..\code\UI\UIManager\UIManager.h" />
   </ItemGroup>
   <ItemGroup>

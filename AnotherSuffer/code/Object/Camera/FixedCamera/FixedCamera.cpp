@@ -30,6 +30,9 @@ void FixedCamera::Draw()
 {
     //Ž‹“_‚ðˆÚ“®
     SetCameraPositionAndTarget_UpVecY(objPos, VAdd(objPos, objDir));
+
+#ifdef _DEBUG
     DrawFormatString(1500, 0, GetColor(255, 255, 255), "camera %f,%f,%f", objPos.x, objPos.y, objPos.z);
+#endif // _DEBUG
 }
 

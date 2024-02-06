@@ -1,5 +1,7 @@
 #include<DxLib.h>
 
+#include"../SceneBase/SceneBase.h"
+#include "Play.h"
 #include"../../KeyStatus/KeyStatus.h"
 #include"../../Object/ObjManager/ObjManager.h"
 #include"../../Collision/CollisionManager/CollisionManager.h"
@@ -8,9 +10,9 @@
 #include"../../Object/CharaObj/Player/Player.h"
 #include"../../Object/CharaObj/Enemy/Enemy.h"
 #include"../../UI/MiniMap/MiniMap.h"
-#include"../SceneBase/SceneBase.h"
+#include"../../UI/MousePoint/MousePoint.h"
+#include"../../UI/PhysicalMeter/PhysicalMeter.h"
 #include"../Title/Title.h"
-#include "Play.h"
 
 static const std::string HElP_ME = "horroroid";
 static const LPCSTR fileName = "../assets/font/horroroid.ttf";
@@ -26,6 +28,8 @@ Play::Play()
     ObjManager::AddObj(new Enemy);
 
     MiniMap::InitMiniMap();
+    MousePoint::InitMousePoint();
+    PhysicalMeter::InitPhysicalMeter();
 
     AddFontResource(fileName);
     SetFontSize(TEXT_SIZE);
@@ -39,6 +43,7 @@ Play::~Play()
 SceneBase* Play::UpdateScene(const float deltaTime)
 {
     //オブジェクト更新
+    MousePoint::UnVisible();
     ObjManager::UpdateObj(deltaTime);
     CollisionManager::CheckCollisionPair();
     MiniMap::Update();
@@ -64,6 +69,8 @@ void Play::DrawScene()
     SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 
     MiniMap::Draw();
+    MousePoint::Draw();
+    PhysicalMeter::Draw();
 
     SetFontSize(TEXT_SIZE);
     ChangeFont(HElP_ME.c_str(), DX_CHARSET_DEFAULT);

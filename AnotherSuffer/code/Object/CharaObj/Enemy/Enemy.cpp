@@ -122,7 +122,7 @@ void Enemy::MoveChara(const float deltaTime)
         for (auto& point : path)
         {
             float dis = abs(VSize(VSub(stage[point.first][point.second].pos, objPos)));
-            if (dis > 10.0f)
+            if (dis > 8.0f)
             {
                 //–Ú•W’n“_‚ÉˆÚ“®
                 VECTOR vec = VNorm(VSub(stage[point.first][point.second].pos, objPos));

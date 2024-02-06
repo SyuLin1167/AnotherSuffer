@@ -18,6 +18,7 @@ namespace jsondata
         std::string play = "play";
         std::string move = "move";
         std::string scream = "scream";
+        std::string mouse = "mouse";
     }objKey;
 
     /// <summary>
