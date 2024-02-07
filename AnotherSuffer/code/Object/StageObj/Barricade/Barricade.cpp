@@ -2,15 +2,17 @@
 #include"../../../KeyStatus/KeyStatus.h"
 #include"../../../Object/ObjManager/ObjManager.h"
 #include"../StageManager/StageManager.h"
+#include"../Aisle/Aisle.h"
+#include"../../../UI/MousePoint/MousePoint.h"
+#include"../../Camera/FirstPersonView/FirstPersonView.h"
 #include"../../../Collision/CollisionManager/CollisionManager.h"
 #include"../../../Collision/ColModel/ColModel.h"
-#include"../Aisle/Aisle.h"
 
 Barricade::Barricade(const VECTOR pos, std::pair<int, int> node)
     :StageObjBase(pos)
     , myNode(node)
 {
-    MV1SetEmiColorScale(objHandle,GetColorF(1.0f,0,1.0f,1.0f));
+    MV1SetMaterialEmiColor(objHandle, 0, GetColorF(0.5f, 0, 0.5f, 0.01f));
 
     //テクスチャ貼り換え
     texHandle = AssetManager::GraphInstance()->GetHandle(graphData[jsondata::objKey.barricade.c_str()].GetString());
@@ -34,10 +36,16 @@ void Barricade::OnCollisionEnter(ObjBase* colObj)
         {
             if (obj->GetColTag() == ColTag.CAPSULE)
             {
-                if (colModel.get()->OnCollisionWithCapsule(obj->GetWorldStartPos(), obj->GetWorldEndPos(), obj->GetRadius() * 2.0f))
+                if (colModel.get()->OnCollisionWithCapsule(obj->GetWorldStartPos(), obj->GetWorldEndPos(), obj->GetRadius() * 1.5f))
                 {
-                    //障壁を破壊
-                    BreakBarricade();
+                    //破壊可能なら障壁を破壊する
+                    if (KeyStatus::KeyStateDecision(KEY_INPUT_SPACE, (UNINPUT | NOWUNINPUT)) &&
+                        isVisible)
+                    {
+                        MousePoint::CanVisible();
+                        BreakBarricade();
+                    }
+
                     MV1CollResultPolyDimTerminate(colModel->GetColInfoDim());
                     break;
                 }
@@ -48,10 +56,11 @@ void Barricade::OnCollisionEnter(ObjBase* colObj)
 
 void Barricade::BreakBarricade()
 {
-    //自身が見えていたら左クリックで破壊
-    if (isVisible && GetMouseInput() & MOUSE_INPUT_LEFT)
+    //破壊可能なら左クリックで破壊
+    if ((GetMouseInput() & MOUSE_INPUT_LEFT))
     {
         StageManager::ChangeStageData(myNode, AISLE);
+        StageManager::CountBarricade();
         ObjManager::AddObj(new Aisle(objPos));
         isAlive = false;
     }

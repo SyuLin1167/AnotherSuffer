@@ -30,4 +30,12 @@ namespace math
     /// <param name="rhs">:右辺ベクトル</param>
     /// <returns>ベクトルの一致:true|不一致:false</returns>
     bool operator==(const VECTOR& lhs, const VECTOR& rhs);
+
+    /// <summary>
+    /// ベクトルの乗算
+    /// </summary>
+    /// <param name="lhs">:左辺ベクトル</param>
+    /// <param name="rhs">:右辺ベクトル</param>
+    /// <returns>乗算後のベクトル</returns>
+    VECTOR operator *=(const VECTOR& lhs, const VECTOR& rhs);
 };

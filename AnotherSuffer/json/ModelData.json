@@ -2,7 +2,7 @@
     "model": {
         "ball": "../assets/model/Chara/Ball/Ball.mv1",
         "player": "../assets/model/Chara/Player/Player.mv1",
-        "enemy": "../assets/model/Chara/Player/Player.mv1",
+        "enemy": "../assets/model/Chara/Enemy/Enemy.mv1",
         "stage": "../assets/model/Map/Box.mv1"
     }
 }

@@ -6,19 +6,25 @@
 #include"../Play/Play.h"
 #include"../../Object/ObjManager/ObjManager.h"
 #include"../../Collision/CollisionManager/CollisionManager.h"
-#include"../../Object/Camera/Camera.h"
+#include"../../Object/Camera/TitleCamera/TitleCamera.h"
 #include"../../Object/CharaObj/Ball/Ball.h"
+#include"../../Object/CharaObj/TitleEnemy/TitleEnemy.h"
 #include"../../Object/StageObj/StageManager/StageManager.h"
 #include"../../Object/StageObj/Wall/Wall.h"
 #include"../../Object/StageObj/Aisle/Aisle.h"
 #include "Title.h"
 
-Title::Title()
-    :SceneBase()
-{
-    ObjManager::AddObj(new Camera);
+static const int MOVEGRAPH_POS_X = 800;
+static const int MOVEGRAPH_POS_Y = 800;
+static const int MOVEGRAPH_SIZE_X = 300;
+static const int MOVEGRAPH_SIZE_Y = 100;
 
+Title::Title()
+    :SceneBase(SceneTag.TITLE)
+{
+    ObjManager::AddObj(new TitleCamera);
     ObjManager::AddObj(new Ball);
+    ObjManager::AddObj(new TitleEnemy);
     for (int i = 0; i < stage.size(); i++)
     {
         for (int j=0; j<stage[i].size(); j++)
@@ -33,6 +39,7 @@ Title::Title()
             }
         }
     }
+
     vert[0].pos = VGet(BLOCK_SIZE/2+BLOCK_SIZE,2, BLOCK_SIZE/2);
     vert[0].norm = VGet(0, 1, 0);
     vert[0].dif = GetColorU8(255, 255, 255, 0);
@@ -62,8 +69,13 @@ Title::Title()
     vert[3].spc = GetColorU8(0, 0, 0, 0);
     vert[3].u = vert[3].v = 1.0f;
     vert[3].su = vert[3].sv = 0.0f;
-    graph = AssetManager::GraphInstance()->GetHandle(AssetManager::GraphInstance()->GetJsonData()["title"]["play"].GetString());
-    g = LoadGraph("../assets/ui/texture/test.png");
+
+    titleGraph = AssetManager::GraphInstance()->GetHandle(AssetManager::GraphInstance()->
+        GetJsonData()[scaneTag.c_str()][scaneTag.c_str()].GetString());
+     playGraph= AssetManager::GraphInstance()->GetHandle(AssetManager::GraphInstance()->
+        GetJsonData()[scaneTag.c_str()][jsondata::objKey.play.c_str()].GetString());
+    moveGraph= AssetManager::GraphInstance()->GetHandle(AssetManager::GraphInstance()->
+        GetJsonData()[scaneTag.c_str()][jsondata::objKey.move.c_str()].GetString());
 }
 
 Title::~Title()
@@ -76,9 +88,9 @@ SceneBase* Title::UpdateScene(const float deltaTime)
     //オブジェクト更新
     ObjManager::UpdateObj(deltaTime);
     CollisionManager::CheckCollisionPair();
-
+    fadePos = ConvWorldPosToScreenPos(ObjManager::GetObj(ObjTag.BALL, 0)->GetObjPos());
     //シーン切り替え
-    if (KeyStatus::KeyStateDecision(KEY_INPUT_RETURN, ONINPUT))
+    if (!ObjManager::GetObj(ObjTag.ENEMY,0)->IsVisible())
     {
         ObjManager::DeleteAllObj();
         CollisionManager::DeleteCollision();
@@ -92,11 +104,21 @@ void Title::DrawScene()
 {
     //オブジェクト描画
     ObjManager::DrawObj();
-    DrawPolygonIndexed3D(vert, 4, idx, 2, graph, false);
-    
+    DrawExtendGraph(0, 0,900,600,  titleGraph, true);
+    DrawPolygonIndexed3D(vert, 4, idx, 2, playGraph, false);
+    if (MOVEGRAPH_POS_X<fadePos.x && MOVEGRAPH_POS_Y<fadePos.y &&
+        MOVEGRAPH_POS_X + MOVEGRAPH_SIZE_X>fadePos.x && MOVEGRAPH_POS_Y + MOVEGRAPH_SIZE_Y * 4>fadePos.y)
+    {
+        SetDrawBlendMode(DX_BLENDMODE_ALPHA, 120);
+    }
+    DrawExtendGraph(MOVEGRAPH_POS_X, MOVEGRAPH_POS_Y,
+        MOVEGRAPH_POS_X + MOVEGRAPH_SIZE_X, MOVEGRAPH_POS_Y + MOVEGRAPH_SIZE_Y, moveGraph, true);
+    SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
+
 #ifdef _DEBUG
     DrawFormatString(0, 0, GetColor(255, 255, 255), "title");
+
+    DrawCircle(static_cast<int>(fadePos.x), static_cast<int>(fadePos.y), 5, GetColor(255, 255, 255));
 #endif // _DEBUG
 
-    DrawExtendGraph(0, 0,900,600, g, true);
 }

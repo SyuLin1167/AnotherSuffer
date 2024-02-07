@@ -13,15 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="ソース ファイル\Scene">
-      <UniqueIdentifier>{5dd704fb-8592-44aa-a8b1-772f2a9cd23e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Scene\SceneBase">
-      <UniqueIdentifier>{c608d71d-b5ad-4ff3-b976-c6d578339f2c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Scene\Play">
-      <UniqueIdentifier>{edfadfde-4ce8-4386-bc7b-d817975aca69}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\Object">
       <UniqueIdentifier>{3802ffcf-ccb8-409b-a30e-eba8e539010e}</UniqueIdentifier>
     </Filter>
@@ -67,9 +58,6 @@
     <Filter Include="ソース ファイル\GameSystem\Window">
       <UniqueIdentifier>{1b3c42a4-b7cb-40d6-a3de-50156187fce1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Scene\Title">
-      <UniqueIdentifier>{12a44715-9b63-44b0-82b5-3aa1824dacb6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\FPS">
       <UniqueIdentifier>{60284cb2-7dce-433b-a60b-f27b4e5c7bad}</UniqueIdentifier>
     </Filter>
@@ -93,9 +81,6 @@
     </Filter>
     <Filter Include="ソース ファイル\Collision">
       <UniqueIdentifier>{8954f12b-1042-4704-99a3-2863034f6039}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Scene\SceneManager">
-      <UniqueIdentifier>{021fbd35-95eb-476d-8a2e-373f4db2a904}</UniqueIdentifier>
     </Filter>
     <Filter Include="ソース ファイル\Collision\Capsule">
       <UniqueIdentifier>{dc943d73-1044-45c0-9946-8519c8346730}</UniqueIdentifier>
@@ -136,9 +121,6 @@
     <Filter Include="ソース ファイル\Object\CharaObj\Astar">
       <UniqueIdentifier>{ea7c5761-626c-4a0b-a137-6067591e1e8a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Object\Camera\Camera">
-      <UniqueIdentifier>{7cf49f97-0c76-4511-8fb1-ba2ea3d65f15}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\UI">
       <UniqueIdentifier>{c2846a37-62ae-4f04-8578-6aa528270ca8}</UniqueIdentifier>
     </Filter>
@@ -153,6 +135,48 @@
     </Filter>
     <Filter Include="ソース ファイル\Object\CharaObj\Ball">
       <UniqueIdentifier>{bb8c6e4f-59fd-4071-a5e1-122d3f971078}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Object\Camera\TitleCamera">
+      <UniqueIdentifier>{7cf49f97-0c76-4511-8fb1-ba2ea3d65f15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Object\CharaObj\TitleEnemy">
+      <UniqueIdentifier>{21291c94-d17a-49eb-84ea-ac5921bc89a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Object\Camera\FixedCamera">
+      <UniqueIdentifier>{559598d7-3db7-4cf2-808b-90261fc4395a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene">
+      <UniqueIdentifier>{5dd704fb-8592-44aa-a8b1-772f2a9cd23e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene\SceneBase">
+      <UniqueIdentifier>{c608d71d-b5ad-4ff3-b976-c6d578339f2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene\Play">
+      <UniqueIdentifier>{edfadfde-4ce8-4386-bc7b-d817975aca69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene\Title">
+      <UniqueIdentifier>{12a44715-9b63-44b0-82b5-3aa1824dacb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene\SceneManager">
+      <UniqueIdentifier>{021fbd35-95eb-476d-8a2e-373f4db2a904}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene\GameOver">
+      <UniqueIdentifier>{5f61946e-29fa-41b0-9db7-26a34e20ce0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\UI\MiniMap">
+      <UniqueIdentifier>{854b1c28-8cd9-4be9-8e41-42553ee42159}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\UI\MousePoint">
+      <UniqueIdentifier>{1f96cb00-1902-4ef9-a9b7-e4c1463d3d46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\UI\PhysicalMeter">
+      <UniqueIdentifier>{21ecaaa8-bf00-4499-b9c6-6da1b6f3d3f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene\Clear">
+      <UniqueIdentifier>{da36e250-4899-48e0-ad10-eaec421d7fc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Object\CharaObj\ClearEnemy">
+      <UniqueIdentifier>{29ff64bc-c92a-45a3-991d-b21911f11291}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -258,14 +282,38 @@
     <ClCompile Include="..\code\Object\CharaObj\Astar\Astar.cpp">
       <Filter>ソース ファイル\Object\CharaObj\Astar</Filter>
     </ClCompile>
-    <ClCompile Include="..\code\Object\Camera\Camera.cpp">
-      <Filter>ソース ファイル\Object\Camera\Camera</Filter>
-    </ClCompile>
     <ClCompile Include="..\code\UI\UIManager\UIManager.cpp">
       <Filter>ソース ファイル\UI\UIManager</Filter>
     </ClCompile>
     <ClCompile Include="..\code\Object\CharaObj\Ball\Ball.cpp">
       <Filter>ソース ファイル\Object\CharaObj\Ball</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\Scene\GameOver\GameOver.cpp">
+      <Filter>ソース ファイル\Scene\GameOver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\Object\Camera\TitleCamera\TitleCamera.cpp">
+      <Filter>ソース ファイル\Object\Camera\TitleCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\Object\CharaObj\TitleEnemy\TitleEnemy.cpp">
+      <Filter>ソース ファイル\Object\CharaObj\TitleEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\Object\Camera\FixedCamera\FixedCamera.cpp">
+      <Filter>ソース ファイル\Object\Camera\FixedCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\UI\MiniMap\MiniMap.cpp">
+      <Filter>ソース ファイル\UI\MiniMap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\UI\MousePoint\MousePoint.cpp">
+      <Filter>ソース ファイル\UI\MousePoint</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\UI\PhysicalMeter\PhysicalMeter.cpp">
+      <Filter>ソース ファイル\UI\PhysicalMeter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\Scene\Clear\Clear.cpp">
+      <Filter>ソース ファイル\Scene\Clear</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\Object\CharaObj\ClearEnemy\ClearEnemy.cpp">
+      <Filter>ソース ファイル\Object\CharaObj\ClearEnemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -377,14 +425,41 @@
     <ClInclude Include="..\code\Object\CharaObj\Astar\Astar.h">
       <Filter>ソース ファイル\Object\CharaObj\Astar</Filter>
     </ClInclude>
-    <ClInclude Include="..\code\Object\Camera\Camera.h">
-      <Filter>ソース ファイル\Object\Camera\Camera</Filter>
-    </ClInclude>
     <ClInclude Include="..\code\UI\UIManager\UIManager.h">
       <Filter>ソース ファイル\UI\UIManager</Filter>
     </ClInclude>
     <ClInclude Include="..\code\Object\CharaObj\Ball\Ball.h">
       <Filter>ソース ファイル\Object\CharaObj\Ball</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Scene\GameOver\GameOver.h">
+      <Filter>ソース ファイル\Scene\GameOver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Object\Camera\TitleCamera\TitleCamera.h">
+      <Filter>ソース ファイル\Object\Camera\TitleCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Object\CharaObj\TitleEnemy\TitleEnemy.h">
+      <Filter>ソース ファイル\Object\CharaObj\TitleEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Scene\SceneBase\SceneTag.h">
+      <Filter>ソース ファイル\Scene\SceneBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Object\Camera\FixedCamera\FixedCamera.h">
+      <Filter>ソース ファイル\Object\Camera\FixedCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\UI\MiniMap\MiniMap.h">
+      <Filter>ソース ファイル\UI\MiniMap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\UI\MousePoint\MousePoint.h">
+      <Filter>ソース ファイル\UI\MousePoint</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\UI\PhysicalMeter\PhysicalMeter.h">
+      <Filter>ソース ファイル\UI\PhysicalMeter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Scene\Clear\Clear.h">
+      <Filter>ソース ファイル\Scene\Clear</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Object\CharaObj\ClearEnemy\ClearEnemy.h">
+      <Filter>ソース ファイル\Object\CharaObj\ClearEnemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

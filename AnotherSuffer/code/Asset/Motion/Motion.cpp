@@ -99,7 +99,7 @@ void Motion::DeleteHandle()
 void Motion::AddMotionTime(class ObjBase* obj, const float deltaTime)
 {
     //再生速度に合わせて加算
-    if (nowHandle[obj] && IsPlaying(nowHandle[obj]))
+    if (IsPlaying(nowHandle[obj]))
     {
         motionData[nowHandle[obj]].nowMotionTime += motionData[nowHandle[obj]].playSpeed * deltaTime;
 
@@ -111,7 +111,7 @@ void Motion::AddMotionTime(class ObjBase* obj, const float deltaTime)
         }
 
         //モーション時間アタッチ
-        MV1SetAttachAnimTime(modelHandle, attachedIndex[modelHandle], motionData[nowHandle[obj]].nowMotionTime);
+        MV1SetAttachAnimTime(obj->GetObjHandle(), attachedIndex[modelHandle], motionData[nowHandle[obj]].nowMotionTime);
     }
 }
 

@@ -24,6 +24,7 @@ static constexpr int RIGHT = 0x0008;                                   //âE
 
 StageManager::StageManager()
     :dirArray{ UP, DOWN, LEFT, RIGHT }
+    ,barricadeNum()
 {
     //èàóùÇ»Çµ
 }
@@ -151,6 +152,7 @@ void StageManager::SetBarricade()
             }
         }
     }
+    stageData[STAGE_SIZE - 1][STAGE_SIZE - 1].type = AISLE;
 }
 
 void StageManager::PlacementObject()
@@ -170,6 +172,7 @@ void StageManager::PlacementObject()
             }
             else if (indexX.second.type & BARRICADE)
             {
+                barricadeNum++;
                 ObjManager::AddObj(new Barricade(indexX.second.pos, { indexX.first,indexY.first }));
             }
         }

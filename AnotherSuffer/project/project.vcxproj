@@ -36,13 +36,16 @@
     <ClCompile Include="..\code\GameSystem\Window\Window.cpp" />
     <ClCompile Include="..\code\KeyStatus\KeyStatus.cpp" />
     <ClCompile Include="..\code\main.cpp" />
-    <ClCompile Include="..\code\Object\Camera\Camera.cpp" />
     <ClCompile Include="..\code\Object\Camera\FirstPersonView\FirstPersonView.cpp" />
+    <ClCompile Include="..\code\Object\Camera\FixedCamera\FixedCamera.cpp" />
+    <ClCompile Include="..\code\Object\Camera\TitleCamera\TitleCamera.cpp" />
     <ClCompile Include="..\code\Object\CharaObj\Astar\Astar.cpp" />
     <ClCompile Include="..\code\Object\CharaObj\Ball\Ball.cpp" />
     <ClCompile Include="..\code\Object\CharaObj\CharaObjBase\CharaObjBase.cpp" />
+    <ClCompile Include="..\code\Object\CharaObj\ClearEnemy\ClearEnemy.cpp" />
     <ClCompile Include="..\code\Object\CharaObj\Enemy\Enemy.cpp" />
     <ClCompile Include="..\code\Object\CharaObj\Player\Player.cpp" />
+    <ClCompile Include="..\code\Object\CharaObj\TitleEnemy\TitleEnemy.cpp" />
     <ClCompile Include="..\code\Object\Math\Math.cpp" />
     <ClCompile Include="..\code\Object\ObjBase\ObjBase.cpp" />
     <ClCompile Include="..\code\Object\ObjManager\ObjManager.cpp" />
@@ -51,10 +54,15 @@
     <ClCompile Include="..\code\Object\StageObj\StageManager\StageManager.cpp" />
     <ClCompile Include="..\code\Object\StageObj\StageObjBase\StageObjBase.cpp" />
     <ClCompile Include="..\code\Object\StageObj\Wall\Wall.cpp" />
+    <ClCompile Include="..\code\Scene\Clear\Clear.cpp" />
+    <ClCompile Include="..\code\Scene\GameOver\GameOver.cpp" />
     <ClCompile Include="..\code\Scene\Play\Play.cpp" />
     <ClCompile Include="..\code\Scene\SceneBase\SceneBase.cpp" />
     <ClCompile Include="..\code\Scene\SceneManager\SceneManager.cpp" />
     <ClCompile Include="..\code\Scene\Title\Title.cpp" />
+    <ClCompile Include="..\code\UI\MiniMap\MiniMap.cpp" />
+    <ClCompile Include="..\code\UI\MousePoint\MousePoint.cpp" />
+    <ClCompile Include="..\code\UI\PhysicalMeter\PhysicalMeter.cpp" />
     <ClCompile Include="..\code\UI\UIManager\UIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -76,13 +84,16 @@
     <ClInclude Include="..\code\GameSystem\GameSetting\GameSetting.h" />
     <ClInclude Include="..\code\GameSystem\Window\Window.h" />
     <ClInclude Include="..\code\KeyStatus\KeyStatus.h" />
-    <ClInclude Include="..\code\Object\Camera\Camera.h" />
     <ClInclude Include="..\code\Object\Camera\FirstPersonView\FirstPersonView.h" />
+    <ClInclude Include="..\code\Object\Camera\FixedCamera\FixedCamera.h" />
+    <ClInclude Include="..\code\Object\Camera\TitleCamera\TitleCamera.h" />
     <ClInclude Include="..\code\Object\CharaObj\Astar\Astar.h" />
     <ClInclude Include="..\code\Object\CharaObj\Ball\Ball.h" />
     <ClInclude Include="..\code\Object\CharaObj\CharaObjBase\CharaObjBase.h" />
+    <ClInclude Include="..\code\Object\CharaObj\ClearEnemy\ClearEnemy.h" />
     <ClInclude Include="..\code\Object\CharaObj\Enemy\Enemy.h" />
     <ClInclude Include="..\code\Object\CharaObj\Player\Player.h" />
+    <ClInclude Include="..\code\Object\CharaObj\TitleEnemy\TitleEnemy.h" />
     <ClInclude Include="..\code\Object\Math\Math.h" />
     <ClInclude Include="..\code\Object\ObjBase\ObjBase.h" />
     <ClInclude Include="..\code\Object\ObjBase\ObjTag.h" />
@@ -92,10 +103,16 @@
     <ClInclude Include="..\code\Object\StageObj\StageManager\StageManager.h" />
     <ClInclude Include="..\code\Object\StageObj\StageObjBase\StageObjBase.h" />
     <ClInclude Include="..\code\Object\StageObj\Wall\Wall.h" />
+    <ClInclude Include="..\code\Scene\Clear\Clear.h" />
+    <ClInclude Include="..\code\Scene\GameOver\GameOver.h" />
     <ClInclude Include="..\code\Scene\Play\Play.h" />
     <ClInclude Include="..\code\Scene\SceneBase\SceneBase.h" />
+    <ClInclude Include="..\code\Scene\SceneBase\SceneTag.h" />
     <ClInclude Include="..\code\Scene\SceneManager\SceneManager.h" />
     <ClInclude Include="..\code\Scene\Title\Title.h" />
+    <ClInclude Include="..\code\UI\MiniMap\MiniMap.h" />
+    <ClInclude Include="..\code\UI\MousePoint\MousePoint.h" />
+    <ClInclude Include="..\code\UI\PhysicalMeter\PhysicalMeter.h" />
     <ClInclude Include="..\code\UI\UIManager\UIManager.h" />
   </ItemGroup>
   <ItemGroup>

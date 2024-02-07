@@ -14,7 +14,7 @@ public:
     /// <param name="startPos">:始点</param>
     /// <param name="endPos">:終点</param>
     /// <param name="rad">:半径</param>
-    Capsule(const VECTOR& startPos, const VECTOR& endPos, float rad);
+    Capsule(const VECTOR& startPos, const VECTOR& endPos,const float& rad);
 
     /// <summary>
     /// デストラクタ
@@ -32,7 +32,9 @@ public:
     /// </summary>
     /// <param name="modelHandle">:モデルハンドル</param>
     /// <returns>衝突:true|未衝突:false</returns>
-    bool OnCollisionWithMesh(const int modelHandle);
+    bool OnCollisionWithMesh(const int& modelHandle);
+
+    bool OnCollisionWithCapsule(const VECTOR& pos, const VECTOR& pos2, const float& rad);
 
     /// <summary>
     /// メッシュとの衝突時押し戻し量算出

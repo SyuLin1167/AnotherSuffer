@@ -27,16 +27,16 @@ private:
     void Update(const float deltaTime) override;
 
     /// <summary>
-    /// 視野外切り抜き
-    /// </summary>
-    void ViewClipBox();
-
-    /// <summary>
     /// 描画
     /// </summary>
     void Draw() override;
 
-    std::shared_ptr<ObjBase> player;        //プレイヤー
+    /// <summary>
+    /// 視野外切り抜き
+    /// </summary>
+    void ViewClipBox();
+
+    ObjBase* player;        //プレイヤー
 
 protected:
     /// <summary>

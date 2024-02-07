@@ -1,6 +1,8 @@
 #pragma once
 #include"../CharaObjBase/CharaObjBase.h"
 
+static constexpr float MAX_PHYSICAL = 50;
+
 /// <summary>
 /// プレイヤー
 /// </summary>
@@ -28,7 +30,7 @@ private:
     /// キャラ動作
     /// </summary>
     /// <param name="deltaTime">:デルタタイム</param>
-    void MoveChara(const float deltaTime)override;
+    void MoveChara(const float deltaTime) override;
 
     /// <summary>
     /// キー入力による移動
@@ -49,11 +51,14 @@ private:
     /// </summary>
     void Draw() override;
 
+    float physical;
+    bool canRunning;
+
     float a = 0;
     int texHandle;
     int test;
+    ObjBase* camera;
     class Capsule* capsule;
-    class Line* line;
     VECTOR moveVel;
 };
 

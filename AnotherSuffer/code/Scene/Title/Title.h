@@ -20,6 +20,7 @@ public:
     /// </summary>
     ~Title();
 
+private:
     /// <summary>
     /// シーン更新
     /// </summary>
@@ -43,7 +44,9 @@ public:
 
     VERTEX3D vert[4];
     WORD idx[6] = { 0,1,2,3,2,1 };
-    int graph;
-    int g;
+    int titleGraph;
+    int playGraph;
+    int moveGraph;
+    VECTOR fadePos;
 };
 

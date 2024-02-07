@@ -1,6 +1,7 @@
 #include "SceneBase.h"
 
-SceneBase::SceneBase()
+SceneBase::SceneBase(std::string tag)
+    :scaneTag(tag)
 {
     //ˆ—‚È‚µ
 }

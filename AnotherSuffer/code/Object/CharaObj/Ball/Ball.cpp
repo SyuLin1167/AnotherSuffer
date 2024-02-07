@@ -18,15 +18,17 @@ Ball::Ball()
     //モデル読み込み
     objHandle = AssetManager::ModelInstance()->GetHandle(modelData.GetString());
     objScale = VGet(0.08f, 0.08f, 0.08f);
-    objDir = VGet(-1, 0, -1);
-    MV1SetMatrix(objHandle, MMult(MMult(MGetScale(objScale),rotateZMat), MGetTranslate(objPos)));
+    objDir = VGet(0, 0, -1);
+    MV1SetMatrix(objHandle, MMult(MMult(MGetScale(objScale),ZAxisData->GetRotateMat()), MGetTranslate(objPos)));
 
     //移動速度は走る速度
     moveSpeed = MIN_SPEED;
 
     //当たり判定はカプセル型
     capsule = new Capsule(VAdd(objPos, VGet(0, 6, 0)), VAdd(objPos, VGet(0, 30, 0)), 7.0f);
+    capsule->Update(objPos);
     CollisionManager::AddCol(this, capsule);
+
 }
 
 Ball::~Ball()
@@ -43,11 +45,11 @@ void Ball::Update(const float deltaTime)
 
     //座標更新
     CalcObjPos();
-    RotateVel();
+
 
     //行列でモデルの動作
     objPos.y = capsule->GetRadius();
-    MV1SetMatrix(objHandle, MMult(MMult(MGetScale(objScale),MMult(rotateXMat,rotateZMat)), MGetTranslate(VAdd(objPos,objDir))));
+    MV1SetMatrix(objHandle, MMult(MMult(MGetScale(objScale),RotateVel()), MGetTranslate(objPos)));
 }
 
 void Ball::MoveChara(const float deltaTime)
@@ -86,7 +88,6 @@ void Ball::MoveChara(const float deltaTime)
         }
     }
     objLocalPos = VAdd(objLocalPos, VScale(moveVel, moveSpeed * deltaTime));
-
 }
 
 void Ball::MoveByKey(const int keyName, const VECTOR dir, const float deltaTime)
@@ -123,10 +124,6 @@ void Ball::OnCollisionEnter(ObjBase* colObj)
     //座標更新
     CalcObjPos();
     capsule->Update(objPos);
-
-    //行列でモデルの動作
-    
-    //MV1SetMatrix(objHandle, MMult(rotateMat, MGetTranslate(objPos)));
 }
 
 void Ball::Draw()
@@ -140,32 +137,34 @@ void Ball::Draw()
 #endif // _DEBUG
 }
 
-void Ball::RotateVel()
+MATRIX Ball::RotateVel()
 {
-    rotateXMat = MGetIdent();
-    rotateZMat = MGetIdent();
-
+    MATRIX xMat = MGetIdent(), zMat = MGetIdent();
     if (static_cast<int>(abs(moveVel.z)) > 0)
     {
         if (objDir.x > 0)
         {
-            RotateXAxis(VScale(moveVel, -1), VSize(moveVel) * moveSpeed / 8.0f);
+            XAxisData->Rotate(VScale(moveVel, -1), VSize(moveVel) * moveSpeed / 8.0f);
         }
         else
         {
-            RotateXAxis(moveVel, VSize(moveVel) * moveSpeed / 8.0f);
+            XAxisData->Rotate(moveVel, VSize(moveVel) * moveSpeed / 8.0f);
         }
+        xMat = XAxisData->GetRotateMat();
     }
 
     if (static_cast<int>(abs(moveVel.x)) > 0)
     {
         if (objDir.z > 0)
         {
-            RotateZAxis(VScale(moveVel, -1), VSize(moveVel) * moveSpeed / 8.0f);
+            ZAxisData->Rotate(VScale(moveVel, -1), VSize(moveVel) * moveSpeed / 8.0f);
         }
         else
         {
-            RotateZAxis(moveVel, VSize(moveVel) * moveSpeed / 8.0f);
+            ZAxisData->Rotate(moveVel, VSize(moveVel) * moveSpeed / 8.0f);
         }
+        zMat = ZAxisData->GetRotateMat();
     }
+
+    return MMult(xMat, zMat);
 }

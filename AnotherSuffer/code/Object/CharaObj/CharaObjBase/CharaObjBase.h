@@ -35,18 +35,48 @@ private:
         /// </summary>
         /// <param name="axis">：軸</param>
         /// <param name="obj">:オブジェクト</param>
-        AxisData(std::string axis, CharaObjBase* obj);
+        /// <param name="rad">:初期角度</param>
+        AxisData(const std::string& axis, CharaObjBase* obj,const float rad = 0.0f);
 
-        ~AxisData();
+        /// <summary>
+        /// デストラクタ 
+        /// </summary>
+        ~AxisData() {};
 
+        /// <summary>
+        /// 回転
+        /// </summary>
+        /// <param name="dir">:目標方向</param>
+        /// <param name="velocity">:回転量</param>
+        void Rotate(const VECTOR& dir, const float& velocity);
+
+        /// <summary>
+        /// 目標方向への回転
+        /// </summary>
+        /// <param name="dir">:目標方向</param>
+        /// <param name="velocity">:回転量</param>
+        void RotateToAim(const VECTOR& dir,const float& velocity);
+
+        /// <summary>
+        /// 目標方向への直接回転
+        /// </summary>
+        /// <param name="dir1">:目標方向</param>
+        void RotateToAim(const VECTOR& dir);
+
+        /// <summary>
+        /// 回転行列取得
+        /// </summary>
+        /// <returns></returns>
+        MATRIX GetRotateMat()const { return rotMat; }
     private:
+        /// <summary>
+        /// 回転方向算出
+        /// </summary>
+        /// <param name="velocity">回転量</param>
+        /// <returns>回転する向き</returns>
+        float CalcRotDir(const float& velocity);
 
-        void Rotate();
-
-        void RotateToAim(const VECTOR dir, float velocity);
-        float CalcRotDir(const float velocity);
-
-        CharaObjBase* obj;
+        CharaObjBase* object;
         const std::string axisType;   //軸
         VECTOR aimDir;              //目標方向
         float rotRad;           //回転角
@@ -64,87 +94,18 @@ protected:
     /// <param name="deltaTime">:デルタタイム</param>
     virtual void MoveChara(const float deltaTime) = 0;
     
-    /// <summary>
-    /// Y軸回転
-    /// </summary>
-    /// <param name="dir">:目標の向き</param>
-    /// <param name="velocity">:角速度</param>
-    void RotateYAxis(const VECTOR dir, float velocity);
-
-    /// <summary>
-    /// X軸回転
-    /// </summary>
-    /// <param name="dir">:目標の向き</param>
-    /// <param name="velocity">:角速度</param>
-    void RotateXAxis(const VECTOR dir, float velocity);
-
-    /// <summary>
-    /// X軸目標方向回転
-    /// </summary>
-    /// <param name="dir">:目標の向き</param>
-    /// <param name="velocity">:角速度</param>
-    void RotateToAimXAxis(const VECTOR dir, float velocity);
-
-    /// <summary>
-    /// Z軸回転
-    /// </summary>
-    /// <param name="dir">:目標の向き</param>
-    /// <param name="velocity">:角速度</param>
-    void RotateZAxis(const VECTOR dir, float velocity);
-
-    /// <summary>
-    /// Z軸目標方向回転
-    /// </summary>
-    /// <param name="dir">:目標の向き</param>
-    /// <param name="velocity">:角速度</param>
-    void RotateToAimZAxis(const VECTOR dir, float velocity);
-
-    /// <summary>
-    /// 回転方向算出
-    /// </summary>
-    /// <returns>:</returns>
-    /// <param name="velocity">:角速度</param>
-    float CalcRotDirX(float velocity);
-
-    /// <summary>
-    /// 回転方向算出
-    /// </summary>
-    /// <returns>:</returns>
-    /// <param name="velocity">:角速度</param>
-    float CalcRotDirY(float velocity);
-
-    /// <summary>
-    /// 回転方向算出
-    /// </summary>
-    /// <returns>:</returns>
-    /// <param name="velocity">:角速度</param>
-    float CalcRotDirZ(float velocity);
-
-    AxisData* XAxisData;
-    AxisData* YAxisData;
-    AxisData* ZAxisData;
+    std::unique_ptr<AxisData> XAxisData;
+    std::unique_ptr<AxisData> YAxisData;
+    std::unique_ptr<AxisData> ZAxisData;
 
     bool isMove;                            //動作判定
     float moveSpeed;                        //移動速度
 
     static const float ROTATE_SPEED;        //回転速度
     bool nowRotate;                         //回転判定
-    MATRIX rotateXMat;                      //X軸回転行列
-    MATRIX rotateYMat;                      //Y軸回転行列
-    MATRIX rotateZMat;                      //Z軸回転行列
 
     const rapidjson::Value& modelData;      //モデルパスデータ
     const rapidjson::Value& soundData;      //サウンドパスデータ
     const rapidjson::Value& motionData;     //モーションパスデータ
-
-protected:
-    VECTOR aimDir;                          //目標座標
-    float rotRad;                           //角速度のラジアン角
-    float rotXRad;
-    float rotYRad;                          //Y軸ラジアン角
-    float rotZRad;
-    MATRIX rotYMat;                         //Y軸回転行列
-    MATRIX rotXMat;
-    MATRIX rotZMat;
 };
 

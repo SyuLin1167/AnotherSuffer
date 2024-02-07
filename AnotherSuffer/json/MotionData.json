@@ -7,14 +7,39 @@
         "loop": true
       },
       "walk": {
+        "pass": "../assets/model/Chara/Player/PlayerWalk.mv1",
+        "speed": 30.0,
+        "loop": true
+      },
+      "run": {
         "pass": "../assets/model/Chara/Player/PlayerRun.mv1",
         "speed": 30.0,
         "loop": true
       }
     },
     "enemy": {
-      "nomal": {
-        "pass": "../assets/model/Chara/Player/PlayerNomal.mv1",
+      "walk": {
+        "pass": "../assets/model/Chara/Enemy/EnemyWalk.mv1",
+        "speed": 30.0,
+        "loop": true
+      },
+      "look": {
+        "pass": "../assets/model/Chara/Enemy/EnemyLooking.mv1",
+        "speed": 30.0,
+        "loop": true
+      },
+      "hide": {
+        "pass": "../assets/model/Chara/Enemy/EnemyHide.mv1",
+        "speed": 30.0,
+        "loop": false
+      },
+      "scream": {
+        "pass": "../assets/model/Chara/Enemy/EnemyScream.mv1",
+        "speed": 30.0,
+        "loop": false
+      },
+      "dance": {
+        "pass": "../assets/model/Chara/Enemy/EnemyDance.mv1",
         "speed": 30.0,
         "loop": true
       }

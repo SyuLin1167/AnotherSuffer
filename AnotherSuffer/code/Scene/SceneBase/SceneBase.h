@@ -1,5 +1,6 @@
 #pragma once
 #include<string>
+#include"SceneTag.h"
 
 /// <summary>
 /// シーン基底クラス
@@ -10,7 +11,8 @@ public:
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    SceneBase();
+    /// <param name="tag">:タグ</param>
+    SceneBase(std::string tag);
 
     /// <summary>
     /// デストラクタ
@@ -30,6 +32,6 @@ public:
     virtual void DrawScene() = 0;
 
 protected:
-    std::string sceneName;
+    std::string scaneTag;     //シーンのタグ
 };
 

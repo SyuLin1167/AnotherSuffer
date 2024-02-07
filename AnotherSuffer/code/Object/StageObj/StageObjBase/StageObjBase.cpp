@@ -4,9 +4,10 @@
 #include"../../ObjManager/ObjManager.h"
 #include"../../../Collision/CollisionManager/CollisionManager.h"
 #include"../../../Collision/ColModel/ColModel.h"
+#include"../../../UI/MiniMap/MiniMap.h"
 
 static constexpr float CLIP_BOX_SIZE = 100.0f;     //切り抜きボックスサイズ
-static constexpr float CLIP_DISTANCE = 400.0f;     //切り抜き距離
+static constexpr float CLIP_DISTANCE = 150.0f;     //切り抜き距離
 
 StageObjBase::StageObjBase(const VECTOR pos)
     :ObjBase(ObjTag.STAGE)
@@ -27,6 +28,7 @@ StageObjBase::StageObjBase(const VECTOR pos)
     objScale = VGet(0.2f, 0.4f, 0.2f);
     MV1SetScale(objHandle, objScale);
 
+    player = nullptr;
 #ifdef _DEBUG
     MV1SetOpacityRate(objHandle, 0.3f);
 #endif // _DEBUG
@@ -34,7 +36,6 @@ StageObjBase::StageObjBase(const VECTOR pos)
     //行列でモデルの動作
     CalcObjPos();
     MV1SetMatrix(objHandle, MMult(MGetScale(objScale), MGetTranslate(objPos)));
-
 }
 
 
@@ -54,7 +55,8 @@ StageObjBase::~StageObjBase()
 void StageObjBase::Update(const float deltaTime)
 {
     //モデル切り抜き
-    if (!ObjManager::GetObj(ObjTag.PLAYER).empty())
+    player = ObjManager::GetObj(ObjTag.PLAYER, 0);
+    if (player)
     {
         ViewClipBox();
     }
@@ -67,11 +69,10 @@ void StageObjBase::Update(const float deltaTime)
 void StageObjBase::ViewClipBox()
 {
     //プレイヤーから一定距離離れていたら描画しない
-    player = ObjManager::GetObj(ObjTag.PLAYER)[0];
     VECTOR distance = VSub(objPos, player->GetObjPos());
     if (VSize(distance) > CLIP_DISTANCE)
     {
-        isVisible = false;
+       isVisible = false;
         return;
     }
 
@@ -81,12 +82,13 @@ void StageObjBase::ViewClipBox()
     clipBoxPos2 = VAdd(objPos, VAdd(clipBoxScale, VGet(0, clipBoxScale.y, 0)));
     if (CheckCameraViewClip_Box(clipBoxPos1, clipBoxPos2))
     {
-        isVisible = false;
+       isVisible = false;
         return;
     }
 
     //基本は描画
     isVisible = true;
+    MiniMap::AddMapData(objPos, color);
 }
 
 void StageObjBase::Draw()
@@ -96,6 +98,6 @@ void StageObjBase::Draw()
     MV1DrawModel(objHandle);
 
 #ifdef _DEBUG
-    DrawBox(objPos.z+40, objPos.x+40, objPos.z + 80, objPos.x + 80, color, true);
+    DrawBox(objPos.z/2 +820, objPos.x/2 + 400, objPos.z/2 +840, objPos.x/2  +420 , color, true);
 #endif // _DEBUG
 }
