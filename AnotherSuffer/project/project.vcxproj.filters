@@ -172,6 +172,12 @@
     <Filter Include="ソース ファイル\UI\PhysicalMeter">
       <UniqueIdentifier>{21ecaaa8-bf00-4499-b9c6-6da1b6f3d3f1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Scene\Clear">
+      <UniqueIdentifier>{da36e250-4899-48e0-ad10-eaec421d7fc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Object\CharaObj\ClearEnemy">
+      <UniqueIdentifier>{29ff64bc-c92a-45a3-991d-b21911f11291}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\code\Scene\SceneBase\SceneBase.cpp">
@@ -302,6 +308,12 @@
     </ClCompile>
     <ClCompile Include="..\code\UI\PhysicalMeter\PhysicalMeter.cpp">
       <Filter>ソース ファイル\UI\PhysicalMeter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\Scene\Clear\Clear.cpp">
+      <Filter>ソース ファイル\Scene\Clear</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\Object\CharaObj\ClearEnemy\ClearEnemy.cpp">
+      <Filter>ソース ファイル\Object\CharaObj\ClearEnemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -442,6 +454,12 @@
     </ClInclude>
     <ClInclude Include="..\code\UI\PhysicalMeter\PhysicalMeter.h">
       <Filter>ソース ファイル\UI\PhysicalMeter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Scene\Clear\Clear.h">
+      <Filter>ソース ファイル\Scene\Clear</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\Object\CharaObj\ClearEnemy\ClearEnemy.h">
+      <Filter>ソース ファイル\Object\CharaObj\ClearEnemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

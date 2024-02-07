@@ -2,7 +2,13 @@
   "sound": {
     "player": {
       "walk": {
-        "pass": "../assets/sound/DoorOpenSE.wav",
+        "pass": "../assets/sound/PlayerWalk.mp3",
+        "type": "SE",
+        "loop": false,
+        "volume": 150
+      },
+      "run": {
+        "pass": "../assets/sound/PlayerRun.mp3",
         "type": "SE",
         "loop": false,
         "volume": 150
@@ -13,6 +19,14 @@
         "pass": "../assets/sound/DoorOpenSE.wav",
         "type": "SE",
         "loop": false,
+        "volume": 150
+      }
+    },
+    "title": {
+      "bgm": {
+        "pass": "../assets/sound/TitleBgm.mp3",
+        "type": "BGM",
+        "loop": true,
         "volume": 150
       }
     }

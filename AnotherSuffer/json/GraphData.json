@@ -5,6 +5,9 @@
       "barricade": "../assets/model/Texture/Barricade.png",
       "aisle": "../assets/model/Texture/Aisle.png"
     },
+    "enemy": {
+      "clear": "../assets/ui/Texture/Clear.png"
+    },
     "title": {
       "title": "../assets/ui/Texture/Title.png",
       "play": "../assets/ui/Texture/Play.png",
@@ -12,6 +15,9 @@
     },
     "mouse": {
       "mouse": "../assets/ui/Texture/Mouse.png"
+    },
+    "clear": {
+      "clear": "../assets/ui/Texture/Space.png"
     }
   }
 }

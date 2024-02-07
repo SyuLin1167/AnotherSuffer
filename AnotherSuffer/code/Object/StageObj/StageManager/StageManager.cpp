@@ -152,6 +152,7 @@ void StageManager::SetBarricade()
             }
         }
     }
+    stageData[STAGE_SIZE - 1][STAGE_SIZE - 1].type = AISLE;
 }
 
 void StageManager::PlacementObject()

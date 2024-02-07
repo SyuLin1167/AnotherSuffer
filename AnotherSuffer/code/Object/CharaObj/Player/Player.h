@@ -1,6 +1,8 @@
 #pragma once
 #include"../CharaObjBase/CharaObjBase.h"
 
+static constexpr float MAX_PHYSICAL = 50;
+
 /// <summary>
 /// ÉvÉåÉCÉÑÅ[
 /// </summary>
@@ -48,6 +50,9 @@ private:
     /// ï`âÊ
     /// </summary>
     void Draw() override;
+
+    float physical;
+    bool canRunning;
 
     float a = 0;
     int texHandle;

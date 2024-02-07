@@ -33,6 +33,12 @@ public:
     /// </summary>
     static void Draw();
 
+    /// <summary>
+    /// 可視化状態取得
+    /// </summary>
+    /// <returns>可視:true|不可視:false</returns>
+    static bool IsVisible() {return singleton->isVisible; }
+
 private:
     /// <summary>
     /// コンストラクタ(シングルトン)

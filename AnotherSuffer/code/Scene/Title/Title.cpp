@@ -90,7 +90,7 @@ SceneBase* Title::UpdateScene(const float deltaTime)
     CollisionManager::CheckCollisionPair();
     fadePos = ConvWorldPosToScreenPos(ObjManager::GetObj(ObjTag.BALL, 0)->GetObjPos());
     //ƒV[ƒ“Ø‚è‘Ö‚¦
-    if (!ObjManager::GetObj(ObjTag.ENEMY,0))
+    if (!ObjManager::GetObj(ObjTag.ENEMY,0)->IsVisible())
     {
         ObjManager::DeleteAllObj();
         CollisionManager::DeleteCollision();

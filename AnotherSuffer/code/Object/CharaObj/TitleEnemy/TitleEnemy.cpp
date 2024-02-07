@@ -51,7 +51,7 @@ void TitleEnemy::MoveChara(const float deltaTime)
     if (!AssetManager::MotionInstance()->IsPlaying(AssetManager::MotionInstance()->GetHandle(
         AssetManager::GetFilePass(motionData[jsondata::objKey.hide.c_str()]))))
     {
-        isAlive = false;
+        isVisible = false;
     }
 }
 

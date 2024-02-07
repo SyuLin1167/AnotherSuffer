@@ -20,6 +20,7 @@ public:
     /// </summary>
     ~Title();
 
+private:
     /// <summary>
     /// シーン更新
     /// </summary>

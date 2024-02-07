@@ -15,15 +15,18 @@ FixedCamera::FixedCamera(const VECTOR& pos, const VECTOR& dir)
 
 FixedCamera::~FixedCamera()
 {
-    //ˆ—‚È‚µ
+    DeleteLightHandle(lightHandle);
 }
 
 void FixedCamera::Update(const float deltaTime)
 {
     CalcObjPos();
-    YAxisData->RotateToAim(VNorm(VSub(enemy->GetObjFramePos(ENEMY_HEAD_FRAME), objPos)));
-    SetLightDirectionHandle(lightHandle, objDir);
-    SetLightPositionHandle(lightHandle, VAdd(objPos, VScale(objDir, -5)));
+    if (enemy)
+    {
+        YAxisData->RotateToAim(VNorm(VSub(enemy->GetObjFramePos(ENEMY_HEAD_FRAME), objPos)));
+        SetLightDirectionHandle(lightHandle, objDir);
+        SetLightPositionHandle(lightHandle, VAdd(objPos, VScale(objDir, -5)));
+    }
 }
 
 void FixedCamera::Draw()
